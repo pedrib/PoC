@@ -22,10 +22,10 @@ I have contacted Lorex and they initially said they would fix it, but went radio
 09.01.2013 - Public disclosure.
 
 All references can be found at:
-https://github.com/pedrib/PoC/lorexActivex/lorex-report.txt
+https://github.com/pedrib/PoC/blob/master/lorexActivex/lorex-report.txt
 
 Proof of concept:
-https://github.com/pedrib/PoC/lorexActivex/lorex-testcase.html
+https://github.com/pedrib/PoC/blob/master/lorexActivex/lorex-report.txt
 
 Regards,
 Pedro Ribeiro (pedrib@gmail.com)
