@@ -2,7 +2,7 @@
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 
 ====================================================================
-Vulnerability: PHP object insertion leading to all kinds of badness (arbitrary file deletion, possible code execution)
+Vulnerability: PHP object insertion leading to all kinds of badness (arbitrary file deletion, possible code execution) (CVE-2014-2027)
 File(line): egroupware/addressbook/csv_import.php(257,258)
 File(line): egroupware/calendar/csv_import.php(277,278)
 File(line): egroupware/projectmanager/csv_import.php(324,325)

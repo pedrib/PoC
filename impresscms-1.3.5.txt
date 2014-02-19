@@ -4,7 +4,7 @@ Discovered by
 	Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 
 ========================================
-Vulnerability: Deletion of arbitrary files in the system
+Vulnerability: Deletion of arbitrary files in the system (CVE-2014-1836)
 File(line): /impresscms/htdocs/libraries/image-editor/image-edit.php(62)
 Code snippet: 
 if (! is_null ( $op ) && $op == 'cancel') {
@@ -21,7 +21,7 @@ Proof of concept:
 
 
 ========================================
-Vulnerability: Cross site scripting (XSS)
+Vulnerability: Cross site scripting (XSS) (no CVE)
 File(line): /impresscms/htdocs/misc.php(110)
 Code snippet:
 			<h4><?php echo _MSC_AVAVATARS;?></h4>
@@ -35,7 +35,7 @@ NOTE: wasn't able to exploit with Protector on, but someone smarter might be abl
 
 
 ========================================
-Vulnerability: Cross site scripting (XSS)
+Vulnerability: Cross site scripting (XSS) (no CVE)
 File(line): /impresscms/modules/system/admin/tplsets/main.php(171)
 Code snippet:
 	case 'listtpl':

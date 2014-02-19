@@ -2,7 +2,7 @@
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 
 ====================================================================
-Vulnerability: PHP object injection leading to all kinds of badness
+Vulnerability: PHP object injection leading to all kinds of badness (CVE-2014-1860)
 File(line): contao-core-3.2.4/system/modules/core/drivers/DC_Table.php(149)
 File(line): contao-core-3.2.4/system/modules/core/drivers/DC_Folder.php(124)
 File(line): contao-core-3.2.4/system/modules/core/widgets/KeyValueWizard.php(73)
