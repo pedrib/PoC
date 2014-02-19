@@ -2,7 +2,7 @@
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 
 ====================================================================
-Vulnerability: Remote code execution via PHP unserialize
+Vulnerability: PHP object insertion leading to all kinds of badness (arbitrary file deletion, possible code execution)
 File(line): egroupware/addressbook/csv_import.php(257,258)
 File(line): egroupware/calendar/csv_import.php(277,278)
 File(line): egroupware/projectmanager/csv_import.php(324,325)
@@ -38,29 +38,25 @@ if ($_POST['save'] || $_POST['apply'])
 
 Arbitrary file overwrite in __destruct:
 egroupware/etemplate/inc/class.etemplate_request_files.inc.php
-
-Remote code execution in __destruct:
-/mnt/egroupware/phpgwapi/inc/class.egw_json.inc.php
-	public function __destruct()
-	{
-		//Only send the response if this instance is the singleton instance
-		if ($this == self::get())
-			$this->sendResult();
-	}
-
-...
-
-	public function sendResult()
-	{
-		$inst = self::get();
-
-		//Call each attached before send data proc
-		foreach ($inst->beforeSendDataProcs as $proc)
-			call_user_func_array($proc['proc'], $proc['params']);
+140	        function __destruct()
+141	        {
+142	                if ($this->remove_if_not_modified && !$this->data_modified)
+143	                {
+144	                        //error_log(__METHOD__."() destroying $this->id");
+145	                        @unlink(self::$directory.'/'.$this->id);
+146	                }
+147	                elseif (!$this->destroyed && $this->data_modified &&
+148	                        !file_put_contents($filename = self::$directory.'/'.$this->id,serialize($this->data)))
+149	                {
+150	                        error_log("Error opening '$filename' to store the etemplate request data!");
+151	                }
+152	        }
 
 	
 Comment:
-User input is passed directly into unserialize(), leading to object insertion and PHP code execution.
+User input is passed directly into unserialize(), leading to object insertion, arbitrary file deletion and possible code execution.
+There are lots of classes with exploitable magic methods, and the above is just an example.
+
 	
 References:
 https://www.owasp.org/index.php/PHP_Object_Injection
