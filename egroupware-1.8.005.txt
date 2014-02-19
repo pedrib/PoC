@@ -1,0 +1,69 @@
+> Vulnerabilities in EGroupware 1.8.005
+> Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
+
+====================================================================
+Vulnerability: Remote code execution via PHP unserialize
+File(line): egroupware/addressbook/csv_import.php(257,258)
+File(line): egroupware/calendar/csv_import.php(277,278)
+File(line): egroupware/projectmanager/csv_import.php(324,325)
+File(line): egroupware/infolog/csv_import.php(336,337)
+File(line): egroupware/preferences/inc/class.uiaclprefs.inc.php(108)
+Code snippet:
+
+egroupware/addressbook/csv_import.php(257,258):
+case 'next':
+	$_POST['addr_fields'] = unserialize(stripslashes($_POST['addr_fields']));
+	$_POST['trans']       = unserialize(stripslashes($_POST['trans']));
+
+
+egroupware/calendar/csv_import.php(277,278):
+case 'next':
+	$_POST['cal_fields'] = unserialize(stripslashes($_POST['cal_fields']));
+	$_POST['trans']       = unserialize(stripslashes($_POST['trans']));
+
+
+egroupware/projectmanager/csv_import.php(324,325):
+egroupware/infolog/csv_import.php(336,337):
+case 'next':
+	$_POST['info_fields'] = unserialize(stripslashes($_POST['info_fields']));
+	$_POST['trans']       = unserialize(stripslashes($_POST['trans']));
+
+
+egroupware/preferences/inc/class.uiaclprefs.inc.php(108):
+if ($_POST['save'] || $_POST['apply'])
+{
+	$processed = $_POST['processed'];
+	$to_remove = unserialize(urldecode($processed));
+
+
+Arbitrary file overwrite in __destruct:
+egroupware/etemplate/inc/class.etemplate_request_files.inc.php
+
+Remote code execution in __destruct:
+/mnt/egroupware/phpgwapi/inc/class.egw_json.inc.php
+	public function __destruct()
+	{
+		//Only send the response if this instance is the singleton instance
+		if ($this == self::get())
+			$this->sendResult();
+	}
+
+...
+
+	public function sendResult()
+	{
+		$inst = self::get();
+
+		//Call each attached before send data proc
+		foreach ($inst->beforeSendDataProcs as $proc)
+			call_user_func_array($proc['proc'], $proc['params']);
+
+	
+Comment:
+User input is passed directly into unserialize(), leading to object insertion and PHP code execution.
+	
+References:
+https://www.owasp.org/index.php/PHP_Object_Injection
+http://www.alertlogic.com/writing-exploits-for-exotic-bug-classes/
+http://www.suspekt.org/downloads/POC2009-ShockingNewsInPHPExploitation.pdf
+http://vagosec.org/2013/12/wordpress-rce-exploit/
