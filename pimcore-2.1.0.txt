@@ -2,14 +2,15 @@
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 
 ====================================================================
-Vulnerability: Remote code execution in Pimcore CMS via unserialize() PHP object injection (CVE-HERE)
+Vulnerability: Remote code execution in Pimcore CMS via unserialize() PHP object injection (CVE-2014-2921)
+Vulnerability: Arbitrary file deletion in Pimcore CMS via unserialize() PHP object injection (CVE-2014-2922)
 File(line): pimcore/lib/Pimcore/Tool/Newsletter.php(221)
 
 Summary:
 This vulnerability can be exploited by sending a base64 encoded payload as the "token" parameter to the newsletter unsubscribe page of the target site. Payload [1] abuses several Zend classes to achieve remote code execution (based on Stefan Esser's technique in [2] and Egidio Romano's exploit code from [3]). Payload [4] abuses Zend_Http_Response_Stream to delete a file in /tmp/deleteme and works in all PHP versions.
 
 Versions affected:
-1.4.9 to 1.4.10 (inclusive): Remote code execution (when server is running PHP <= 5.3.3). 
+1.4.9 to 1.4.10 (inclusive) / 2.0.0 (possibly): Remote code execution (when server is running PHP <= 5.3.3). 
 1.4.9 to 2.1.0 (inclusive): Arbitrary file deletion (any PHP version), POSSIBLY remote code execution.
 Version 2.2.0 or higher resolves this vulnerability.
 
