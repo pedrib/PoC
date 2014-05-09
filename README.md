@@ -8,7 +8,7 @@ You can do whatever you want with these files within the boundaries of the GPLv3
 - you have to disclose the source code of any modifications to the general public
 - you have to state any changes you have made to the code
 
-Where parts of the code have been taken from other sources and the license is incompatible with GPLv3, the original license prevails but only for that specific code.
+For code snippets or files that have been taken from other sources and have a license which is incompatible with GPLv3, the original license prevails but only for that specific code snippet or file.
 For more information check http://choosealicense.com/licenses/gpl-v3/.
 
 Feel free to send me questions / comments / criticism.
