@@ -3,9 +3,6 @@
 # Current source: https://github.com/rapid7/metasploit-framework
 ##
 
-# TODO
-# - add the refs, confirm the builds, etc
-
 require 'msf/core'
 require 'msf/core/exploit/file_dropper'
 
@@ -47,9 +44,9 @@ class Metasploit3 < Msf::Exploit::Remote
       'References'     =>
         [
           [ 'CVE', '2014-3996' ],
-          [ 'OSVDB', 'TODO' ],
-          [ 'URL', 'TODO_GITHUB_URL' ],
-          [ 'URL', 'TODO_FULLDISC_URL' ]
+          [ 'OSVDB', '110198' ],
+          [ 'URL', 'https://raw.githubusercontent.com/pedrib/PoC/master/me_dc_pmp_it360_sqli.txt' ],
+          [ 'URL', 'http://seclists.org/fulldisclosure/2014/Aug/55' ]
         ],
       'Arch'           => ARCH_X86,
       'Platform'       => %w{ linux win },
