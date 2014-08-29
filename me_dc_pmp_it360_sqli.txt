@@ -26,6 +26,7 @@ Affected products / versions:
 - ManageEngine Password Manager Pro (PMP) [MSP]: all versions from v5 to version 7 build 7002
 - ManageEngine IT360 [MSP]: all versions from v8 to v10.1.1 build 10110
 This affects all versions of the products released since 19-Apr-2006. Other ManageEngine products might be affected.
+Fix: Upgrade to DC v9 build 90043; PMP v7 build 7003; IT360 v10.3.3 build 10330
 
 Constraints: 
 - DC: no authentication or any other information needed
@@ -50,6 +51,7 @@ Affected products / versions:
 - ManageEngine Password Manager Pro (PMP) [MSP]: all versions from v5 to version 7 build 7003
 - ManageEngine IT360 [MSP]: all versions from v8 to v10.1.1 build 10110
 This affects all versions of the products released since 03-Apr-2008. Other ManageEngine products might be affected.
+Fix: Upgrade to DC v9 build 90043; PMP v7 build 7003; IT360 v10.3.3 build 10330
 
 Constraints: 
 - PMP: no authentication or any other information needed
