@@ -17,5 +17,5 @@ GET /ReadUsersFromMasterServlet
 Example response:
 <?xml version="1.0" encoding="UTF-8"?><discoveryresult><discoverydata><username>admin</username><userrole>Administrator</userrole><password>Ok6/FqR5WtJY5UCLrnvjQQ==</password><emailid>noreply@zohocorp.com</emailid><saltvalue>12345678</saltvalue></discoverydata></discoveryresult>
 
-The passwords are a salted MD5 hash, which you can get with the following Ruby code:
+The passwords are a salted MD5 hash, which can be extracted with the following Ruby code:
 Base64.decode64(password).unpack('H*')
