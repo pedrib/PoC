@@ -5,7 +5,7 @@ This repository contains my advisories, proof of concept files and exploits (ref
 
 - generic: most files
 - vendor_name/vendor_name_variant: vendor specific files
-- CVEs: a CSV listing of CVE numbers directly attributed to me
+- CVEs: a listing of CVE numbers directly attributed to me
 - LICENSE: GPLv3, see below for more info
 - README: this file
 
