@@ -4,7 +4,7 @@ PoC
 This repository contains my advisories, proof of concept files and exploits (referred to as files from now on) that I have made public and it is located at https://github.com/pedrib/PoC.
 
 - generic: most files
-- <vendor_name / vendor_name_variation>: vendor specific files
+- vendor_name/vendor_name_variant: vendor specific files
 - CVEs: a CSV listing of CVE numbers directly attributed to me
 - LICENSE: GPLv3, see below for more info
 - README: this file
