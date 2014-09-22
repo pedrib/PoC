@@ -1,0 +1,61 @@
+Hi,
+
+I'm a security researcher from London, UK, and I have made a security evaluation of your ActiveX controls.
+I have found that 3 of them are vulnerable to buffer overflows. This is a very dangerous attack that can make your clients vulnerable to hacking attempts, loss of data, malicious activity, etc.
+
+Please find the details of the vulnerabilities below. I am informing you of this in order to help you resolve the vulnerabilities listed below, and to make your clients safer. Security researchers like myself make a name from publishing these types of vulnerabilities on the Internet, and there are good and "bad" ones. I am one of the good guys, as I consider to be good practice to give the vendor some time to fix these issues.
+
+I would appreciate if in return you could provide me the following:
+- How long do you think it will take for you to resolve the issue and publish an update to the products (I usually give suggest they are fixed in 45 days).
+- Once you provide a product update can provide mention that I have found the security problem (credited to Pedro Ribeiro, pedrib@gmail.com).
+
+I understand that perhaps you do not have specialist security knowledge and may not understand 100% of what is written below. However, this is a very simple case of a buffer overflow in the Data parameter.
+All of these should be easy to resolve in your code. Basically you need to truncate the input in the Data parameter for each control to whatever the buffer size is (and maybe give it a byte or two of leeway for string termination, etc). The attached files contain a proof-of-concept (PoC) that demonstrate program crash. They are not malicious and shouldn't do anything to your computer besides crashing Internet Explorer.
+
+If you have any questions regarding the below please do not hesitate in asking me. 
+
+
+===========================================================================
+Problem: The Data parameter is subject to a buffer overflow DEFINITELY leading to arbitrary code execution.
+COM Object - {2355C601-37D1-42B4-BEB1-03C773298DC8} MW6MaxiCode Class
+File Description    : MaxiCode ActiveX
+File Version        : 4, 0, 0, 1
+To trigger the overflow enter a string larger than 4000 characters.
+In the PoC (mw6maxicode.html) you see that Internet Explorer crashes at trying to copy 42424242 to a register. By disassembling near the crash location, you can see that both EAX and ECX can be manipulated respectively with values 41414141 and 42424242. These are later used to write operations leading to an arbitrary 4 byte write.
+NOTE: I suspect that other parameters also have buffer overflows, and I highly recommend you to check them all.
+
+
+===========================================================================
+Problem: The Data parameter is subject to a buffer overflow DEFINITELY leading to arbitrary code execution.
+COM Object - {F359732D-D020-40ED-83FF-F381EFE36B54} MW6Aztec Class
+File Description    : Aztec ActiveX
+File Version        : 4, 0, 0, 1
+To trigger the overflow enter a string larger than 9000 characters. 
+The attached PoC (mw6maztec.html) crashes when trying to read from address 41414141. Further investigation shows that the value of EAX 030e20d0 is written into an arbitrary memory location, and this EAX value is pointing to the Data buffer.
+NOTE: I suspect that other parameters also have buffer overflows, and I highly recommend you to check them all.
+
+
+===========================================================================
+Problem: The Data parameter is subject to a buffer overflow PROBABLY leading to arbitrary code execution.
+COM Object - {DE7DA0B5-7D7B-4CEA-8739-65CF600D511E} MW6DataMatrix Class
+File Description    : DataMatrix ActiveX
+File Version        : 4, 0, 0, 1
+To trigger the overflow enter a string larger than 10000 characters.
+This one I'm not 100% sure if I can control. The attached PoC (mw6datamatrix.html) dies with the following message:
+
+DATAMA_1!DllUnregisterServer+0xac5f:
+02fbbcea 668984566c5c0100 mov     word ptr [esi+edx*2+15C6Ch],ax ds:0023:03006000=????
+
+The !exploitable windbg plugin says:
+
+Exploitability Classification: EXPLOITABLE
+Recommended Bug Title: Exploitable - User Mode Write AV starting at DATAMA_1!DllUnregisterServer+0x000000000000ac5f (Hash=0x3a50672d.0x5d486a2f)
+User mode write access violations that are not near NULL are exploitable.
+
+So the buffer overflow might be exploitable by someone smarter than me (or simply with more patience to investigate this).
+===========================================================================
+
+All of these PoC were tested in Internet Explorer 8 and Windows XP SP3.
+
+Regards,
+Pedro Ribeiro

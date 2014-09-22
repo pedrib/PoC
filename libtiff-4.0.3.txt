@@ -1,0 +1,36 @@
+Issue: 		Use after free
+Impact:		High
+Exploitability:	Undetermined
+File: 		tiff-4.0.3/tools/tiff2pdf.c
+Line: 		2469
+Code snippet:
+			if(samplebuffer==NULL){
+				TIFFError(TIFF2PDF_MODULE, 
+	"Can't allocate %lu bytes of memory for t2p_readwrite_pdf_image, %s", 
+					(unsigned long) t2p->tiff_datasize, 
+					TIFFFileName(input));
+				t2p->t2p_error = T2P_ERR_ERROR;
+			  _TIFFfree(buffer);
+			} else {
+				buffer=samplebuffer;
+				t2p->tiff_datasize *= t2p->tiff_samplesperpixel;
+			}
+			t2p_sample_realize_palette(t2p, buffer);
+
+Justification:
+	If samplebuffer is NULL, buffer will be freed. However at the end of the if statement, buffer is used again.
+
+=========================================================
+Issue: 		Buffer overflow
+Impact:		High
+Exploitability:	Undetermined
+File: 		tiff-4.0.3/tools/rgb2ycbcr.c
+Line: 		335
+Code snippet:
+	{ char buf[2048];
+	  char *cp = strrchr(TIFFFileName(in), '/');
+	  sprintf(buf, "YCbCr conversion of %s", cp ? cp+1 : TIFFFileName(in));
+	  TIFFSetField(out, TIFFTAG_IMAGEDESCRIPTION, buf);
+	}
+Justification:
+	Use of sprintf to write into a 2048 character buffer. The input is the filename, which might be over 2048 if crafted by a malicious user. However I could not determine this as the code is not easy to navigate.

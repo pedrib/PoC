@@ -1,0 +1,94 @@
+Vulnerability: Uncontrolled format string (CWE-124)
+Filename(line): poppler-0.24.2/utils/pdfseparate.cc(70)
+Code snippet:
+
+bool extractPages (const char *srcFileName, const char *destFileName) {
+  char pathName[4096];
+  GooString *gfileName = new GooString (srcFileName);
+  PDFDoc *doc = new PDFDoc (gfileName, NULL, NULL, NULL);
+
+...
+
+  if (firstPage != lastPage && strstr(destFileName, "%d") == NULL) {
+    error(errSyntaxError, -1, "'{0:s}' must contain '%%d' if more than one page should be extracted", destFileName);
+    return false;
+  }
+  for (int pageNo = firstPage; pageNo <= lastPage; pageNo++) {
+    snprintf (pathName, sizeof (pathName) - 1, destFileName, pageNo);
+						^ function parameter passed as format string
+
+The function is called by main in line 110 directly passing the arguments:
+ok = extractPages (argv[1], argv[2]);
+				^ destFileName parameter
+
+PoC:
+./pdfseparate -f 1 -l 1 USA_TermsandConditions2013.pdf "%x%x%x%x%x%x%n"
+
+
+=========================================================================
+Vulnerability: Race condition on temporary file access / Insecure Temporary File (CWE-363 / CWE-377)
+Filename(line): poppler-0.24.2/goo/gfile.cc(340-395)
+Code snippet:
+
+There is a race condition and use of a insecure temporary file in the openTempFile 
+function that enables an attacker to replace the  temporary file with a symlink of 
+his/her choosing. This only happens on non-Unix OS's (Mac, etc).
+Despite the comments, this might be old code that the maintainers are not aware of.
+
+GBool openTempFile(GooString **name, FILE **f, const char *mode) {
+#if defined(_WIN32)
+  //---------- Win32 ----------
+  char *tempDir;
+  GooString *s, *s2;
+  FILE *f2;
+  int t, i;
+
+  // this has the standard race condition problem, but I haven't found
+  // a better way to generate temp file names with extensions on
+  // Windows
+  if ((tempDir = getenv("TEMP"))) {
+    s = new GooString(tempDir);
+    s->append('\\');
+  } else {
+    s = new GooString();
+  }
+  s->appendf("x_{0:d}_{1:d}_",
+	     (int)GetCurrentProcessId(), (int)GetCurrentThreadId());
+  t = (int)time(NULL);
+  for (i = 0; i < 1000; ++i) {
+    s2 = s->copy()->appendf("{0:d}", t + i);
+    if (!(f2 = fopen(s2->getCString(), "r"))) {
+      if (!(f2 = fopen(s2->getCString(), mode))) {
+	delete s2;
+	delete s;
+        return gFalse;
+      }
+      *name = s2;
+      *f = f2;
+      delete s;
+      return gTrue;
+    }
+    fclose(f2);
+    delete s2;
+  }
+  delete s;
+  return gFalse;
+#elif defined(VMS) || defined(__EMX__) || defined(ACORN) || defined(MACOS)
+  //---------- non-Unix ----------
+  char *s;
+
+  // There is a security hole here: an attacker can create a symlink
+  // with this file name after the tmpnam call and before the fopen
+  // call.  I will happily accept fixes to this function for non-Unix
+  // OSs.
+  if (!(s = tmpnam(NULL))) {
+    return gFalse;
+  }
+  *name = new GooString(s);
+  if (!(*f = fopen((*name)->getCString(), mode))) {
+    delete (*name);
+    *name = NULL;
+    return gFalse;
+  }
+  return gTrue;
+

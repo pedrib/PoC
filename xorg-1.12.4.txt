@@ -1,0 +1,25 @@
+Vulnerability: Use After Free 
+Criticality: High
+CWE link: http://cwe.mitre.org/data/definitions/416.html
+Filename(line): xorg-server-1.12.4/dix/dixfonts.c(1483)
+Code snippet:
+
+At line 1431, assume malloc fails to allocate:
+            data = malloc(c->nChars * itemSize);
+            if (!data) {
+                free(c);
+                err = BadAlloc;
+                goto bail;
+            }
+
+c is then dereferenced at bail. In fact, even if it misses the first condition,
+it might hit the second.
+
+ bail:
+
+    if (err != Success && c->client != serverClient) {
+        SendErrorToClient(c->client, c->reqType, 0, 0, err);
+    }
+    if (ClientIsAsleep(client)) {
+        ClientWakeup(c->client);
+
