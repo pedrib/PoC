@@ -1,0 +1,9 @@
+# Exploit Title: Denial of service in ASF demux for VLC 2.0.X
+# Date: 01/10/2013
+# Exploit Author: Pedro Ribeiro
+# Vendor Homepage: http://www.videolan.org/vlc/
+# Software Link: http://www.videolan.org/vlc/#download
+# Version: 2.0.0 - 2.0.8
+# Tested on: Linux x32/x64, Windows XP x32, Windows XP x64
+
+The file attached (vlc-crash.asf) causes VLC to crash on a read operation, and I have control of EDI and EAX. In the file attached you will find at starting offset 0x157AD the hex values 17 DE B4 71 in little endian. These values can be changed almost at will and the registers will change too - only the last byte cannot be changed to more than 0x2F.
