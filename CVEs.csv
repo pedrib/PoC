@@ -23,8 +23,8 @@ CVE,Application,Description,File,MSF module
 2014-5377,ManageEngine DeviceExpert,user credential disclosure,ManageEngine/me_deviceexpert-5.txt,
 2014-5445,Awaiting vendor fix,,,
 2014-5446,Awaiting vendor fix,,,
-2014-6034,Awaiting vendor fix,,,Y
-2014-6035,Awaiting vendor fix,,,
-2014-6036,Awaiting vendor fix,,,
+2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,ManageEngine/me_opmanager_socialit_it360.txt,opmanager_socialit_file_upload.rb
+2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,ManageEngine/me_opmanager_socialit_it360.txt,
+2014-6036,ManageEngine OpManager/Social IT/IT360,file upload / RCE,ManageEngine/me_opmanager_socialit_it360.txt,
 2014-6038,Awaiting vendor fix,,,
 2014-6039,Awaiting vendor fix,,,Y
