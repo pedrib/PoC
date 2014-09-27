@@ -12,7 +12,7 @@
 
 >> Technical details:
 #1
-Vulnerability: Remote code execution via file upload
+Vulnerability: Remote code execution via WAR file upload
 Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
 
 a)
