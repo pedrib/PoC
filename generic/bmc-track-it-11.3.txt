@@ -5,7 +5,7 @@
 The application exposes several .NET remoting services on port 9010.
 .NET remoting is a RMI technology similar to Java RMI or CORBA which allows you to invoke methods remotely and retrieve their result. In BMC Track-It!, the .NET remoting services are unauthenticated and unencrypted, meaning that anyone can invoke all the exposed methods remotely.
 
-It is possible to capture traffic and decode the packet format by looking at the (incomplete) Microsoft .NET remoting specifications. Using these techniques, two Metasploit modules were produced: one is a exploit module that can upload arbitrary files to the web root and achieve remote code execution, and the other is an auxiliary module that allows retrieval of the SQL and domain administrator credentials.
+It is possible to capture traffic and decode the packet format by looking at the (incomplete) Microsoft .NET remoting specifications. Using these techniques, two Metasploit modules were produced: one is an exploit module that can upload arbitrary files to the web root and achieve remote code execution, and the other is an auxiliary module that allows retrieval of the SQL and domain administrator credentials.
 
 Three other vulnerabilities (SQL injection, arbitrary file download and hardcoded database credentials) were also discovered.
 
