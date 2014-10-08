@@ -63,6 +63,5 @@ Password: TI_DB_P@ssw0rd
 
 >> Fix:
 UNFIXED - the vendor refused to acknowledge the vulnerabilities and did not respond to CERT.
-Block all communications from untrusted networks (e.g. the Internet) to ports 9010 to 9020.
-Block the database port if you are using the built in SQL Express (port 49159 is the default in recent versions).
+Block all communications from untrusted networks (e.g. the Internet) to ports 9010 to 9020 and the SQL Express database port (default is 49159) if you are using the built-in database.
 Ensure you do not have any untrusted users with access to Track-It!.
