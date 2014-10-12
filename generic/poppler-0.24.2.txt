@@ -1,4 +1,6 @@
-Vulnerability: Uncontrolled format string (CWE-124)
+Disclosure: 26/10/2013 / Last updated: 12/10/2014
+
+Vulnerability: Uncontrolled format string (CWE-124 - CVE-2013-4474)
 Filename(line): poppler-0.24.2/utils/pdfseparate.cc(70)
 Code snippet:
 
@@ -26,7 +28,7 @@ PoC:
 
 
 =========================================================================
-Vulnerability: Race condition on temporary file access / Insecure Temporary File (CWE-363 / CWE-377)
+Vulnerability: Race condition on temporary file access / Insecure Temporary File (CWE-363 / CWE-377 - CVE-2013-4472)
 Filename(line): poppler-0.24.2/goo/gfile.cc(340-395)
 Code snippet:
 

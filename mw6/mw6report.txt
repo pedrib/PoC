@@ -1,3 +1,5 @@
+Disclosure: 21/01/2014 / Last updated: 12/10/2014
+
 Hi,
 
 I'm a security researcher from London, UK, and I have made a security evaluation of your ActiveX controls.

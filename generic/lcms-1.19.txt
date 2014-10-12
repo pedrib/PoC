@@ -1,3 +1,6 @@
+Disclosure: 04/08/2013 / Last updated: 12/10/2014
+CVE-2013-4276
+
 --- lcms-1.19.dfsg/samples/icctrans.c	2009-10-30 15:57:45.000000000 +0000
 +++ lcms-1.19.dfsg/samples/icctrans.c	2013-08-06 11:53:14.385266647 +0100
 @@ -86,6 +86,8 @@ 

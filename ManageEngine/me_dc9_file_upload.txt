@@ -1,6 +1,7 @@
 >> Arbitrary file upload / remote code execution in ManageEngine Desktop Central / Desktop Central MSP
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
+Disclosure: 31/08/2014 / Last updated: 12/10/2014
 
 >> Background on the affected product:
 "Desktop Central is an integrated desktop & mobile device management software that helps in managing the servers, laptops, desktops, smartphones and tablets from a central point. It automates your regular desktop management routines like installing patches, distributing software, managing your IT Assets, managing software licenses, monitoring software usage statistics, managing USB device usage, taking control of remote desktops, and more."

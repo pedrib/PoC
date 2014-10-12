@@ -1,4 +1,7 @@
+Disclosure: 01/08/2013 / Last updated: 12/10/2014
+
 Issue: 		Use after free
+CVE:            2013-4232
 Impact:		High
 Exploitability:	Undetermined
 File: 		tiff-4.0.3/tools/tiff2pdf.c
@@ -22,6 +25,7 @@ Justification:
 
 =========================================================
 Issue: 		Buffer overflow
+CVE:            2013-4231
 Impact:		High
 Exploitability:	Undetermined
 File: 		tiff-4.0.3/tools/rgb2ycbcr.c

@@ -1,3 +1,6 @@
+Disclosure: 09/01/2014 / Last updated: 12/10/2014
+
+
 Hi,
 
 I have discovered a buffer overflow vulnerability that allows remote code execution in an ActiveX control bundled by a manufacturer of video surveillance systems. 

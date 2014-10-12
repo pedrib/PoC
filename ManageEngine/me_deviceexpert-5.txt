@@ -1,6 +1,7 @@
 >> User credential disclosure in ManageEngine DeviceExpert 5.9
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
+Disclosure: 27/08/2014 / Last updated: 12/10/2014
 
 >> Background on the affected product:
 "DeviceExpert is a web–based, multi vendor network change, configuration and compliance management (NCCCM) solution for switches, routers, firewalls and other network devices. Trusted by thousands of network administrators around the world, DeviceExpert helps automate and take total control of the entire life cycle of device configuration management."

@@ -2,6 +2,8 @@
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
 > Reported to ted@cmsmadesimple.org and calguy1000@cmsmadesimple.org 
 
+Disclosure: 28/02/2014 / Last updated: 12/10/2014
+
 CMS Made Simple, an open source content management system, allows for faster and easier management of website content. This CMS is scalable for small businesses to large corporations.
 
 TL;DR: 

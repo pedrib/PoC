@@ -1,6 +1,7 @@
 PoC for XSS bugs in the admin console of GetSimple CMS 3.3.1
 CVE-2014-1603
 by Pedro Ribeiro (pedrib@gmail.com) from Agile Information Security
+Disclosure: 12/05/2014 / Last updated: 12/10/2014
 
 Timeline:
 	04/11/2013 - Found bugs, produced proof of concept.

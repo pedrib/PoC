@@ -1,6 +1,8 @@
 >> Multiple critical vulnerabilities in BMC Track-It!
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
+Disclosure: 07/10/2014 / Last updated: 12/10/2014
+
 
 The application exposes several .NET remoting services on port 9010.
 .NET remoting is a RMI technology similar to Java RMI or CORBA which allows you to invoke methods remotely and retrieve their result. In BMC Track-It!, the .NET remoting services are unauthenticated and unencrypted, meaning that anyone can invoke all the exposed methods remotely.

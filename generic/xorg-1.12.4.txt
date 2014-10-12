@@ -1,4 +1,7 @@
-Vulnerability: Use After Free 
+Disclosure: 08/10/2013 / Last updated: 12/10/2014
+
+Vulnerability: Use After Free
+CVE-2013-4396
 Criticality: High
 CWE link: http://cwe.mitre.org/data/definitions/416.html
 Filename(line): xorg-server-1.12.4/dix/dixfonts.c(1483)

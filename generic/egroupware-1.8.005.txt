@@ -1,7 +1,8 @@
 > Vulnerabilities in EGroupware 1.8.005
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
-
 ====================================================================
+Disclosure: 19/02/2014 / Last updated: 12/10/2014
+
 Vulnerability: PHP object insertion leading to all kinds of badness (arbitrary file deletion, possible code execution) (CVE-2014-2027)
 File(line): egroupware/addressbook/csv_import.php(257,258)
 File(line): egroupware/calendar/csv_import.php(277,278)

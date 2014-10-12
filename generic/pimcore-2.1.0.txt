@@ -1,7 +1,8 @@
 > Vulnerabilities in Pimcore 1.4.9 to 2.1.0 (inclusive)
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
-
 ====================================================================
+Disclosure: 14/04/2014 / Last updated: 12/10/2014
+
 Vulnerability: Remote code execution in Pimcore CMS via unserialize() PHP object injection (CVE-2014-2921)
 Vulnerability: Arbitrary file deletion in Pimcore CMS via unserialize() PHP object injection (CVE-2014-2922)
 File(line): pimcore/lib/Pimcore/Tool/Newsletter.php(221)

@@ -1,7 +1,8 @@
 > Vulnerabilities in Contao 3.2.4
 > Discovered by Pedro Ribeiro (pedrib@gmail.com) of Agile Information Security
-
 ====================================================================
+Disclosure: 02/03/2014 / Last updated: 12/10/2014
+
 Vulnerability: PHP object injection leading to all kinds of badness (CVE-2014-1860)
 File(line): contao-core-3.2.4/system/modules/core/drivers/DC_Table.php(149)
 File(line): contao-core-3.2.4/system/modules/core/drivers/DC_Folder.php(124)
