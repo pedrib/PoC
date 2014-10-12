@@ -1,4 +1,4 @@
-CVE,Application,Description,Disclosure,Advisory file,MSF module
+CVE,Application,Description,Disclosure,Advisory / PoC file,MSF module
 2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,generic/libtiff-4.0.3.txt,
 2013-4232,libtiff,tiff2pdf use after free,01/08/2013,generic/libtiff-4.0.3.txt,
 2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,generic/lcms-1.19.txt,
