@@ -1,4 +1,4 @@
-CVE,Application,Description,Disclosure date,File,MSF module
+CVE,Application,Description,Disclosure,File,MSF module
 2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,generic/libtiff-4.0.3.txt,
 2013-4232,libtiff,tiff2pdf use after free,01/08/2013,generic/libtiff-4.0.3.txt,
 2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,generic/lcms-1.19.txt,
@@ -24,10 +24,10 @@ CVE,Application,Description,Disclosure date,File,MSF module
 2014-5006,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt,
 2014-5007,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt,
 2014-5377,ManageEngine DeviceExpert,user credential disclosure,27/08/2014,ManageEngine/me_deviceexpert-5.txt,
-2014-5445,Awaiting vendor fix,,,
-2014-5446,Awaiting vendor fix,,,
+2014-5445,Awaiting vendor fix,,,,
+2014-5446,Awaiting vendor fix,,,,
 2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,opmanager_socialit_file_upload.rb
 2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,
 2014-6036,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,
-2014-6038,Awaiting vendor fix,,,
-2014-6039,Awaiting vendor fix,,,Y
+2014-6038,Awaiting vendor fix,,,,
+2014-6039,Awaiting vendor fix,,,,Y
