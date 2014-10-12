@@ -28,6 +28,9 @@ CVE,Application,Description,Disclosure,Advisory / PoC file,MSF module
 2014-5446,Awaiting vendor fix,,,,
 2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,opmanager_socialit_file_upload.rb
 2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,
-2014-6036,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,
+2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt,
 2014-6038,Awaiting vendor fix,,,,
 2014-6039,Awaiting vendor fix,,,,Y
+2014-7862,Awaiting vendor fix,,,,Y
+2014-7866,Awaiting vendor fix,,,,
+2014-7868,Awaiting vendor fix,,,,
