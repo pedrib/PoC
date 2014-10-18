@@ -1,5 +1,5 @@
 Vulnerabilities,,,,
-,,,,,
+,,,,
 CVE,Application,Description,Disclosure,Advisory / PoC file
 2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,generic/libtiff-4.0.3.txt
 2013-4232,libtiff,tiff2pdf use after free,01/08/2013,generic/libtiff-4.0.3.txt
@@ -36,8 +36,8 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-7862,Awaiting vendor fix,,,
 2014-7866,Awaiting vendor fix,,,
 2014-7868,Awaiting vendor fix,,,
-,,,,,
-,,,,,
+,,,,
+,,,,
 Metasploit modules,,,,,
 CVE,Application,Vulnerability,Module name (in msf_modules),Merging date
 2014-3996,ManageEngine DC/PMP,LinkViewFetchServlet blind SQLi,manageengine_dc_pmp_sqli.rb,
