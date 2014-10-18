@@ -3,11 +3,12 @@ PoC
 
 This repository contains my advisories, proof of concept files and exploits (referred to as files from now on) that I have made public and it is located at https://github.com/pedrib/PoC.
 
+Contents:
 - generic: most files
 - vendor_name/vendor_name_variant: vendor specific files
 - tracking.csv: a listing of CVE numbers directly attributed to vulnerabilities I discovered and Metasploit modules I have released
 - LICENSE: GPLv3, see below for more info
-- README: this file
+- README.md: this file
 
 Some old files have been kept at the root not to break external links, but they are dummies with a message indicating the file has moved to another directory.
 
