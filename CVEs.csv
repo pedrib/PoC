@@ -38,6 +38,7 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 ,,,,
 ,,,,
 Metasploit modules,,,,
+CVE,Application,Vulnerability,Module name (in msf_modules),Merging date
 2014-3996,ManageEngine DC/PMP,LinkViewFetchServlet blind SQLi,manageengine_dc_pmp_sqli.rb,22/08/2014
 2014-4872,BMC Track-It!,unauth .NET remoting / RCE,trackit_file_upload.rb,18/10/2014
 2014-4872,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,trackit_sql_domain_creds.rb,
