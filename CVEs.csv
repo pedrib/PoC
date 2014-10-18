@@ -42,6 +42,5 @@ Metasploit modules,,,,
 2014-4872,BMC Track-It!,unauth .NET remoting / RCE,trackit_file_upload.rb,18/10/2014
 2014-4872,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,trackit_sql_domain_creds.rb,
 2014-5005,ManageEngine DesktopCentral,file upload / RCE,dc_statusupdate_file_upload.rb,04/09/2014
-2014-6034,ManageEngine OpManager/Social IT,file upload / RCE,27/09/2014,opmanager_socialit_file_upload.rb,29/09/2014
+2014-6034,ManageEngine OpManager/Social IT,file upload / RCE,opmanager_socialit_file_upload.rb,29/09/2014
 2014-6037,ManageEngine EventLog Analyzer,file upload / RCE,eventlog_analyzer_file_upload.rb,09/09/2014
-
