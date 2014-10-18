@@ -5,12 +5,13 @@ This repository contains my advisories, proof of concept files and exploits (ref
 
 - generic: most files
 - vendor_name/vendor_name_variant: vendor specific files
-- CVEs: a listing of CVE numbers directly attributed to me
+- tracking.csv: a listing of CVE numbers directly attributed to vulnerabilities I discovered and Metasploit modules I have released
 - LICENSE: GPLv3, see below for more info
 - README: this file
 
 Some old files have been kept at the root not to break external links, but they are dummies with a message indicating the file has moved to another directory.
 
+Legal stuff:
 You can do whatever you want with these files within the boundaries of the GPLv3 license, which means that:
 - you have to include a copy of the GPLv3 license and provide attribution to me as the original author
 - you have to disclose the source code of any modifications to the general public
