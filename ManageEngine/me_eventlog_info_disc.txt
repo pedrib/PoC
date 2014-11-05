@@ -6,7 +6,7 @@ Disclosure: 05/11/2014 / Last updated: 05/11/2014
 >> Background on the affected product:
 "EventLog Analyzer provides the most cost-effective Security Information and Event Management (SIEM) software on the market. Using this Log Analyzer software, organizations can automate the entire process of managing terabytes of machine generated logs by collecting, analyzing, correlating, searching, reporting, and archiving from one central location. This event log analyzer software helps to monitor file integrity, conduct log forensics analysis, monitor privileged users and comply to different compliance regulatory bodies by intelligently analyzing your logs and instantly generating a variety of reports like user activity reports, historical trend reports, and more."
 
-A Metasploit exploit that abused these two vulnerabilities to obtain the managed device superuser credentials has been released. It should be integrated in the Metasploit framework in the next few days.
+A Metasploit exploit that abuses these two vulnerabilities to obtain the managed device superuser credentials has been released. It should be integrated in the Metasploit framework in the next few days.
 
 #1
 Vulnerability: SQL database information disclosure (read any table in the database)
