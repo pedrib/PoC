@@ -32,7 +32,7 @@ GET /hostdetails?slid=1&hostid=1 --> Windows / AS/400 hosts superuser username a
 
 
 >> Fix:
-UNFIXED - ManageEngine refused to take action after 70 days.
+UNFIXED - ManageEngine failed to take action after 70 days.
 
 Timeline of disclosure:
 28/08/2014 
