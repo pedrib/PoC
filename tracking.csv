@@ -30,8 +30,8 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
-2014-6038,Awaiting vendor fix,,,
-2014-6039,Awaiting vendor fix,,,
+2014-6038,ManageEngine EventLog Analyzer,database table info disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
+2014-6039,ManageEngine EventLog Analyzer,device superuser cred disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
 2014-7862,Awaiting vendor fix,,,
 2014-7866,Awaiting vendor fix,,,
 2014-7868,Awaiting vendor fix,,,
@@ -45,3 +45,4 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Merging date
 2014-5005,ManageEngine DesktopCentral,file upload / RCE,dc_statusupdate_file_upload.rb,04/09/2014
 2014-6034,ManageEngine OpManager/Social IT,file upload / RCE,opmanager_socialit_file_upload.rb,29/09/2014
 2014-6037,ManageEngine EventLog Analyzer,file upload / RCE,eventlog_analyzer_file_upload.rb,09/09/2014
+2014-6038/9,ManageEngine EventLog Analyzer,database / superuser info disc,eventlog_cred_disclosure.rb,
