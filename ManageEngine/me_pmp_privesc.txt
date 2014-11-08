@@ -8,7 +8,7 @@ Disclosure: 08/11/2014 / Last updated: 08/11/2014
 
 
 >> Technical details:
-PMP has a SQL injection vulnerability in its search function. A valid user account is required to exploit the injection, however a low privileged guest account is enough.
+PMP has a blind SQL injection vulnerability in its search function. A valid user account is required to exploit the injection, however a low privileged guest account is enough.
 
 The application uses different database backends by default depending on its version: versions < 6.8 use the MySQL backend and versions >= 6.8 use PostgreSQL. Single quotes are escaped with backslashes at the injection point, but this can be somewhat avoided by double escaping the slashes (\\'). In addition, injected strings are all modified to uppercase. These two unintended "protections" make it difficult to exploit the injection to achieve remote code execution.
 However the injection can be abused in creative ways - for example to escalate the current user privileges to "Super Administrator", which has access to all the passwords in the system in unencrypted format. This can be achieved by injecting the following queries: "update AaaAuthorizedRole set role_id=1 where account_id=<userId>;insert into ptrx_superadmin values (<userId>,true);".
