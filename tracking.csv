@@ -48,3 +48,4 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Merging date
 2014-6034,ManageEngine OpManager/Social IT,file upload / RCE,opmanager_socialit_file_upload.rb,29/09/2014
 2014-6037,ManageEngine EventLog Analyzer,file upload / RCE,eventlog_analyzer_file_upload.rb,09/09/2014
 2014-6038/9,ManageEngine EventLog Analyzer,database table / superuser info disc,eventlog_cred_disclosure.rb,
+2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,manageengine_pmp_privesc.rb,
