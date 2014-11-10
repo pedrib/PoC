@@ -41,9 +41,9 @@ POST /servlets/multipartRequest?customIcon=delete&fileName=../../../../boot.ini
 
 
 #3
-Vulnerability: Remote code execution via file upload (unauthenticated on OpManager and Social IT)
+Vulnerability: Remote code execution via file upload
 CVE-2014-7866
-Constraints: no authentication needed for OpManager and Social IT; authenticated in IT360
+Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
 
 a)
 POST /servlet/MigrateLEEData?fileName=../tomcat/webapps/warfile.war%00
@@ -59,9 +59,9 @@ Affected versions: Unknown, at least OpManager v8 build 88XX to 11.4; IT360 10.3
 
 
 #4
-Vulnerability: Blind SQL injection (unauthenticated)
+Vulnerability: Blind SQL injection
 CVE-2014-7868
-Constraints: no authentication needed for OpManager and Social IT; authenticated in IT360
+Constraints: unauthenticated on OpManager and Social IT; authenticated in IT360
 
 a)
 POST /servlet/APMBVHandler?OPERATION_TYPE=Delete&OPM_BVNAME=[SQLi]
