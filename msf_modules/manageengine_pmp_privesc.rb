@@ -3,10 +3,6 @@
 # Current source: https://github.com/rapid7/metasploit-framework
 ##
 
-# NOTE !!!
-# This exploit is kept here for archiving purposes only.
-# Please refer to and use the version that has been accepted into the Metasploit framework.
-
 require 'msf/core'
 
 class Metasploit3 < Msf::Auxiliary
@@ -38,9 +34,9 @@ class Metasploit3 < Msf::Auxiliary
       'References' =>
         [
           [ 'CVE', '2014-8499' ],
-          [ 'OSVDB', 'TODO' ],
+          [ 'OSVDB', '114485' ],
           [ 'URL', 'https://raw.githubusercontent.com/pedrib/PoC/master/ManageEngine/me_pmp_privesc.txt' ],
-          [ 'URL', 'TODO_FULLDISC_URL' ]
+          [ 'URL', 'http://seclists.org/fulldisclosure/2014/Nov/18' ]
         ],
       'DisclosureDate' => 'Nov 8 2014'))
 
