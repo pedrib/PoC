@@ -25,8 +25,8 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-5006,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt
 2014-5007,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt
 2014-5377,ManageEngine DeviceExpert,user credential disclosure,27/08/2014,ManageEngine/me_deviceexpert-5.txt
-2014-5445,Awaiting vendor fix,,,
-2014-5446,Awaiting vendor fix,,,
+2014-5445,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,ManageEngine/me_netflow_it360_file_dl.txt
+2014-5446,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,ManageEngine/me_netflow_it360_file_dl.txt
 2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
