@@ -14,7 +14,7 @@ This is being released as a 0-day because ManageEngine have been twiddling their
 >> Technical details:
 Vulnerability: Arbitrary file download
 Constraints: unauthenticated in NetFlow; authenticated in IT360
-Affected versions: NetFlow v8.6 to v9.9; at least IT360 v10.3 and above
+Affected versions: NetFlow v8.6 to v10.2; at least IT360 v10.3 and above
 
 CVE-2014-5445:
 GET /netflow/servlet/CSVServlet?schFilePath=/etc/passwd
