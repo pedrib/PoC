@@ -1,7 +1,7 @@
 >> Arbitrary file download in ManageEngine Netflow Analyzer and IT360
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 30/11/2014 / Last updated: 30/11/2014
+Disclosure: 30/11/2014 / Last updated: 3/12/2014
 
 >> Background on the affected product:
 "NetFlow Analyzer, a complete traffic analytics tool, leverages flow technologies to provide real time visibility into the network bandwidth performance. NetFlow Analyzer, primarily a bandwidth monitoring tool, has been optimizing thousands of networks across the World by giving holistic view about their network bandwidth and traffic patterns. NetFlow Analyzer is a unified solution that collects, analyzes and reports about what your network bandwidth is being used for and by whom."
