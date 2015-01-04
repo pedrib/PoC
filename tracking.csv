@@ -32,9 +32,9 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-6038,ManageEngine EventLog Analyzer,database table info disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
 2014-6039,ManageEngine EventLog Analyzer,device superuser cred disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
-2014-7862,ManageEngine DesktopCentral,DCPluginServelet admin account creation,31/12/2014,ManageEngine/me_dc9_admin.txt
-2014-7866,Awaiting vendor fix,,,
-2014-7868,Awaiting vendor fix,,,
+2014-7862,ManageEngine DesktopCentral,admin account creation,31/12/2014,ManageEngine/me_dc9_admin.txt
+2014-7866,ManageEngine OpManager/Social IT/IT360,file upload / RCE,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-7868,ManageEngine OpManager/Social IT/IT360,blind SQL injection,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-8449,Acrobat Reader X/XI,Integer overflow,,
 2014-8498,ManageEngine Password Manager Pro,blind SQLi in search,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,08/11/2014,ManageEngine/me_pmp_privesc.txt
