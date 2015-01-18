@@ -1,4 +1,4 @@
-Disclosure: 09/01/2014 / Last updated: 12/10/2014
+Disclosure: 09/01/2014 / Last updated: 18/01/2015
 
 
 Hi,
@@ -21,14 +21,14 @@ I have contacted Lorex and they initially said they would fix it, but went radio
 18.11.2013 - Email to sales, no response.
 21.11.2013 - Second email to sales, received response by sales saying they will forward it to technical support and get back to me.
 04.12.2013 - Third email to sales saying that technical support never contacted me back. No response.
-08.01.2013 - MITRE assigns CVE-2014-1201 to this issue.
-09.01.2013 - Public disclosure.
+08.01.2014 - MITRE assigns CVE-2014-1201 to this issue.
+09.01.2014 - Public disclosure.
 
 All references can be found at:
 https://github.com/pedrib/PoC/blob/master/lorexActivex/lorex-report.txt
 
 Proof of concept:
-https://github.com/pedrib/PoC/blob/master/lorexActivex/lorex-report.txt
+https://raw.githubusercontent.com/pedrib/PoC/master/lorexActivex/lorex-testcase.html
 
 Regards,
 Pedro Ribeiro (pedrib@gmail.com)
