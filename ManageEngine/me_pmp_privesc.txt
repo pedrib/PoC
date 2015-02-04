@@ -1,7 +1,7 @@
 >> Authenticated blind SQL injection in Password Manager Pro / Pro MSP
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 08/11/2014 / Last updated: 08/11/2014
+Disclosure: 08/11/2014 / Last updated: 05/02/2015
 
 >> Background on the affected products:
 "Password Manager Pro (PMP) is a secure vault for storing and managing shared sensitive information such as passwords, documents and digital identities of enterprises."
@@ -21,12 +21,12 @@ Constraints: authentication needed (guest / low privileged user account)
 
 CVE-2014-8498
 POST /BulkEditSearchResult.cc
-Affected versions: Unknown, at least v7 build 7001 to vX build XXX
+Affected versions: Unknown, at least v7 build 7001 to v7 build 7104
 
 CVE-2014-8499
 POST /SQLAdvancedALSearchResult.cc
 POST /AdvancedSearchResult.cc 
-Affected versions: Unknown, at least v6.5 to vX build XXX
+Affected versions: Unknown, at least v6.5 to v7 build 7104
 
 COUNT=1&USERID=1&SEARCH_ALL=<injection here>
 
