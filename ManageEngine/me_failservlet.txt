@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in FailOverServlet in ManageEngine OpManager, Applications Manager and IT360
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 28/01/2014 / Last updated: 28/01/2014 
+Disclosure: 28/01/2015 / Last updated: 05/02/20145
 
 >> Background on the affected products:
 "ManageEngine OpManager is a network and data center infrastructure management software that helps large enterprises, service providers and SMEs manage their data centers and IT infrastructure efficiently and cost effectively. Automated workflows, intelligent alerting engines, configurable discovery rules, and extendable templates enable IT teams to setup a 24x7 monitoring system within hours of installation."
