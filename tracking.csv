@@ -56,6 +56,6 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Accepted into Metaspl
 2014-6037,ManageEngine EventLog Analyzer,file upload / RCE,eventlog_analyzer_file_upload.rb,09/09/2014
 2014-6038/9,ManageEngine EventLog Analyzer,database table / superuser info disc,eventlog_cred_disclosure.rb,08/11/2014
 2014-7862,ManageEngine DesktopCentral,DCPluginServelet admin account creation,me_dc9_admin.rb,05/01/2015
-2014-7863,ManageEngine OpManager/AppManager/IT360,directory listing,me_dir_listing.rb,
-2014-7863,ManageEngine OpManager/AppManager/IT360,file download,me_file_download.rb,
+2014-7863,ManageEngine OpManager/AppManager/IT360,directory listing,me_dir_listing.rb,01/02/2015
+2014-7863,ManageEngine OpManager/AppManager/IT360,file download,me_file_download.rb,01/02/2015
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,manageengine_pmp_privesc.rb,13/11/2014
