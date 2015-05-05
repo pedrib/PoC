@@ -9,9 +9,9 @@ ICU is a mature, widely used set of C/C++ and Java libraries providing Unicode a
 
 >> Summary:
 While fuzzing LibreOffice an integer overflow and a heap overflow where found in the ICU library. This library is used by LibreOffice and hundreds of other software packages.
-Proof of concept files can be downloaded from my repo at [1]. These files have been tested with LibreOffice 4.3.3.2 and LibreOffice 4.4.0-beta2 and ICU 52.
+Proof of concept files can be downloaded from my [1]. These files have been tested with LibreOffice 4.3.3.2 and LibreOffice 4.4.0-beta2 and ICU 52.
 Note that at this point in time it is unknown whether these vulnerabilities are exploitable.
-Thank you to CERT [2] for helping disclose these vulnerabilities.
+Thanks to CERT [2] for helping disclose these vulnerabilities.
 
 
 >> Technical details:
