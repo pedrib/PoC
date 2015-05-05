@@ -66,7 +66,7 @@ typedef struct {
 
 >> Fix: 
 The ICU versions that are confirmed to be affected are 52 to 54, but earlier versions might also be affected. Upgrade to ICU 55.1 to fix these vulnerabilities.
-Note that there are probably many other software packages that embed the ICU code and will probably also need to be updated.
+Note that there are many other software packages that embed the ICU code which probably will need to be updated.
 Patches that fix these vulnerabilities can be obtained from [3] and [4].
 
 
