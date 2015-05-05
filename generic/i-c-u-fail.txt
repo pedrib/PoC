@@ -1,7 +1,7 @@
 >> Heap overflow and integer overflow in ICU library
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 04/05/2015 / Last updated: 04/05/2015
+Disclosure: 04/05/2015 / Last updated: 05/05/2015
 
 >> Background on the affected products:
 ICU is a mature, widely used set of C/C++ and Java libraries providing Unicode and Globalization support for software applications. ICU is widely portable and gives applications the same results on all platforms and between C/C++ and Java software.
@@ -67,8 +67,11 @@ typedef struct {
 >> Fix: 
 The ICU versions that are confirmed to be affected are 52 to 54, but earlier versions might also be affected. Upgrade to ICU 55.1 to fix these vulnerabilities.
 Note that there are probably many other software packages that embed the ICU code and will probably also need to be updated.
+Patches that fix these vulnerabilities can be obtained from [3] and [4].
 
 
 >> References:
 [1] https://github.com/pedrib/PoC/raw/master/generic/i-c-u-fail.7z
 [2] https://www.kb.cert.org/vuls/id/602540
+[3] http://bugs.icu-project.org/trac/changeset/37080
+[4] http://bugs.icu-project.org/trac/changeset/37162
