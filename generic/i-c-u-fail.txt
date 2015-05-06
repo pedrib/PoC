@@ -1,14 +1,14 @@
 >> Heap overflow and integer overflow in ICU library
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 04/05/2015 / Last updated: 05/05/2015
+Disclosure: 04/05/2015 / Last updated: 06/05/2015
 
 >> Background on the affected products:
 ICU is a mature, widely used set of C/C++ and Java libraries providing Unicode and Globalization support for software applications. ICU is widely portable and gives applications the same results on all platforms and between C/C++ and Java software.
 
 
 >> Summary:
-While fuzzing LibreOffice an integer overflow and a heap overflow where found in the ICU library. This library is used by LibreOffice and hundreds of other software packages.
+While fuzzing LibreOffice an integer overflow and a heap overflow were found in the ICU library. This library is used by LibreOffice and hundreds of other software packages.
 Proof of concept files can be downloaded from [1]. These files have been tested with LibreOffice 4.3.3.2 and LibreOffice 4.4.0-beta2 and ICU 52.
 Note that at this point in time it is unknown whether these vulnerabilities are exploitable.
 Thanks to CERT [2] for helping disclose these vulnerabilities.
