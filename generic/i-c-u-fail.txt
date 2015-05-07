@@ -1,7 +1,7 @@
->> Heap overflow and integer overflow in ICU library
+>> Heap overflow and integer overflow in ICU library (v52 to v54)
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 04/05/2015 / Last updated: 06/05/2015
+Disclosure: 04/05/2015 / Last updated: 07/05/2015
 
 >> Background on the affected products:
 ICU is a mature, widely used set of C/C++ and Java libraries providing Unicode and Globalization support for software applications. ICU is widely portable and gives applications the same results on all platforms and between C/C++ and Java software.
@@ -30,7 +30,7 @@ The code to blame is the following (from ubidi.c:2148 in ICU 52):
     else
         processPropertySeq(pBiDi, &levState, eor, limit, limit);
 
-Under certain conditions, isolateCount is incremented too many times, which results in several out of bounds writes. See [1] for a more detailed analysis.
+Under certain conditions isolateCount is incremented too many times, which results in several out of bounds writes. See [1] for a more detailed analysis.
 
 
 #2
