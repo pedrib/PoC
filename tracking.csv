@@ -62,3 +62,5 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Accepted into Metaspl
 2014-7863,ManageEngine OpManager/AppManager/IT360,directory listing,me_dir_listing.rb,01/02/2015
 2014-7863,ManageEngine OpManager/AppManager/IT360,file download,me_file_download.rb,01/02/2015
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,manageengine_pmp_privesc.rb,13/11/2014
+,,,,
+,synched with OSVDB on 3/6/15,,,
