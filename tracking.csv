@@ -44,6 +44,7 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-8449,Adobe Acrobat Reader X/XI,Integer overflow,,
 2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
+2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,generic/zenworks_zcm_rce.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
