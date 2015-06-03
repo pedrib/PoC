@@ -39,9 +39,11 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-7864,ManageEngine OpManager/IT360,blind SQL injection,28/01/2015,ManageEngine/me_failservlet.txt
 2014-7866,ManageEngine OpManager/Social IT/IT360,file upload / RCE,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
 2014-7868,ManageEngine OpManager/Social IT/IT360,blind SQL injection,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-8146,ICU library,heap overflow,04/05/2015,generic/i-c-u-fail.txt
+2014-8147,ICU library,integer overflow,04/05/2015,generic/i-c-u-fail.txt
 2014-8449,Adobe Acrobat Reader X/XI,Integer overflow,,
-2014-8498,ManageEngine Password Manager Pro,blind SQLi in search,08/11/2014,ManageEngine/me_pmp_privesc.txt
-2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,08/11/2014,ManageEngine/me_pmp_privesc.txt
+2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
+2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
