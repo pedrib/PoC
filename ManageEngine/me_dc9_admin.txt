@@ -45,3 +45,8 @@ Timeline of disclosure:
 
 31/12/2014
 - Released information and exploit 112 days after initial disclosure.
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

@@ -75,3 +75,9 @@ Patches that fix these vulnerabilities can be obtained from the ICU project in [
 [2] https://www.kb.cert.org/vuls/id/602540
 [3] http://bugs.icu-project.org/trac/changeset/37080
 [4] http://bugs.icu-project.org/trac/changeset/37162
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

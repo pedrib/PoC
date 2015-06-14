@@ -87,3 +87,8 @@ Resolves #3
 
 [C] https://support.zoho.com/portal/manageengine/helpcenter/articles/fix-for-remote-code-execution-via-file-upload-vulnerability
 Resolves #4
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

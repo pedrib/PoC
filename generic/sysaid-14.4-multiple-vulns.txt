@@ -225,3 +225,8 @@ When installing SysAid on Windows with the built in SQL Server Express, the inst
 
 >> Fix: 
 Upgrade to version 15.2 or higher.
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

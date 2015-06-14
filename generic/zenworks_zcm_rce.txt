@@ -46,3 +46,8 @@ The WAR file will be automatically deployed to the server (on certain Windows an
 
 >> Fix:
 Upgrade to version ZENworks Configuration Management 11.3.2.
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

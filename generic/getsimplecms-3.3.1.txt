@@ -25,3 +25,8 @@ Persistent XSS in settings page:
 	<input type="submit" value="Submit">
 	</form>
 
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

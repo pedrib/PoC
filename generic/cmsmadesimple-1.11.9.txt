@@ -272,3 +272,7 @@ http://www.suspekt.org/downloads/POC2009-ShockingNewsInPHPExploitation.pdf
 http://vagosec.org/2013/12/wordpress-rce-exploit/
 
 				
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

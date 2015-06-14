@@ -20,3 +20,8 @@ Example response:
 
 The passwords are a salted MD5 hash, which can be extracted with the following Ruby code:
 Base64.decode64(password).unpack('H*')
+
+===============
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

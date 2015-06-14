@@ -60,3 +60,8 @@ Timeline of disclosure:
 
 30/11/2014
 - Realised that ManageEngine have been playing me for 105 days, and immediately released advisory and exploit.
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

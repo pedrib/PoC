@@ -33,3 +33,8 @@ COUNT=1&USERID=1&SEARCH_ALL=<injection here>
 
 >> Fix:
 Upgrade to version 7.1 build 7105
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

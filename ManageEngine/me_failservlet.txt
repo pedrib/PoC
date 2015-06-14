@@ -51,3 +51,9 @@ https://support.zoho.com/portal/manageengine/helpcenter/articles/vulnerabilities
 Version 11.6 will be released with the patch.
 
 These vulnerabilities remain UNFIXED in IT360.
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

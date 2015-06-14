@@ -1,3 +1,5 @@
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+=================================================================================
 Disclosure: 26/10/2013 / Last updated: 12/10/2014
 
 Vulnerability: Uncontrolled format string (CWE-124 - CVE-2013-4474)
@@ -94,3 +96,8 @@ GBool openTempFile(GooString **name, FILE **f, const char *mode) {
   }
   return gTrue;
 
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

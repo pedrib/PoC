@@ -65,3 +65,9 @@ Timeline of disclosure:
 05/11/2014
 - Informed EventLog support that would release details and exploit today. Received reply stating "we are working on this but cannot commit to a date; the new version has a tentative release date of end of quarter".
 - Released advisory and exploit 70 days after initial contact (interesting fact: it's been 67 days since the release of my exploit for hong10's vulnerability and EventLog Analyzer is still vulnerable to remote code execution).
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

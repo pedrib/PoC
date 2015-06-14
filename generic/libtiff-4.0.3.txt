@@ -1,3 +1,5 @@
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+=================================================================================
 Disclosure: 01/08/2013 / Last updated: 12/10/2014
 
 Issue: 		Use after free
@@ -38,3 +40,8 @@ Code snippet:
 	}
 Justification:
 	Use of sprintf to write into a 2048 character buffer. The input is the filename, which might be over 2048 if crafted by a malicious user. However I could not determine this as the code is not easy to navigate.
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

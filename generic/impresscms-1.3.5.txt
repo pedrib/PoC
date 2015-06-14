@@ -64,3 +64,8 @@ https://192.168.56.101/impresscms/htdocs/modules/system/admin.php?fct=tplsets&op
 
 NOTE: wasn't able to exploit with Protector on, but someone smarter might be able to do it.
 
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

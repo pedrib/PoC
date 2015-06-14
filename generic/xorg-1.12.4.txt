@@ -1,3 +1,5 @@
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+=================================================================================
 Disclosure: 08/10/2013 / Last updated: 12/10/2014
 
 Vulnerability: Use After Free
@@ -26,3 +28,8 @@ it might hit the second.
     if (ClientIsAsleep(client)) {
         ClientWakeup(c->client);
 
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>

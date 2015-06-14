@@ -61,3 +61,9 @@ POST /discoveryServlet/WsDiscoveryServlet?computerName=../bin/backUpData.bat%00
 #1 is fixed on ServiceDesk Plus 9.0 build 9031. It is UNFIXED on all other products. Disclosure to ManageEngine was done on 04/08/2014, so over 150 days have elapsed. The last communication I received from them was that "Once we released this fix in ServiceDesk plus, we eventually take this in other products like AssetExplorer and SupportCenter."
 
 #2 is fixed on ServiceDesk Plus 9.0 build 9027 and on AssetExplorer 6.1 build 6107. It is UNFIXED for IT360.
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
