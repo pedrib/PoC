@@ -10,6 +10,7 @@ Disclosure: 13/07/2015 / Last updated: 13/07/2015
 >> Technical details:
 #1
 Vulnerability: Arbitary file download (authenticated)
+CVE-2015-2862
 Affected versions: unknown, at least v9
 
 GET /vsaPres/web20/core/Downloader.ashx?displayName=whatever&filepath=../../boot.ini
@@ -21,6 +22,7 @@ This will download the C:\boot.ini file when Kaseya is installed in the default 
 
 #2
 Vulnerability: Open redirect (unauthenticated)
+CVE-2015-2863
 Affected versions: unknown, at least v7 to XXX
 
 a)
