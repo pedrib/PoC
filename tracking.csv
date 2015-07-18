@@ -72,5 +72,10 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Accepted into Metaspl
 2014-7863,ManageEngine OpManager/AppManager/IT360,file download,me_file_download.rb,01/02/2015
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in search,manageengine_pmp_privesc.rb,13/11/2014
 2015-0779,Novell ZENworks Configuration Management,file upload / RCE,zcm_file_upload.rb,01/05/2015
+2015-2993,SysAid Help Desk,admin account creation,sysaid_admin_account.rb,17/07/2015
+2015-2994,SysAid Help Desk,file upload / RCE,sysaid_auth_file_upload.rb,17/07/2015
+2015-2994,SysAid Help Desk,file upload / RCE, sysaid_rdslogs_file_upload.rb,17/07/2015
+2015-2996/7,SysAid Help Desk,file download,sysaid_file_download.rb,17/07/2015
+2015-2996/8,SysAid Help Desk,SQL cred disclosure,sysaid_rdslogs_file_upload.rb,17/07/2015
 ,,,,
 ,synched with OSVDB on 3/6/15,,,
