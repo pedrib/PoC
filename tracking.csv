@@ -45,6 +45,8 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,generic/zenworks_zcm_rce.txt
+2015-2862,Kaseya Virtual System Administrator,file download,13/07/2015,generic/kaseya-vsa-vuln.txt
+2015-2863,Kaseya Virtual System Administrator,open redirect,13/07/2015,generic/kaseya-vsa-vuln.txt
 2015-2993,SysAid Help Desk,admin account creation / file overwrite,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
 2015-2994,SysAid Help Desk,file upload / RCE,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
 2015-2995,SysAid Help Desk,file upload / RCE,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
