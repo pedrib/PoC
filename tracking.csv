@@ -45,6 +45,15 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,generic/zenworks_zcm_rce.txt
+2015-2993,SysAid Help Desk,admin account creation / file overwrite,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2994,SysAid Help Desk,file upload / RCE,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2995,SysAid Help Desk,file upload / RCE,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2996,SysAid Help Desk,file download / denial of service,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2997,SysAid Help Desk,path disclosure,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2998,SysAid Help Desk,hard coded crypto key,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-2999,SysAid Help Desk,blind SQL injection,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-3000,SysAid Help Desk,XML entity expansion,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+2015-3001,SysAid Help Desk,hard coded SQL server password,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
