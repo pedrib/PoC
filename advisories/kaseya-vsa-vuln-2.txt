@@ -8,6 +8,7 @@ Disclosure: 23/09/2015 / Last updated: 28/09/2015
 
 A special thanks to ZDI for assisting with the vulnerability reporting process.
 These vulnerabilities were disclosed by ZDI under IDs ZDI-15-448 [1], ZDI-15-449 [2] and ZDI-15-450 [3] on 23/09/2015.
+Kaseya's security advisory can be found at [4].
 
 
 >> Technical details:
@@ -88,7 +89,7 @@ Content-Type: application/octet-stream
 
 -----------------------------114052411119142--
 
-A Ruby exploit (kazPwn.rb) that abuses this vulnerability has also been been released [4].
+A Ruby exploit (kazPwn.rb) that abuses this vulnerability has also been been released [5].
 
 
 >> Fix: 
@@ -102,8 +103,8 @@ R9.1 – Install patch 9.1.0.9
 [1] http://zerodayinitiative.com/advisories/ZDI-15-448/
 [2] http://zerodayinitiative.com/advisories/ZDI-15-449/
 [3] http://zerodayinitiative.com/advisories/ZDI-15-450/
-[4] 
-
+[4] https://helpdesk.kaseya.com/entries/96164487--Kaseya-Security-Advisory
+[5] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/kazPwn.rb
 ================
 Agile Information Security Limited
 http://www.agileinfosec.co.uk/
