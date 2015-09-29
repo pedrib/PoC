@@ -1,1 +1,0 @@
-This file has moved to generic/contao-3.2.4.txt

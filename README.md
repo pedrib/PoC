@@ -1,18 +1,8 @@
 PoC
 ===
 
-This repository contains my advisories, proof of concept files and exploits (referred to as files from now on) that I have made public and it is located at https://github.com/pedrib/PoC.
-
-- Directories:
-  - generic: most files
-  - vendor/vendor_variant/app/app_variant: vendor specific files (for example ManageEngine, lorexActivex, mw6, etc)
-  - msf_modules: Metasploit modules I've made public
-  
-- Files:
-  - tracking.csv: a listing of CVE numbers directly attributed to vulnerabilities I discovered and Metasploit modules I have released
-  - LICENSE: GPLv3, see below for more info
-  - README.md: this file
-  - Some old files containing a message "this file has moved"; this is not to break external links to my advisories
+This repository contains my advisories, proof of concept files and exploits that I have made public and it is located at https://github.com/pedrib/PoC.
+It also contains a CSV file where I keep track of all the vulnerabilities I have discovered (including CVE and other identifiers) as well as all the Metasploit modules I have publicly released.
 
 You can do whatever you want with these files within the boundaries of the GPLv3 license, which means that:
 - you have to include a copy of the GPLv3 license and provide attribution to me as the original author
@@ -24,5 +14,7 @@ For more information check http://choosealicense.com/licenses/gpl-v3/.
 
 Feel free to send me questions / comments / criticism.
 
-Pedro Ribeiro
-(pedrib_at_gmail.com)
+Pedro Ribeiro (pedrib@gmail.com)
+Founder & Director of Research
+Agile Information Security
+

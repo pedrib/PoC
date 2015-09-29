@@ -1,1 +1,0 @@
-This file has moved to generic/impresscms-1.3.5.txt

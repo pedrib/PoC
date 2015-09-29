@@ -1,1 +1,0 @@
-This file has moved to generic/pimcore-2.1.0.txt

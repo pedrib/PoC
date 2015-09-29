@@ -1,1 +1,0 @@
-This file has moved to generic/egroupware-1.8.005.txt
