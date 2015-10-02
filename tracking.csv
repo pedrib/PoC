@@ -56,10 +56,14 @@ CVE,Application,Description,Disclosure,Advisory / PoC file
 2015-2999,SysAid Help Desk,blind SQL injection,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
 2015-3000,SysAid Help Desk,XML entity expansion,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
 2015-3001,SysAid Help Desk,hard coded SQL server password,03/06/2015,generic/sysaid-14.4-multiple-vulns.txt
+ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngine/me_sd_file_upload_2.txt
+2015-6589,Kaseya Virtual System Administrator,auth file upload / RCE,23/09/2015,generic/kaseya-vsa-vuln-2.txt
+2015-6922,Kaseya Virtual System Administrator,unauth file upload / RCE,23/09/2015,generic/kaseya-vsa-vuln-2.txt
+2015-6922,Kaseya Virtual System Administrator,privilege escalation,23/09/2015,generic/kaseya-vsa-vuln-2.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
-CVE,Application,Vulnerability,Module name (in msf_modules),Accepted into Metasploit
+CVE,Application,Vulnerability,Module name,Accepted into Metasploit
 2014-3996,ManageEngine DC/PMP,LinkViewFetchServlet blind SQLi,manageengine_dc_pmp_sqli.rb,22/08/2014
 2014-4872,BMC Track-It!,unauth .NET remoting / RCE,trackit_file_upload.rb,18/10/2014
 2014-4872,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,trackit_sql_domain_creds.rb,20/10/2014
@@ -79,5 +83,8 @@ CVE,Application,Vulnerability,Module name (in msf_modules),Accepted into Metaspl
 2015-2994,SysAid Help Desk,file upload / RCE, sysaid_rdslogs_file_upload.rb,17/07/2015
 2015-2996/7,SysAid Help Desk,file download,sysaid_file_download.rb,17/07/2015
 2015-2996/8,SysAid Help Desk,SQL cred disclosure,sysaid_rdslogs_file_upload.rb,17/07/2015
+ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,
+2015-6922,Kaseya Virtual System Administrator,unauth file upload / RCE,kaseya_uploader.rb,02/10/2015
+2015-6922,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
 ,,,,
 ,synched with OSVDB on 3/6/15,,,
