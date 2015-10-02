@@ -1,4 +1,4 @@
->> Remote code execution / file upload in ManageEngine ServiceDesk Plus
+>> Remote code execution / arbitrary file upload in ManageEngine ServiceDesk Plus
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
 Disclosure: 20/08/2015 / Last updated: 02/10/2015
