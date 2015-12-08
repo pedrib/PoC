@@ -83,7 +83,7 @@ CVE,Application,Vulnerability,Module name,Accepted into Metasploit
 2015-2994,SysAid Help Desk,file upload / RCE, sysaid_rdslogs_file_upload.rb,17/07/2015
 2015-2996/7,SysAid Help Desk,file download,sysaid_file_download.rb,17/07/2015
 2015-2996/8,SysAid Help Desk,SQL cred disclosure,sysaid_rdslogs_file_upload.rb,17/07/2015
-ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,
+ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,07/10/2015
 2015-6922,Kaseya Virtual System Administrator,unauth file upload / RCE,kaseya_uploader.rb,02/10/2015
 2015-6922,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
 ,,,,
