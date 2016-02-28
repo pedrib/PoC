@@ -89,4 +89,6 @@ CVE,Application,Vulnerability,Module name,Accepted into Metasploit
 ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,07/10/2015
 2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,kaseya_uploader.rb,02/10/2015
 2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
+2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,netgear_nms_rce.rb,26/02/16
+2016-1525,NETGEAR ProSafe NMS300,file download,netgear_auth_download.rb,26/02/16
 ,,,,
