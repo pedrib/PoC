@@ -63,6 +63,10 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2015-7091,Apple QuickTime,buffer overflow,08/01/2016,
 2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,03/02/2015,advisories/netgear_nms_rce.txt
 2016-1525,NETGEAR ProSafe NMS300,file download,03/02/2015,advisories/netgear_nms_rce.txt
+2016-1593,Novell ServiceDesk,file upload / RCE,30/03/2016,advisories/novell-service-desk-7.1.0.txt
+2016-1594,Novell ServiceDesk,info disclosure,30/03/2016,advisories/novell-service-desk-7.1.0.txt
+2016-1595,Novell ServiceDesk,HQL injection,30/03/2016,advisories/novell-service-desk-7.1.0.txt
+2016-1596,Novell ServiceDesk,stored / reflected XSS,30/03/2016,advisories/novell-service-desk-7.1.0.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -91,4 +95,5 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
 2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,netgear_nms_rce.rb,26/02/16
 2016-1525,NETGEAR ProSafe NMS300,file download,netgear_auth_download.rb,26/02/16
+2016-1593,Novell ServiceDesk,file upload / RCE,novell_servicedesk_rice.rb,
 ,,,,
