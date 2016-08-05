@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in NUUO NVRmini2 / NVRsolo / Crystal devices and NETGEAR ReadyNAS Surveillance application
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
-Disclosure: 04/08/2016 / Last updated: 04/08/2016
+Disclosure: 04/08/2016 / Last updated: 05/08/2016
 
 
 >> Background on the affected products:
