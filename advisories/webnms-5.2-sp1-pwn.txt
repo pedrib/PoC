@@ -13,6 +13,8 @@ WebNMS contains three critical vulnerabilities that can be exploited by an unaut
 
 A special thanks to the SecuriTeam Secure Disclosure programme (SSD), which performed the disclosure in a responsible manner to the affected vendor. This advisory can be seen in their blog at https://blogs.securiteam.com/index.php/archives/2712
 
+Metasploit modules for vulnerabilities #1, #2 and #3 have also been released.
+
 
 >> Technical details:
 #1
@@ -46,7 +48,7 @@ GET /servlets/FetchFile?fileName=../../../etc/shadow
 
 
 #3
-Vulnerability: Weak obfuscation algorithm used to store passwords in text file
+Vulnerability: Weak obfuscation algorithm used to store passwords
 CVE-2016-6602
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker.
@@ -63,7 +65,7 @@ GET /servlets/FetchFile?fileName=conf/securitydbData.xml
 
 
 #4
-Vulnerability: User and administrator account impersonation / hijacking
+Vulnerability: User account impersonation / hijacking
 CVE-2016-6603
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker.
@@ -78,7 +80,7 @@ This returns the cookie "SessionId=0033C8CFFE37EB6093849CBA4BF2CAF3;" which is a
 
 
 >> Fix:
-Since the vendor did not respond to any contacts attempted by Beyond Security and its SSD programme, it is not known whether a fixed version of WebNMS Framework Server has been released. It is highly recommended not to expose the server to any untrusted networks (such as the Internet)
+Since the vendor did not respond to any contacts attempted by Beyond Security and its SSD programme, it is not known whether a fixed version of WebNMS Framework Server has been released. It is highly recommended not to expose the server to any untrusted networks (such as the Internet).
 
 
 ================
