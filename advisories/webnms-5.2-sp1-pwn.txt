@@ -13,7 +13,7 @@ WebNMS contains three critical vulnerabilities that can be exploited by an unaut
 
 A special thanks to the SecuriTeam Secure Disclosure programme (SSD), which performed the disclosure in a responsible manner to the affected vendor. This advisory can be seen in their blog at https://blogs.securiteam.com/index.php/archives/2712
 
-Metasploit modules for vulnerabilities #1, #2 and #3 have also been released.
+Metasploit exploits for all vulnerabilities have also been released.
 
 
 >> Technical details:
