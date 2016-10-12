@@ -101,19 +101,19 @@ CVE,Application,Vulnerability,Module name,Accepted into Metasploit
 2015-0779,Novell ZENworks Configuration Management,file upload / RCE,zcm_file_upload.rb,01/05/2015
 2015-2993,SysAid Help Desk,admin account creation,sysaid_admin_account.rb,17/07/2015
 2015-2994,SysAid Help Desk,file upload / RCE,sysaid_auth_file_upload.rb,17/07/2015
-2015-2994,SysAid Help Desk,file upload / RCE, sysaid_rdslogs_file_upload.rb,17/07/2015
+2015-2994,SysAid Help Desk,file upload / RCE,sysaid_rdslogs_file_upload.rb,17/07/2015
 2015-2996/7,SysAid Help Desk,file download,sysaid_file_download.rb,17/07/2015
-2015-2996/8,SysAid Help Desk,SQL cred disclosure,sysaid_rdslogs_file_upload.rb,17/07/2015
+2015-2996/8,SysAid Help Desk,SQL cred disclosure,sysaid_sql_creds.rb,17/07/2015
 ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,07/10/2015
 2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,kaseya_uploader.rb,02/10/2015
 2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
 2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,netgear_nms_rce.rb,26/02/2016
 2016-1525,NETGEAR ProSafe NMS300,file download,netgear_auth_download.rb,26/02/2016
-2016-1593,Novell ServiceDesk,file upload / RCE,novell_servicedesk_rice.rb,16/04/2016
+2016-1593,Novell ServiceDesk,file upload / RCE,novell_servicedesk_rce.rb,16/04/2016
 2016-6600,WebNMS Framework Server,file upload / RCE,webnms_file_upload.rb,
 2016-6601,WebNMS Framework Server,file download,webnms_file_download.rb,11/07/2016
 2016-6602,WebNMS Framework Server,credential disclosure,webnms_cred_disclosure.rb,11/07/2016
 2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
-2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
+2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_auth_rce.rb,08/08/2016
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,nuuo_nvrmini_reset.rb,08/08/2016
 ,,,,
