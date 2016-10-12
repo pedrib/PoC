@@ -1,5 +1,5 @@
 Vulnerabilities,,,,
-CVE,Application,Description,Disclosure,Advisory / PoC file
+CVE / ID,Application,Description,Disclosure,Advisory / PoC file
 2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,advisories/libtiff-4.0.3.txt
 2013-4232,libtiff,tiff2pdf use after free,01/08/2013,advisories/libtiff-4.0.3.txt
 2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,advisories/lcms-1.19.txt
@@ -67,6 +67,20 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2016-1594,Novell ServiceDesk,info disclosure,30/03/2016,advisories/novell-service-desk-7.1.0.txt
 2016-1595,Novell ServiceDesk,HQL injection,30/03/2016,advisories/novell-service-desk-7.1.0.txt
 2016-1596,Novell ServiceDesk,stored / reflected XSS,30/03/2016,advisories/novell-service-desk-7.1.0.txt
+2016-6600,WebNMS Framework Server,file upload / RCE,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
+2016-6601,WebNMS Framework Server,file download,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
+2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
+2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
+SSD-2713/AGIS-16-5,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,04/07/2016,
+SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
+SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
+2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5677,NUUO NVRmini / NETGEAR Surveillance,information disclosure,04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -93,7 +107,13 @@ CVE,Application,Vulnerability,Module name,Accepted into Metasploit
 ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uploader.rb,07/10/2015
 2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,kaseya_uploader.rb,02/10/2015
 2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,kaseya_master_admin.rb,02/10/2015
-2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,netgear_nms_rce.rb,26/02/16
-2016-1525,NETGEAR ProSafe NMS300,file download,netgear_auth_download.rb,26/02/16
-2016-1593,Novell ServiceDesk,file upload / RCE,novell_servicedesk_rice.rb,16/04/16
+2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,netgear_nms_rce.rb,26/02/2016
+2016-1525,NETGEAR ProSafe NMS300,file download,netgear_auth_download.rb,26/02/2016
+2016-1593,Novell ServiceDesk,file upload / RCE,novell_servicedesk_rice.rb,16/04/2016
+2016-6600,WebNMS Framework Server,file upload / RCE,webnms_file_upload.rb,
+2016-6601,WebNMS Framework Server,file download,webnms_file_download.rb,11/07/2016
+2016-6602,WebNMS Framework Server,credential disclosure,webnms_cred_disclosure.rb,11/07/2016
+2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
+2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
+2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,nuuo_nvrmini_reset.rb,08/08/2016
 ,,,,
