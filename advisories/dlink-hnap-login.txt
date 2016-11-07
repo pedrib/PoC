@@ -14,7 +14,7 @@ Dlink has a long history of vulnerabilities in HNAP. Craig Heffner in particular
 
 This new vulnerability occurs in the processing of XML tags inside SOAP messages when performing the HNAP Login action. The affected function contains two subsequent stack overflows, which can be exploited by an unauthenticated attacker on the LAN. It affects a number of Dlink routers which span the ARM and MIPS architectures. A Metasploit module that exploits this vulnerability for both architectures has been released [9].
 
-A special thanks to CERT/CC and Trent Novelly for help with disclosing this vulnerability to the vendor. Please refer to CERT's advisory [10].
+A special thanks to CERT/CC and Trent Novelly for help with disclosing this vulnerability to the vendor. Please refer to CERT's advisory for more details [10].
 
 
 >> Technical details:
@@ -182,7 +182,7 @@ From this point onwards, it's possible to execute any command in "payload". For 
 
 
 >> Fix:
-Dlink did not respond to my or CERT's request for information, so no firmware fix is available at the time of writing.
+Dlink did not respond to CERT's requests for information, so no firmware fix is available at the time of writing.
 Given that this vulnerability can only be exploited in the LAN, it is recommended to have a strong wireless password to prevent untrusted clients from connecting to the router.
 
 
