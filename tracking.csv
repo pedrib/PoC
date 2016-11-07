@@ -81,6 +81,7 @@ SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leak
 2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
+2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,advisories/dlink-hnap-login.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -116,4 +117,5 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
 2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_auth_rce.rb,08/08/2016
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,nuuo_nvrmini_reset.rb,08/08/2016
+2016-6563,Dlink DIR routers,stack bof / RCE,dlink_hnap_login_bof.rb,
 ,,,,
