@@ -195,7 +195,7 @@ Given that this vulnerability can only be exploited in the LAN, it is recommende
 [6] https://packetstormsecurity.com/files/134370/D-Link-DIR-818W-Buffer-Overflow-Command-Injection.html
 [7] https://dl.packetstormsecurity.net/papers/attack/dlink_hnap_captcha.pdf
 [8] http://www.dlink.com/uk/en/support/support-news/2015/april/13/hnap-privilege-escalation-command-injection
-[9] 
+[9] https://github.com/rapid7/metasploit-framework/pull/7543
 [10] https://www.kb.cert.org/vuls/id/677427
 
 ================
