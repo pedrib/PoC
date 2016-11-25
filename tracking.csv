@@ -117,5 +117,5 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),nuuo_nvrmini_unauth_rce.rb,08/08/2016
 2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_auth_rce.rb,08/08/2016
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,nuuo_nvrmini_reset.rb,08/08/2016
-2016-6563,Dlink DIR routers,stack bof / RCE,dlink_hnap_login_bof.rb,
+2016-6563,Dlink DIR routers,stack bof / RCE,dlink_hnap_login_bof.rb,21/11/2016
 ,,,,
