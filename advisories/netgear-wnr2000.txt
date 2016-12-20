@@ -10,10 +10,12 @@ Disclosure: 20/12/2016 / Last updated: 20/12/2016
 >> Summary:
 The NETGEAR WNR2000 allows an administrator to perform a number of sensitive functions in the web interface through an apparent CGI script named apply.cgi. This script is invoked when changing Internet settings, WLAN settings, restore to factory defaults, reboot the router, etc.
 However apply.cgi is not really a script, but a function that is invoked in the HTTP server (uhttpd) when it receives that string in the URL. When reversing uhttpd, it was found that it also allows an unauthenticated user to perform the same sensitive admin functions if apply_noauth.cgi is invoked instead.
-Some of the functions, such as rebooting the router, can be exploited straight away by an unauthenticated attacker. Other functions, such as changing Internet, WLAN settings or retrieving the administrative password, require the attacker to send a "timestamp" variable attached to the URL that functions as a sort of anti-CSRF token.
-This function was reverse engineered and due to incorrect use of random number generation (details below) it is possible to identify the token in less than 1000 attempts with no other previous knowledge.
+Some of the functions, such as rebooting the router, can be exploited straight away by an unauthenticated attacker. Other functions, such as changing Internet, WLAN settings or retrieving the administrative password, require the attacker to send a "timestamp" variable attached to the URL. This timestamp is generated every time the target page is accessed and functions as a sort of anti-CSRF token.
+The timestamp generating function was reverse engineered and due to incorrect use of random number generation (details below) it is possible to identify the token in less than 1000 attempts with no other previous knowledge.
 
-Finally, a stack buffer overflow was also discovered, which combined with the apply_noauth.cgi vulnerability and the timestamp identifying attack allows an unauthenticated attacker to take full control of the device and execute code remotely.
+By combining this knowledge with an information leakage, it is possible to recover the administrator password. This password is then used to enable telnet functionality in the router and obtain a root shell if the attacker is in the LAN.
+
+Finally, a stack buffer overflow was also discovered, which combined with the apply_noauth.cgi vulnerability and the timestamp identifying attack allows an unauthenticated attacker to take full control of the device and execute code remotely. This vulnerability allows the attacker to execute code in the LAN and in the WAN.
 
 It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, this attack is only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable. At the time of the intial disclosure, there are over 10.000 vulnerable routers appearing in a Shodan search.
 
@@ -381,7 +383,7 @@ Timeline of disclosure:
 
 
 >> References:
-[1] msf link
+[1] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/netgearPwn.rb
 [2] https://wiki.openwrt.org/toh/netgear/telnet.console
 [3] https://github.com/insanid/netgear-telenetenable
 [4] http://cdn.imgtec.com/mips-training/mips-basic-training-course/slides/Caches.pdf
