@@ -369,7 +369,7 @@ The only constraints for the payload is that it should not contain ampersand (&)
 
 
 >> Fix:
-NETGEAR did not respond to any emails, so THERE IS NO FIX for this vulnerability.
+NETGEAR did not respond to any emails, so THERE IS NO FIX for these vulnerabilities.
 It is recommended to replace this router with another make and model that supports OpenWRT firmware.
 
 Timeline of disclosure:
