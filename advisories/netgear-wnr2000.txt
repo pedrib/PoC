@@ -202,11 +202,11 @@ c1) Finally, send a GET request to passwordrecovered.cgi and the admin username 
 Executing code as root
 -----------------------
 
-NETGEAR routers have a handy function that allows a user to enable a root console via telnet with a special magic packet. This magic packet is calculated with the MAC of the device, plus the administrator username and password, which is then MD5 hashed and Blowfish encrypted with "AMBIT_TELNET_ENABLE+" plus the password. For more details, see [2].
+NETGEAR routers have a handy function that allows a user to enable a root console via telnet with a special magic packet. This magic packet is calculated with the MAC of the device, plus the administrator username and password, which is then MD5 hashed and Blowfish encrypted with the key "AMBIT_TELNET_ENABLE+" plus the administrator password. For more details, see [2].
 
-Given that the its possible to retrieve the administator username and password as explained above, in order to execute code all that is needed is to send the magic packet with the script in [3], and connect to port 23 to land in a root shell with no futher authentication required.
+Given that the its possible to retrieve the administator username and password as explained above, in order to execute code all that is needed is to send the magic packet with the script in [3], and connect to port 23 to land on a root shell with no futher authentication required.
 
-All of the above assumes the administrator password has been changed. If it hasn't, the executing code as root is trivial with the telnetenable script in [3].
+All of the above assumes the administrator password has been changed. If it hasn't, executing code as root is trivial with the telnetenable script in [3] as described above.
 
 
 #3
