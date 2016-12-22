@@ -17,7 +17,7 @@ By combining this knowledge with an information leakage, it is possible to recov
 
 Finally, a stack buffer overflow was also discovered, which combined with the apply_noauth.cgi vulnerability and the timestamp identification attack allows an unauthenticated attacker to take full control of the device and execute code remotely in the LAN and in the WAN.
 
-It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, these attacks are only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable as confirmed by static analysis. At the time of the initial disclosure, there are over 10.000 vulnerable routers appearing in a Shodan search.
+It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, these attacks are only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable as confirmed by static analysis. At the time of the initial disclosure, there are over 10.000 vulnerable routers with remote management enabled appearing in a Shodan search.
 
 Exploit code has been released with this advisory, but it is of "alpha" quality (see [1]). This exploit code will be improved and ported to Metasploit in the next week.
 
@@ -70,7 +70,7 @@ The vulnerability
 -----------------------
 
 The WNR2000 router allows an administrator to perform sensitive actions by invoking the apply.cgi URL on the web server of the device. This special URL is handled by the embedded web server (uhttpd) and processed accordingly. 
-While reverse engineering uhttpd, it was discovered that another function, apply_noauth.cgi allows an unauthenticated user to perform sensitive actions on the device. For example, to reboot the router, the following request can be sent:
+While reverse engineering uhttpd it was discovered that another function, apply_noauth.cgi, allows an unauthenticated user to perform sensitive actions on the device. For example, to reboot the router, the following request can be sent:
 
 ====
 POST /apply_noauth.cgi?/reboot_waiting.htm HTTP/1.1
@@ -170,8 +170,7 @@ For WAN exploitation (when remote management is enabled) rebooting is not an opt
 Obtaining the admin password
 -----------------------
 
-With the possibility of resetting the password recovery settings, the attacker can now obtain the administrator password.
-After a successful password recovery reset using the algorithm detailed in "Achieving reliable exploitation", the attacker now has to:
+As described above, by using the timestamp guessing attack an unauthenticated attacker can reset the password recovery questions. This information can then be used to recover the administrator password by doing the following:
 
 a1) Send a POST request to unauth.cgi with the serial number
 POST /apply_noauth.cgi?/unauth.cgi HTTP/1.1
@@ -206,7 +205,7 @@ NETGEAR routers have a handy function that allows a user to enable a root consol
 
 Given that the its possible to retrieve the administator username and password as explained above, in order to execute code all that is needed is to send the magic packet with the script in [3], and connect to port 23 to land on a root shell with no futher authentication required.
 
-All of the above assumes the administrator password has been changed. If it hasn't, executing code as root is trivial with the telnetenable script in [3] as described above.
+All of the above assumes the administrator password has been changed. If the default password is set, executing code as root is trivial with the telnetenable script in [3].
 
 
 #3
@@ -370,13 +369,13 @@ The only constraints for the payload is that it should not contain ampersand (&)
 
 >> Fix:
 NETGEAR did not respond to any emails, so THERE IS NO FIX for these vulnerabilities.
-It is recommended to replace this router with another make and model that supports OpenWRT firmware.
+It is recommended to replace this router with another make and model that supports OpenWRT firmware. WNR2000 v3 and v4 have OpenWRT images available, but the latest v5 is not supported yet.
 
 Timeline of disclosure:
 26.09.2016: Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 28.10.2016: Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 26.11.2016: Disclosed vulnerability to CERT through their web portal.
-29.11.2016: Received reply from CERT. They indicated that NETGEAR does not cooperate with them, so they recommended getting CVE numbers from MITRE and releasing the vulnerability information
+29.11.2016: Received reply from CERT. They indicated that NETGEAR does not cooperate with them, so they recommended getting CVE numbers from MITRE and releasing the vulnerability information.
             Email to MITRE requesting CVE numbers, no response.
             Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 20.12.2016: Public disclosure.
