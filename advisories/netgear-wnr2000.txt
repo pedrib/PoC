@@ -1,16 +1,21 @@
 >> Stack buffer overflow vulnerability in NETGEAR WNR2000 router
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 20/12/2016 / Last updated: 20/12/2016
+Disclosure: 20/12/2016 / Last updated: 31/12/2016
 
 >> Background on the affected products:
 "Wirelessly connect all of your computers and mobile devices. N300 WiFi speed lets you simultaneously download, stream music and video, and game online. NETGEAR genie® makes it easy to setup and monitor your network. Parental controls keep your Internet experience safe and secure."
 
 
+>> Update / Correction (31/12/2016):
+Upon further investigation, it turns out that the initial assumption that it was possible to perform some actions without knowing the timestamp (such as rebooting the router) was incorrect. Actually any action can be performed without knowledge of the timestamp as long as the target page has never been accessed. If at some point, the target page was accessed, the timestamp variable will be set. This advisory was been corrected to reflect these findings.
+In addition, NETGEAR has recognised the flaw and released beta firmware for the affected routers, which can be obtained in [7].
+
+
 >> Summary:
 The NETGEAR WNR2000 allows an administrator to perform a number of sensitive functions in the web interface through an apparent CGI script named apply.cgi. This script is invoked when changing Internet settings, WLAN settings, restore to factory defaults, reboot the router, etc.
 However apply.cgi is not really a script, but a function that is invoked in the HTTP server (uhttpd) when it receives that string in the URL. When reverse engineering uhttpd, it was found that it also allows an unauthenticated user to perform the same sensitive admin functions if apply_noauth.cgi is invoked instead.
-Some of the functions, such as rebooting the router, can be exploited straight away by an unauthenticated attacker. Other functions, such as changing Internet, WLAN settings or retrieving the administrative password, require the attacker to send a "timestamp" variable attached to the URL. This timestamp is generated every time the target page is accessed and functions as a sort of anti-CSRF token.
+Sensitive functions, such as rebooting the router, changing Internet, WLAN settings or retrieving the administrative password, require the attacker to send a "timestamp" variable attached to the URL. This timestamp is generated every time the target page is accessed and functions as a sort of anti-CSRF token.
 The timestamp generating function was reverse engineered and due to incorrect use of random number generation (details below) it is possible to identify the token in less than 1000 attempts with no other previous knowledge.
 
 By combining this knowledge with an information leakage, it is possible to recover the administrator password. This password is then used to enable telnet functionality in the router and obtain a root shell if the attacker is in the LAN.
@@ -19,7 +24,7 @@ Finally, a stack buffer overflow was also discovered, which combined with the ap
 
 It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, these attacks are only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable as confirmed by static analysis. At the time of the initial disclosure, there are over 10.000 vulnerable routers with remote management enabled appearing in a Shodan search.
 
-Exploit code has been released with this advisory, but it is of "alpha" quality (see [1]). This exploit code will be improved and ported to Metasploit in the next week.
+Exploit code was initially released with this advisory, but it is of "alpha" quality and it has been deprecated (see [1]). Two Metasploit modules have now been released and integrated in the Metasploit framework. One module exploits the password recovery function and the other exploits the buffer overflow vulnerability.
 
 
 >> Technical details:
@@ -111,14 +116,14 @@ Content-Length: 188
 submit_flag=passwd&hidden_enable_recovery=1&Apply=Apply&sysOldPasswd=&sysNewPasswd=&sysConfirmPasswd=&enable_recovery=on&question1=1&answer1=secretanswer1&question2=2&answer2=secretanswer2
 ====
 
-These are just examples, there is a lot more functionality that can be accessed using apply_noauth.cgi. However, apart from the three first examples, most actions will require knowledge of a "timestamp" variable which is appended to the URL (like in the fourth example). Identifying this timestamp is non-trivial and will be explained in detail.
+These are just examples, there is a lot more functionality that can be accessed using apply_noauth.cgi. All actions will require knowledge of a "timestamp" variable which is appended to the URL (like in the fourth example). Identifying this timestamp is non-trivial and will be explained in detail.
 
 -----------------------
 Timestamp generation
 -----------------------
 
 This timestamp variable is generated each time a user accesses a page. For example, to change the WLAN settings, a user has to visit the WLG_wireless.htm page. The timestamp variable will be generated when that page is accessed, and stored in the device configuration. 
-Each time the page is visited, a new timestamp is generated and embedded in the page. Even if the page has not been accessed by a user since the device has rebooted, the timestamp variable will still be preset in the configuration. It was not investigated why this occurs but most likely this timestamp is generated and saved at some point in the boot process. 
+Each time the page is visited, a new timestamp is generated and embedded in the page. However, if the page has never been visited by the administrator, the timestamp variable will be blank.
 Note that each page or function will have a different timestamp at any time, stored in the device configuration. It is also crucial to note that an unauthenticated user cannot access any of the pages, so it cannot force generation of a timestamp or retrieve its value.
 
 The function responsible for this timestamp generation is at 0x4101E8 (firmware version 1.0.0.34 for the WNR2000v5) and it has a symbol name of get_timestamp.
@@ -152,19 +157,11 @@ Achieving reliable exploitation
 -----------------------
 
 The unresolved problem for an unauthenticated attacker is that it needs to guess the current timestamp value in order to perform any of the attacks described above. This could be limited by first attempting all possible values in the current hour, current day, current month, current year in order. 
-However there is an optimal way to do it.
+In order to achieve quicker and more reliable exploitation, the following can be done:
 
-One of the few actions that is possible for an unauthenticated attacker to execute without knowing the timestamp is to reboot the device. If the device is rebooted, then the attacker will know that the UNIX time used to seed srand and to generate the timestamp will be in the last 5 minutes or so (about the time it takes to reboot and for the attacker to re-connect to it). Therefore, to easily guess the timestamp, all that has to be done is the following:
-
-a) send a reboot request
-b) wait for the device to reboot and connect again to it (via WLAN or Ethernet)
-c) send a HTTP GET request to the device, and get its current time from the Date HTTP header
-d) using the algorithm above, seed srand with all possible values starting from the UNIX timestamp obtained from parsing the Date header minus 300 (60 seconds times 5 minutes)
-e) attempt to perform the intended function (factory reset, change WLAN, etc) by invoking the apply_noauth.cgi script with the correct parameters and each output from d) until the correct timestamp is hit and the function executed
-
-Using this technique, the bruteforce needed to guess the timestamp is greatly reduced, enabling an unauthenticated attacker to be successful 100% of the time (actual number of tries needed will vary approximately between 300 and 5000, but usually less than 1000).
-
-For WAN exploitation (when remote management is enabled) rebooting is not an option (as most likely the device will have a new IP address after boot); for this case, the best way to exploit the device is to start from the current time backwards and keep sending requests until the correct value is hit. 
+a) Attempt the request to apply_noauth.cgi without a timestamp. If the router's administration never used that function or visited the target page, the timestamp will not be set.
+b) Attempt to get the timestamp value by using the default administrator credentials (user "admin" and password "password").
+c) If all above fails, then bruteforce the timestamp.
 
 -----------------------
 Obtaining the admin password
@@ -380,6 +377,8 @@ Timeline of disclosure:
             Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 20.12.2016: Public disclosure.
 
+Update (31.12.2016): NETGEAR has recognised the vulnerabilities and released beta firmware that is supposed to fix it (see [7]). The fixes have not been verified by Agile Information Security.
+
 
 >> References:
 [1] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/netgearPwn.rb
@@ -388,6 +387,7 @@ Timeline of disclosure:
 [4] http://cdn.imgtec.com/mips-training/mips-basic-training-course/slides/Caches.pdf
 [5] https://raw.githubusercontent.com/pedrib/PoC/master/advisories/dlink-hnap-login.txt
 [6] http://cdn.imgtec.com/mips-training/mips-basic-training-course/slides/Memory_Map.pdf
+[7] http://kb.netgear.com/000036549/Insecure-Remote-Access-and-Command-Execution-Security-Vulnerability
 
 
 ================
