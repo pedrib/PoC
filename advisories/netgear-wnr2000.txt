@@ -1,15 +1,15 @@
 >> Stack buffer overflow vulnerability in NETGEAR WNR2000 router
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 20/12/2016 / Last updated: 31/12/2016
+Disclosure: 20/12/2016 / Last updated: 02/01/2017
 
 >> Background on the affected products:
 "Wirelessly connect all of your computers and mobile devices. N300 WiFi speed lets you simultaneously download, stream music and video, and game online. NETGEAR genie® makes it easy to setup and monitor your network. Parental controls keep your Internet experience safe and secure."
 
 
->> Update / Correction (31/12/2016):
+>> Update / Correction (02/01/2017):
 Upon further investigation, it turns out that the initial assumption that it was possible to perform some actions without knowing the timestamp (such as rebooting the router) was incorrect. Actually any action can be performed without knowledge of the timestamp as long as the target page has never been accessed. If at some point, the target page was accessed, the timestamp variable will be set. This advisory was been corrected to reflect these findings.
-In addition, NETGEAR has recognised the flaw and released beta firmware for the affected routers, which can be obtained in [7].
+NETGEAR has recognised the flaw and released beta firmware for the affected routers, which can be obtained in [7]. NETGEAR has also indicated that the password recovery attack can only be done if the password recovery questions were never set by the user before, but according to Agile Information Security tests, this is not the case, and the password is still recoverable even if the password recovery questions were previously set.
 
 
 >> Summary:
@@ -167,7 +167,7 @@ c) If all above fails, then bruteforce the timestamp.
 Obtaining the admin password
 -----------------------
 
-As described above, by using the timestamp guessing attack an unauthenticated attacker can reset the password recovery questions. This information can then be used to recover the administrator password by doing the following:
+As described above, by using the timestamp guessing attack an unauthenticated attacker can reset the password recovery questions, but only if the password recovery questions were never set by the user in the first place. This information can then be used to recover the administrator password by doing the following:
 
 a1) Send a POST request to unauth.cgi with the serial number
 POST /apply_noauth.cgi?/unauth.cgi HTTP/1.1
