@@ -30,7 +30,7 @@ Exploit code was initially released with this advisory, but it is of "alpha" qua
 >> Technical details:
 #1 
 Vulnerability: Information leakage
-NO CVE ASSIGNED
+NO CVE - use FD/2016/Dec/72-01
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -62,7 +62,7 @@ This information leakage is useful for further exploitation in #2.
 
 #2
 Vulnerability: Improper access control
-NO CVE ASSIGNED
+NO CVE - use FD/2016/Dec/72-02
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -207,7 +207,7 @@ All of the above assumes the administrator password has been changed. If the def
 
 #3
 Vulnerability: Stack buffer overflow
-NO CVE ASSIGNED
+NO CVE - use FD/2016/Dec/72-03
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -376,8 +376,7 @@ Timeline of disclosure:
             Email to MITRE requesting CVE numbers, no response.
             Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 20.12.2016: Public disclosure.
-
-Update (31.12.2016): NETGEAR has recognised the vulnerabilities and released beta firmware that is supposed to fix it (see [7]). The fixes have not been verified by Agile Information Security.
+31.12.2016: NETGEAR has recognised the vulnerabilities and released beta firmware that is supposed to fix it (see [7]). The fixes have not been verified by Agile Information Security.
 
 
 >> References:
