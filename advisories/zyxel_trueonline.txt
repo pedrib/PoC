@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in TrueOnline / ZyXEL / Billion routers
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 26/12/2016 / Last updated: 11/01/2017
+Disclosure: 26/12/2016 / Last updated: 12/01/2017
 
 
 >> Summary:
@@ -18,10 +18,7 @@ It should be noted that tclinux contains files and configuration settings in oth
 
 These vulnerabilities were discovered in July 2016 and reported through Securiteam's Secure Disclosure program (see https://blogs.securiteam.com/index.php/archives/2910 for their advisory). SSD contacted the vendors involved, but received no reply and posted their advisory on December 26th 2016. There is currently no fix for these issues. It is unknown whether these issues are exploitable over the WAN, although this is a possibility since some of the default accounts appear to have been deployed for ISP use.
 
-
-
-Metasploit modules that ex - TODODOODODODODODOOD
-DODOODODO
+Three Metasploit modules that abuse these vulnerabilities have been released (see [4], [5] and [6]).
 
 
 >> Technical details:
@@ -161,13 +158,17 @@ July 2016: Vulnerability reported to Securiteam Secure Disclosure
            Securiteam contacted the affected versions. No response.
            
 26.12.2016: Vulnerability information published in the SSD blog.
-11.01.2017: Vulnerability information published in https://github.com/pedrib/PoC
+12.01.2017: Vulnerability information published in https://github.com/pedrib/PoC
 
 
 >> References:
 [1] http://www.kb.cert.org/vuls/id/561444
 [2] https://k0st.wordpress.com/2015/07/05/identifying-and-exploiting-rom-0-vulnerabilities/
 [3] https://vasvir.wordpress.com/tag/trendchip-firmware/
+[4] https://github.com/rapid7/metasploit-framework/pull/7820
+[5] https://github.com/rapid7/metasploit-framework/pull/7821
+[6] https://github.com/rapid7/metasploit-framework/pull/7822
+
 
 ================
 Agile Information Security Limited
