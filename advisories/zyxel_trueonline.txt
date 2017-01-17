@@ -48,18 +48,16 @@ Constraints: Can be exploited by an authenticated attacker in the LAN. See below
 Affected versions:
 - ZyXEL P660HN-T, hardware revision v2, TrueOnline firmware version TCLinux Fw #7.3.37.6, other firmware versions might be affected
 
-Unlike in the P660HN-Tv1, the injection is authenticated and in the logSet.asp page. However, this router contains a hardcoded supervisor password (see below) that can be used to exploit this vulnerability.
-The injection is in the logSet.asp page that sets up remote forwarding of syslog logs, and the parameter vulnerable to injection is the serverIP parameter, which can be abused in the following way:
-
-ServerIP=1.1.1.1`<COMMAND>`&#
-
+Unlike in the P660HN-Tv1, the injection is authenticated and in the logSet.asp page. However, this router contains several default administrative accounts (see below) that can be used to exploit this vulnerability.
+The injection is in the logSet.asp page that sets up remote forwarding of syslog logs, and the parameter vulnerable to command injection is the serverIP parameter.
 The following request will cause the router to issue 3 ping requests to 1.1.1.1:
 
 POST /cgi-bin/pages/maintenance/logSetting/logSet.asp HTTP/1.1
 logSetting_H=1&active=1&logMode=LocalAndRemote&serverIP=192.168.1.1`ping -c 3 1.1.1.1`%26%23&serverPort=514
 
 This vulnerability was found during a black box assessment of the web interface, so a root cause was not determined. It is known that this injection ends up in  /etc/syslog.conf as
-
+ServerIP="192.168.1.1 `ping -c 3 1.1.1.1`&#"
+Which will then be executed by a background process almost immediately.
 The actual injection is limited to 28 characters. This can circunvented by writing a shell script file in the /tmp directory 28 characters at a time, and the executing that file.
 
 
