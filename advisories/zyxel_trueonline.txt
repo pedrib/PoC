@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in TrueOnline / ZyXEL / Billion routers
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 26/12/2016 / Last updated: 12/01/2017
+Disclosure: 26/12/2016 / Last updated: 18/01/2017
 
 
 >> Summary:
@@ -12,19 +12,23 @@ These routers are based on the TC3162U SoC (or variants of it), a system-on-a-ch
 TC3162U based routers have two firmware variants. 
 
 The first variant is "ras", used on hardware versions that have 4mb or less of flash storage, which is based on the real time operating system ZynOS. It is infamous as the includes Allegro RomPager v4.07, which is vulnerable to the "misfortune cookie" attack (see [1]), and its web server is vulnerable to the "rom-0" attack (see [2]). 
-The other variant is "tclinux", which is a full fledged Linux used in hardware versions that have more than 4 MB of flash storage. This advisory refers to this variant, which includes the Goahead web server and several ASP files with the command injection vulnerabilities. Note that tclinux might also be vulnerable to the misfortune cookie and rom-0 attacks - this was not investigated in detail by the author. For more information on tclinux see [3].
+The other variant is "tclinux", which is a full fledged Linux used in hardware versions that have more than 4 MB of flash storage. This advisory refers to this variant, which includes the Boa web server and several ASP files with the command injection vulnerabilities. Note that tclinux might also be vulnerable to the misfortune cookie and rom-0 attacks - this was not investigated in detail by the author. For more information on tclinux see [3].
 
-It should be noted that tclinux contains files and configuration settings in other languages (for example in Turkish). Therefore it is likely that these firmware versions are not specific to TrueOnline, and other ISP customised routers in other countries might also be vulnerable. It is also possible that other brands and router models that use the tclinux variant are also affected by the command injection vulnerabilities (the default accounts are likely to be TrueOnline specific). Please contact pedrib@gmail.com if you find any other routers or firmware versions that have the same vulnerabilities.
+It should be noted that tclinux contains files and configuration settings in other languages (for example in Turkish). Therefore it is likely that these firmware versions are not specific to TrueOnline, and other ISP customised routers in other countries might also be vulnerable. It is also possible that other brands and router models that use the tclinux variant are also affected by the command injection vulnerabilities (while the default accounts are likely to be TrueOnline specific). Please contact pedrib@gmail.com if you find any other routers or firmware versions that have the same vulnerabilities.
 
 These vulnerabilities were discovered in July 2016 and reported through Securiteam's Secure Disclosure program (see https://blogs.securiteam.com/index.php/archives/2910 for their advisory). SSD contacted the vendors involved, but received no reply and posted their advisory on December 26th 2016. There is currently no fix for these issues. It is unknown whether these issues are exploitable over the WAN, although this is a possibility since some of the default accounts appear to have been deployed for ISP use.
 
 Three Metasploit modules that abuse these vulnerabilities have been released (see [4], [5] and [6]).
 
 
+>> Update (18/01/2017):
+ZyXEL have responded to this advisory and published information about upcoming fixes for the 660HN v1 and v2 in http://www.zyxel.com/support/announcement_unauthenticated.shtml
+
+
 >> Technical details:
 #1 
 Vulnerability: Unauthenticated command injection (ZyXEL P660HN-T v1)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-1
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -42,7 +46,7 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #2
 Vulnerability: Authenticated command injection (ZyXEL P660HN-T v2)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-2
 Attack Vector: Remote
 Constraints: Can be exploited by an authenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -63,7 +67,7 @@ The actual injection is limited to 28 characters. This can circunvented by writi
 
 #3
 Vulnerability: Unauthenticated command injection (Billion 5200W-T)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-3
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -85,14 +89,14 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #4
 Vulnerability: Authenticated command injection (Billion 5200W-T)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-4
 Attack Vector: Remote
 Constraints: Can be exploited by an authenticated attacker in the LAN. See below for other constraints.
 Affected versions:
 - Billion 5200W-T, TrueOnline firmware version TCLinux Fw $7.3.8.0 v008 130603, other firmware versions might be affected
 
 The Billion 5200W-T router also has several other command injections in its interface, depending on the firmware version, such as an authenticated command injection in tools_time.asp (uiViewSNTPServer parameter).
-It should be noted that this router contains several hardcoded administrative accounts that can be used to exploit this vulnerability.
+It should be noted that this router contains several default administrative accounts that can be used to exploit this vulnerability.
 This injection can be exploited with the following request:
 
 POST /cgi-bin/tools_time.asp HTTP/1.1
@@ -111,7 +115,7 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #5
 Vulnerability: Default administrative credentials (ZyXEL P660HN-T v1)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-5
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
@@ -124,7 +128,7 @@ username: true; password: true
 
 #6
 Vulnerability: Authenticated command injection (ZyXEL P660HN-T v2)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-6
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
@@ -138,7 +142,7 @@ username: supervisor; password: zyad1234
 
 #7
 Vulnerability: Authenticated command injection (Billion 5200W-T)
-NO-CVE
+NO-CVE - use FD:2017/Jan/40-7
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
@@ -157,6 +161,7 @@ July 2016: Vulnerability reported to Securiteam Secure Disclosure
            
 26.12.2016: Vulnerability information published in the SSD blog.
 12.01.2017: Vulnerability information published in https://github.com/pedrib/PoC
+18.01.2017: ZyXEL have responded to this advisory and published information about upcoming fixes for the 660HN v1 and v2 in http://www.zyxel.com/support/announcement_unauthenticated.shtml
 
 
 >> References:
