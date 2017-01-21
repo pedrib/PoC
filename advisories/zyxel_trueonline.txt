@@ -6,7 +6,7 @@ Disclosure: 26/12/2016 / Last updated: 18/01/2017
 
 >> Summary:
 TrueOnline is a major Internet Service Provider in Thailand which distributes various rebranded ZyXEL and Billion routers to its customers.
-Three router models - ZyXEL P660HN-T v1, ZyXEL P660HN-T v2 and Billion 5200W-T - contain a number of default administrative accounts, as well as authenticated and unauthenticated command injection vulnerabilities (running as root) in their web interfaces, mostly in the syslog remote forwarding function. All the routers are still in widespread use in Thailand, with the Billion 5200W-T router currently being distributed to new customers. 
+Three router models - ZyXEL P660HN-T1A v1, ZyXEL P660HN-T1A v2 and Billion 5200W-T - contain a number of default administrative accounts, as well as authenticated and unauthenticated command injection vulnerabilities (running as root) in their web interfaces, mostly in the syslog remote forwarding function. All the routers are still in widespread use in Thailand, with the Billion 5200W-T router currently being distributed to new customers. 
 
 These routers are based on the TC3162U SoC (or variants of it), a system-on-a-chip made by TrendChip, which was a manufacturer of SoC that was acquired by Ralink / MediaTek in 2011.
 TC3162U based routers have two firmware variants. 
@@ -27,12 +27,12 @@ ZyXEL have responded to this advisory and published information about upcoming f
 
 >> Technical details:
 #1 
-Vulnerability: Unauthenticated command injection (ZyXEL P660HN-T v1)
+Vulnerability: Unauthenticated command injection (ZyXEL P660HN-T1A v1)
 NO-CVE - use FD:2017/Jan/40-1
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker in the LAN. See below for other constraints.
 Affected versions:
-- ZyXEL P660HN-T, hardware revision v1, TrueOnline firmware version TCLinux Fw $7.3.15.0 v001 / 3.40(ULM.0)b31, other firmware versions might be affected
+- ZyXEL P660HN-T1A, hardware revision v1, TrueOnline firmware version 340ULM0b31, other firmware versions might be affected
 
 This router has a command injection vulnerability in the Maintenance > Logs > System Log > Remote System Log forwarding function.
 The vulnerability is in the ViewLog.asp page, which is accessible unauthenticated. The following request will cause the router to issue 3 ping requests to 10.0.99.102:
@@ -45,12 +45,12 @@ This vulnerability was found during a black box assessment of the web interface,
 
 
 #2
-Vulnerability: Authenticated command injection (ZyXEL P660HN-T v2)
+Vulnerability: Authenticated command injection (ZyXEL P660HN-T1A v2)
 NO-CVE - use FD:2017/Jan/40-2
 Attack Vector: Remote
 Constraints: Can be exploited by an authenticated attacker in the LAN. See below for other constraints.
 Affected versions:
-- ZyXEL P660HN-T, hardware revision v2, TrueOnline firmware version TCLinux Fw #7.3.37.6, other firmware versions might be affected
+- ZyXEL P660HN-T1A, hardware revision v2, TrueOnline firmware version 200AAJS3D0, other firmware versions might be affected
 
 Unlike in the P660HN-Tv1, the injection is authenticated and in the logSet.asp page. However, this router contains several default administrative accounts (see below) that can be used to exploit this vulnerability.
 The injection is in the logSet.asp page that sets up remote forwarding of syslog logs, and the parameter vulnerable to command injection is the serverIP parameter.
@@ -115,12 +115,12 @@ This vulnerability was found during a black box assessment of the web interface,
 
 
 #5
-Vulnerability: Default administrative credentials (ZyXEL P660HN-T v1)
+Vulnerability: Default administrative credentials (ZyXEL P660HN-T1A v1)
 NO-CVE - use FD:2017/Jan/40-5
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
-- ZyXEL P660HN-T, hardware revision v1, TrueOnline firmware version TCLinux Fw $7.3.15.0 v001 / 3.40(ULM.0)b31, other firmware versions might be affected
+- ZyXEL P660HN-T1A, hardware revision v1, TrueOnline firmware version 340ULM0b31, other firmware versions might be affected
 
 This router contains the following default administrative accounts:
 username: admin; password: password
@@ -128,12 +128,12 @@ username: true; password: true
 
 
 #6
-Vulnerability: Authenticated command injection (ZyXEL P660HN-T v2)
+Vulnerability: Authenticated command injection (ZyXEL P660HN-T1A v2)
 NO-CVE - use FD:2017/Jan/40-6
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
-- ZyXEL P660HN-T, hardware revision v2, TrueOnline firmware version TCLinux Fw #7.3.37.6, other firmware versions might be affected
+- ZyXEL P660HN-T1A, hardware revision v2, TrueOnline firmware version 200AAJS3D0, other firmware versions might be affected
 
 This router contains the following default administrative accounts:
 username: admin; password: password
