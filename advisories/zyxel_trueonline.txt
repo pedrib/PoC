@@ -6,7 +6,7 @@ Disclosure: 26/12/2016 / Last updated: 18/01/2017
 
 >> Summary:
 TrueOnline is a major Internet Service Provider in Thailand which distributes various rebranded ZyXEL and Billion routers to its customers.
-Three router models - ZyXEL P660HN-T v1, ZyXEL P660HN-T v2 and Billion 5200W-T - contain a number of default administrative accounts, as well as authenticated and unauthenticated command injection vulnerabilities in their web interfaces, mostly in the syslog remote forwarding function. All the routers are still in widespread use in Thailand, with the Billion 5200W-T router currently being distributed to new customers. 
+Three router models - ZyXEL P660HN-T v1, ZyXEL P660HN-T v2 and Billion 5200W-T - contain a number of default administrative accounts, as well as authenticated and unauthenticated command injection vulnerabilities (running as root) in their web interfaces, mostly in the syslog remote forwarding function. All the routers are still in widespread use in Thailand, with the Billion 5200W-T router currently being distributed to new customers. 
 
 These routers are based on the TC3162U SoC (or variants of it), a system-on-a-chip made by TrendChip, which was a manufacturer of SoC that was acquired by Ralink / MediaTek in 2011.
 TC3162U based routers have two firmware variants. 
@@ -41,7 +41,7 @@ POST /cgi-bin/ViewLog.asp HTTP/1.1
 remote_submit_Flag=1&remote_syslog_Flag=1&RemoteSyslogSupported=1&LogFlag=0&remote_host=%3bping+-c+3+10.0.99.102%3b%23&remoteSubmit=Save
 
 The command in injection is in the remote_host parameter.
-This vulnerability was found during a black box assessment of the web interface, so a root cause was not determined.
+This vulnerability was found during a black box assessment of the web interface, so the injection path was not fully investigated. All commands run as root.
 
 
 #2
@@ -59,7 +59,8 @@ The following request will cause the router to issue 3 ping requests to 1.1.1.1:
 POST /cgi-bin/pages/maintenance/logSetting/logSet.asp HTTP/1.1
 logSetting_H=1&active=1&logMode=LocalAndRemote&serverIP=192.168.1.1`ping -c 3 1.1.1.1`%26%23&serverPort=514
 
-This vulnerability was found during a black box assessment of the web interface, so a root cause was not determined. It is known that this injection ends up in  /etc/syslog.conf as
+This vulnerability was found during a black box assessment of the web interface, so the injection path was not fully investigated. All commands run as root. 
+It is known that this injection ends up in  /etc/syslog.conf as
 ServerIP="192.168.1.1 `ping -c 3 1.1.1.1`&#"
 Which will then be executed by a background process almost immediately.
 The actual injection is limited to 28 characters. This can circunvented by writing a shell script file in the /tmp directory 28 characters at a time, and the executing that file.
@@ -84,7 +85,7 @@ Content-Length: 85
 RemotelogEnable=1&syslogServerAddr=1.1.1.1%3bping+-c+3+192.168.1.35%3b&serverPort=514
 
 The injection is on the syslogServerAddr parameter and can be exploited by entering a valid IP address, followed by  ";<COMMAND>;"
-This vulnerability was found during a black box assessment of the web interface, so a root cause was not determined.
+This vulnerability was found during a black box assessment of the web interface, so the injection path was not fully investigated. All commands run as root.
 
 
 #4
@@ -110,7 +111,7 @@ This writes the command to a file /etc/ntp.sh:
 /userfs/bin/ntpclient -s -c 3 -l -h ""; ping -c 20 192.168.0.1 &#" &
 which is then executed almost immediately.
 
-This vulnerability was found during a black box assessment of the web interface, so a root cause was not determined.
+This vulnerability was found during a black box assessment of the web interface, so the injection path was not fully investigated. All commands run as root.
 
 
 #5
