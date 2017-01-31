@@ -1,7 +1,7 @@
 >> Stack buffer overflow vulnerability in NETGEAR WNR2000 router
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 20/12/2016 / Last updated: 18/01/2017
+Disclosure: 20/12/2016 / Last updated: 29/01/2017
 
 >> Background on the affected products:
 "Wirelessly connect all of your computers and mobile devices. N300 WiFi speed lets you simultaneously download, stream music and video, and game online. NETGEAR genie® makes it easy to setup and monitor your network. Parental controls keep your Internet experience safe and secure."
@@ -30,7 +30,7 @@ NETGEAR has recognised the flaw and released beta firmware for the affected rout
 >> Technical details:
 #1 
 Vulnerability: Information leakage
-NO CVE - use FD:2016/Dec/72-1
+CVE-2016-10175
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -62,7 +62,7 @@ This information leakage is useful for further exploitation in #2.
 
 #2
 Vulnerability: Improper access control
-NO CVE - use FD:2016/Dec/72-2
+CVE-2016-10176
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -207,7 +207,7 @@ All of the above assumes the administrator password has been changed. If the def
 
 #3
 Vulnerability: Stack buffer overflow
-NO CVE - use FD:2016/Dec/72-3
+CVE-2016-10174
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker. See below for other constraints.
 Affected versions:
@@ -377,6 +377,7 @@ Timeline of disclosure:
             Email sent to NETGEAR (security@netgear.com) asking for PGP key, no response.
 20.12.2016: Public disclosure.
 31.12.2016: NETGEAR has recognised the vulnerabilities and released beta firmware that is supposed to fix it (see [7]). The fixes have not been verified by Agile Information Security.
+29.01.2017: MITRE assigned CVE-2016-10174/5/6 to these vulnerabilities.
 
 
 >> References:

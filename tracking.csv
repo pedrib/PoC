@@ -71,9 +71,9 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2016-6601,WebNMS Framework Server,file download,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
 2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
 2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-SSD-2713/AGIS-16-5,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,04/07/2016,
-SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
-SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
+SSD-2713,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,04/07/2016,
+SSD-2713,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
+SSD-2713,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
 2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,advisories/nuuo-nvr-vulns.txt
@@ -82,6 +82,16 @@ SSD-2713/AGIS-16-6,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leak
 2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,advisories/dlink-hnap-login.txt
+2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,advisories/netgear-wnr2000.txt
+2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,advisories/netgear-wnr2000.txt
+2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,advisories/netgear-wnr2000.txt
+SSD-2910,ZyXEL P660HN-T1A v1,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,Billion 5200W-T,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
+SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -118,4 +128,16 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),nuuo_nvrmini_auth_rce.rb,08/08/2016
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,nuuo_nvrmini_reset.rb,08/08/2016
 2016-6563,Dlink DIR routers,stack bof / RCE,dlink_hnap_login_bof.rb,21/11/2016
+2016-10174,NETGEAR WNR2000,stack bof,wnr2000/netgear_wnr2000_rce.rb,
+2016-10175/6,NETGEAR WNR2000,admin pass recovery,wnr2000/netgear_wnr2000_pass_recovery.rb,
+SSD-2910,ZyXEL P660HN-T1A v1,unauth command injection,trueonline_p660hn_v1_rce.rb,31/01/2016
+SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,trueonline_p660hn_v2_rce.rb,31/01/2016
+SSD-2910,Billion 5200W-T,auth / unauth command injection,18/01/2017,trueonline_billion_5200w_rce.rb,31/01/2016
+,,,,
+,,,,
+,,,,Note:
+,,,,YYYY-XXXX(X) are CVE identifiers
+,,,,SSD-* are SecuriTeam blog post identifiers
+,,,,BID-* are BugTraq identifiers
+,,,,ZDI-* are Zero Day Initiative identifiers
 ,,,,
