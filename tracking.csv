@@ -135,9 +135,9 @@ SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,trueonline_p660hn_v2_rce.rb,
 SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200w_rce.rb,31/01/2016
 ,,,,
 ,,,,
-,,,,Note:
-,,,,YYYY-XXXX(X) are CVE identifiers
-,,,,SSD-* are SecuriTeam blog post identifiers
-,,,,BID-* are BugTraq identifiers
-,,,,ZDI-* are Zero Day Initiative identifiers
+,Note:,,,
+,YYYY-XXXX(X) are CVE identifiers,,,
+,SSD-* are SecuriTeam blog post identifiers,,,
+,BID-* are BugTraq identifiers,,,
+,ZDI-* are Zero Day Initiative identifiers,,,
 ,,,,
