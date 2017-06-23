@@ -251,12 +251,12 @@ Program received signal SIGSEGV, Segmentation fault.
 (...)
 
 The following registers can be controlled by an attacker:
-$ra/$pc = index 52 of hidden_lang_avi parameter (EEEE)
+$ra = index 52 of hidden_lang_avi parameter (EEEE)
 $s0 = index 36 (AAAA)
 $s1 = index 40 (BBBB)
 $s2 = index 44 (CCCC)
 $s3 = index 48 (DDDD)
-$sp = index 56 (FFFF)
+$sp = pointer to index 56 (FFFF)
 
 This vulnerability will be analysed using firmware 1.0.0.34 for the WNR2000v5 router.
 The function at address 0x446428 is invoked to process the hidden_lang_avi parameter. This function extracts the parameter and then processes it as shown in a snippet below:
