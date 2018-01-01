@@ -67,13 +67,12 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2016-1594,Novell ServiceDesk,info disclosure,30/03/2016,advisories/novell-service-desk-7.1.0.txt
 2016-1595,Novell ServiceDesk,HQL injection,30/03/2016,advisories/novell-service-desk-7.1.0.txt
 2016-1596,Novell ServiceDesk,stored / reflected XSS,30/03/2016,advisories/novell-service-desk-7.1.0.txt
+2016-6598,BMC Track-It!,unauth file upload / RCE,04/07/2016,advisories/bmc-track-it-11.4.txt
+2016-6599,BMC Track-It!,unauth SQL and Domain cred leakage,04/07/2016,advisories/bmc-track-it-11.4.txt
 2016-6600,WebNMS Framework Server,file upload / RCE,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
 2016-6601,WebNMS Framework Server,file download,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
 2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
 2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-SSD-2713,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,04/07/2016,
-SSD-2713,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
-SSD-2713,BMC Track-It!,unauth .NET remoting / SQL and Domain cred leakage,04/07/2016,
 2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,advisories/nuuo-nvr-vulns.txt
