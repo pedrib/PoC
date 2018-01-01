@@ -1,7 +1,7 @@
->> Multiple critical vulnerabilities in BMC Track-It!
+>> Multiple critical vulnerabilities in BMC Track-It! 11.3 and below
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 07/10/2014 / Last updated: 12/10/2014
+Disclosure: 07/10/2014 / Last updated: 01/01/2017
 
 
 The application exposes several .NET remoting services on port 9010.
