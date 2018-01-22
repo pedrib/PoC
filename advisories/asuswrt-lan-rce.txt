@@ -1,0 +1,120 @@
+>> Unauthenticated LAN remote code execution in AsusWRT
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+=================================================================================
+Disclosure: 22/01/2018 / Last updated: 22/01/2018
+
+
+>> Background and summary
+AsusWRT is the operating system used in mid range and high end Asus routers. It is based on Linux, but with a sleek OS and a slimmed down profile suitable for running on resource constrained routers.
+Thankfully ASUS is a responsible company, and they publish the full source code as required by the GPL.
+
+Due to a number of coding errors, it is possible for an unauthenticated attacker in the LAN to achieve remote code execution in the router as the root user.
+
+A special thanks to Beyond Security SecuriTeam Secure Disclosure (SSD) programme for disclosing these vulnerabilities to the manufacturer, speeding the resolution of the issues discovered (see [1] for their advisory).
+
+
+>> Technical details:
+Vulnerability: HTTP server authentication bypass
+NO-CVE
+Attack Vector: Remote
+Constraints: None; exploitable by an unauthenticated attacker
+Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
+
+The AsusWRT handle_request() code  allows an unauthenticated user to perform a POST request for certain actions.
+In AsusWRT_source/router/httpd/httpd.c:
+
+handle_request(void)
+{
+...
+					handler->auth(auth_userid, auth_passwd, auth_realm);
+					auth_result = auth_check(auth_realm, authorization, url, file, cookies, fromapp);
+
+					if (auth_result != 0)                                     <--- auth fails
+					{
+						if(strcasecmp(method, "post") == 0){
+							if (handler->input) {
+								handler->input(file, conn_fp, cl, boundary);        <--- but POST request is still processed
+							}
+							send_login_page(fromapp, auth_result, NULL, NULL, 0);
+						}
+						//if(!fromapp) http_logout(login_ip_tmp, cookies);
+						return;
+					}
+...
+}
+
+By POSTing to vpnupload.cgi, we invoke do_vpnupload_post(), which sets NVRAM configuration values directly from the request.
+In AsusWRT_source/router/httpd/web.c:
+
+do_vpnupload_post(char *url, FILE *stream, int len, char *boundary)
+{
+...
+		if (!strncasecmp(post_buf, "Content-Disposition:", 20)) {
+			if(strstr(post_buf, "name=\"file\""))
+				break;
+			else if(strstr(post_buf, "name=\"")) {
+				offset = strlen(post_buf);
+				fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
+				len -= strlen(post_buf) - offset;
+				offset = strlen(post_buf);
+				fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
+				len -= strlen(post_buf) - offset;
+				p = post_buf;
+				name = strstr(p, "\"") + 1;
+				p = strstr(name, "\"");
+				strcpy(p++, "\0");
+				value = strstr(p, "\r\n\r\n") + 4;
+				p = strstr(value, "\r");
+				strcpy(p, "\0");
+				//printf("%s=%s\n", name, value);
+				nvram_set(name, value);
+			}
+		}
+...
+}
+
+This can be abused for a multitude of things, like resetting the admin password. Once that is done, code execution is easily achieved.
+One option is to login to the web interface with the new password, enable SSH, reboot the router and login via SSH.
+
+A more elegant option is to abuse infosvr, which is a UDP daemon running on port 9999.
+The daemon has a command mode which is only enabled if ateCommand_flag is set to 1.
+This flag is only enabled in very special cases, but we can enable it using the VPN configuration upload technique described above.
+
+Once that is done, all we need to do is send a PKT_SYSCMD to infosvr.
+The daemon will read a command from the packet and execute it as root.
+
+Packet structure (from AsusWRT_source/router/shared/iboxcom.h):
+- Header
+  typedef struct iboxPKTEx
+  {
+    BYTE		ServiceID;
+    BYTE		PacketType;
+    WORD		OpCode;
+    DWORD 		Info; // Or Transaction ID
+    BYTE		MacAddress[6];
+    BYTE		Password[32];   //NULL terminated string, string length:1~31, cannot be NULL string
+  } ibox_comm_pkt_hdr_ex;
+
+- Body
+  typedef struct iboxPKTCmd
+  {
+    WORD		len;
+    BYTE		cmd[420];
+  } PKT_SYSCMD;		// total 422 bytes
+
+A Metasploit module exploiting this vulnerability has been released [2].
+
+
+>> Fix:
+Upgrade to AsusWRT v3.0.0.4.384.10007 or above.
+
+
+>> References:
+[1] https://blogs.securiteam.com/index.php/archives/3589
+[2] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/asuswrt_lan_rce.rb
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
