@@ -14,6 +14,7 @@ A special thanks to Beyond Security SecuriTeam Secure Disclosure (SSD) programme
 
 
 >> Technical details:
+#1
 Vulnerability: HTTP server authentication bypass
 NO-CVE
 Attack Vector: Remote
@@ -43,7 +44,15 @@ handle_request(void)
 ...
 }
 
-By POSTing to vpnupload.cgi, we invoke do_vpnupload_post(), which sets NVRAM configuration values directly from the request.
+
+#2
+Vulnerability: Unauthorised configuration change (NVRAM value setting)
+NO-CVE
+Attack Vector: Remote
+Constraints: None; exploitable by an unauthenticated attacker
+Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
+
+By abusing vulnerability #1 and POSTing to vpnupload.cgi, we invoke do_vpnupload_post(), which sets NVRAM configuration values directly from the request.
 In AsusWRT_source/router/httpd/web.c:
 
 do_vpnupload_post(char *url, FILE *stream, int len, char *boundary)
@@ -73,8 +82,9 @@ do_vpnupload_post(char *url, FILE *stream, int len, char *boundary)
 ...
 }
 
-This can be abused for a multitude of things, like resetting the admin password. Once that is done, code execution is easily achieved.
-One option is to login to the web interface with the new password, enable SSH, reboot the router and login via SSH.
+These NVRAM values contain very important configuration variables, such as the admin password, which can be set in this way by an authenticated or unauthenticated attacker.
+
+Once that is done, code execution is easily achieved. One option is to login to the web interface with the new password, enable SSH, reboot the router and login via SSH.
 
 A more elegant option is to abuse infosvr, which is a UDP daemon running on port 9999.
 The daemon has a command mode which is only enabled if ateCommand_flag is set to 1.
