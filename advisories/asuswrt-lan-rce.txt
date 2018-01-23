@@ -16,7 +16,7 @@ A special thanks to Beyond Security SecuriTeam Secure Disclosure (SSD) programme
 >> Technical details:
 #1
 Vulnerability: HTTP server authentication bypass
-NO-CVE
+CVE-2018-5999
 Attack Vector: Remote
 Constraints: None; exploitable by an unauthenticated attacker
 Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
@@ -49,12 +49,12 @@ This can (and will) be combined with other vulnerabilities to achieve remote cod
 
 #2
 Vulnerability: Unauthorised configuration change (NVRAM value setting)
-NO-CVE
+CVE-2018-6000
 Attack Vector: Remote
 Constraints: None; exploitable by an unauthenticated attacker
 Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
 
-By abusing vulnerability #1 and POSTing to vpnupload.cgi, we can invoke do_vpnupload_post(), which has a vulnerability that allows an attacker to set NVRAM configuration values directly from the request.
+By abusing vulnerability #1 and POSTing to vpnupload.cgi, we can invoke do_vpnupload_post() in the HTTP server code, which has a vulnerability that allows an attacker to set NVRAM configuration values directly from the request.
 In AsusWRT_source/router/httpd/web.c:
 
 do_vpnupload_post(char *url, FILE *stream, int len, char *boundary)
