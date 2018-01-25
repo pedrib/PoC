@@ -1,7 +1,7 @@
 >> Unauthenticated LAN remote code execution in AsusWRT
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 22/01/2018 / Last updated: 22/01/2018
+Disclosure: 22/01/2018 / Last updated: 25/01/2018
 
 
 >> Background and summary
@@ -27,20 +27,20 @@ In AsusWRT_source/router/httpd/httpd.c:
 handle_request(void)
 {
 ...
-					handler->auth(auth_userid, auth_passwd, auth_realm);
-					auth_result = auth_check(auth_realm, authorization, url, file, cookies, fromapp);
+	handler->auth(auth_userid, auth_passwd, auth_realm);
+	auth_result = auth_check(auth_realm, authorization, url, file, cookies, fromapp);
 
-					if (auth_result != 0)                                     <--- auth fails
-					{
-						if(strcasecmp(method, "post") == 0){
-							if (handler->input) {
-								handler->input(file, conn_fp, cl, boundary);        <--- but POST request is still processed
-							}
-							send_login_page(fromapp, auth_result, NULL, NULL, 0);
-						}
-						//if(!fromapp) http_logout(login_ip_tmp, cookies);
-						return;
-					}
+	if (auth_result != 0)                                     <--- auth fails
+	{
+		if(strcasecmp(method, "post") == 0){
+			if (handler->input) {
+				handler->input(file, conn_fp, cl, boundary);        <--- but POST request is still processed
+			}
+			send_login_page(fromapp, auth_result, NULL, NULL, 0);
+		}
+		//if(!fromapp) http_logout(login_ip_tmp, cookies);
+		return;
+	}
 ...
 }
 
@@ -60,27 +60,27 @@ In AsusWRT_source/router/httpd/web.c:
 do_vpnupload_post(char *url, FILE *stream, int len, char *boundary)
 {
 ...
-		if (!strncasecmp(post_buf, "Content-Disposition:", 20)) {
-			if(strstr(post_buf, "name=\"file\""))
-				break;
-			else if(strstr(post_buf, "name=\"")) {
-				offset = strlen(post_buf);
-				fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
-				len -= strlen(post_buf) - offset;
-				offset = strlen(post_buf);
-				fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
-				len -= strlen(post_buf) - offset;
-				p = post_buf;
-				name = strstr(p, "\"") + 1;
-				p = strstr(name, "\"");
-				strcpy(p++, "\0");
-				value = strstr(p, "\r\n\r\n") + 4;
-				p = strstr(value, "\r");
-				strcpy(p, "\0");
-				//printf("%s=%s\n", name, value);
-				nvram_set(name, value);
-			}
+	if (!strncasecmp(post_buf, "Content-Disposition:", 20)) {
+		if(strstr(post_buf, "name=\"file\""))
+			break;
+		else if(strstr(post_buf, "name=\"")) {
+			offset = strlen(post_buf);
+			fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
+			len -= strlen(post_buf) - offset;
+			offset = strlen(post_buf);
+			fgets(post_buf+offset, MIN(len + 1, sizeof(post_buf)-offset), stream);
+			len -= strlen(post_buf) - offset;
+			p = post_buf;
+			name = strstr(p, "\"") + 1;
+			p = strstr(name, "\"");
+			strcpy(p++, "\0");
+			value = strstr(p, "\r\n\r\n") + 4;
+			p = strstr(value, "\r");
+			strcpy(p, "\0");
+			//printf("%s=%s\n", name, value);
+			nvram_set(name, value);
 		}
+	}
 ...
 }
 
@@ -89,11 +89,11 @@ These NVRAM values contain very important configuration variables, such as the a
 Once that is done, code execution is easily achieved. One option is to login to the web interface with the new password, enable SSH, reboot the router and login via SSH.
 
 A more elegant option is to abuse infosvr, which is a UDP daemon running on port 9999.
-The daemon has a command mode which is only enabled if ateCommand_flag is set to 1.
-This flag is only enabled in very special cases, but we can enable it using the VPN configuration upload technique described above.
+The daemon has a special mode where it executes a command received in a packet as the root user. This special mode is only enabled if ateCommand_flag is set to 1, which most likely only happens during factory testing or QA (it was not enabled by default in the firmware distributed by Asus in their website).
 
-Once that is done, all we need to do is send a PKT_SYSCMD to infosvr.
-The daemon will read a command from the packet and execute it as root.
+However we can set ateCommand_flag to 1 using the VPN configuration upload technique described above and then send a PKT_SYSCMD to infosvr. The daemon will read a command from the packet and execute it as root, achieving our command execution cleanly - without changing any passwords.
+
+(Note: infosvr used to allow unauthenticated command execution without the ateCommand_flag being set, which led to Joshua Drake's (jduck) discovery of CVE-2014-9583, see [2]; this was fixed by Asus in early 2015).
 
 Packet structure (from AsusWRT_source/router/shared/iboxcom.h):
 - Header
@@ -111,21 +111,22 @@ Packet structure (from AsusWRT_source/router/shared/iboxcom.h):
   typedef struct iboxPKTCmd
   {
     WORD		len;
-    BYTE		cmd[420];
+    BYTE		cmd[420];		<--- command goes here
   } PKT_SYSCMD;		// total 422 bytes
 
-A Metasploit module exploiting this vulnerability has been released [2].
+A Metasploit module exploiting this vulnerability has been released [3].
 
 
 >> Fix:
 Upgrade to AsusWRT v3.0.0.4.384.10007 or above.
-See [3] for the very few details and new firmware released by Asus.
+See [4] for the very few details and new firmware released by Asus.
 
 
 >> References:
 [1] https://blogs.securiteam.com/index.php/archives/3589
-[2] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/asuswrt_lan_rce.rb
-[3] https://www.asus.com/Static_WebPage/ASUS-Product-Security-Advisory/
+[2] https://github.com/jduck/asus-cmd
+[3] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/asuswrt_lan_rce.rb
+[4] https://www.asus.com/Static_WebPage/ASUS-Product-Security-Advisory/
 
 ================
 Agile Information Security Limited
