@@ -19,7 +19,7 @@ Vulnerability: HTTP server authentication bypass
 CVE-2018-5999
 Attack Vector: Remote
 Constraints: None; exploitable by an unauthenticated attacker
-Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
+Affected versions: confirmed on v3.0.0.4.380.7743; possibly affects every version before v3.0.0.4.384.10007
 
 The AsusWRT HTTP server has a flaw in handle_request() that allows an unauthenticated user to perform a POST request for certain actions.
 In AsusWRT_source/router/httpd/httpd.c:
@@ -52,7 +52,7 @@ Vulnerability: Unauthorised configuration change (NVRAM value setting)
 CVE-2018-6000
 Attack Vector: Remote
 Constraints: None; exploitable by an unauthenticated attacker
-Affected versions: version 3.0.0.4.380.7743; possibly many other earlier versions
+Affected versions: confirmed on v3.0.0.4.380.7743; possibly affects every version before v3.0.0.4.384.10007
 
 By abusing vulnerability #1 and POSTing to vpnupload.cgi, we can invoke do_vpnupload_post() in the HTTP server code, which has a vulnerability that allows an attacker to set NVRAM configuration values directly from the request.
 In AsusWRT_source/router/httpd/web.c:
