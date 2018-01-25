@@ -30,11 +30,11 @@ handle_request(void)
 	handler->auth(auth_userid, auth_passwd, auth_realm);
 	auth_result = auth_check(auth_realm, authorization, url, file, cookies, fromapp);
 
-	if (auth_result != 0)                                     <--- auth fails
+	if (auth_result != 0)                                     		<--- auth fails
 	{
 		if(strcasecmp(method, "post") == 0){
 			if (handler->input) {
-				handler->input(file, conn_fp, cl, boundary);        <--- but POST request is still processed
+				handler->input(file, conn_fp, cl, boundary);	<--- but POST request is still processed
 			}
 			send_login_page(fromapp, auth_result, NULL, NULL, 0);
 		}
