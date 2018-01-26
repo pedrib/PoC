@@ -1,7 +1,7 @@
 >> Unauthenticated LAN remote code execution in AsusWRT
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 =================================================================================
-Disclosure: 22/01/2018 / Last updated: 25/01/2018
+Disclosure: 22/01/2018 / Last updated: 26/01/2018
 
 
 >> Background and summary
@@ -120,6 +120,7 @@ A Metasploit module exploiting this vulnerability has been released [3].
 >> Fix:
 Upgrade to AsusWRT v3.0.0.4.384.10007 or above.
 See [4] for the very few details and new firmware released by Asus.
+Note that the Agile Information Security DID NOT test the fixed version or verify the fixes, as this is the responsibility of Asus.
 
 
 >> References:
