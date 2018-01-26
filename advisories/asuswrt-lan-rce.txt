@@ -6,7 +6,7 @@ Disclosure: 22/01/2018 / Last updated: 26/01/2018
 
 >> Background and summary
 AsusWRT is the operating system used in mid range and high end Asus routers. It is based on Linux, but with a sleek web UI and a slimmed down profile suitable for running on resource constrained routers.
-Thankfully ASUS is a responsible company, and not only they publish the full source code as required by the GPL, but they also give users full root access to their router via SSH. Overall the security of their operating system is pretty good, especially when compared to other router manufacturers.
+Thankfully ASUS is a responsible company, and not only they publish the full source code as required by the GPL, but they also give users full root access to their router via SSH. Overall the security of their operating system is decent, especially when compared to other router manufacturers.
 
 However due to a number of coding errors, it is possible for an unauthenticated attacker in the LAN to achieve remote code execution in the router as the root user.
 
