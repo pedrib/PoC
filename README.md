@@ -11,9 +11,10 @@ You can do whatever you want with these files within the boundaries of the GPLv3
 - the source code with your modifications cannot be relicensed; it has to remain GPLv3
 
 For code snippets or files that have been taken from other sources and have a license which is incompatible with GPLv3, the original license prevails.
-For more information check http://choosealicense.com/licenses/gpl-v3/.
+For more information check http://choosealicense.com/licenses/gpl-v3/ and / or the LICENSE file in the root of this repository.
 
 Feel free to send me questions / comments / criticism.
 
-Pedro Ribeiro (pedrib@gmail.com), Founder & Director of Research at Agile Information Security
+Pedro Ribeiro (pedrib@gmail.com)
+Founder & Director of Research at Agile Information Security
 
