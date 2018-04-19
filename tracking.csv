@@ -91,6 +91,7 @@ SSD-2910,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_true
 SSD-2910,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 SSD-2910,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
+CVE-2017-5641,DrayTek Vigor ACS 2,flex amf java deserialisation rce,18/04/2018,advisories/draytek-vigor-acs.txt
 CVE-2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
 CVE-2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
 ,,,,
