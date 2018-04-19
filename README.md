@@ -16,5 +16,6 @@ For more information check http://choosealicense.com/licenses/gpl-v3/ and / or t
 Feel free to send me questions / comments / criticism.
 
 Pedro Ribeiro (pedrib@gmail.com)
+
 Founder & Director of Research at Agile Information Security
 
