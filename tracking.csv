@@ -91,9 +91,10 @@ SSD-2910,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_true
 SSD-2910,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 SSD-2910,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-CVE-2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,advisories/draytek-vigor-acs.txt
-CVE-2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
-CVE-2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
+2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,advisories/draytek-vigor-acs.txt
+2018-1418,IBM QRadar SIEM, unauth rce as root,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
+2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
+2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -135,6 +136,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 SSD-2910,ZyXEL P660HN-T1A v1,unauth command injection,trueonline_p660hn_v1_rce.rb,31/01/2016
 SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,trueonline_p660hn_v2_rce.rb,31/01/2016
 SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200w_rce.rb,31/01/2016
+2018-1418,IBM QRadar SIEM, unauth rce as root,ibm_qradar_unauth_rce.rb,
 2018-5999/6000,AsusWRT,httpd auth bypass / LAN rce,asuswrt_lan_rce.rb,22/02/2018
 ,,,,
 ,,,,
