@@ -19,6 +19,7 @@ Then there are several helper applications, such as the forensics application de
 
 Special thanks to SecuriTeam for helping me disclose this vulnerability. Please see their advisory at [2] and IBM's response at [3].
 Note that IBM have attributed a combined CVE for all three vulnerabilities, CVE-2018-1418. They have also scored these three vulnerabilities as CVSS 5.6...
+A Metasploit module that exploits these vulnerabilities to achieve unauthenticated remote code execution as root has been released in [4].
 
 
 >> Technical details:
@@ -413,6 +414,7 @@ Upgrade to QRadar versions 7.3.1 Patch 3 or 7.2.8 Patch 28.
 [1] https://www.ibm.com/us-en/marketplace/ibm-qradar-siem
 [2] https://blogs.securiteam.com/index.php/archives/3689
 [3] http://www-01.ibm.com/support/docview.wss?uid=swg22015797
+[4] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/ibm_qradar_unauth_rce.rb
 
 
 ================
