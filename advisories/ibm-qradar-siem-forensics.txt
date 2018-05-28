@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in IBM QRadar SIEM
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
-Disclosure: 28/05/2018 / Last updated: 25/08/2018
+Disclosure: 28/05/2018 / Last updated: 28/08/2018
 
 
 >> Introduction:
