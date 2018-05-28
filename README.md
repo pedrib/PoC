@@ -8,9 +8,10 @@ You can do whatever you want with these files within the boundaries of the GPLv3
 - you have to include a copy of the GPLv3 license and provide attribution to me as the original author
 - you have to disclose the source code of any modifications to the general public
 - you have to state any changes you have made to the code
+- the source code with your modifications cannot be relicensed; it has to remain GPLv3
 
 For code snippets or files that have been taken from other sources and have a license which is incompatible with GPLv3, the original license prevails.
-For more information check http://choosealicense.com/licenses/gpl-v3/.
+For more information check http://choosealicense.com/licenses/gpl-v3/ and / or the LICENSE file in the root of this repository.
 
 Feel free to send me questions / comments / criticism.
 
