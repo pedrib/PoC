@@ -29,7 +29,7 @@ CVE-2018-1418
 Attack Vector: Remote
 Constraints: None
 Affected products / versions:
-- IBM QRadar SIEM: 7.3.0 and 7.3.1 confirmed; possibly all versions released since mid-2014 are affected
+- IBM QRadar SIEM: 7.2.8 <= patch 11 up to 7.3.1 <= patch 2
 
 QRadar authentication is done via a SEC cookie, which is a session UUID. This is managed centrally by a session manager which runs in the main QRadar console application. The SEC cookies can be obtained in three ways:
 - Upon login in the main console application
@@ -179,7 +179,7 @@ CVE-2018-1418
 Attack Vector: Remote
 Constraints: Authentication needed (can be bypassed with vulnerability #1)
 Affected products / versions:
-- IBM QRadar SIEM: 7.3.0 and 7.3.1 confirmed; possibly all versions released since mid-2014 are affected
+- IBM QRadar SIEM: 7.2.8 <= patch 11 up to 7.3.1 <= patch 2
 
 The second vulnerability in this exploit chain is in the PHP part of the forensics web application.
 Using vulnerability #1 to add our SEC and QRadarCSRF cookies to the ForensicAnalysisServlet HashMaps means that we can invoke any function in the Java part of the application, but the PHP part uses a separate authentication scheme which doesn't have a similar flaw.
@@ -347,7 +347,7 @@ CVE-2018-1418
 Attack Vector: Local
 Constraints: "nobody" user shell needed (can be obtained with vulnerability #2)
 Affected products / versions:
-- IBM QRadar SIEM: 7.3.0 and 7.3.1 confirmed; possibly all versions released since mid-2014 are affected
+- IBM QRadar SIEM: 7.2.8 <= patch 11 up to 7.3.1 <= patch 2
 
 The final step to totally owning QRadar is to escalate privileges from our limited "nobody" user to root.
 For this we can leverage the following cron job, which runs as root every minute:
@@ -407,7 +407,7 @@ PGPASSWORD=$PASSWORD /usr/bin/psql -h localhost -U qradar qradar -c "insert into
 
 >> Fix: 
 See [3] for IBM's advisory.
-Upgrade to QRadar versions 7.3.1 Patch 3 or 7.2.8 Patch 28.
+Upgrade to QRadar versions 7.3.1 Patch 3 / 7.2.8 Patch 12 or above.
 
 
 >> References:
