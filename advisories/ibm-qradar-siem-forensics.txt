@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in IBM QRadar SIEM
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
-Disclosure: 28/05/2018 / Last updated: 28/08/2018
+Disclosure: 28/05/2018 / Last updated: 28/06/2018
 
 
 >> Introduction:
@@ -21,11 +21,14 @@ Special thanks to SecuriTeam for helping me disclose this vulnerability. Please 
 Note that IBM have attributed a combined CVE for all three vulnerabilities, CVE-2018-1418. They have also scored these three vulnerabilities as CVSS 5.6...
 A Metasploit module that exploits these vulnerabilities to achieve unauthenticated remote code execution as root has been released in [4].
 
+>> Update (28/06/2018):
+IBM has provided a CVE for each vulnerability, and indicated that vulnerability #3 (privilege escalation) had been silently fixed before. The advisory below shows the correct CVE assigned to each vulnerability, and the respective IBM security bulletins at [5] and [6].
+
 
 >> Technical details:
 #1
 Vulnerability: Authentication Bypass (in ForensicAnalysisServlet)
-CVE-2018-1418
+CVE-2018-1612
 Attack Vector: Remote
 Constraints: None
 Affected products / versions:
@@ -343,7 +346,7 @@ Care needs to be taken when choosing a directory to download the file to. The "n
 
 #3
 Vulnerability: Privilege Escalation (via database and cron job - "nobody" user to root)
-CVE-2018-1418
+CVE-2016-9722
 Attack Vector: Local
 Constraints: "nobody" user shell needed (can be obtained with vulnerability #2)
 Affected products / versions:
