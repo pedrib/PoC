@@ -418,7 +418,8 @@ Upgrade to QRadar versions 7.3.1 Patch 3 / 7.2.8 Patch 12 or above.
 [2] https://blogs.securiteam.com/index.php/archives/3689
 [3] http://www-01.ibm.com/support/docview.wss?uid=swg22015797
 [4] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/ibm_qradar_unauth_rce.rb
-
+[5] http://www-01.ibm.com/support/docview.wss?uid=swg22017062
+[6] http://www-01.ibm.com/support/docview.wss?uid=swg22012293
 
 ================
 Agile Information Security Limited
