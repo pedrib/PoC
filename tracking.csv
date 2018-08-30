@@ -81,6 +81,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
 2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,advisories/dlink-hnap-login.txt
+2016-9722,IBM QRadar SIEM,privilege escalation,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,advisories/netgear-wnr2000.txt
 2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,advisories/netgear-wnr2000.txt
 2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,advisories/netgear-wnr2000.txt
@@ -92,7 +93,8 @@ SSD-2910,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyx
 SSD-2910,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,advisories/draytek-vigor-acs.txt
-2018-1418,IBM QRadar SIEM, unauth rce as root,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
+2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
+2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
 2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
 ,,,,
