@@ -1,0 +1,109 @@
+>> Unauthenticted remote code execution and privilege escalation in Cisco Prime Infrastructure
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
+==========================================================================
+Disclosure: 4/10/2018 / Last updated: 8/10/2018
+
+
+>> Introduction:
+From the vendor's website ([1]):
+"Cisco Prime Infrastructure simplifies the management of wireless and wired networks. This single, unified solution provides wired and wireless lifecycle management, and application visibility and control. It also offers policy monitoring and troubleshooting with the Cisco Identity Services Engine (ISE) and location-based tracking of mobility devices with the Cisco Mobility Services Engine (MSE). You can manage the network, devices, applications, and users – all from one place.
+Cisco Prime Infrastructure offers support for 802.11ac, correlated wired-wireless client visibility, spatial maps, Radio Frequency prediction tools, and much more. Simplify the management of the wireless infrastructure while solving problems faster and with fewer resources.
+Cisco Prime Infrastructure offers new, guided workflows for the Intelligent WAN and Converged Access, based on Cisco best practices. These workflows make new branch rollouts easy and fast, from setting up devices and services to automatically managing and monitoring them.
+Cisco Prime Infrastructure offers fault, configuration, accounting, performance, and security (FCAPS) management with 360-degree views of Cisco Unified Computing System Series B Blade Servers and Series C Rack Servers and Cisco Nexus switches, including the Application-Centric Infrastructure–ready Cisco Nexus 9000 Series Switches. Your data center is critical to service assurance. Manage it effectively with Cisco Prime Infrastructure.
+Device Packs offer ongoing support of new Cisco devices and software releases. It provides parity within each device family, eliminating gaps in management operations, especially when it comes to service availability and troubleshooting. Technology Packs deliver new features between releases, accelerating time to value for high-demand functionality.
+Large or global organizations often distribute network management by domain, region, or country. Cisco Prime Infrastructure Operations Center lets you visualize up to 10 Cisco Prime Infrastructure instances, scaling your management infrastructure while maintaining central visibility and control."
+
+
+>> Background and summary:
+Cisco Prime Infrastructure (CPI) contains two basic flaws that when exploited allow an unauthenticated attacker to achieve remote code execution. The first flaw is a file upload vulnerability that allows the attacker to upload and execute files as the Apache Tomcat user; the second is a privilege escalation to root by bypassing execution restrictions in a SUID binary.
+
+A Metasploit module has been released with this advisory, and can be found at [2] and [3]. This module exploits the two vulnerabilities described in this advisory to achieve unauthenticated remote code execution as root on the CPI default installation. It should be integrated into Metasploit's repository in the coming weeks.
+
+A special thanks to Beyond Security and their SecuriTeam Secure Disclosure (SSD) programme, which have helped me disclose this vulnerability to the vendor. Their version of this advisory can be found in [2].
+
+
+>> Technical details:
+#1
+Vulnerability: Arbitrary file upload and execution via tftp and Apache Tomcat
+CVE-2018-15379
+Attack Vector: Remote
+Constraints: None
+Affected products / versions:
+- Cisco Prime Infrastructure 3.2 and later (latest version at the time of writing is 3.4); earlier versions might be affected
+
+Most web applications running on the CPI virtual appliance are deployed under /opt/CSCOlumos/apache-tomcat-<VERSION>/webapps. One of these applications is "swimtemp", which symlinks to /localdisk/tftp:
+
+ade # ls -l /opt/CSCOlumos/apache-tomcat-8.5.14/webapps/
+total 16
+drwxrwxr-x.  3 root gadmin 4096 Mar 29 19:49 ROOT
+drwxrwxr-x.  8 root gadmin 4096 Mar 29 21:44 SSO
+lrwxrwxrwx.  1 root gadmin   36 Mar 29 21:32 SSO.war -> /opt/CSCOlumos/wars/SSO-13.0.201.war
+drwxrwxr-x.  4 root gadmin 4096 Mar 29 21:45 ifm_poap_rest
+lrwxrwxrwx.  1 root gadmin   45 Mar 29 21:32 ifm_poap_rest.war -> /opt/CSCOlumos/wars/ifm_poap_rest-3.70.21.war
+lrwxrwxrwx.  1 root gadmin   16 Mar 29 19:49 swimtemp -> /localdisk/tftp/
+drwxrwxr-x. 22 root gadmin 4096 May  2 15:20 webacs
+lrwxrwxrwx.  1 root gadmin   30 Mar 29 21:32 webacs.war -> /opt/CSCOlumos/wars/webacs.war
+
+As the name implies, this is the directory used by tftp to store files. Cisco has also enabled the upload of files to this directory as tftpd is started with the -c (file create) flag, and it accepts anonymous connections:
+/usr/sbin/in.tftpd --ipv4 -vv -c --listen -u prime -a :69 --retransmit 6000000 -s /localdisk/tftp
+
+The tftpd port is also open to the world in the virtual appliance firewall, so it is trivial to upload a JSP web shell file using a tftp client to the /localdisk/tftp/ directory. 
+
+The web shell will then be available at https://<IP>/swimtemp/<SHELL>, and it will execute as the "prime" user, which is an unprivileged user that runs the Apache Tomcat server.
+
+
+#2
+Vulnerability: runrshell Command Injection
+CVE-2018-15379 (no specific CVE was attributed to this vulnerability by Cisco)
+Attack Vector: Local
+Constraints: None
+Affected products / versions:
+- Cisco Prime Infrastructure 3.2 and later (latest version at the time of writing is 3.4); earlier versions might be affected
+
+The CPI virtual appliance contains a binary at /opt/CSCOlumos/bin/runrshell, which has the SUID bit set and executes as root. It is supposed to start a restricted shell that can only execute commands in /opt/CSCOlumos/rcmds. The decompilation of this function is shown below:
+
+int main(int argc, char* argv, char* envp)
+{
+  char dest;
+  int i;
+
+  setuid(0);
+  setgid(0);
+  setenv("PATH", "/opt/CSCOlumos/rcmds", 1);
+  memcpy(&dest, "/bin/bash -r -c \"", 0x12uLL);
+  for ( i = 1; argc - 1 >= i; ++i )
+  {
+    strcat(&dest, argv[i]);
+    strcat(&dest, " ");
+  }
+  strcat(&dest, "\"");
+  return (system(&dest) & 0xFF00) >> 8;
+}
+
+As it can be seen above, the binary uses the system() function to execute:
+/bin/bash -r -c "<CMD>"
+
+... with the PATH set to /opt/CSCOlumos/rcmds, and the restricted (-r) flag passed to bash, meaning that only commands in the PATH can be executed, environment variables cannot be changed or set, directory cannot be changed, etc.
+
+However, due to the way system() function calls "bash -c", it is trivial to inject a command by forcing an end quote after <CMD> and the bash operator '&&':
+[prime@prime34 ~]$ /opt/CSCOlumos/bin/runrshell '" && /usr/bin/whoami #'                                  
+root
+
+
+>> Fix: 
+Vulnerability #1 has ben fixed fixed with the patch provided by Cisco in [4]. Upgrade Cisco Prime Infrastructure to version 3.3.1 Update 02, 3.4.1 or above to fix it.
+Vulnerability #2 does not appear to have been fixed as of the last update of this advisory.
+
+Please note that Agile Information Security does not verify any fixes, except when noted in the advisory or requested by the vendor. The vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
+
+
+>> References:
+[1] https://www.cisco.com/c/en/us/products/cloud-systems-management/prime-infrastructure/index.html
+[2] https://blogs.securiteam.com/index.php/archives/3723
+[3] Link to MSF module in repo
+[4] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181003-pi-tftp
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
