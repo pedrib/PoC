@@ -100,7 +100,7 @@ Please note that Agile Information Security does not verify any fixes, except wh
 >> References:
 [1] https://www.cisco.com/c/en/us/products/cloud-systems-management/prime-infrastructure/index.html
 [2] https://blogs.securiteam.com/index.php/archives/3723
-[3] Link to MSF module in repo
+[3] https://raw.githubusercontent.com/pedrib/PoC/master/exploits/metasploit/cisco_prime_inf_rce.rb
 [4] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20181003-pi-tftp
 
 ================
