@@ -97,6 +97,9 @@ SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_t
 2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
 2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
+2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
+2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,advisories/cisco-prime-infrastructure.txt
+2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,advisories/cisco-prime-infrastructure.txt
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -140,6 +143,7 @@ SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,trueonline_p660hn_v2_rce.rb,
 SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200w_rce.rb,31/01/2016
 2018-1418,IBM QRadar SIEM, unauth rce as root,ibm_qradar_unauth_rce.rb,
 2018-5999/6000,AsusWRT,httpd auth bypass / LAN rce,asuswrt_lan_rce.rb,22/02/2018
+2018-15379,Cisco Prime Infrastructure,unauth file upload + privesc to root,cisco_prime_inf_rce.rb,
 ,,,,
 ,,,,
 ,Note:,,,
