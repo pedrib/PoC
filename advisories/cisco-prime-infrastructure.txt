@@ -1,4 +1,4 @@
->> Unauthenticted remote code execution and privilege escalation in Cisco Prime Infrastructure
+>> Unauthenticated remote code execution and privilege escalation in Cisco Prime Infrastructure
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
 Disclosure: 4/10/2018 / Last updated: 8/10/2018
@@ -54,7 +54,7 @@ The web shell will then be available at https://<IP>/swimtemp/<SHELL>, and it wi
 
 #2
 Vulnerability: runrshell Command Injection
-CVE-2018-15379 (no specific CVE was attributed to this vulnerability by Cisco)
+(no specific CVE was attributed to this vulnerability by Cisco; use CVE-2018-15379, same as vulnerability #1)
 Attack Vector: Local
 Constraints: None
 Affected products / versions:
