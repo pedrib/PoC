@@ -1,7 +1,7 @@
 >> Unauthenticated remote code execution and privilege escalation in Cisco Prime Infrastructure
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
-Disclosure: 4/10/2018 / Last updated: 8/10/2018
+Disclosure: 4/10/2018 / Last updated: 13/10/2018
 
 
 >> Introduction:
@@ -91,7 +91,7 @@ root
 
 
 >> Fix: 
-Vulnerability #1 has ben fixed fixed with the patch provided by Cisco in [4]. Upgrade Cisco Prime Infrastructure to version 3.3.1 Update 02, 3.4.1 or above to fix it.
+Vulnerability #1 should be fixed with the patch provided by Cisco in [4]. Upgrade Cisco Prime Infrastructure to version 3.3.1 Update 02, 3.4.1 or above to fix it.
 Vulnerability #2 does not appear to have been fixed as of the last update of this advisory.
 
 Please note that Agile Information Security does not verify any fixes, except when noted in the advisory or requested by the vendor. The vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
