@@ -1,7 +1,7 @@
 >> Stack buffer overflow vulnerability in NETGEAR WNR2000 router
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 20/12/2016 / Last updated: 29/01/2017
+Disclosure: 20/12/2016 / Last updated: 30/12/2018
 
 >> Background on the affected products:
 "Wirelessly connect all of your computers and mobile devices. N300 WiFi speed lets you simultaneously download, stream music and video, and game online. NETGEAR genie® makes it easy to setup and monitor your network. Parental controls keep your Internet experience safe and secure."
@@ -19,7 +19,7 @@ Finally, a stack buffer overflow was also discovered, which combined with the ap
 
 It should be noted that the WNR2000v5 does not have remote administration enabled by default on the latest firmware, and unless the administrator enables it, these attacks are only possible in the LAN. Only the WNR2000v5 device was tested, but versions 3 and 4 of this router should also be vulnerable as confirmed by static analysis. At the time of the initial disclosure, there are over 10.000 vulnerable routers with remote management enabled appearing in a Shodan search.
 
-Exploit code was initially released with this advisory, but it is of "alpha" quality and it has been deprecated (see [1]). Two Metasploit modules have now been released and integrated in the Metasploit framework. One module exploits the password recovery function and the other exploits the buffer overflow vulnerability.
+Exploit code was initially released with this advisory, but it was of "alpha" quality and it has since been deleted. Two exploit modules have now been released and integrated in the Metasploit framework, one of which obtains the admin password by abusing the password recovery function (auxiliary/admin/http/netgear_wnr2000_pass_recovery) while the other exploits the buffer overflow vulnerability to achieve unauthenticated remote code execution as root (exploit/linux/http/netgear_wnr2000_rce). See [1] for cached copies of these modules in Agile InfoSec's repo, or use them directly from a recent Metasploit version.
 
 
 >> Update / Correction (02/01/2017):
