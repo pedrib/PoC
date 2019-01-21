@@ -51,8 +51,6 @@ While this protocol provides a mechanism for authentication, the assignment of u
 
 In addition to this, some verbs of the protocol have directory traversal flaws, which can be exploited by an authenticated attacker to download and upload files, and can also be abused to achieve remote code execution, while other verbs such as the GETOPENALARM verb contain a SQL injection vulnerability. Finally, the CMS Server installs an outdated and vulnerable version of SQL Server by default (SQL Server 2005 Express), and both the CMS client and server disable the Windows User Access Control after installation, which is not a great idea.
 
-<TODO PLEASE IGNORE> Metasploit exploits and auxiliary modules for #1, #4, #5 and #6 have been released.>
-
 
 >> Technical details:
 #1
