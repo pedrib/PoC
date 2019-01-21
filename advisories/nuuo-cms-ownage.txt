@@ -241,6 +241,7 @@ Please note that Agile Information Security does not verify any fixes, except wh
 [1] http://www.nuuo.com/ProductNode.php?node=3
 [2] https://ics-cert.us-cert.gov/advisories/ICSA-18-284-02
 [3] https://github.com/pedrib/PoC/tree/master/exploits/metasploit/nuuo_cms
+[4] https://raw.githubusercontent.com/pedrib/PoC/master/advisories/nuuo-cms-ownage.txt
 
 >> Appendix:
 
