@@ -13,15 +13,6 @@ The NCS System uses client/server architecture to manage unlimited recording sys
 
 A more detailed explanation can be found in [1]. Nuuo Central Management System / NCS will be referred to as CMS for the remainder of this document.
 
-The disclosure of these vulnerabilities were handled by ICS-CERT, which have generously donated their time to ensure (some) vulnerabilities were fixed by Nuuo. Their advisory can be seen at [2].
-It Nuuo TWO YEARS to fix 6 out of 7 of the vulnerabilities presented here, and one of them (authenticated arbitrary file download) is still unfixed as of the date of the latest update to this advisory.
-
-The vulnerablities were reported to ICS-CERT on 4/11/2016, and ICS-CERT reported them to Nuuo shortly after. There were many emails back and forth between ICS-CERT, myself and Nuuo, until finally ICS-CERT disclosed the vulnerability on 11/10/2018, 23 days shy of two years.
-I will not write a detailed timeline nor disclose any communications, as it is clear that Nuuo handled this in a very incompetent way. The only reason I did not disclose it earlier was because of the help and patience of ICS-CERT.
-
-Four Metasploit modules have been released with this advisory ([3]). These will be submitted to Metasploit in the coming days and should be integrated into the framework soon.
-A copy of this advisory can be found at [4].
-
 
 >> Summary:
 NUUO CMS uses a ASCII based network protocol ("NUCM") which is similar to HTTP. This protocol is used for communication between the CMS client and the server. The default port for this protocol is TCP 5180.
@@ -50,6 +41,15 @@ The full list of HTTP-like verbs that the NUCM protocol accepts can be found in 
 While this protocol provides a mechanism for authentication, the assignment of user session numbers is flawed, and can easily be guessed by an attacker in under 500,000 attempts (probably less if analysed thoroughly). 
 
 In addition to this, some verbs of the protocol have directory traversal flaws, which can be exploited by an authenticated attacker to download and upload files, and can also be abused to achieve remote code execution, while other verbs such as the GETOPENALARM verb contain a SQL injection vulnerability. Finally, the CMS Server installs an outdated and vulnerable version of SQL Server by default (SQL Server 2005 Express), and both the CMS client and server disable the Windows User Access Control after installation, which is not a great idea.
+
+The disclosure of these vulnerabilities were handled by ICS-CERT, which have generously donated their time to ensure (some) vulnerabilities were fixed by Nuuo. Their advisory can be seen at [2].
+It Nuuo TWO YEARS to fix 6 out of 7 of the vulnerabilities presented here, and one of them (authenticated arbitrary file download) is still unfixed as of the date of the latest update to this advisory.
+
+The vulnerablities were reported to ICS-CERT on 4/11/2016, and ICS-CERT reported them to Nuuo shortly after. There were many emails back and forth between ICS-CERT, myself and Nuuo, until finally ICS-CERT disclosed the vulnerability on 11/10/2018, 23 days shy of two years.
+I will not write a detailed timeline nor disclose any communications, as it is clear that Nuuo handled this in a very incompetent way. The only reason I did not disclose it earlier was because of the help and patience of ICS-CERT.
+
+Four Metasploit modules have been released with this advisory ([3]). These will be submitted to Metasploit in the coming days and should be integrated into the framework soon.
+A copy of this advisory can be found at [4].
 
 
 >> Technical details:
