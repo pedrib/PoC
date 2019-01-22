@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in NUUO Central Management Server
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
 ==========================================================================
-Disclosure: 11/10/2018 / Last updated: 21/01/2019
+Disclosure: 11/10/2018 / Last updated: 22/01/2019
 
 
 >> Background on the affected products:
