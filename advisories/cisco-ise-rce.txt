@@ -1,4 +1,4 @@
->> Multiple vulnerabilities in Cisco Identity Services Engine (Unauth XSS to RCE as root)
+>> Multiple vulnerabilities in Cisco Identity Services Engine (unauthenticated stored XSS to RCE as root)
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security and Dominik Czarnota (dominik.b.czarnota@gmail.com)
 =================================================================================
 Disclosure: 20/01/2019 / Last updated: 05/02/2019
