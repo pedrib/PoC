@@ -14,7 +14,7 @@ Cisco ISE allows you to provide highly secure network access to users and device
 >> Summary
 ISE is distributed by Cisco as a virtual appliance. We have analysed version 2.4.0.357 and found three vulnerabilities: an unauthenticated stored cross site scripting, a authenticated Java deserialization vulnerability leading to remote code execution as an unprivileged user, and a privilege escalation from that unprivileged user to root.
 
-By putting them all together, we can achieve remote code execution as root, provided we can trap an administrator into visiting the page vulnerable to the stored cross site scripting. A Ruby exploit that implements this full exploit chain (described in more detail at 'Exploitation summary', at the end of this file) is available in [2].
+By putting them all together, we can achieve remote code execution as root, provided we can trap an administrator into visiting the ISE page vulnerable to the stored cross site scripting. A Ruby exploit that implements this full exploit chain (described in more detail at 'Exploitation summary', at the end of this file) is available in [2].
 
 All the vulnerabilities in this advisory were found independently by Agile Information Security. However, vulnerability #2 (Unsafe Flex AMF Java Object Deserialization) was also found and reported to Cisco by Olivier Arteau of Groupe Technologie Desjardins [3] and vulnerability #3 (Privilege Escalation via Incorrect sudo File Permissions) was also found and reported to Cisco by Hector Cuesta [4].
 
