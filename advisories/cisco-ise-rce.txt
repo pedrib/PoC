@@ -155,9 +155,9 @@ The full exploit, written in Ruby, is available in [2].
 
 
 >> Fix:
-Cisco claims vulnerability #1 is fixed in version 2.2.0.913. It is unknown if it is fixed in versions 2.4.x.
-Cisco claims vulnerability #2 is fixed in version 2.4.0.905.
-By Cisco's own admission, vulnerability #3 is not fixed at the time of the latest update to this advisory.
+Cisco claims vulnerability #1 is fixed in version 2.2.0.913. It is unknown if it is fixed in versions 2.4.x (see [13], [14]).
+Cisco claims vulnerability #2 is fixed in version 2.4.0.905 (see [3]).
+By Cisco's own admission, vulnerability #3 is not fixed at the time of the latest update to this advisory (see [4]).
 
 Please note that Agile Information Security does not verify any fixes, except when noted in the advisory or requested by the vendor. The vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
 
@@ -252,6 +252,8 @@ xhr.send(b64toBlob(b64_payload, 'application/x-amf'));
 [10] http://codewhitesec.blogspot.ru/2017/04/amf.html
 [11] https://github.com/mbechler/marshalsec
 [12] https://github.com/frohoff/ysoserial
+[13] https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvm79609
+[14] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ise-multi-xss
 
 
 ================
