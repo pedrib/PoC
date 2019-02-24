@@ -152,10 +152,10 @@ SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200
 2018-1418,IBM QRadar SIEM, unauth rce as root,ibm_qradar_unauth_rce.rb,10/07/2018
 2018-5999/6000,AsusWRT,httpd auth bypass / LAN rce,asuswrt_lan_rce.rb,22/02/2018
 2018-15379,Cisco Prime Infrastructure,unauth file upload + privesc to root,cisco_prime_inf_rce.rb,11/11/2018
-2018-17888,NUUO Central Management System,session bruteforce,nuuo_cms_bruteforce,
-2018-17934,NUUO Central Management System,arb file download,nuuo_cms_file_download,
-2018-17936,NUUO Central Management System,arb file upload / rce,nuuo_cms_fu,
-2018-18982,NUUO Central Management System,sqli / rce,nuuo_cms_sqli,
+2018-17888,NUUO Central Management System,session bruteforce,nuuo_cms_bruteforce.rb,20/02/2019
+2018-17934,NUUO Central Management System,arb file download,nuuo_cms_file_download.rb,20/02/2019
+2018-17936,NUUO Central Management System,arb file upload / rce,nuuo_cms_fu.rb,20/02/2019
+2018-18982,NUUO Central Management System,sqli / rce,nuuo_cms_sqli.rb,21/02/2019
 ,,,,
 ,,,,
 ,Note:,,,
