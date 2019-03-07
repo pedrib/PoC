@@ -9,9 +9,7 @@ For information, code snippets or files that have been obtained from other sourc
 
 For more information check https://www.gnu.org/licenses/gpl-3.0.en.html and / or the LICENSE file in the root of this repository.
 
-
 Feel free to send me questions / comments / criticism.
-
 
 Pedro Ribeiro (pedrib@gmail.com), Founder & Director of Research at Agile Information Security
 
