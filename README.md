@@ -8,6 +8,13 @@ All information, code and binary data in this repository is released to the publ
 
 For more information check https://www.gnu.org/licenses/gpl-3.0.en.html and / or the LICENSE file in the root of this repository.
 
+Please note that Agile Information Security relies on the information provided by the vendor when listing fixed versions or products. Agile Information Security does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so. 
+
+Unconfirmed vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
+
+Agile Information Security Limited does not accept any responsiblity, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in this repository.
+It is the vendor's responsibility to ensure their products' security before, during and after release to market.
+
 Feel free to send me questions / comments / criticism.
 
 Pedro Ribeiro (pedrib@gmail.com), Founder & Director of Research at Agile Information Security
