@@ -85,14 +85,14 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,advisories/netgear-wnr2000.txt
 2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,advisories/netgear-wnr2000.txt
 2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,advisories/netgear-wnr2000.txt
-SSD-2910,ZyXEL P660HN-T1A v1,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,ZyXEL P660HN-T1A v2,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,Billion 5200W-T,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-SSD-2910,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,advisories/draytek-vigor-acs.txt
+2017-18368,ZyXEL P660HN-T1A v1,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18369,Billion 5200W-T,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18370,ZyXEL P660HN-T1A v2,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18371,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18372,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18373,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
+2017-18374,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
 2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt

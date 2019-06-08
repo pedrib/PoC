@@ -1,7 +1,7 @@
 >> Multiple vulnerabilities in TrueOnline / ZyXEL / Billion routers
 >> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security
 ==========================================================================
-Disclosure: 26/12/2016 / Last updated: 18/01/2017
+Disclosure: 26/12/2016 / Last updated: 08/06/2019
 
 
 >> Summary:
@@ -28,7 +28,7 @@ ZyXEL have responded to this advisory and published information about upcoming f
 >> Technical details:
 #1 
 Vulnerability: Unauthenticated command injection (ZyXEL P660HN-T1A v1)
-NO-CVE - use FD:2017/Jan/40-1 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18368
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -46,7 +46,7 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #2
 Vulnerability: Authenticated command injection (ZyXEL P660HN-T1A v2)
-NO-CVE - use FD:2017/Jan/40-2 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18370
 Attack Vector: Remote
 Constraints: Can be exploited by an authenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -68,7 +68,7 @@ The actual injection is limited to 28 characters. This can circunvented by writi
 
 #3
 Vulnerability: Unauthenticated command injection (Billion 5200W-T)
-NO-CVE - use FD:2017/Jan/40-3 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18369
 Attack Vector: Remote
 Constraints: Can be exploited by an unauthenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -90,7 +90,7 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #4
 Vulnerability: Authenticated command injection (Billion 5200W-T)
-NO-CVE - use FD:2017/Jan/40-4 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18372
 Attack Vector: Remote
 Constraints: Can be exploited by an authenticated attacker in the LAN. See below for other constraints.
 Affected versions:
@@ -116,7 +116,7 @@ This vulnerability was found during a black box assessment of the web interface,
 
 #5
 Vulnerability: Default administrative credentials (ZyXEL P660HN-T1A v1)
-NO-CVE - use FD:2017/Jan/40-5 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18374
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
@@ -129,7 +129,7 @@ username: true; password: true
 
 #6
 Vulnerability: Default administrative credentials (ZyXEL P660HN-T1A v2)
-NO-CVE - use FD:2017/Jan/40-6 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18371
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
@@ -143,7 +143,7 @@ username: supervisor; password: zyad1234
 
 #7
 Vulnerability: Default administrative credentials (Billion 5200W-T)
-NO-CVE - use FD:2017/Jan/40-7 (Full Disclosure) or SSD-2910 (SecuriTeam blog)
+CVE-2017-18373
 Attack Vector: Remote
 Constraints: N/A
 Affected versions:
