@@ -21,7 +21,7 @@ Info disclosure             Yes, unauth        Yes, unauth    Yes, unauth       
 
 The authentication bypass affects versions 10.4(2), allowing an attacker to exploit the file upload for remote code execution.
 In version 11.0(1), authentication was introduced, and a valid unprivileged account is necessary to exploit all vulnerabilities except information discloure.
-Amazingly, in version 11.1(1) Cisco removed the authentication for the file upload and file download vulnerabilities.
+Amazingly, in version 11.1(1) Cisco removed the authentication for the file upload and file download servlets, allowing an attacker exploit the vulnerabilities without any authentication!
 All vulnerabilities were fixed in 11.2(1), except the information disclosure, for which the status is unknown.
 
 To achieve remote code execution with arbitrary file upload vulnerability, an attacker can write a WAR file in the Tomcat webapps folder. The Apache Tomcat server is running as root, meaning that the Java shell will run as root.
