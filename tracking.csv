@@ -161,7 +161,7 @@ SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200
 2018-17936,NUUO Central Management System,arb file upload / rce,nuuo_cms_fu.rb,20/02/2019
 2018-18982,NUUO Central Management System,sqli / rce,nuuo_cms_sqli.rb,21/02/2019
 2019-1620,Cisco Data Center Network Manager,file upload,cisco_dcnm_upload_2019.rb,
-2019-1621,Cisco Data Center Network Manager,file download,cisco_dcnm_upload_2019.rb,
+2019-1621,Cisco Data Center Network Manager,file download,cisco_dcnm_download.rb,
 ,,,,
 ,,,,
 ,Note:,,,
