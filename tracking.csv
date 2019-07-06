@@ -107,6 +107,10 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2018-17934,NUUO Central Management System,auth dir traversal / arb file download,11/10/2018,advisories/nuuo-cms-ownage.txt
 2018-17936,NUUO Central Management System,auth dir traversal / rce,11/10/2018,advisories/nuuo-cms-ownage.txt
 2018-18982,NUUO Central Management System,sql injection,11/10/2018,advisories/nuuo-cms-ownage.txt
+2019-1619,Cisco Data Center Network Manager,auth bypass,26/06/2019,advisories/cisco-dcnm-rce.txt
+2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,advisories/cisco-dcnm-rce.txt
+2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,advisories/cisco-dcnm-rce.txt
+2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,advisories/cisco-dcnm-rce.txt
 
 ,,,,
 ,,,,
@@ -156,6 +160,8 @@ SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200
 2018-17934,NUUO Central Management System,arb file download,nuuo_cms_file_download.rb,20/02/2019
 2018-17936,NUUO Central Management System,arb file upload / rce,nuuo_cms_fu.rb,20/02/2019
 2018-18982,NUUO Central Management System,sqli / rce,nuuo_cms_sqli.rb,21/02/2019
+2019-1620,Cisco Data Center Network Manager,file upload,cisco_dcnm_upload_2019.rb,
+2019-1621,Cisco Data Center Network Manager,file download,cisco_dcnm_upload_2019.rb,
 ,,,,
 ,,,,
 ,Note:,,,
