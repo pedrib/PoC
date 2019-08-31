@@ -111,6 +111,9 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,advisories/cisco-dcnm-rce.txt
 2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,advisories/cisco-dcnm-rce.txt
 2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,advisories/cisco-dcnm-rce.txt
+2019-1935,Cisco UCS Director,default ssh password,21/08/2019,advisories/cisco-ucs-rce.txt
+2019-1936,Cisco UCS Director,command injection,21/08/2019,advisories/cisco-ucs-rce.txt
+2019-1937,Cisco UCS Director,auth bypass,21/08/2019,advisories/cisco-ucs-rce.txt
 
 ,,,,
 ,,,,
@@ -160,8 +163,10 @@ SSD-2910,Billion 5200W-T,auth / unauth command injection,trueonline_billion_5200
 2018-17934,NUUO Central Management System,arb file download,nuuo_cms_file_download.rb,20/02/2019
 2018-17936,NUUO Central Management System,arb file upload / rce,nuuo_cms_fu.rb,20/02/2019
 2018-18982,NUUO Central Management System,sqli / rce,nuuo_cms_sqli.rb,21/02/2019
-2019-1620,Cisco Data Center Network Manager,file upload,cisco_dcnm_upload_2019.rb,
-2019-1621,Cisco Data Center Network Manager,file download,cisco_dcnm_download.rb,
+2019-1620,Cisco Data Center Network Manager,file upload,cisco_dcnm_upload_2019.rb,30/08/2019
+2019-1621,Cisco Data Center Network Manager,file download,cisco_dcnm_download.rb,30/08/2019
+2019-1635,Cisco UCS Director,default SSH password,cisco_ucs_rce.rb,30/08/2019
+2019-1636,Cisco UCS Director,auth bypass + command injection,cisco_ucs_scpuser.rb,30/08/2019
 ,,,,
 ,,,,
 ,Note:,,,
