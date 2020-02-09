@@ -97,7 +97,6 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
 2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
 2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
-2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
 2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,advisories/cisco-prime-infrastructure.txt
 2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,advisories/cisco-prime-infrastructure.txt
 2018-17888,NUUO Central Management System,insecure session tokens,11/10/2018,advisories/nuuo-cms-ownage.txt
