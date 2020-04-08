@@ -5,7 +5,7 @@ lao_bomb
 
 # Summary
 
-This advisory describes a command injection vulnerability that was found by **Pedro Ribeiro (@pedrib1337 | pedrib@gmail.com)** and **Radek Domanski (@RabbitPro | radek.domanski@gmail.com)** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in November 2019. 
+This advisory describes a command injection vulnerability that was found by **Pedro Ribeiro (@pedrib1337 | pedrib@gmail.com)** and **Radek Domanski (@RabbitPro | radek.domanski@gmail.com)** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in November 2019. Max Van Amerongen from F-Secure (@maxpl0it) found the same vulnerability independently.
 
 The vulnerability exists in the tdpServer daemon (*/usr/bin/tdpServer*), running on the router TP-Link Archer A7/C7 (AC1750), hardware version 5, MIPS Architecture, firmware version 190726.
 
@@ -20,7 +20,7 @@ This advisory was disclosed publicly on 25.03.2020.
 A special thanks to Zero Day Initiative for having the amazing Pwn2Own competition and allowing us to release this information to the public.
 
 A copy of this advisory is available on GitHub at:
-//LINK//
+https://raw.githubusercontent.com/pedrib/PoC/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb.md
 
 The following CVE numbers have been assigned:
 
@@ -33,6 +33,9 @@ ZDI's advisories can be found at:
 * [ZDI-20-334](https://www.zerodayinitiative.com/advisories/ZDI-20-334/)
 * [ZDI-20-335](https://www.zerodayinitiative.com/advisories/ZDI-20-335/)
 * [ZDI-20-336](https://www.zerodayinitiative.com/advisories/ZDI-20-336/)
+
+And their blog post:
+https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 //LINK//
