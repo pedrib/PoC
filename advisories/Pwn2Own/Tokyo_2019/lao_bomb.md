@@ -465,7 +465,7 @@ sh z
 
 ## Errata
 
-The previous version of this advisory was based on the C exploit we originally wrote for the Pwn2Own competition, and due to problems at the time we could only use 12 bytes instead of 13 to send our command.
+The original version of this advisory was based on the C exploit we originally wrote for the Pwn2Own competition, and due to problems at the time we could only use 12 bytes instead of 13 to send our command.
 
 This caused a major headache when printing special characters such as ; or digits, which would be interpreted by the shell instead of being printed. To work around this, we used a trick that involved printing the special characters to another separate file, and then using "cat" to add the contents to that file to the command file.
 
