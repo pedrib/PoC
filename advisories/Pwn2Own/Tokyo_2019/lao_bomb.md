@@ -13,7 +13,7 @@ This vulnerability can only be exploited by an attacker on the LAN side of the r
 
 All function offsets and code snippets in this advisory were taken from */usr/bin/tdpServer*, firmware version 190726.
 
-# Note
+## Note
 
 This advisory was disclosed publicly on 25.03.2020.
 
