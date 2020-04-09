@@ -167,7 +167,7 @@ void calc_checksum(packet *pkt, int len) {
 > Snippet 2: *calc_checksum()* from the lao_bomb exploit code
 
 
-The checksum calculation is quite straightforward; it starts by setting a *magic* variable of 0x5a6b7c8d in the packet's checksum field, and then uses *reference_tbl*, a table with 1024 bytes, to calculate the checksum over the whole packet, including the header. 
+The checksum calculation is quite straightforward; it starts by setting a *magic* variable of 0x5a6b7c8d in the packet's checksum field, and then uses *reference_tbl*, a table with 1024 bytes located at offset 0x0416e90, to calculate the checksum over the whole packet, including the header. 
 
 Once the checksum is verified and all is correct, *tdpd\_pkt\_sanity\_checks()* returns 0, and we then enter the next part of *tdpd\_pkt\_parser()*:
 
