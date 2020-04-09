@@ -20,8 +20,8 @@ This advisory was disclosed publicly on 25.03.2020.
 A special thanks to Zero Day Initiative for having the amazing Pwn2Own competition and allowing us to release this information to the public.
 
 Copies of this advisory are available on GitHub at:
-https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb.md
-https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/lao_bomb.md
+* https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
+* https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/lao_bomb.md
 
 The following CVE numbers have been assigned:
 
