@@ -425,7 +425,7 @@ As explained in the previous section, the packet gets encrypted with AES in CBC 
 
 So now we know how to hit the vulnerable code path, we just need to send the command and that's it right? Well, actually no. There are two problems.
 
-1. The *strncpy()* that copies the *slave\_mac\_info* key into the *slaveMac* variable only copies 0x11 bytes, and that's including the terminating null byte.
+1. The *strncpy()* that copies the *slave\_mac\_info* key into the *slaveMac* variable only copies 0x11 / 17 bytes, and that's including the terminating null byte.
 2. We need to perform some escaping as the lua code is single and double quoted.
 
 With these two constraints in mind, the actual available space is quite limited.
@@ -436,7 +436,7 @@ In order to escape the lua code and execute our payload, we have to add the foll
 ';<PAYLOAD>'
 ```
 
-So that's 3 actual characters that we just lost, leaving us with only 13 bytes of payload.
+So that's 3 actual characters that we just lost, plus one for the terminating null byte, which leaves us with only 13 bytes of payload.
 With 13 bytes (characters), it's pretty much impossible to execute anything meaningful.
 
 Our solution was to trigger the bug many times, building up a desired **command file** on the target, one character at a time. Then we trigger the bug one final time to execute the command file as a shell script. 
