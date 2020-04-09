@@ -455,7 +455,7 @@ Had it been mounted read-only, as it is normal in most embedded devices that use
 
 It should be noted that despite the escaping we do, the last few bytes of the lua script code that was supposed to be executed end up in the file name. So a file named 'z' in reality will be named 'z"})'. This doesn't affect us, since it doesn't shorten the 13 bytes available for the payload.
 
-And with this, we have all the tools we need to execute arbitrary commands. We send the command byte by byte, adding them to a command file 'z', and then we send the payload:
+And with this, we have all we need to execute arbitrary commands. We send the command byte by byte, adding them to a command file 'z', and then we send the payload:
 
 ```
 sh z
