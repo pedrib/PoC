@@ -439,8 +439,9 @@ In order to escape the lua code and execute our payload, we have to add the foll
 So that's 3 actual characters that we just lost, leaving us with only 13 bytes of payload.
 With 13 bytes (characters), it's pretty much impossible to execute anything meaningful.
 
-The only way to get our command executed is to use *printf* to print bytes to a **command file**, and then execute it as a shell script.
-Consider for example that to append the character 'a' to a file 'z', we can do the following:
+Our solution was to trigger the bug many times, building up a desired **command file** on the target, one character at a time. Then we trigger the bug one final time to execute the command file as a shell script. 
+
+For example that to append the character 'a' to a file 'z', we can do the following:
 
 ```
 printf 'a'>>z
