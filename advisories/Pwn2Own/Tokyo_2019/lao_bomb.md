@@ -39,7 +39,10 @@ And their blog post:
 * [Exploiting the TP-Link Archer A7 at Pwn2Own Tokyo](https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo)
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
-//LINK//
+* //LINK//
+
+This module can be seen in action below:
+[![asciicast](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn.svg)](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn)
 
 ~ Team Flashback
 
@@ -471,3 +474,5 @@ The original version of this advisory was based on the C exploit we originally w
 This caused a major headache when printing special characters such as ';' or digits, which would be interpreted by the shell instead of being printed. To work around this, we used a trick that involved printing the special characters to another separate file, and then using *cat* to add the contents to that file to the command file.
 
 After porting the exploit to Metasploit, we realised that actually we could use 13 bytes, and our workaround was unnecessary. 
+
+The original advisory can be found in its full glory at [Exploiting the TP-Link Archer A7 at Pwn2Own Tokyo](https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo).
