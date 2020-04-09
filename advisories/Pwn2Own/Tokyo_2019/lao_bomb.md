@@ -19,8 +19,9 @@ This advisory was disclosed publicly on 25.03.2020.
 
 A special thanks to Zero Day Initiative for having the amazing Pwn2Own competition and allowing us to release this information to the public.
 
-A copy of this advisory is available on GitHub at:
-https://raw.githubusercontent.com/pedrib/PoC/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb.md
+Copies of this advisory are available on GitHub at:
+https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb.md
+https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/lao_bomb.md
 
 The following CVE numbers have been assigned:
 
@@ -35,7 +36,7 @@ ZDI's advisories can be found at:
 * [ZDI-20-336](https://www.zerodayinitiative.com/advisories/ZDI-20-336/)
 
 And their blog post:
-https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo
+* [Exploiting the TP-Link Archer A7 at Pwn2Own Tokyo](https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo)
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 //LINK//
@@ -425,11 +426,11 @@ As explained in the previous section, the packet gets encrypted with AES in CBC 
 So now we know how to hit the vulnerable code path, we just need to send the command and that's it right? Well, actually no. There are two problems.
 
 1. The *strncpy()* that copies the *slave\_mac\_info* key into the *slaveMac* variable only copies 0x11 bytes, and that's including the terminating null byte.
-2. We need to perform some escaping as the arguments are single and double quoted.
+2. We need to perform some escaping as the lua code is single and double quoted.
 
 With these two constraints in mind, the actual available space is quite limited.
 
-In order to escape the arguments and execute our payload, we have to add the following characters:
+In order to escape the lua code and execute our payload, we have to add the following characters:
 
 ```
 ';<PAYLOAD>'
@@ -438,42 +439,20 @@ In order to escape the arguments and execute our payload, we have to add the fol
 So that's 3 actual characters that we just lost, leaving us with only 13 bytes of payload.
 With 13 bytes (characters), it's pretty much impossible to execute anything meaningful.
 
-In addition, we found out through testing that the limit appears to actually be 12 bytes. We did not fully understand why, but it appears it has to do with the escaping.
-
-The only way to get our command executed is to use *echo* to print bytes to a **command file**, and then execute it as a shell script. But that is actually a lot more difficult than it looks at a first glance.
-
-Consider for example that to append a character 'a' to a file 'z', we can simply do this:
+The only way to get our command executed is to use *printf* to print bytes to a **command file**, and then execute it as a shell script.
+Consider for example that to append the character 'a' to a file 'z', we can do the following:
 
 ```
-cat 'a'>>z
+printf 'a'>>z
 ```
 
-And that's already 10 bytes we have used. 
+And that's 13 bytes used! 
 
-What about integers? **The above does NOT work**. This is because an integer is interpreted by the shell as a file descriptor! Special characters such as '.' or ';' that are interpreted by the shell, and won't be printed to a file with the method above.
+Luckily, the above is just enough to print all characters we need to achieve code execution. And even more luckily, we do not need to change the directory to */tmp*, as it is many times necessary in embedded devices because the filesystem root is usually not writeable. In this router, the filesystem is mounted read-write, which is a major security mistake by TP-Link.
 
-For these, we need to do the following:
+Had it been mounted read-only, as it is normal in most embedded devices that use the SquashFS filesystem, this particular attack would have been impossible, as adding *cd tmp* before each byte injection would consume too many of the available 13 characters.
 
-```
-printf '1'>x
-```
-
-And if you notice, this actually does not append a character to an existing file, but creates a new file 'x' (or overwrites it) with '1' on it. And this payload is 12 characters, so there is no way to add an extra '>' to append to the command file we are building.
-
-Nevertheless, there is a solution. Every time we need to emit a special character or number, we do it to a new file, and then *cat* this new file to the command file:
-
-```
-cat x*>>z*
-```
-
-Clever, but why do we need the '*' at the end of each file name? 
-
-That's because despite us escaping the command, the last few bytes of the lua script that was supposed to be executed end up in the file name. So a file named 'z' in reality will be named 'z"})'. 
-Luckily for us, because we don't have enough bytes to add the full file name, the shell does autocompletion with the special '*' character.
-
-Astute readers will notice that we did not change to */tmp*, as it is many times necessary in embedded devices, as the filesystem root is usually not writeable. We are lucky again, the root filesystem is mounted read-write, which is a major security mistake by TP-Link.
-
-Had it been mounted read-only, as it is normal in most embedded devices that use the SquashFS filesystem, this particular attack would have been impossible, as adding *cd tmp* would consume too many of the available 12 characters.
+It should be noted that despite the escaping we do, the last few bytes of the lua script code that was supposed to be executed end up in the file name. So a file named 'z' in reality will be named 'z"})'. This doesn't affect us, since it doesn't shorten the 13 bytes available for the payload.
 
 And with this, we have all the tools we need to execute arbitrary commands. We send the command byte by byte, adding them to a command file 'z', and then we send the payload:
 
@@ -482,3 +461,10 @@ sh z
 ```
 
 ... and our command file gets executed as root. From here on, we can download and execute a binary, and we have full control of the router.
+
+
+### Errata
+
+The previous version of this advisory was based on the C exploit we originally wrote for the Pwn2Own competition, and due to problems at the time we could only use 12 bytes instead of 13 to send our command.
+This caused a major headache when printing special characters such as ; or digits, which would be interpreted by the shell instead of being printed. To work around this, we used a trick that involved printing the special characters to another separate file, and then using "cat" to add the contents to that file to the command file.
+After porting the exploit to Metasploit, we realised that actually we could use 13 bytes, and our workaround was unnecessary. 
