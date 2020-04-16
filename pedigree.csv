@@ -179,5 +179,5 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 ,YYYY-XXXX(X) are CVE identifiers,,,
 ,SSD-* are SecuriTeam blog post identifiers,,,
 ,ZDI-* are Zero Day Initiative identifiers,,,
-,APSB-* are Adobe identifiers
+,APSB* are Adobe identifiers,,,
 ,,,,
