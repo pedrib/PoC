@@ -20,8 +20,8 @@ This advisory was disclosed publicly on 25.03.2020.
 A special thanks to Zero Day Initiative for having the amazing Pwn2Own competition and allowing us to release this information to the public.
 
 Copies of this advisory are available on GitHub at:
-* https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
-* https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/lao_bomb.md
+* [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md)
+* [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/lao_bomb.md)
 
 The following CVE numbers have been assigned:
 
@@ -39,9 +39,9 @@ And their blog post:
 * [Exploiting the TP-Link Archer A7 at Pwn2Own Tokyo](https://www.thezdi.com/blog/2020/4/6/exploiting-the-tp-link-archer-c7-at-pwn2own-tokyo)
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
-* //LINK//
+* [tplink_archer_a7_c7_lan_rce.rb](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/misc/tplink_archer_a7_c7_lan_rce.rb)
 
-This module can be seen in action below:
+This module can be seen in action below (and in the cast file in the same directory as this advisory):
 [![asciicast](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn.svg)](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn)
 
 ~ Team Flashback
