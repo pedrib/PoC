@@ -14,7 +14,7 @@
 IBM Data Risk Manager (IDRM) is an enterprise security software by IBM that aggregates and provides a full view of all the enterprise security risks, akin to an electronic risk register.  
 The product receives information feeds from vulnerability scanning tools and other risk management tools, aggregates them and allows a user to investigate them and perform comprehensive analysis.
 
-The IDRM Linux virtual appliance was analysed, and it was found to contain four critical vulnerabilities:  
+The IDRM Linux virtual appliance was analysed, and it was found to contain three critical and one high risk vulnerabilities:  
 
 * Authentication Bypass  
 * Command Injection
@@ -350,7 +350,7 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 ### #4: Arbitrary File Download
 * [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)
 * CVE-TODO (not assigned yet)
-* Risk Classification: Critical
+* Risk Classification: High
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
@@ -399,7 +399,7 @@ Connection: close
 
 <ZIP file containing /etc/passwd>
 ```
-When combined with #1, this allows an unauthenticted attacker to download any file readable by *"a3user"* off the system.  
+When combined with #1, this allows an unauthenticted attacker to download any file readable by *"a3user"* off the system.
 It should be noted that version 2.0.1 is not vulnerable, but versions higher than 2.0.1 are. Attempting to download an arbitrary file using this method will result in a HTTP 500 error with a *"File security exception"* message.
 
 ## Exploitation Summary
