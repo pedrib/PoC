@@ -400,7 +400,7 @@ Connection: close
 <ZIP file containing /etc/passwd>
 ```
 When combined with #1, this allows an unauthenticted attacker to download any file readable by *"a3user"* off the system.  
-It should be noted that version 2.0.1 is not vulnerable. Attempting to download an arbitrary file using this method will result in a HTTP 500 error with a *"File security exception"* message.
+It should be noted that version 2.0.1 is not vulnerable, but versions higher than 2.0.1 are. Attempting to download an arbitrary file using this method will result in a HTTP 500 error with a *"File security exception"* message.
 
 ## Exploitation Summary
 By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. A Metasploit module implementing the full chain was released and is [available here](https://github.com/rapid7/metasploit-framework/pull/13300).  The asciinema clip below shows this module in action:  
