@@ -9,6 +9,8 @@
 *What you don’t know can hurt you. Identify and help prevent risks to sensitive business data that may impact business processes, operations, and competitive position. IBM Data Risk Manager provides executives and their teams a business-consumable data risk control center that helps to uncover, analyze, and visualize data-related business risks so they can take action to protect their business.*
 
 ## Summary
+**tl;dr scroll to the bottom to see videos of the exploits in action**
+
 IBM Data Risk Manager (IDRM) is an enterprise security software by IBM that aggregates and provides a full view of all the enterprise security risks, akin to an electronic risk register.  
 The product receives information feeds from vulnerability scanning tools and other risk management tools, aggregates them and allows a user to investigate them and perform comprehensive analysis.
 
