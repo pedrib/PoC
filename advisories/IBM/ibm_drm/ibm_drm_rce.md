@@ -403,10 +403,10 @@ When combined with #1, this allows an unauthenticted attacker to download any fi
 It should be noted that version 2.0.1 is not vulnerable, but versions higher than 2.0.1 are. Attempting to download an arbitrary file using this method will result in a HTTP 500 error with a *"File security exception"* message.
 
 ## Exploitation Summary
-By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. A Metasploit module implementing the full chain was released and is [available here](https://github.com/rapid7/metasploit-framework/pull/13300).  The asciinema clip below shows this module in action:  
+By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. [A Metasploit module implementing this RCE chain was released](https://github.com/rapid7/metasploit-framework/pull/13300) and the asciinema clip below shows it in action:  
 [![asciicast](https://asciinema.org/a/3nJ4lD1pD7XBfEFqkc9qPDUV2.svg)](https://asciinema.org/a/3nJ4lD1pD7XBfEFqkc9qPDUV2)
 
-If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated attacker to download arbitrary files off the system. A second Metasploit module was released and it's [available here](https://github.com/rapid7/metasploit-framework/pull/13301). The asciinema clip below shows this module in action:  
+If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated attacker to download arbitrary files off the system. [A second Metasploit module implementing this file download chain was released](https://github.com/rapid7/metasploit-framework/pull/13301), and the asciinema clip below shows it in action:  
 [![asciicast](https://asciinema.org/a/y6HfoaEIf8qZbn6mcUGeVhyUp.svg)](https://asciinema.org/a/y6HfoaEIf8qZbn6mcUGeVhyUp)
 
 
