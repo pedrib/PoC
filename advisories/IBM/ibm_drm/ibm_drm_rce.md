@@ -269,7 +269,7 @@ IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that allows an auth
           (...)
         }
 ```          
-As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), access to nmap allows running arbitrary commands if we can upload a script file and then pass that as an argument to nmap with *"--script=<FILE\>"*. Looking at the code above, ipAddress looks like a good candidate for this.
+As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), access to nmap allows running arbitrary commands if we can upload a script file and then pass that as an argument to nmap with *"--script=<FILE\>"*. Looking at the code above, *ipAddress* looks like a good candidate for this.
 
 However, to achieve code execution in this way we still need to upload a file. Luckily, there's a method that processes patch files and accepts arbitrary data, saving it to *"/home/a3user/agile3/patches/<FILE\>"*. The method is too long and verbose to paste here, but it is supposed to process a patch file for execution. However, at least in version 2.0.2, there's a number of bugs that prevent this from happening. Luckily, the file is still uploaded and not deleted. 
 We simple need to send the following request to upload it:
