@@ -27,7 +27,7 @@ At the time of disclosure, it is unclear if the latest version 2.0.6 is affected
   
 ### Here's a bunch of 0 days!
 
-At the time of the disclosure date, this is a **"0 day"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, and responded to CERT/CC with:  
+At the time of disclosure these vulnerabilities are **"0 days"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, and responded to CERT/CC with:  
 
 ***we have assessed this report and closed as being out of scope for our vulnerability disclosure program since this product is only for "enhanced" support paid for by our customers**. This is outlined in our policy https://hackerone.com/ibm. To be eligible to participate in this program, you must not be under contract to perform security testing for IBM Corporation, or an IBM subsidiary, or IBM client within 6 months prior to submitting a report.*
 
@@ -45,7 +45,7 @@ In any case, I did not ask or expect a bounty since I do not have a HackerOne ac
 I simply wanted to disclose it to IBM responsibly and let them fix it.
 
 ### So many questions...
-IDRM is an enterprise security product that handles very sensitive information. A compromise of such product might lead to a full scale company compromise, as the tool has credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
+IDRM is an enterprise security product that handles very sensitive information. The hacking of an IDRM appliance might lead to a full scale company compromise, as it stores credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
 
 * Why did IBM refuse to accept a **FREE** detailed vulnerability report?
 * What does their answer mean? Are the only accepting vulnerability reports from customers?
