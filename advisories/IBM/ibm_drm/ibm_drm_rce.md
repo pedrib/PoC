@@ -23,24 +23,22 @@ The IDRM Linux virtual appliance was analysed, and it was found to contain four 
   
 This advisory describes the four vulnerabilities and the steps necessary to chain the first three to achieve unauthenticated remote code execution as root. In addition, two Metasploit modules that bypass authentication and exploit the remote code execution and arbitrary file download are being released to the public.
 
-At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable.  
+At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable.  
   
 ### Here's a bunch of 0 days!
 
-At the time of the disclosure date, this is a **"0 day"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, which have responded to CERT/CC with:  
+At the time of the disclosure date, this is a **"0 day"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, and responded to CERT/CC with:  
 
-*we have assessed this report and closed as being out of scope for
-our vulnerability disclosure program since this product is only for
-"enhanced" support paid for by our customers.    This is outlined in our
-policy https://hackerone.com/ibm. To be eligible to participate in this program, you must not be under contract to perform security testing for IBM Corporation, or an IBM subsidiary, or IBM client within 6 months prior to submitting a report.*
+*we have assessed this report and closed as being out of scope for our vulnerability disclosure program since this product is only for "enhanced" support paid for by our customers. This is outlined in our policy https://hackerone.com/ibm. To be eligible to participate in this program, you must not be under contract to perform security testing for IBM Corporation, or an IBM subsidiary, or IBM client within 6 months prior to submitting a report.*
 
-This is an unbelievable response by IBM, a multi billion dollar company that is **selling security enterprise products and security consultancy** to huge corporations worldwide. They refused to accept a free high quality vulnerability report on one of their products, while putting ludicrous quotes like the following [in their website](https://www.ibm.com/security):
+This is an unbelievable response by IBM, a multi billion dollar company that is **selling security enterprise products and security consultancy** to huge corporations worldwide. They refused to accept a free high quality vulnerability report on one of their products, while putting ludicrous quotes like the following [on their website](https://www.ibm.com/security):
 
 *When every second counts, you need a unified defense to identify, orchestrate and automate your response to threats. IBM Security Threat Management solutions help you thrive in the face of cyber uncertainty.*
 
 *Building a custom security plan that is both industry-specific and aligned to your security maturity demands a partner with deep expertise and global reach. The IBM Security Strategy and Risk services team is that valued partner.*
 
-It should be noted that IBM offers no bounties on their "bug bounty program", just kudos:  
+It should be noted that IBM offers no bounties on their "bug bounty program", just kudos:
+
 ![Kudos](./kudos.jpeg)
 
 In any case, a bounty was not expected since I do not agree with HackerOne's or IBM's disclosure terms there, I simply wanted to disclose it responsibly and let them fix it.
