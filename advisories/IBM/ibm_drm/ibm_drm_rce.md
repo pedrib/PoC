@@ -62,8 +62,8 @@ Anyway, with this out of the way let's get technical...
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
-  * Versions between 2.0.3 and 2.0.6 most likely affected
+  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
+  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
 IDRM has an API endpoint at */albatross/saml/idpSelection* that associates an ID provided by the attacker with a valid user on the system. The method that handles this endpoint is shown below:
@@ -231,8 +231,8 @@ It should be noted that this is a destructive action - the previous admin passwo
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
-  * Versions between 2.0.3 and 2.0.6 most likely affected
+  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
+  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
 IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that allows an authenticated user to perform nmap scans. The call stack and relevant code is pasted below:
@@ -337,8 +337,8 @@ Note that all of these requests require an authenticated session as an administr
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
-  * Versions between 2.0.3 and 2.0.6 most likely affected
+  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
+  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
 The administrative user in the IDRM virtual appliance is *"a3user"*. This user is allowed to login via SSH and run sudo commands, and it is set up with a default password of *"idrm"*.  
@@ -354,8 +354,8 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and 2.0.2 confirmed to be affected
-  * Versions between 2.0.3 and 2.0.6 most likely affected
+  * IBM Data Risk Manager 2.0.2 and 2.0.3 confirmed to be vulnerable
+  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
 
 #### Details:
 
