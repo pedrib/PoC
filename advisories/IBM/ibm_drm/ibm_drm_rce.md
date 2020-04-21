@@ -104,8 +104,8 @@ IDRM has an API endpoint at */albatross/saml/idpSelection* that associates an ID
 
 ```
 
-As it can be seen in the code above, this method accepts an arbitrary sessionId and a username, and if the username exists on the user database, it associates that sessionId to the user.  
-This can be done by an unauthenticated user with the following request:
+As it can be seen in the code above, this method accepts an arbitrary *sessionId* and a *username*, and if the *username* exists on the user database, it associates that *sessionId* to the user.  
+This can be achieved by an unauthenticated attacker with the following request:
 ```
 GET /albatross/saml/idpSelection?id=SOMETHING&userName=admin
 ```
@@ -146,7 +146,7 @@ The API endpoint */albatross/user/login* is handled by the following method (onl
 ```
 
 In the code listed above, if the user is valid (existing) and the attacker provided a sessionId equal to the one stored in the database, then the server returns a password for that user.  
-In the previous request, the "admin" user was associated with the sessionId "SOMETHING". So now if we perform the following request:
+In the previous request, the "*admin"* user was associated with the *sessionId "SOMETHING"*. So now if we perform the following request:
 ```
 POST /albatross/user/login HTTP/1.1
 Host: 10.0.10.25:8443
@@ -184,7 +184,7 @@ The server will respond with:
 {"httpStatus":"200","serverCode":"2001","requestedUrl":"https://10.0.10.25:8443/albatross/user/login","data":"b6e1a82b-3f33-4297-86e1-ca780d16cb02"}
 ```
 
-... which is now a valid password for the "admin" user, as the previous snippet of code shows.
+... which is now a valid password for the *"admin"* user, as the previous snippet of code shows.
 
 So now let's try and authenticate using that as a password:
 ```
@@ -219,7 +219,7 @@ To which the server responds with:
 {"httpStatus":"200","serverCode":"2001","requestedUrl":"https://10.0.10.25:8443/albatross/user/login","data":{"access_token":"3b5b0fa6-2d46-4104-ba38-54a077d05a93","token_type":"bearer","expires_in":28799,"scope":"read write"}}
 ```
 
-Success! We now have a valid Bearer token that can be used to access various API. It's also possible to login as a normal web user on the /albatross/login endpoint, which will yield an authenticated cookie instead of a token, allowing access to the web administration console. In any case, as this shows, authentication is now completely bypassed and we have full admin access to IDRM.
+Success! We now have a valid Bearer token that can be used to access various API. It's also possible to login as a normal web user on the */albatross/login* endpoint, which will yield an authenticated cookie instead of a token, allowing access to the web administration console. In any case, as this shows, authentication is now completely bypassed and we have full admin access to IDRM.
 
 It should be noted that this is a destructive action - the previous admin password will be invalid, and only the new password which is generated above can be used to login as an admin.
 
@@ -359,7 +359,7 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 
 #### Details:
 
-IDRM exposes an API at */albatross/eurekaservice/fetchLogFiles* that allows an authenticated user to download log files from the system. However, the logFileNameList parameter contains a basic directory traversal flaw that allows an attacker to download any file off the system.  
+IDRM exposes an API at */albatross/eurekaservice/fetchLogFiles* that allows an authenticated user to download log files from the system. However, the *logFileNameList* parameter contains a basic directory traversal flaw that allows an attacker to download any file off the system.  
 The code path is convoluted, and won't be shown here for brevity, but exploitation (and finding this flaw) is very simple:
 
 ```
@@ -403,10 +403,10 @@ When combined with #1, this allows an unauthenticted attacker to download any fi
 It should be noted that version 2.0.1 is not vulnerable. Attempting to download an arbitrary file using this method will result in a HTTP 500 error with a *"File security exception"* message.
 
 ## Exploitation Summary
-By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. A Metasploit module implementing the full chain was released and is available at [TODO].  The asciinema clip below shows this module in action:  
+By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. A Metasploit module implementing the full chain was released and is [available here](https://github.com/rapid7/metasploit-framework/pull/13300).  The asciinema clip below shows this module in action:  
 [![asciicast](https://asciinema.org/a/3nJ4lD1pD7XBfEFqkc9qPDUV2.svg)](https://asciinema.org/a/3nJ4lD1pD7XBfEFqkc9qPDUV2)
 
-If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated attacker to download arbitrary files off the system. A second Metasploit module was released and it's available at [TODO]. The asciinema clip below shows this module in action:  
+If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated attacker to download arbitrary files off the system. A second Metasploit module was released and it's [available here](https://github.com/rapid7/metasploit-framework/pull/13301). The asciinema clip below shows this module in action:  
 [![asciicast](https://asciinema.org/a/y6HfoaEIf8qZbn6mcUGeVhyUp.svg)](https://asciinema.org/a/y6HfoaEIf8qZbn6mcUGeVhyUp)
 
 
