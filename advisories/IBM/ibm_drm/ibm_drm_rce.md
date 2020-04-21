@@ -2,8 +2,7 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020
-#### Last Updated: 21/04/2020  
+#### Disclosure Date: 21/04/2020 | Last Updated: 21/04/2020  
   
 ## Introduction
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
@@ -63,7 +62,7 @@ Anyway, with this out of the way let's get technical...
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and below
+  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
   * Versions between 2.0.3 and 2.0.6 most likely affected
 
 #### Details:
@@ -232,7 +231,7 @@ It should be noted that this is a destructive action - the previous admin passwo
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.3 and below
+  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
   * Versions between 2.0.3 and 2.0.6 most likely affected
 
 #### Details:
@@ -337,7 +336,9 @@ Note that all of these requests require an authenticated session as an administr
 * Risk Classification: Critical
 * Attack Vector: Remote
 * Constraints: None / N/A
-* Affected Products / Versions: IBM Data Risk Manager 2.0.3 and below, possibly 2.0.6 (latest)
+* Affected Products / Versions:
+  * IBM Data Risk Manager 2.0.3 and below confirmed to be affected
+  * Versions between 2.0.3 and 2.0.6 most likely affected
 
 #### Details:
 The administrative user in the IDRM virtual appliance is *"a3user"*. This user is allowed to login via SSH and run sudo commands, and it is set up with a default password of *"idrm"*.  
@@ -352,7 +353,9 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 * Risk Classification: Critical
 * Attack Vector: Remote
 * Constraints: Authentication Required
-* Affected Products / Versions: IBM Data Risk Manager 2.0.3 and below (except 2.0.1), possibly 2.0.6 (latest)
+* Affected Products / Versions:
+  * IBM Data Risk Manager 2.0.3 and 2.0.2 confirmed to be affected
+  * Versions between 2.0.3 and 2.0.6 most likely affected
 
 #### Details:
 
