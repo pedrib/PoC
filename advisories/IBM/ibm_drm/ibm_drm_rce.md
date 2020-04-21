@@ -42,7 +42,7 @@ It should be noted that IBM offers no bounties on their "bug bounty program", ju
 ![Kudos](./kudos.jpeg)
 
 In any case, I did not ask or expect a bounty since I do not have a HackerOne account and I don't agree with HackerOne's or IBM's disclosure terms there. 
-I simply wanted to disclose it to IBM responsibly and let them fix it.
+I simply wanted to disclose these to IBM responsibly and let them fix it.
 
 ### So many questions...
 IDRM is an enterprise security product that handles very sensitive information. The hacking of an IDRM appliance might lead to a full scale company compromise, as it stores credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
