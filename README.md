@@ -17,6 +17,6 @@ Agile Information Security Limited does not accept any responsibility, financial
 It is the vendor's responsibility to ensure their products' security before, during and after release to market. 
 ##
 Pedro Ribeiro (pedrib_at_gmail_dot_com)  
-Founder & Director of Research at Agile Information Security
+Founder & Director of Research at [Agile Information Security](https://agileinfosec.co.uk/)
   
 Feel free to send me questions / comments / criticism.
