@@ -14,7 +14,7 @@
 IBM Data Risk Manager (IDRM) is an enterprise security software by IBM that aggregates and provides a full view of all the enterprise security risks, akin to an electronic risk register.  
 The product receives information feeds from vulnerability scanning tools and other risk management tools, aggregates them and allows a user to investigate them and perform comprehensive analysis.
 
-The IDRM Linux virtual appliance was analysed, and it was found to contain three critical and one high risk vulnerabilities:  
+The IDRM Linux virtual appliance was analysed and it was found to contain four vulnerabilities, three critical risk and one high risk:  
 
 * Authentication Bypass  
 * Command Injection
