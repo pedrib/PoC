@@ -21,7 +21,7 @@ The IDRM Linux virtual appliance was analysed and it was found to contain four v
 * Insecure Default Password
 * Arbitrary File Download 
   
-This advisory describes the four vulnerabilities and the steps necessary to chain the first three to achieve unauthenticated remote code execution as root. In addition, two Metasploit modules that bypass authentication and exploit the remote code execution and arbitrary file download are being released to the public.
+This advisory describes the four vulnerabilities and the steps necessary to chain the first three to achieve unauthenticated remote code execution as root. In addition, two Metasploit modules that bypass authentication and exploit the [remote code execution](https://github.com/rapid7/metasploit-framework/pull/13300) and [arbitrary file download](https://github.com/rapid7/metasploit-framework/pull/13301) are being released to the public.
 
 At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable.  
   
