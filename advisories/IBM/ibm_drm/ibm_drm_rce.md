@@ -2,7 +2,8 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020 | Last Updated: 21/04/2020  
+#### Disclosure Date: 21/04/2020
+#### Last Updated: 21/04/2020  
   
 ## Introduction
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
@@ -415,8 +416,7 @@ Unconfirmed vendor fixes might be ineffective or incomplete, and it is the vendo
 Agile Information Security Limited does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in this advisory. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 
 ## License
-All information, code and binary data in this advisory is released to the public under the GNU General Public License, version 3 (GPLv3).  
-For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.  
-[Click here for more information on this license.](https://www.gnu.org/licenses/gpl-3.0.en.html)
+All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html).  
+For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
 
 
