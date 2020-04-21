@@ -29,7 +29,7 @@ At the time of disclosure, it is unclear if the latest version 2.0.6 is affected
 
 At the time of the disclosure date, this is a **"0 day"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, and responded to CERT/CC with:  
 
-*we have assessed this report and closed as being out of scope for our vulnerability disclosure program since this product is only for "enhanced" support paid for by our customers. This is outlined in our policy https://hackerone.com/ibm. To be eligible to participate in this program, you must not be under contract to perform security testing for IBM Corporation, or an IBM subsidiary, or IBM client within 6 months prior to submitting a report.*
+***we have assessed this report and closed as being out of scope for our vulnerability disclosure program since this product is only for "enhanced" support paid for by our customers**. This is outlined in our policy https://hackerone.com/ibm. To be eligible to participate in this program, you must not be under contract to perform security testing for IBM Corporation, or an IBM subsidiary, or IBM client within 6 months prior to submitting a report.*
 
 This is an unbelievable response by IBM, a multi billion dollar company that is **selling security enterprise products and security consultancy** to huge corporations worldwide. They refused to accept a free high quality vulnerability report on one of their products, while putting ludicrous quotes like the following [on their website](https://www.ibm.com/security):
 
