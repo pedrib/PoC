@@ -414,7 +414,7 @@ If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated 
 
 
 ## Fix / Solutions:
-IBM refused to acknowledge this vulnerability report, so most likely won't fix this vulnerability. Make sure you uninstall the product so it does not endanger your network / company.
+IBM refused to acknowledge this vulnerability report, so most likely won't fix these vulnerabilities. Make sure you uninstall the product so it does not endanger your network / company.
 
 ## Disclaimer
 Please note that Agile Information Security (Agile InfoSec) relies on information provided by the vendor when listing fixed versions or products. Agile InfoSec does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so.   
