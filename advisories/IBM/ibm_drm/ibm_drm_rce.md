@@ -1,8 +1,8 @@
 # Multiple Vulnerabilities in IBM Data Risk Manager
 
-### By Pedro Ribeiro (pedrib@gmail.com) from [Agile Information Security](https://agileinfosec.co.uk)
+### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020 | Last Updated: 21/04/2020  
+#### Disclosure Date: 21/04/2020 | Last Updated: 22/04/2020  
   
 ## Introduction
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
@@ -23,7 +23,7 @@ The IDRM Linux virtual appliance was analysed and it was found to contain four v
   
 This advisory describes the four vulnerabilities and the steps necessary to chain the first three to achieve unauthenticated remote code execution as root. In addition, two Metasploit modules that bypass authentication and exploit the [remote code execution](https://github.com/rapid7/metasploit-framework/pull/13300) and [arbitrary file download](https://github.com/rapid7/metasploit-framework/pull/13301) are being released to the public.
 
-At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable.  
+At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable. The status of version 2.0.0 is unknown, but that version is out-of-support anyway. 
   
 ### Here's a bunch of 0 days!
 
@@ -48,7 +48,7 @@ I simply wanted to disclose these to IBM responsibly and let them fix it.
 IDRM is an enterprise security product that handles very sensitive information. The hacking of an IDRM appliance might lead to a full scale company compromise, as it stores credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
 
 * Why did IBM refuse to accept a **FREE** detailed vulnerability report?
-* What does their answer mean? Are the only accepting vulnerability reports from customers?
+* What does their answer mean? Are they only accepting vulnerability reports from customers?
 * Or is the product out of support? If so, why is still being offered for sale to new customers?
 * How can they be so irreponsible while selling an enterprise security product?
 
