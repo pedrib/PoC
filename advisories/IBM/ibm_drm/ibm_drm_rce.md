@@ -2,7 +2,7 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020 | Last Updated: 22/04/2020  
+#### Disclosure Date: 21/04/2020 | Last Updated: 24/04/2020  
   
 ## Introduction
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
@@ -270,10 +270,14 @@ IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that allows an auth
           (...)
         }
 ```          
-As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), having access to nmap allows running arbitrary commands if we can upload a script file and then pass that as an argument to nmap with *"--script=<FILE\>"*. Looking at the code above, *ipAddress* looks like a good candidate for this.
 
-However, to achieve code execution in this way we still need to upload a file. Luckily, there is a method that processes patch files and accepts arbitrary file data, saving it to *"/home/a3user/agile3/patches/<FILE\>"*. The method is too long and verbose to paste here, but it is supposed to accept a patch file, process it and apply it.
-There are several bugs in version 2.0.2 that cause the method to abort early and fail to process the file. Still, the file is uploaded and kept on disk even after the method aborts.
+The full call chain is not displayed above for brevity, but nmap gets invoked with an *ipAddress* provided by the attacker in a *multipart/form-data* POST request to the */albatross/restAPI/v2/nmap/run/scan* API endpoint. 
+We can inject anything we want in this parameter but, as seen above, this gets put into a String array that is passed to *Runtime.getRuntime().exec()*. As this function works in a similar way to C's *execve()*, it is not possible to perform command injection in a parameter. 
+
+As listed in [GTFObins](https://gtfobins.github.io/gtfobins/nmap), having access to nmap allows running arbitrary commands if we can upload a script file and then pass that as an argument to nmap with *"--script=<FILE\>"*. Since we cannot inject commands in a parameter, our best chance is to write the commands to a file and pass that in the *--script* argument to nmap.
+
+However, to achieve code execution in this way we still need to be able to upload a file. Luckily, there is a method that processes patch files and accepts arbitrary file data, saving it to *"/home/a3user/agile3/patches/<FILE\>"*. The method is too long and verbose to paste here, but it is supposed to accept a patch file, process it and apply it.
+There are several bugs in version 2.0.2 that cause the method to abort early and fail to process the file. Still, the file is uploaded and kept on disk even after the method aborts. In other versions, there is some processing done, but again the file is kept on disk after the method terminates.
 
 In order to upload a file, we simply need to send the following request:
 ```
