@@ -3,9 +3,9 @@ Pedro's Exploit Dumping Grounds
   
 This repository contains my advisories, proof of concept files and exploits that I have made public and it is located at https://github.com/pedrib/PoC.
   
-[You can check the list of all vulnerabilities and Metasploit modules I publicly disclosed here.](https://github.com/pedrib/PoC/blob/master/pedigree.csv)
+[You can check the list of all vulnerabilities and Metasploit modules I have publicly disclosed here.](https://github.com/pedrib/PoC/blob/master/pedigree.csv)
 
-[My PGP is also in this repository.](https://raw.githubusercontent.com/pedrib/PoC/master/pedrib-gmail-pgp.asc)
+[My PGP key is also in this repository.](https://raw.githubusercontent.com/pedrib/PoC/master/pedrib-gmail-pgp.asc)
 ##
 All information, code and binary data in this repository is released to the public under the GNU General Public License, version 3 (GPLv3).
 For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails. 
