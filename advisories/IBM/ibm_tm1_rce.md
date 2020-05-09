@@ -262,23 +262,23 @@ This authentication call will call several other functions which will trigger th
 Starting step 4, in the first request, the CAM server has to answer with the account info, containing a valid username:
 
 ```xml
-      <item xsi:type="bus:account">
-        <defaultName><value>admin</value></defaultName>
-      </item>
+<item xsi:type="bus:account">
+  <defaultName><value>admin</value></defaultName>
+</item>
 ```
 
 In the second request, the CAM server has to reply with the session info, which again has to contain a valid username:
 
 ```xml
-      <item xsi:type="bus:session">
-        <identity>
-          <value baseClassArray xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:baseClass[3]">
-            <item xsi:type="bus:account">
-              <searchPath><value>admin</value></searchPath>
-            </item>
-          </value>
-        </identity>
+<item xsi:type="bus:session">
+  <identity>
+    <value baseClassArray xsi:type="SOAP-ENC:Array" SOAP-ENC:arrayType="tns:baseClass[3]">
+      <item xsi:type="bus:account">
+        <searchPath><value>admin</value></searchPath>
       </item>
+    </value>
+  </identity>
+</item>
 ```
 
 As for the third request, we can send random data inside the SOAP envelope, as it is not needed for successful authentication.
