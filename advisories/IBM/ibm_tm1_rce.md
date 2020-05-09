@@ -150,7 +150,7 @@ Application servers can run on arbitrary ports and use arbitrary names. However,
 
 ## Vulnerability Details
 ### Configuration Overwrite
-* [CWE-306: Missing Authentication for Critical Function](https://cwe.mitre.org/data/definitions/15.html)
+* [CWE-306: Missing Authentication for Critical Function](https://cwe.mitre.org/data/definitions/306.html)
 * [CVE-2019-4716](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-4716)
 * Risk Classification: Critical
 * Attack Vector: Remote
