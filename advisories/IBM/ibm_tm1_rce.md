@@ -1,4 +1,4 @@
-# Configuration Overwrite in IBM Cognos TM1 / IBM Planning Analytics Server
+# Configuration Overwrite (leading to remote code execution) in IBM Cognos TM1 / IBM Planning Analytics Server
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
@@ -14,7 +14,7 @@ TM1 has two main components: the Admin server and the Application server(s). The
 
 The vulnerability described in this advisory affects the Application server component. The Application server requires authentication to perform most functions, but this vulnerability can be exploited pre-authentication. 
 
-The critical vulnerability is a configuration overwrite that allows an unauthenticated user to modify authentication parameters, login as "admin", and then execute code as root or SYSTEM with the built-in TM1 script interpreter. This vulnerability has been assigned [CVE-2019-4716](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-4716), and was fixed with the release of IBM Planning Analytics 2.0.9 on 17th of December 2019 (refer to the [IBM advisory for details](https://www.ibm.com/support/pages/node/1127781)).
+**The critical vulnerability is a configuration overwrite that allows an unauthenticated user to modify authentication parameters, login as "admin", and then execute code as root or SYSTEM** with the built-in TM1 script interpreter. This vulnerability has been assigned [CVE-2019-4716](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-4716), and was fixed with the release of IBM Planning Analytics 2.0.9 on 17th of December 2019 (refer to the [IBM advisory for details](https://www.ibm.com/support/pages/node/1127781)).
 
 A Metasploit exploit module that abuses this vulnerability [was released and integrated](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/misc/ibm_tm1_unauth_rce.rb) into the framework. This exploit was tested and confirmed to be working on all TM1 versions until at least 10.2.2, released in 2014. It is likely that older versions, possibly up to 8.X, are also vulnerable. 
 Readers are encouraged to contact the author to share exploitation tales and success stories.
