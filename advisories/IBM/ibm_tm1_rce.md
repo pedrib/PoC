@@ -8,7 +8,7 @@
 
 **tl;dr scroll down to the bottom for an asciinema of the exploit in action**
 
-[IBM Cognos TM1 Server / Planning Analytics Server (**TM1**)](https://www.ibm.com/products/planning-analytics) is an Enterprise Resource Planning (ERP) software, currently owned by IBM, which has been in existence since 1983. The server provides complex primitives to process data from several different sources, query and display it in Excel spreadsheets, graphs, etc.
+[IBM Cognos TM1 Server / Planning Analytics Server (**TM1**)](https://www.ibm.com/products/planning-analytics) is an Enterprise Resource Planning (ERP) software, currently being developed by IBM, which has been in existence since 1983. The server provides complex primitives to process data from several different sources, query and display it in Excel spreadsheets, graphs, etc.
 
 TM1 has two main components: the Admin server and the Application server(s). The Admin server stores information about the location and configuration details of Application servers. Each application is deployed in its own Application server. An application is a collection of data, objects and processes, which can be queried and modified in a number of ways through client programs such as [IBM TM1 Architect](https://www.ibm.com/support/knowledgecenter/SSD29G_2.0.0/com.ibm.swg.ba.cognos.tm1_cloud_mg.2.0.0.doc/c_tm1_cloud_tm1architect.html), a REST API, remote scripts, etc. TM1 server can be run on Windows or Linux operating systems.
 
