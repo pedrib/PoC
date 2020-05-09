@@ -329,7 +329,7 @@ Due to the complexity of the protocol and exploit, many details were left out of
 
 And with that said, here is an asciinema of the exploit in action:
 
-[![asciicast](https://asciinema.org/a/AoxIWyGb9qaWXl2181zwT3H1F.svg)](https://asciinema.org/a/AoxIWyGb9qaWXl2181zwT3H1F)
+[![asciicast](https://asciinema.org/a/328336.svg)](https://asciinema.org/a/328336)
 
 
 
