@@ -206,7 +206,7 @@ update_packet =
 
 The *file_name* object above was set to "tm1s_delta.cfg" as that is what the remote method expects. If that *file_name* is provided, the server will read the *file_data* object, process its configuration updates and delete the file. This is done through a series of function calls: 
 
-```
+```ruby
 # message_type 0x1ae invokes this function
 sv_ProcessUpdateFromCentral()
 
