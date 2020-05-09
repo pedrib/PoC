@@ -6,7 +6,7 @@
   
 ## Summary
 
-**tl;dr scroll down to the bottom for a video of the exploit in action**
+**tl;dr scroll down to the bottom for an asciinema of the exploit in action**
 
 [IBM Cognos TM1 Server / Planning Analytics Server (**TM1**)](https://www.ibm.com/products/planning-analytics) is an Enterprise Resource Planning (ERP) software, currently owned by IBM, which has been in existence since 1983. The server provides complex primitives to process data from several different sources, query and display it in Excel spreadsheets, graphs, etc.
 
@@ -31,11 +31,11 @@ The TM1 Application server and Admin server communicate between themselves and b
 The binary protocol message layout is described below:
 
 ```
-packet_size         (2 bytes)     sizeof(packet_header + message_type + message_data + packet_end)
+packet_size      (2 bytes)     sizeof(packet_header + message_type + message_data + packet_end)
 packet_header    (4 bytes)     [ 0, 0, 0xff, 0xff ]
 message_type     (2 bytes)     0x1 to 0x1e2
 message_data     (X bytes)     actual message
-packet_end          (2 bytes)     [ 0xff, 0xff ]
+packet_end       (2 bytes)     [ 0xff, 0xff ]
 ```
 
 The *message_type* component contains the identification number of the remote method being invoked, while *message_data* will vary for each remote method. 
@@ -329,7 +329,8 @@ Due to the complexity of the protocol and exploit, many details were left out of
 
 And with that said, here is an asciinema of the exploit in action:
 
-https://asciinema.org/a/AoxIWyGb9qaWXl2181zwT3H1F
+[![asciicast](https://asciinema.org/a/AoxIWyGb9qaWXl2181zwT3H1F.svg)](https://asciinema.org/a/AoxIWyGb9qaWXl2181zwT3H1F)
+
 
 
 ## Solutions / Vulnerability Fixes / Mitigation:
