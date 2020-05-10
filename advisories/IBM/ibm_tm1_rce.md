@@ -159,9 +159,7 @@ Application servers can run on arbitrary ports and use arbitrary names. However,
     * IBM Cognos TM1 versions 10.2.2 (older versions as low as 8.X might be vulnerable)
     * IBM Planning Analytics versions <= 2.0.8
 
-One of the remote methods that can be called pre-authentication is named *sv_ProcessUpdateFromCentral()* (*message_type* 0x1ae). The purpose of this method is to update application data and server variables according to the requests of a central server when TM1 is deployed in distributed mode. 
-
-These server variables contain critical configuration data - for example, even *JAVA_HOME* can be altered using this function by an unauthenticated attacker.
+One of the remote methods that can be called pre-authentication is named *sv_ProcessUpdateFromCentral()* (*message_type* 0x1ae). The purpose of this method is to update application data and server variables according to the requests of a central server when TM1 is deployed in distributed mode.  These server variables control critical configuration data as we will see below.
 
 The packet format is as follows:
 
