@@ -2,7 +2,7 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020 | Last Updated: 24/04/2020  
+#### Disclosure Date: 21/04/2020 | Last Updated: 12/06/2020  
   
 ## Introduction
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
@@ -24,6 +24,29 @@ The IDRM Linux virtual appliance was analysed and it was found to contain four v
 This advisory describes the four vulnerabilities and the steps necessary to chain the first three to achieve unauthenticated remote code execution as root. In addition, two Metasploit modules that bypass authentication and exploit the [remote code execution](https://github.com/rapid7/metasploit-framework/pull/13300) and [arbitrary file download](https://github.com/rapid7/metasploit-framework/pull/13301) are being released to the public.
 
 At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable. The status of version 2.0.0 is unknown, but that version is out-of-support anyway. 
+
+### Update (12/06/2020)
+Looks like IBM finally confirmed that [the vulnerabilities exist](https://www.ibm.com/blogs/psirt/security-bulletin-vulnerabilities-exist-in-ibm-data-risk-manager-cve-2020-4427-cve-2020-4428-cve-2020-4429-and-cve-2020-4430/), and according to [their security bulletin](https://www.ibm.com/support/pages/node/6206875), IDRM is vulnerable to:
+
+* Authentication Bypass on versions 2.0.6.1 and earlier
+* Command Injection	on versions 2.0.4 and earlier
+* Insecure Default Password on versions 2.0.6.1 and earlier
+* Path Traversal on versions 2.0.4 and earlier
+
+All vulnerabilities should be fixed in version 2.0.6.2 or higher. Note that I did not confirm this, I'm taking IBM's claims at face value here, and these claims should be taken with HUGE grain of salt. In the security bulletin IBM says:
+> The Authentication Bypass issue only exists if SAML authentication is enabled. (...) SAML authentication is not enabled by default.
+
+Which is total bull\*\*\*\*, the vulnerabilities in this advisory were found in their IDRM virtual appliance - not a demo, but the **production virtual appliance** customers are supposed to deploy in their environments.
+
+They were also *kind enough* to create CVE entries for these issues, which have been updated in this advisory below.
+
+Finally, the Metasploit modules were accepted into the framework, and now there are 3 of them:
+
+* [IBM Data Risk Manager Unauthenticated Remote Code Execution](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/http/ibm_drm_rce.rb)
+* [IBM Data Risk Manager a3user Default Password](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/ssh/ibm_drm_a3user.rb)
+* [IBM Data Risk Manager Arbitrary File Download](https://github.com/rapid7/metasploit-framework/blob/master/modules/auxiliary/admin/http/ibm_drm_download.rb)
+
+The rest of the original advisory follows.
   
 ### Here's a bunch of 0 days!
 
@@ -58,13 +81,12 @@ Anyway, with this out of the way let's get technical...
 
 ### #1: Authentication Bypass
 * [CWE-287: Improper Authentication](https://cwe.mitre.org/data/definitions/287.html)
-* CVE-TODO (not assigned yet)
+* [CVE-2020-4427](https://nvd.nist.gov/vuln/detail/CVE-2020-4427)
 * Risk Classification: Critical
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
-  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
+  * IBM Data Risk Manager 2.0.1 to 2.0.6.1
 
 #### Details:
 IDRM has an API endpoint at */albatross/saml/idpSelection* that associates an ID provided by the attacker with a valid user on the system. The method that handles this endpoint is shown below:
@@ -227,13 +249,12 @@ It should be noted that this is a destructive action - the previous admin passwo
 
 ### #2: Command Injection
 * [CWE-77: Command Injection](https://cwe.mitre.org/data/definitions/77.html)
-* CVE-TODO (not assigned yet)
+* [CVE-2020-4428](https://nvd.nist.gov/vuln/detail/CVE-2020-4428)
 * Risk Classification: Critical
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
-  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
+  * IBM Data Risk Manager 2.0.1 to 2.0.4
 
 #### Details:
 IDRM exposes an API at */albatross/restAPI/v2/nmap/run/scan* that allows an authenticated user to perform nmap scans. The call stack and relevant code is pasted below:
@@ -339,13 +360,12 @@ Note that all of these requests require an authenticated session as an administr
 
 ### #3: Insecure Default Password
 * [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)
-* CVE-TODO (not assigned yet)
+* [CVE-2020-4429](https://nvd.nist.gov/vuln/detail/CVE-2020-4429)
 * Risk Classification: Critical
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.1 to 2.0.3 confirmed to be vulnerable
-  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
+  * IBM Data Risk Manager 2.0.1 to 2.0.6.1
 
 #### Details:
 The administrative user in the IDRM virtual appliance is *"a3user"*. This user is allowed to login via SSH and run sudo commands, and it is set up with a default password of *"idrm"*.  
@@ -356,13 +376,12 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 
 ### #4: Arbitrary File Download
 * [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)
-* CVE-TODO (not assigned yet)
+* [CVE-2020-4430](https://nvd.nist.gov/vuln/detail/CVE-2020-4430)
 * Risk Classification: High
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.2 and 2.0.3 confirmed to be vulnerable
-  * IBM Data Risk Manager 2.0.4 to 2.0.6 likely to be vulnerable
+  * IBM Data Risk Manager 2.0.2 and 2.0.4
 
 #### Details:
 
