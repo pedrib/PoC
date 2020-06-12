@@ -29,9 +29,9 @@ At the time of disclosure, it is unclear if the latest version 2.0.6 is affected
 Looks like IBM finally confirmed that [the vulnerabilities exist](https://www.ibm.com/blogs/psirt/security-bulletin-vulnerabilities-exist-in-ibm-data-risk-manager-cve-2020-4427-cve-2020-4428-cve-2020-4429-and-cve-2020-4430/), and according to [their security bulletin](https://www.ibm.com/support/pages/node/6206875), IDRM is vulnerable to:
 
 * Authentication Bypass on versions 2.0.6.1 and earlier
-* Command Injection	on versions 2.0.4 and earlier
+* Command Injection on versions 2.0.4 and earlier
 * Insecure Default Password on versions 2.0.6.1 and earlier
-* Path Traversal on versions 2.0.4 and earlier
+* Arbitrary File Download / Path Traversal on versions 2.0.4 and earlier
 
 All vulnerabilities should be fixed in version 2.0.6.2 or higher. Note that I did not confirm this, I'm taking IBM's claims at face value here, and these claims should be taken with HUGE grain of salt. In the security bulletin IBM says:
 > The Authentication Bypass issue only exists if SAML authentication is enabled. (...) SAML authentication is not enabled by default.
