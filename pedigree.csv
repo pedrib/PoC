@@ -118,11 +118,13 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2020-4428,IBM Data Risk Manager,command injection,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
 2020-4429,IBM Data Risk Manager,insecure default password,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
 2020-4430,IBM Data Risk Manager,arbitrary file download,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
+2020-10644/ZDI-20-686,Ignition Automation,java deserialization,11/06/2020,TODO
 2020-10881/ZDI-20-333,TP-Link Archer A7/C7,DNS stack overflow,TBA,connor
 2020-10882/ZDI-20-334,TP-Link Archer A7/C7,command injection,25/03/2020,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
 2020-10883/ZDI-20-335,TP-Link Archer A7/C7,insecure filesystem,25/03/2020,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
 2020-10884/ZDI-20-336,TP-Link Archer A7/C7,hardcoded crypto key,25/03/2020,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
 2020-10885/ZDI-20-337,TP-Link Archer A7/C7,DNS validation error,TBA,connor
+2020-12004/ZDI-20-685,Ignition Automation,missing authentication,11/06/2020,TODO
 ,,,,
 ,,,,
 Metasploit modules,,,,
