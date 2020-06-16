@@ -5,7 +5,7 @@ lao_bomb
 
 # Summary
 
-This advisory describes a command injection vulnerability that was found by **Pedro Ribeiro ([@pedrib1337](https://twitter.com/pedrib1337) | pedrib@gmail.com)** and **Radek Domanski ([@RabbitPro](https://twitter.com/RabbitPro) | radek.domanski@gmail.com)** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in November 2019. Max Van Amerongen from F-Secure (@maxpl0it) found the same vulnerability independently.
+This advisory describes a command injection vulnerability that was found by **Pedro Ribeiro ([@pedrib1337](https://twitter.com/pedrib1337) | pedrib@gmail.com)** and **Radek Domanski ([@RabbitPro](https://twitter.com/RabbitPro) | radek.domanski@gmail.com)** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in Tokyo on November 2019. Max Van Amerongen from F-Secure (@maxpl0it) found the same vulnerability independently.
 
 The vulnerability exists in the tdpServer daemon (*/usr/bin/tdpServer*), running on the router TP-Link Archer A7/C7 (AC1750), hardware version 5, MIPS Architecture, firmware version 190726.
 
