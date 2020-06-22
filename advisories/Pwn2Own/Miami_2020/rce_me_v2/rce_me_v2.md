@@ -27,7 +27,7 @@ A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/
 Copies of this advisory are available on GitHub at:
 
 * [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Miami_2020/rce_me_v2/rce_me_v2.md)
-* [Radek's GitHub](http://TO.DO)
+* [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Miami2020/rce_me_v2.md)
 
 The following CVE numbers have been assigned:
 
