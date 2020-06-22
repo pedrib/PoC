@@ -17,7 +17,7 @@ All function offsets and code snippets in this advisory were taken from */usr/bi
 
 This advisory was disclosed publicly on 25.03.2020.
 
-A special thanks to [Zero Day Initiative](https://www.zerodayinitiative.com/) (ZDI) for hosting us in the amazing Pwn2Own competition and allowing us to release this information to the public.
+A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/) (ZDI) for hosting us in the amazing Pwn2Own competition and allowing us to release this information to the public.
 
 Copies of this advisory are available on GitHub at:
 * [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md)
