@@ -26,7 +26,7 @@ A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/
 
 Copies of this advisory are available on GitHub at:
 
-* [Pedro's GitHub](http://TO.DO)
+* [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Miami_2020/rce_me_v2/rce_me_v2.md)
 * [Radek's GitHub](http://TO.DO)
 
 The following CVE numbers have been assigned:
@@ -47,7 +47,7 @@ A Metasploit module was also made available to the public with this advisory, an
 
 * [inductive_ignition_rce.rb](https://github.com/rapid7/metasploit-framework/pull/13604)
 
-This module can be seen in action in a YouTube video below (there is also a video file in the same directory as this advisory):
+**This module can be seen in action in a YouTube video below** (there is also a video file in the same directory as this advisory):
 
 [![Watch the video](https://img.youtube.com/vi/CuOancRm1fg/maxresdefault.jpg)](https://www.youtube.com/watch?v=CuOancRm1fg)
 
