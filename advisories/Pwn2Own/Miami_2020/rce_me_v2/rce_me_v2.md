@@ -277,8 +277,8 @@ This function does the following:
 1. Parses the received message
 2. Identifies the function to be called
 3. Checks the function arguments
-    3.1 Ensures the function arguments are safe to be deserialized
-    3.2 Ensures that the number of arguments corresponds to the expected for the target function
+    * Ensures the function arguments are safe to be deserialized
+    * Ensures that the number of arguments corresponds to the expected for the target function
 4. Calls the function with the deserialized arguments
 5. Sends the response back to the client
 
@@ -469,7 +469,7 @@ This is checked against the whitelist shown in in the previous section, and allo
 
 We then go into *ProjectDownload.getDiffs()*, where it takes our String argument and then calls *Base64.decodeToObjectFragile()* on it without specifying a whitelist.
 
-As shown in *Snippet 4*, this will Base64 decode the String and then invoke *ObjectInputStream.readObject()* on our malicious object (YSOSERIAL_PAYLOAD), resulting in code execution!
+As shown in *Snippet 4*, this will Base64 decode the String and then invoke *ObjectInputStream.readObject()* on our malicious object *YSOSERIAL_PAYLOAD*, resulting in code execution!
 
 ## Payload generation
 
