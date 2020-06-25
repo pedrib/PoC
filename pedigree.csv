@@ -186,7 +186,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-4427-29,IBM Data Risk Manager,auth bypass + cmd inj + default pw,ibm_drm_rce.rb,05/05/2020
 2020-4427/30,IBM Data Risk Manager,arbitrary file download,ibm_drm_download.rb,05/05/2020
 2020-4429,IBM Data Risk Manager,insecure default pw,ibm_drm_a3user.rb,05/05/2020
-2020-10644/12004,Inductive Automation Ignition,unauth rce as system,inductive_ignition_rce.rb,TODO
+2020-10644/12004,Inductive Automation Ignition,unauth rce as system,inductive_ignition_rce.rb,25/06/2020
 2020-10882/3/4,TP-Link Archer A7/C7,command injection,tplink_archer_a7_c7_lan_rce.rb,15/04/2020
 ,,,,
 ,,,,
