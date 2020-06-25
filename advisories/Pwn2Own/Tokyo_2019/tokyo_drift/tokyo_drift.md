@@ -26,7 +26,7 @@ A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/
 A copy of this advisory is available on GitHub at:
 
 * [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md)
-* [Radek's GitHub](https://TO.DO)
+* [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/tokyo_drift.md)
 
 The following CVE numbers have been assigned:
 
@@ -39,7 +39,7 @@ ZDI's advisories can be found at:
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 
-* TODO
+* [netgear_r6700_pass_reset.rb](https://github.com/rapid7/metasploit-framework/pull/13768)
 
 **The video below shows the Metasploit module in action**. Note that GitHub doesn't allow the video to play embedded in this page, so you'll have to click on it to download and watch it:
 
