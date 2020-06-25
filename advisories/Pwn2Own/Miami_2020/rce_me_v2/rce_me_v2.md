@@ -45,7 +45,7 @@ And their blog post:
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 
-* [inductive_ignition_rce.rb](https://github.com/rapid7/metasploit-framework/pull/13604)
+* [inductive_ignition_rce.rb](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/scada/inductive_ignition_rce.rb)
 
 **This module can be seen in action in a YouTube video below** (there is also a video file in the same directory as this advisory):
 
