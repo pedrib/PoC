@@ -25,7 +25,7 @@ A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/
 
 A copy of this advisory is available on GitHub at:
 
-* [Pedro's GitHub](https://TO.DO)
+* [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md)
 * [Radek's GitHub](https://TO.DO)
 
 The following CVE numbers have been assigned:
@@ -39,7 +39,7 @@ ZDI's advisories can be found at:
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 
-* LINK
+* TODO
 
 We also have a video of the exploit in action at the bottom of this advisory.
 
@@ -665,6 +665,6 @@ We do not know why we need to do step 2; but without changing the password again
 
 Due to Pwn2Own time pressures, we did not have time to investigate this further and since we have achieved code execution our work ends here.
 
-To finish, here is a video of the Metasploit exploit in full glory:
+To finish, here is a video of the Metasploit exploit in full glory (the video has to be downloaded, GitHub doesn't support embedding local videos just yet!):
 
-[![IMAGE ALT TEXT HERE](https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_youtube_ios_%28cropped%29.jpg)](tokyo_drift.mp4)
+[![tokyo_drift video](tokyo_drift.png)](tokyo_drift.mp4)
