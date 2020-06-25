@@ -667,6 +667,4 @@ Due to Pwn2Own time pressures, we did not have time to investigate this further 
 
 To finish, here is a video of the Metasploit exploit in full glory:
 
-<video width="1024" height="576" controls>
-  <source src="tokyo_drift.mp4" type="video/mp4">
-</video>
+[![IMAGE ALT TEXT HERE](https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_youtube_ios_%28cropped%29.jpg)](tokyo_drift.mp4)
