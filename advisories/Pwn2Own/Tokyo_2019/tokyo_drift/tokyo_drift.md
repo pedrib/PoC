@@ -41,7 +41,7 @@ A Metasploit module was also made available to the public with this advisory, an
 
 * TODO
 
-The video below shows the Metasploit module in action. Note that GitHub doesn't allow the video to play embedded in this page, so you'll have to click below to download it:
+**The video below shows the Metasploit module in action**. Note that GitHub doesn't allow the video to play embedded in this page, so you'll have to click on it to download and watch it:
 
 [![tokyo_drift video](tokyo_drift.png)](tokyo_drift.mp4)
 
