@@ -5,7 +5,7 @@ tokyo_drift
 
 # Summary
 
-This document describes a stack overflow vulnerability that was found by **Pedro Ribeiro ([@pedrib1337](https://twitter.com/pedrib1337) | pedrib@gmail.com)** and **Radek Domanski ([@RabbitPro](https://twitter.com/RabbitPro) | radek.domanski@gmail.com)** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in November 2019. 
+This document describes a stack overflow vulnerability that was found by **Pedro Ribeiro ([@pedrib1337](https://twitter.com/pedrib1337) | pedrib@gmail.com)** and **Radek Domanski ([@RabbitPro](https://twitter.com/RabbitPro))** in October 2019 and presented in the **Pwn2Own Mobile 2019 competition** in November 2019. 
 
 The vulnerability is present in the UPNP daemon (*/usr/sbin/upnpd*), running on the router [NETGEAR R6700v3](https://www.netgear.com/support/product/R6700V3.aspx), firmware versions V1.0.4.82_10.0.57 and V1.0.4.84_10.0.58.
 
@@ -25,8 +25,8 @@ A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/
 
 A copy of this advisory is available on GitHub at:
 
-* [Pedro's GitHub](https://TO.DO)
-* [Radek's GitHub](https://TO.DO)
+* [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md)
+* [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2019/tokyo_drift.md)
 
 The following CVE numbers have been assigned:
 
@@ -39,9 +39,11 @@ ZDI's advisories can be found at:
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 
-* LINK
+* [netgear_r6700_pass_reset.rb](https://github.com/rapid7/metasploit-framework/pull/13768)
 
-We also have a video of the exploit in action at the bottom of this advisory.
+**The video below shows the Metasploit module in action**. Note that GitHub doesn't allow the video to play embedded in this page, so you'll have to click on it to download and watch it:
+
+[![tokyo_drift video](tokyo_drift.png)](tokyo_drift.mp4)
 
 ~ Team FlashBack
 
@@ -664,7 +666,3 @@ To conclude this advisory and our exploit, here is a summary of what we need to 
 We do not know why we need to do step 2; but without changing the password again, we cannot complete steps 3 and 4. Perhaps the password is cached somewhere?
 
 Due to Pwn2Own time pressures, we did not have time to investigate this further and since we have achieved code execution our work ends here.
-
-To finish, here is a video of the Metasploit exploit in full glory:
-
-[![IMAGE ALT TEXT HERE](https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_youtube_ios_%28cropped%29.jpg)](tokyo_drift.mp4)
