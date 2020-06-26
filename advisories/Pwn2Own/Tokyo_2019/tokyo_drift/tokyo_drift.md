@@ -559,7 +559,7 @@ For *soap_service_type* 0, which is the type of the *DeviceInfo* service, the po
 
 Note that all of them are *Get* except for three: *SetDeviceNameIconByMAC*, *SetDeviceInfoByMAC* and *SetNetgearDeviceName*. The *Get* types lead us down a different execution path in *sa_processResponse()*, and they are interesting from an information leak point of view, but not really helpful for exploitation.
 
-But the *Set* keywords are another story. Sending one of these will cause *sa_processResponse()* to invoke the next function in our chain, *sa_parseRcvCmd()*. In our request we decided to send *SetNetgearDeviceName*, but for our purposes any of the three *Set* keywords would work.
+But the *Set* keywords are another story. Sending one of these will cause *sa_processResponse()* to invoke the next function in our chain, *sa_parseRcvCmd()*. In our request we decided to send *SetDeviceNameIconByMAC*, but for our purposes any of the three *Set* keywords would work.
 
 *sa_parseRcvCmd()* was shown above in **Snippet 6**. As it can be seen there, it will parse the request looking for certain command values. To hit our vulnerable function we want to have *cmd_idx* 0xff37, which is achieved by sending the *NewBlockSiteName* XML tag.
 
