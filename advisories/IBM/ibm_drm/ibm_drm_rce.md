@@ -381,7 +381,7 @@ While IDRM forces the administrative user of the web interface (*"admin"*) to ch
 * Attack Vector: Remote
 * Constraints: Authentication Required
 * Affected Products / Versions:
-  * IBM Data Risk Manager 2.0.2 and 2.0.4
+  * IBM Data Risk Manager 2.0.2 to 2.0.4
 
 #### Details:
 
