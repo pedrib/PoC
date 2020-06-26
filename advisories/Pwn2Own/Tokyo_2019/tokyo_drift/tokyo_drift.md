@@ -128,7 +128,7 @@ If the function finds a POST request, it calls *upnp_handle_post()* (0x224b4), o
 ```
 > Snippet 2: *upnp\_handle\_post()*
 
-The core of the function simply tries to find one of 7 URL in the request:
+The core of the function simply tries to find one of 7 strings in the request:
 
 * Public_UPNP_C1
 * Public_UPNP_C2
@@ -139,7 +139,7 @@ The core of the function simply tries to find one of 7 URL in the request:
 * soap/server_sa/opendns
 
 In order to hit the vulnerable path, we need to enter the last branch which calls *sa_method_check()* (0x3b7e0).
-To enter this branch, we need to send one of the last two URL strings (*soap/server_sa or soap/server_sa/opendns*), UPNP needs to be turned on (which it is by default) and we need to pass the *check_SOAPACTION()* (0x22464) function check.
+To enter this branch, we need to send one of the last two strings in the URL (*soap/server_sa or soap/server_sa/opendns*), UPNP needs to be turned on (which it is by default) and we need to pass the *check_SOAPACTION()* (0x22464) function check.
 
 This function won't be shown here for brevity, as it simply checks if the string *SOAPACTION* is present in the request (independent of case), and returns 1 if it finds it.
 
