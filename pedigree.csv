@@ -1,5 +1,5 @@
 Vulnerabilities,,,,
-CVE / ID,Application,Description,Disclosure,Advisory / PoC file
+CVE / ID,Application,Description,Disclosure,Advisory / PoC / exploit file
 2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,advisories/libtiff-4.0.3.txt
 2013-4232,libtiff,tiff2pdf use after free,01/08/2013,advisories/libtiff-4.0.3.txt
 2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,advisories/lcms-1.19.txt
@@ -125,8 +125,8 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 2020-10884/ZDI-20-336,TP-Link Archer A7/C7,hardcoded crypto key,25/03/2020,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
 2020-10885/ZDI-20-337,TP-Link Archer A7/C7,DNS validation error,Pwn2Own Tokyo 2019,connor
 2020-12004/ZDI-20-685,Inductive Automation Ignition,missing authentication,11/06/2020,advisories/Pwn2Own/Miami2020/rce_me_v2.md
-ZDI-20-703,Netgear R6700,auth bypass,Pwn2Own Tokyo 2019,tokyo_drift
-ZDI-20-704,Netgear R6700,stack buffer overflow,Pwn2Own Tokyo 2019,tokyo_drift
+2020-10923/ZDI-20-703,Netgear R6700,auth bypass,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
+2020-10924,ZDI-20-704,Netgear R6700,stack buffer overflow,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
 ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
 ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
 ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
@@ -188,6 +188,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-4429,IBM Data Risk Manager,insecure default pw,ibm_drm_a3user.rb,05/05/2020
 2020-10644/12004,Inductive Automation Ignition,unauth rce as system,inductive_ignition_rce.rb,25/06/2020
 2020-10882/3/4,TP-Link Archer A7/C7,command injection,tplink_archer_a7_c7_lan_rce.rb,15/04/2020
+2020-10923/4,Netgear R6700,pass reset + rce,netgear_r6700_pass_reset.rb,01/07/2020
 ,,,,
 ,,,,
 ,Note:,,,
