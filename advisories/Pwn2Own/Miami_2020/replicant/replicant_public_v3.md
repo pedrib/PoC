@@ -17,7 +17,7 @@ This advisory will describe the vulnerability details in the order that they wer
 
 # Note
 
-This advisory was disclosed publicly on 22.06.2020 after [Rockwell issued a patch](https://rockwellautomation.custhelp.com/app/answers/answer_view/a_id/54102) that fixes these vulnerabilities (**NOTE: we did not test whether the patch fixes the vulnerabilities**).
+This advisory was disclosed publicly on 22.06.2020 after [Rockwell issued a patch](https://rockwellautomation.custhelp.com/app/answers/answer_view/a_id/54102) that fixes these vulnerabilities (**we did not test whether the patch fixes the vulnerabilities**).
 
 A special thanks to the [Zero Day Initiative](https://www.zerodayinitiative.com/) (ZDI) for hosting us in the amazing Pwn2Own competition and allowing us to release this information to the public.
 
@@ -45,7 +45,7 @@ A Metasploit module was also made available to the public with this advisory, an
 
 * [rockwell_factorytalk_rce.rb](TODO)
 
-The video below shows the Metasploit module in action:
+Click on the thumbnail below to see the video of the Metasploit module in action:
 
 [![replicant video](https://img.youtube.com/vi/PIid0Ql_KmU/0.jpg)](https://www.youtube.com/watch?v=PIid0Ql_KmU)
 
@@ -211,10 +211,3 @@ In order to exploit the three vulnerabilities described above and achieve remote
 5. Issue the requests described in the previous section to initiate the remote project copy
 
 After the requests described previously are sent, the exploit will respond with the ASP code, which will be fetched by FactoryTalk, written to the location specified and then immediately accessed by the thread that issues constant requests, therefore "winning" the race condition and executing the ASP code as the IIS user.
-
-## Exploit video
-
-The Metasploit module provided with this advisory does exactly all of these steps in order:
-
-VIDEO HERE
-

@@ -134,8 +134,8 @@ CVE-2020-11857/ZDI-20-1215,Micro Focus Operations Bridge Reporter,shrboadmin har
 CVE-2020-11856/ZDI-20-1216,Micro Focus Operations Bridge Reporter,JMX missing auth (rce),23/09/2020,TODO
 CVE-2020-11855/ZDI-20-1217,Micro Focus Operations Bridge Reporter,windows privesc,23/09/2020,TODO
 CVE-2020-12009/ZDI-20-777,Iconics Genesis64,dir traversal / rce,Pwn2Own Miami 2020,apocalypse32
-CVE-2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
-ZDI-20-728,Rockwell FactoryTalk SE,info disclosure,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
+CVE-2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure (project list),Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
+ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
 CVE-2020-12028/ZDI-20-729,Rockwell FactoryTalk SE,missing auth for critical function,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
 CVE-2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
 ,,,,
