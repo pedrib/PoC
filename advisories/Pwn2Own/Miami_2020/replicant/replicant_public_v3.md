@@ -25,7 +25,7 @@ This advisory was first published in [ZDI's blog](https://www.zerodayinitiative.
 
 A copy of this advisory is available on GitHub at:
 
-* [Pedro's GitHub](TODO)
+* [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Miami_2020/replicant/replicant_public_v3.md)
 * [Radek's GitHub](TODO)
 
 The following CVE numbers have been assigned:
