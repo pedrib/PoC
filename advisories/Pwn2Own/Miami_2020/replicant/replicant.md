@@ -7,7 +7,7 @@ replicant
 
 This advisory describes a chain of vulnerabilities that was found by **Pedro Ribeiro ([@pedrib1337](https://twitter.com/pedrib1337) | pedrib@gmail.com)** and **Radek Domanski ([@RabbitPro](https://twitter.com/RabbitPro) | radek.domanski@gmail.com)** in December 2019 / January 2020 and presented in the **Pwn2Own Miami 2020 competition** in January 2020. 
 
-The vulnerabilities described in this document are present in the [Rockwell FactoryTalk View SE](https://www.rockwellautomation.com/global/products/factorytalk/overview.page?pagetitle=FactoryTalk-View-Site-Edition&docid=fbfaf09e608b1c3a74b3d7d0f95bd25e) (FactoryTalk) SCADA product, version 11.00.00.230. It is likely that older versions are exploitable, but this has not been confirmed by Rockwell.
+The vulnerabilities described in this document are present in the [Rockwell FactoryTalk View SE](https://www.rockwellautomation.com/en-us/products/software/factorytalk.html) (FactoryTalk) SCADA product, version 11.00.00.230. It is likely that older versions are exploitable, but this has not been confirmed by Rockwell.
 
 The default configuration is exploitable by an unauthenticated attacker, which can **achieve remote code execution as the IIS user on a Windows installation**.
 
