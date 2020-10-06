@@ -30,7 +30,8 @@ A copy of this advisory is available on GitHub at:
 
 The following CVE numbers have been assigned:
 
-* TODO (waiting for CVE assignments)
+* [CVE-2020-10923](https://nvd.nist.gov/vuln/detail/CVE-2020-10923)
+* [CVE-2020-10924](https://nvd.nist.gov/vuln/detail/CVE-2020-10924)
 
 ZDI's advisories can be found at:
 
