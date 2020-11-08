@@ -30,7 +30,7 @@ We have updated the [Metasploit module that we released last year](https://githu
 A copy of this advisory can be found at:
 
 * [Pedro's GitHub repository](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2020/minesweeper.md)
-* [Radek's GitHub repository](TODO)
+* [Radek's GitHub repository](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2020/minesweeper.md)
 
 
 Enjoy!
