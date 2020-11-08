@@ -25,11 +25,11 @@ Therefore, we refer to those publications to understand inner working of the ser
 
 This vulnerability was patched by TP-Link on [firmware 201029 for the A7 version](https://static.tp-link.com/2020/202011/20201104/Archer%20A7(US)_V5_201029.zip) and [201030 for the C7 version](https://static.tp-link.com/2020/202011/20201104/Archer%20C7(EU)_V5_201030.zip). The patch was dropped one day before the competition, wiping out a lot of Pwn2Own contestants, including us, so the exploit described below was never used in the competition.
 
-We have updated the [Metasploit module that we released last year](https://github.com/rapid7/metasploit-framework/blob/master//modules/exploits/linux/misc/tplink_archer_a7_c7_lan_rce.rb) with the new injection technique. This new technique also works with the older firmware that we exploited last year!
+We have updated the [Metasploit module that we released last year](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/misc/tplink_archer_a7_c7_lan_rce.rb) with the new injection technique. This new technique also works with the older firmware that we exploited last year!
 
 A copy of this advisory can be found at:
 
-* [Pedro's GitHub repository](TODO)
+* [Pedro's GitHub repository](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2020/minesweeper.md)
 * [Radek's GitHub repository](TODO)
 
 
