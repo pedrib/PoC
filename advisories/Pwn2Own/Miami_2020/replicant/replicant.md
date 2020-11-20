@@ -26,7 +26,7 @@ This advisory was first published in [ZDI's blog](https://www.zerodayinitiative.
 A copy of this advisory is available on GitHub at:
 
 * [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Miami_2020/replicant/replicant.md)
-* [Radek's GitHub](TODO)
+* [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/tree/master/advisories/Pwn2Own/Miami2020/replicant.md)
 
 The following CVE numbers have been assigned:
 
@@ -43,7 +43,7 @@ ZDI's advisories can be found at:
 
 A Metasploit module was also made available to the public with this advisory, and can be found at:
 
-* [rockwell_factorytalk_rce.rb](TODO)
+* [rockwell_factorytalk_rce.rb](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/scada/rockwell_factorytalk_rce.rb)
 
 Click on the thumbnail below to see the video of the Metasploit module in action:
 
