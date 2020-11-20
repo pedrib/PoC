@@ -202,7 +202,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-10644/12004,Inductive Automation Ignition,unauth rce as system,inductive_ignition_rce.rb,25/06/2020
 2020-10882/3/4/28347,TP-Link Archer A7/C7,command injection,tplink_archer_a7_c7_lan_rce.rb,15/04/2020
 2020-10923/4,Netgear R6700,pass reset + rce,netgear_r6700_pass_reset.rb,01/07/2020
-2020-12027/8/9,Rockwell FactoryTalk SE,unauth rce as IIS user,rockwell_factorytalk_rce.rb,TODO
+2020-12027/8/9,Rockwell FactoryTalk SE,unauth rce as IIS user,rockwell_factorytalk_rce.rb,20/11/2020
 ,,,,
 ,,,,
 ,Note:,,,
