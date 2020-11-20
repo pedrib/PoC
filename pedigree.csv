@@ -130,7 +130,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories
 ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
 ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
 ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
-CVE-2020-11853/ZDI-20-1288-1325/27/28,Micro Focus Operations Bridge Manager,multiple java deserialization rce,28/10/2020,TODO
+CVE-2020-11853/ZDI-20-1288-1325/7/8,Micro Focus Operations Bridge Manager,multiple java deserialization rce,28/10/2020,TODO
 CVE-2020-11854/ZDI-20-1287,Micro Focus Operations Bridge Manager,hardcoded diagnostics user,28/10/2020,TODO
 CVE-2020-11855/ZDI-20-1217,Micro Focus Operations Bridge Reporter,windows privesc,23/09/2020,TODO
 CVE-2020-11856/ZDI-20-1216,Micro Focus Operations Bridge Reporter,JMX missing auth (rce),23/09/2020,TODO
