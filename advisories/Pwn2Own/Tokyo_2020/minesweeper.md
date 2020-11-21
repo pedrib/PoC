@@ -27,6 +27,8 @@ This vulnerability was patched by TP-Link on [firmware 201029 for the A7 version
 
 We have updated the [Metasploit module that we released last year](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/misc/tplink_archer_a7_c7_lan_rce.rb) with the new injection technique. This new technique also works with the older firmware that we exploited last year!
 
+[CVE-2020-28347](https://nvd.nist.gov/vuln/detail/CVE-2020-28347) has been assigned for this vulnerability.
+
 A copy of this advisory can be found at:
 
 * [Pedro's GitHub repository](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2020/minesweeper.md)
