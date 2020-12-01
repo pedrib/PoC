@@ -640,7 +640,7 @@ There are many outdated and vulnerable libraries in the product, but the followi
 * BeanShell 2.0b4
 * C3P0 0.9.1.2
 
-If these were not present in the classpath, it would be much harder to exploit **Vulnerability #2, #3 and #4**, and would probably result in a situation like the one described in **Vulnerability #5** (proof of concept without code execution).
+If these were not present in the classpath, it would be much harder to exploit **Vulnerability #2, #3 and #4**, resulting in a situation like the one described in **Vulnerability #5** (proof of concept without code execution) and requiring significant more effort to exploit.
 
 The three libraries described contain gadgets that work out-of-the-box or with minimal adjustments to the payloads in *ysoserial*, making them very easy to abuse.
 
