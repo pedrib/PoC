@@ -49,9 +49,9 @@ After analysing OBM, I found **a mountain of critical security vulnerabilities**
 * Use of Outdated and Insecure Java Libraries
 * Incorrect Default Folder Permissions (resulting in Privilege Escalation to SYSTEM)
 
-All of these vulnerabilities affect the latest version tested (2020.05) and many other versions and products, listed individually below. Both Windows and Linux installations are affected, except for the privilege escalation, which only affects Windows.
+All of these vulnerabilities affect the latest version tested (2020.05) and many other versions and products, listed individually below. Both Windows and Linux installations are affected, except for the privilege escalation vulnerability, which only affects Windows.
 
-It is out of scope of this advisory to explain Java deserialization, how it happens and how devastating it can be. For more information on it, the following links are highly recommended:
+It is out of scope of this advisory to explain Java deserialization, how it can be exploited and how devastating it can be. For more information on it the following links are highly recommended:
 
 [Java Unmarshaller Security](https://github.com/mbechler/marshalsec)
 
