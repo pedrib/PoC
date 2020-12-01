@@ -680,12 +680,7 @@ The *almost* trivial part is due to the renaming of the shell to *LB_Verify.jsp*
 1. only certain paths are allowed by access by an unauthenticated user (and *LB_Verify.jsp* is one of them);
 2. As a Guest / unprivileged user we can write files to the directly, but cannot delete or modify any existing files, and luckily *LB_Verify.jsp* does not exist. 
 
-The video below shows the full chain in action:
-
-<video width="960" height="540" controls>
-  <source src="media/privesc_win_obm.mp4" type="video/mp4">
-</video>
-
+[Click here for a video that shows the full chain in action](media/privesc_win_obm.mp4).
 
 It should be noted that Micro Focus' [Hardening documentation](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2020.05/Hardening) specifies that these permissions should be changed after installation:
 > OBM installation directory. Restrict access to the OBM installation directory to privileged users. We recommend only allowing the SYSTEM account and Administrators groups to access this directory.
