@@ -1,7 +1,7 @@
 # Multiple (RCE) Vulnerabilities in Micro Focus Operations Bridge Manager
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2020-10-28 | Last Updated: 2020-11-18
+#### Disclosure Date: 2020-10-28 | Last Updated: 2020-12-02
   
 ## Introduction
 [From the vendor's website](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2018.05/OMi/ConceptsGuide/getStarted/getStarted_concepts):  
@@ -49,7 +49,7 @@ After analysing OBM, I found **a mountain of critical security vulnerabilities**
 * Use of Outdated and Insecure Java Libraries
 * Incorrect Default Folder Permissions (resulting in Privilege Escalation to SYSTEM)
 
-All of these vulnerabilities affect the latest version, 2020.05, and possibly earlier versions. Both Windows and Linux installations are affected, except for the privilege escalation, which only affects Windows.
+All of these vulnerabilities affect the latest version tested (2020.05) and many other versions and products, listed individually below. Both Windows and Linux installations are affected, except for the privilege escalation, which only affects Windows.
 
 It is out of scope of this advisory to explain Java deserialization, how it happens and how devastating it can be. For more information on it, the following links are highly recommended:
 
