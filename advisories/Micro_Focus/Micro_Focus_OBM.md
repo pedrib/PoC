@@ -321,7 +321,7 @@ python3 ucmdbPwn.py 10.10.10.99 ysoserial-master-SNAPSHOT.jar calc.exe
 
 ... will result in *calc.exe* being executed as SYSTEM in the Windows host at 10.10.10.99 running OBM:
 
-![calc.exe running as SYSTEM](./media/calc_system.png)
+![calc.exe running as SYSTEM](./media/obm_calc_system.png)
 
 Both Linux and Windows versions of OBM are affected by this vulnerability. The asciinema cast below shows the exploit in action on the Linux version of OBM:
 
@@ -680,7 +680,7 @@ The *almost* trivial part is due to the renaming of the shell to *LB_Verify.jsp*
 1. only certain paths are allowed by access by an unauthenticated user (and *LB_Verify.jsp* is one of them);
 2. As a Guest / unprivileged user we can write files to the directly, but cannot delete or modify any existing files, and luckily *LB_Verify.jsp* does not exist. 
 
-[Click here for a video that shows the full chain in action](media/privesc_win_obm.mp4).
+[Click here for a video that shows the full chain in action](media/obm_win_privesc.mp4).
 
 It should be noted that Micro Focus' [Hardening documentation](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2020.05/Hardening) specifies that these permissions should be changed after installation:
 > OBM installation directory. Restrict access to the OBM installation directory to privileged users. We recommend only allowing the SYSTEM account and Administrators groups to access this directory.
