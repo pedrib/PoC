@@ -15,7 +15,7 @@ Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and 
 
 Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 ##
-Pedro Ribeiro (pedrib_at_gmail_dot_com)  
+Pedro Ribeiro (pedrib_at_gmail_dot_com) [@pedrib1337](https://twitter.com/pedrib1337)  
 Founder & Director of Research at [Agile Information Security](https://agileinfosec.co.uk/)
   
 Feel free to send me questions / comments / criticism.
