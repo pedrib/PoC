@@ -1,4 +1,4 @@
-Pedro's (@pedrib) Exploit Dumping Grounds
+Pedro Ribeiro (@pedrib) Exploit Dumping Grounds
 ===
   
 This repository contains my advisories, proof of concept files and exploits that I have made public and it is located at https://github.com/pedrib/PoC.
