@@ -1,7 +1,7 @@
 # Multiple (RCE) Vulnerabilities in Micro Focus Operations Bridge Manager
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2020-10-28 | Last Updated: 2020-11-18
+#### Disclosure Date: 2020-10-28 | Last Updated: 2020-12-02
   
 ## Introduction
 [From the vendor's website](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2018.05/OMi/ConceptsGuide/getStarted/getStarted_concepts):  
@@ -49,9 +49,9 @@ After analysing OBM, I found **a mountain of critical security vulnerabilities**
 * Use of Outdated and Insecure Java Libraries
 * Incorrect Default Folder Permissions (resulting in Privilege Escalation to SYSTEM)
 
-All of these vulnerabilities affect the latest version, 2020.05, and possibly earlier versions. Both Windows and Linux installations are affected, except for the privilege escalation, which only affects Windows.
+All of these vulnerabilities affect the latest version tested (2020.05) and many other versions and products, listed individually below. Both Windows and Linux installations are affected, except for the privilege escalation vulnerability, which only affects Windows.
 
-It is out of scope of this advisory to explain Java deserialization, how it happens and how devastating it can be. For more information on it, the following links are highly recommended:
+It is out of scope of this advisory to explain Java deserialization, how it can be exploited and how devastating it can be. For more information on it the following links are highly recommended:
 
 [Java Unmarshaller Security](https://github.com/mbechler/marshalsec)
 
@@ -67,7 +67,7 @@ It is out of scope of this advisory to explain Java deserialization, how it happ
 * Attack Vector: Remote
 * Constraints: None / N/A
 * Affected Products / Versions:
-    * Operation Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
+    * Operations Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
     * Application Performance Management versions: 9.51, 9.50 and 9.40 with uCMDB 10.33 CUP 3 
     * Operations Bridge (containerized) versions: 2019.11, 2019.08, 2019.05, 2018.11, 2018.08, 2018.05, 2018.02, 2017.11 
 
@@ -131,7 +131,7 @@ Both Linux and Windows versions of OBM are affected by this vulnerability.
 * Attack Vector: Remote
 * Constraints: Authentication required
 * Affected Products / Versions:
-    * Operation Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
+    * Operations Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
     * Application Performance Management versions: 9.51, 9.50 and 9.40 with uCMDB 10.33 CUP 3 \
     * Data Center Automation version 2019.11 
     * Operations Bridge (containerized) versions: 2019.11, 2019.08, 2019.05, 2018.11, 2018.08, 2018.05, 2018.02, 2017.11 
@@ -335,7 +335,7 @@ Both Linux and Windows versions of OBM are affected by this vulnerability. The a
 * Attack Vector: Remote
 * Constraints: Authentication required
 * Affected Products / Versions:
-    * Operation Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
+    * Operations Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
     * Application Performance Management versions: 9.51, 9.50 and 9.40 with uCMDB 10.33 CUP 3 \
     * Data Center Automation version 2019.11 
     * Operations Bridge (containerized) versions: 2019.11, 2019.08, 2019.05, 2018.11, 2018.08, 2018.05, 2018.02, 2017.11 
@@ -491,7 +491,7 @@ Both Linux and Windows versions of OBM are affected by this vulnerability.
 * Attack Vector: Remote
 * Constraints: Authentication required
 * Affected Products / Versions:
-    * Operation Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
+    * Operations Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions
     * Application Performance Management versions: 9.51, 9.50 and 9.40 with uCMDB 10.33 CUP 3 \
     * Data Center Automation version 2019.11 
     * Operations Bridge (containerized) versions: 2019.11, 2019.08, 2019.05, 2018.11, 2018.08, 2018.05, 2018.02, 2017.11 
@@ -640,7 +640,7 @@ There are many outdated and vulnerable libraries in the product, but the followi
 * BeanShell 2.0b4
 * C3P0 0.9.1.2
 
-If these were not present in the classpath, it would be much harder to exploit **Vulnerability #2, #3 and #4**, and would probably result in a situation like the one described in **Vulnerability #5** (proof of concept without code execution).
+If these were not present in the classpath, it would be much harder to exploit **Vulnerability #2, #3 and #4**, resulting in a situation like the one described in **Vulnerability #5** (proof of concept without code execution) and requiring significant more effort to exploit.
 
 The three libraries described contain gadgets that work out-of-the-box or with minimal adjustments to the payloads in *ysoserial*, making them very easy to abuse.
 
@@ -652,7 +652,7 @@ The three libraries described contain gadgets that work out-of-the-box or with m
 * Attack Vector: Local
 * Constraints: None / N/A
 * Affected Products / Versions:
-    * Operation Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions 
+    * Operations Bridge Manager versions: 2020.05, 2019.11, 2019.05, 2018.11, 2018.05, versions 10.6x and 10.1x and older versions 
     * Operations Bridge (containerized) versions: 2019.11, 2019.08, 2019.05, 2018.11, 2018.08, 2018.05, 2018.02, 2017.11 
 
 OBM installs itself by default in C:\HPBSM. After installation, this directory is set and all of its subfolders are set "Special Permissions".

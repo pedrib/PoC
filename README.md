@@ -1,11 +1,9 @@
-Pedro's Exploit Dumping Grounds
+Pedro Ribeiro (@pedrib) Exploit Dumping Grounds
 ===
   
 This repository contains my advisories, proof of concept files and exploits that I have made public and it is located at https://github.com/pedrib/PoC.
   
-[You can check the list of all vulnerabilities and Metasploit modules I have publicly disclosed here.](https://github.com/pedrib/PoC/blob/master/pedigree.csv)
-
-[My PGP key is also in this repository.](https://raw.githubusercontent.com/pedrib/PoC/master/pedrib-gmail-pgp.asc)
+It also contains the [list of all vulnerabilities and Metasploit modules](https://github.com/pedrib/PoC/blob/master/pedigree.csv) I have publicly disclosed, as well as [my PGP key](https://raw.githubusercontent.com/pedrib/PoC/master/pedrib-gmail-pgp.asc).
 ##
 All information, code and binary data in this repository is released to the public under the GNU General Public License, version 3 (GPLv3).
 For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails. 
@@ -17,7 +15,7 @@ Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and 
 
 Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 ##
-Pedro Ribeiro (pedrib_at_gmail_dot_com)  
+Pedro Ribeiro (pedrib_at_gmail_dot_com) [@pedrib1337](https://twitter.com/pedrib1337)  
 Founder & Director of Research at [Agile Information Security](https://agileinfosec.co.uk/)
   
 Feel free to send me questions / comments / criticism.

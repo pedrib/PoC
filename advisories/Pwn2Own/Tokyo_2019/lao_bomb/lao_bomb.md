@@ -44,6 +44,14 @@ A Metasploit module was also made available to the public with this advisory, an
 This module can be seen in action below (and in the cast file in the same directory as this advisory):
 [![asciicast](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn.svg)](https://asciinema.org/a/9TvOe7NM13Zz3OVYWXbnyWCFn)
 
+## Update (November 2020)
+
+During our reseach for Pwn2Own Tokyo 2020, we found that TP-Link improperly patched the command injection, and we were able to exploit it again!
+Unfortunately for us, they patched it one day before the competition, killing our (new?) bug. This injection bypass was assigned [CVE-2020-28347](https://nvd.nist.gov/vuln/detail/CVE-2020-28347).
+
+As we had a bit more time to do deeper research, we were also able to improve the injection described here, and updated the [Metasploit module](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/misc/tplink_archer_a7_c7_lan_rce.rb) to work on older and newer versions with the same injection technique. 
+All details are available in [Pedro's GitHub](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Tokyo_2020/minesweeper.md) or [Radek's GitHub](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Tokyo2020/minesweeper.md).
+
 ~ Team Flashback
 
 # Vulnerability Details
