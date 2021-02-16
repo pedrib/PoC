@@ -205,6 +205,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-12027/8/9,Rockwell FactoryTalk SE,unauth rce as IIS user,rockwell_factorytalk_rce.rb,20/11/2020
 2020-11853/4,Micro Focus Operations Bridge Manager,harcoded user + java deser,microfocus_ucmdb_unauth_deser.rb,27/01/2021
 2020-11853,Micro Focus Operations Bridge Manager,java deser,microfocus_obm_auth_rce.rb,09/02/2021
+2020-11858,Micro Focus Operations Bridge Manager,windows privesc,microfocus_operations_privesc.rb,16/02/2021
 ,,,,
 ,,,,
 ,Note:,,,
