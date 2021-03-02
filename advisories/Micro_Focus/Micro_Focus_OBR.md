@@ -353,7 +353,7 @@ This will spawn a reverse shell running as root that will connect to 10.10.10.1:
 You can view the attack in full glory in this asciinema cast:
 [![asciicast](https://asciinema.org/a/395851.svg)](https://asciinema.org/a/395851)
 
-#### 1.2: Command Injection via *logout*
+#### 1.2: Command Injection on *logout*
 * [ZDI-21-154](https://www.zerodayinitiative.com/advisories/ZDI-21-154/)
 
 Not only we have an unauthenticated command injection as root when logging in, but we have another one on logout! 
@@ -994,7 +994,7 @@ From here on, privilege escalation from "normal" user to SYSTEM is trivial:
 4. Access the shell path on the web server (https://TARGET:8443/BI/shell.jsp)
 5. Receive the SYSTEM shell in Metasploit and enjoy!
 
-[Click here for a video that shows the full chain in action](media/privesc_win_obr.mp4).
+[Click here for a video that shows the full chain in action](media/obr_win_privesc.mp4).
 
 Note that unlike what will be described for Linux, there is no mention on the documentation that these special folder permissions are set and that they need to be changed.
 
