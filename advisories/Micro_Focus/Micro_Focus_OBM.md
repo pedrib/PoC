@@ -2,7 +2,9 @@
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
 #### Disclosure Date: 2020-10-28 | Last Updated: 2020-12-02
-  
+
+[TOC]
+
 ## Introduction
 [From the vendor's website](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2018.05/OMi/ConceptsGuide/getStarted/getStarted_concepts):  
 *OBM as the operations bridge provides a single center of control for your IT operations.

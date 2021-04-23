@@ -2,8 +2,10 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 02/03/2021 | Last Updated: 02/03/2021
-  
+#### Disclosure Date: 2021-03-02 | Last Updated: 2021-23/04/2021
+
+[TOC]
+
 ## Introduction
 [Vendor description](https://docs.microfocus.com/itom/Operations_Bridge_Reporter:10.40/Concepts/Introduction/Product_Overview):  
 *Operations Bridge Reporter (**OBR**) is a solution based on Big Data technology Vertica, and has been built to specifically address the challenges of reporting in dynamic IT environments. In addition to consolidating performance data and metrics from multiple domain-focused collectors, OBR also collects and collates specific information on the relationships between the IT elements and the business services. OBR provides sophisticated data collection and aggregation coupled with industry-leading report definition and generation capabilities.*
