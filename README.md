@@ -10,7 +10,7 @@ This repository contains information, exploits, scripts, etc, that I have made p
 
   * [metasploit](./exploits/metasploit): Metasploit modules created by myself and integrated into the [Metasploit framework](https://github.com/rapid7/metasploit-framework)
   
-    * [Pwn2Own](./exploits/metasploit/pwn2own): Pwn2Own specific metasploit modules
+    * [Pwn2Own](./exploits/metasploit/pwn2own): Metasploit modules created for / used in Pwn2Own competitions I have participated in
     
 * [fuzzing](./fuzzing): proof of concept or fuzzing testcases that have an assigned CVE identifier but weren't exploitable (or I just didn't have time to dig further and make them exploitable)
 
