@@ -1,9 +1,20 @@
 # Multiple (RCE) Vulnerabilities in Micro Focus Operations Bridge Manager
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2020-10-28 | Last Updated: 2020-12-02
+#### Disclosure Date: 2020-10-28 | Last Updated: 2021-04-23
 
-[TOC]
+* [Introduction](#introduction)
+* [Summary](#summary)
+* [Vulnerability Details](#vulnerability-details)
+    * [#1: Use of Hard-coded Credentials](#1-use-of-hard-coded-credentials)
+    * [#2: Insecure Java Deserialization in UCMDB Services](#2-insecure-java-deserialization-in-ucmdb-services)
+    * [#3: Insecure Java Deserialization in RegistrationServlet](#3-insecure-java-deserialization-in-registrationservlet)
+    * [#4: Insecure Java Deserialization in SAMDownloadServlet](#4-insecure-java-deserialization-in-samdownloadservlet)
+    * [#5: Insecure Java Deserialization in RemoteProxyServlet](#5-insecure-java-deserialization-in-remoteproxyservlet)
+    * [#6: Use of Outdated and Insecure Java Libraries](#6-use-of-outdated-and-insecure-java-libraries)
+    * [#7: Incorrect Default Folder Permissions (resulting in Privilege Escalation to SYSTEM)](#7-incorrect-default-folder-permissions-resulting-in-privilege-escalation-to-system)
+* [Fix / Solutions](#fix--solutions)
+
 
 ## Introduction
 [From the vendor's website](https://docs.microfocus.com/itom/Operations_Bridge_Manager:2018.05/OMi/ConceptsGuide/getStarted/getStarted_concepts):  
@@ -695,7 +706,7 @@ Only the Windows version of OBM is affected by this vulnerability.
 
 That's all there is folks!
 
-## Fix / Solutions:
+## Fix / Solutions
 Please refer to the CVE links in each vulnerability and upgrade to the latest version of the affected products.
 
 ## Disclaimer

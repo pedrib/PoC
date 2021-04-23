@@ -1042,7 +1042,7 @@ And it gets even worse, as further down it says:
 While having this specified in the documentation mitigates it somewhat, it is still a horribly insecure default setting. When combined with vulnerability #3 (Use of Hard-coded Credentials), an unauthenticated attacker can login via SSH with the *shrboadmin* account and then escalate its privileges to root when Tomcat restarts.
 
 
-## Fix / Solutions:
+## Fix / Solutions
 Upgrade to the latest Micro Focus Operations Bridge Reporter and not do expose it to unstrusted networks.
 Check Micro Focus' [advisory links](https://softwaresupport.softwaregrp.com/doc/KM03775947) for [more details](https://softwaresupport.softwaregrp.com/doc/KM03710590).
 
