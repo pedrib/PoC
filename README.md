@@ -14,7 +14,7 @@ This repository contains information, exploits, scripts, etc, that I have made p
     
 * [fuzzing](./fuzzing): proof of concept or fuzzing testcases that have an assigned CVE identifier but weren't exploitable (or I just didn't have time to dig further and make them exploitable)
 
-* [pedigree.csv](./pedigree.csv): a CSV file containing all my trophies, aka assigned CVE, ZDI identifiers, Metasploit modules integrated into the framework, etc (basically my vulnerability CV) 
+* [pedigree.csv](./pedigree.csv): a CSV file containing all my trophies, aka CVE and ZDI identifiers assigned to my vulnerabilities, my Metasploit modules that have been integrated into the framework, etc (basically my vulnerability CV) 
 
 * [pedrib-gmail-pgp.asc](./pedrib-gmail-pgp.asc): my current PGP key for pedrib_at_gmail_dot_com
   
