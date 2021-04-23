@@ -16,7 +16,7 @@ This repository contains information, exploits, scripts, etc, that I have made p
 
 * [pedigree.csv](./pedigree.csv): a CSV file containing all my trophies, aka assigned CVE, ZDI identifiers, Metasploit modules integrated into the framework, etc (basically my vulnerability CV) 
 
-* [pedrib-gmail-pgp.asc](./pedrib-gmail-pgp.asc): my current PGP key for pedrib_at_gmail.com
+* [pedrib-gmail-pgp.asc](./pedrib-gmail-pgp.asc): my current PGP key for pedrib_at_gmail_dot_com
   
 ##
 All information, code and binary data in this repository is released to the public under the GNU General Public License, version 3 (GPLv3).
