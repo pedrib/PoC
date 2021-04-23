@@ -2,9 +2,24 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2021-03-02 | Last Updated: 2021-23/04/2021
+#### Disclosure Date: 2021-03-02 | Last Updated: 2021-04-23
 
-[TOC]
+* [Introduction](#introduction)
+* [Summary](#summary)
+* [Vulnerability Details](#vulnerability-details)
+    * [#1: Command Injection](#1-command-injection)
+        * [1.1: Command Injection on <em>login</em>](#11-command-injection-on-login)
+        * [1.2: Command Injection on <em>logout</em>](#12-command-injection-on-logout)
+        * [1.3: Command Injection in <em>logonWithCertificate()</em>](#13-command-injection-in-logonwithcertificate)
+        * [1.4: Command Injection in <em>logonWithToken()</em>](#14-command-injection-in-logonwithtoken)
+        * [1.5: Command Injection in <em>changePassword()</em>](#15-command-injection-in-changepassword)
+    * [#2: SQL Injection](#2-sql-injection)
+    * [#3: Use of Hard-coded Credentials](#3-use-of-hard-coded-credentials)
+    * [#4: Exposed Unauthenticated JMX endpoint](#4-exposed-unauthenticated-jmx-endpoint)
+    * [#5: Incorrect Default Folder Permissions (resulting in Privilege Escalation to SYSTEM / root)](#5-incorrect-default-folder-permissions-resulting-in-privilege-escalation-to-system--root)
+        * [#5.1: Windows](#51-windows)
+        * [#5.2: Linux](#52-linux)
+* [Fix / Solutions](#fix--solutions)
 
 ## Introduction
 [Vendor description](https://docs.microfocus.com/itom/Operations_Bridge_Reporter:10.40/Concepts/Introduction/Product_Overview):  
