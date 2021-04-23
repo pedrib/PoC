@@ -1,9 +1,23 @@
 Pedro Ribeiro (@pedrib) Exploit Dumping Grounds
 ===
   
-This repository contains my advisories, proof of concept files and exploits that I have made public and it is located at https://github.com/pedrib/PoC.
+This repository contains information, exploits, scripts, etc, that I have made public and it is located at https://github.com/pedrib/PoC.
+
+* [advisories](./advisories): all my public advisories, research notes, etc
+  * [Pwn2Own](./advisories/Pwn2Own): advisories related to my Pwn2Own participations
   
-It also contains the [list of all vulnerabilities and Metasploit modules](https://github.com/pedrib/PoC/blob/master/pedigree.csv) I have publicly disclosed, as well as [my PGP key](https://raw.githubusercontent.com/pedrib/PoC/master/pedrib-gmail-pgp.asc).
+* [exploits](./exploits): all my public exploits
+
+  * [metasploit](./exploits/metasploit): Metasploit modules created by myself and integrated into the [Metasploit framework](https://github.com/rapid7/metasploit-framework)
+  
+    * [Pwn2Own](./exploits/metasploit/pwn2own): Pwn2Own specific metasploit modules
+    
+* [fuzzing](./fuzzing): proof of concept or fuzzing testcases that have an assigned CVE identifier but weren't exploitable (or I just didn't have time to dig further and make them exploitable)
+
+* [pedigree.csv](./pedigree.csv): a CSV file containing all my trophies, aka assigned CVE, ZDI identifiers, Metasploit modules integrated into the framework, etc (basically my vulnerability CV) 
+
+* [pedrib-gmail-pgp.asc](./pedrib-gmail-pgp.asc): my current PGP key for pedrib_at_gmail.com
+  
 ##
 All information, code and binary data in this repository is released to the public under the GNU General Public License, version 3 (GPLv3).
 For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails. 
