@@ -1,132 +1,132 @@
 Vulnerabilities,,,,
 CVE / ID,Application,Description,Disclosure,Advisory / PoC / exploit file
-2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,advisories/libtiff-4.0.3.txt
-2013-4232,libtiff,tiff2pdf use after free,01/08/2013,advisories/libtiff-4.0.3.txt
-2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,advisories/lcms-1.19.txt
-2013-4396,X.org,dixfonts use after free,08/10/2013,advisories/xorg-1.12.4.txt
-2013-4472,poppler,gfile insecure temporary file,26/10/2013,advisories/poppler-0.24.2.txt
-2013-4474,poppler,pdfseparate user controlled format string,26/10/2013,advisories/poppler-0.24.2.txt
-2013-6040,MW6 ActiveX controls,buffer overflow / RCE,21/01/2014,advisories/mw6/*
-2014-0334,CMS Made Simple,stored / reflected XSS,28/02/2014,advisories/cmsmadesimple-1.11.9.txt
+2013-4231,libtiff,rgb2ycbcr stack buffer overflow,01/08/2013,libtiff-4.0.3.txt
+2013-4232,libtiff,tiff2pdf use after free,01/08/2013,libtiff-4.0.3.txt
+2013-4276,Little CMS color engine,icctrans / tiffdiff stack buffer overflow,04/08/2013,lcms-1.19.txt
+2013-4396,X.org,dixfonts use after free,08/10/2013,xorg-1.12.4.txt
+2013-4472,poppler,gfile insecure temporary file,26/10/2013,poppler-0.24.2.txt
+2013-4474,poppler,pdfseparate user controlled format string,26/10/2013,poppler-0.24.2.txt
+2013-6040,MW6 ActiveX controls,buffer overflow / RCE,21/01/2014,mw6/*
+2014-0334,CMS Made Simple,stored / reflected XSS,28/02/2014,cmsmadesimple-1.11.9.txt
 2014-0526/APSB14-15,Adobe Acrobat Reader X/XI,JPEG processing memory corruption,13/05/2014,CVE-2014-0526.pdf
-2014-1201,Lorex Tech. ActiveX control,buffer overflow / RCE,09/01/2014,advisories/lorex/*
-2014-1603,GetSimple CMS,stored / reflected XSS,12/05/2014,advisories/getsimplecms-3.3.1.txt
-2014-1836,ImpressCMS,file deletion,31/01/2014,advisories/impresscms-1.3.5.txt
-2014-1860,Contao CMS,PHP object injection / RCE,02/03/2014,advisories/contao-3.2.4.txt
-2014-2027,EGroupware,PHP object injection / file deletion,19/02/2014,advisories/egroupware-1.8.005.txt
-2014-2921,Pimcore CMS,PHP object injection / RCE,14/04/2014,advisories/pimcore-2.1.0.txt
-2014-2922,Pimcore CMS,PHP object injection / file deletion,14/04/2014,advisories/pimcore-2.1.0.txt
-2014-3996,ManageEngine DC/PMP/IT360,LinkViewFetchServlet blind SQLi,19/08/2014,advisories/ManageEngine/me_dc_pmp_it360_sqli.txt
-2014-3997,ManageEngine PMP/IT360,MetadataServlet blind SQLi,19/08/2014,advisories/ManageEngine/me_dc_pmp_it360_sqli.txt
-2014-4872,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,07/10/2014,advisories/bmc-track-it-11.3.txt
-2014-4873,BMC Track-It!,blind SQL injection,07/10/2014,advisories/bmc-track-it-11.3.txt
-2014-4874,BMC Track-It!,arbitrary file download,07/10/2014,advisories/bmc-track-it-11.3.txt
-2014-5005,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,advisories/ManageEngine/me_dc9_file_upload.txt
-2014-5006,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,advisories/ManageEngine/me_dc9_file_upload.txt
-2014-5007,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,advisories/ManageEngine/me_dc9_file_upload.txt
-2014-5301,ManageEngine ServiceDesk/AssetExplorer/SupportCenter/IT360,file upload / RCE,04/01/2015,advisories/ManageEngine/me_sd_file_upload.txt
-2014-5302,ManageEngine ServiceDesk/AssetExplorer/SupportCenter/IT360,file upload / RCE,04/01/2015,advisories/ManageEngine/me_sd_file_upload.txt
-2014-5377,ManageEngine DeviceExpert,user credential disclosure,27/08/2014,advisories/ManageEngine/me_deviceexpert-5.txt
-2014-5445,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,advisories/ManageEngine/me_netflow_it360_file_dl.txt
-2014-5446,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,advisories/ManageEngine/me_netflow_it360_file_dl.txt
-2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,advisories/ManageEngine/me_opmanager_socialit_it360.txt
-2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,advisories/ManageEngine/me_opmanager_socialit_it360.txt
-2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,advisories/ManageEngine/me_opmanager_socialit_it360.txt
-2014-6038,ManageEngine EventLog Analyzer,database table info disc,05/11/2014,advisories/ManageEngine/me_eventlog_info_disc.txt
-2014-6039,ManageEngine EventLog Analyzer,device superuser cred disc,05/11/2014,advisories/ManageEngine/me_eventlog_info_disc.txt
-2014-7862,ManageEngine DesktopCentral,admin account creation,31/12/2014,advisories/ManageEngine/me_dc9_admin.txt
-2014-7863,ManageEngine OpManager/AppManager/IT360,dir listing / file download,28/01/2015,advisories/ManageEngine/me_failservlet.txt
-2014-7864,ManageEngine OpManager/IT360,blind SQL injection,28/01/2015,advisories/ManageEngine/me_failservlet.txt
-2014-7866,ManageEngine OpManager/Social IT/IT360,file upload / RCE,09/11/2014,advisories/ManageEngine/me_opmanager_socialit_it360.txt
-2014-7868,ManageEngine OpManager/Social IT/IT360,blind SQL injection,09/11/2014,advisories/ManageEngine/me_opmanager_socialit_it360.txt
-2014-8146,International Components for Unicode,heap overflow,04/05/2015,advisories/i-c-u-fail.txt
-2014-8147,International Components for Unicode,integer overflow,04/05/2015,advisories/i-c-u-fail.txt
+2014-1201,Lorex Tech. ActiveX control,buffer overflow / RCE,09/01/2014,lorex/*
+2014-1603,GetSimple CMS,stored / reflected XSS,12/05/2014,getsimplecms-3.3.1.txt
+2014-1836,ImpressCMS,file deletion,31/01/2014,impresscms-1.3.5.txt
+2014-1860,Contao CMS,PHP object injection / RCE,02/03/2014,contao-3.2.4.txt
+2014-2027,EGroupware,PHP object injection / file deletion,19/02/2014,egroupware-1.8.005.txt
+2014-2921,Pimcore CMS,PHP object injection / RCE,14/04/2014,pimcore-2.1.0.txt
+2014-2922,Pimcore CMS,PHP object injection / file deletion,14/04/2014,pimcore-2.1.0.txt
+2014-3996,ManageEngine DC/PMP/IT360,LinkViewFetchServlet blind SQLi,19/08/2014,ManageEngine/me_dc_pmp_it360_sqli.txt
+2014-3997,ManageEngine PMP/IT360,MetadataServlet blind SQLi,19/08/2014,ManageEngine/me_dc_pmp_it360_sqli.txt
+2014-4872,BMC Track-It!,unauth .NET remoting / RCE / SQL and Domain cred leakage,07/10/2014,bmc-track-it-11.3.txt
+2014-4873,BMC Track-It!,blind SQL injection,07/10/2014,bmc-track-it-11.3.txt
+2014-4874,BMC Track-It!,arbitrary file download,07/10/2014,bmc-track-it-11.3.txt
+2014-5005,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt
+2014-5006,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt
+2014-5007,ManageEngine DesktopCentral,file upload / RCE,31/08/2014,ManageEngine/me_dc9_file_upload.txt
+2014-5301,ManageEngine ServiceDesk/AssetExplorer/SupportCenter/IT360,file upload / RCE,04/01/2015,ManageEngine/me_sd_file_upload.txt
+2014-5302,ManageEngine ServiceDesk/AssetExplorer/SupportCenter/IT360,file upload / RCE,04/01/2015,ManageEngine/me_sd_file_upload.txt
+2014-5377,ManageEngine DeviceExpert,user credential disclosure,27/08/2014,ManageEngine/me_deviceexpert-5.txt
+2014-5445,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,ManageEngine/me_netflow_it360_file_dl.txt
+2014-5446,ManageEngine NetFlow Analyzer,arbitrary file download,30/11/2014,ManageEngine/me_netflow_it360_file_dl.txt
+2014-6034,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-6035,ManageEngine OpManager/Social IT/IT360,file upload / RCE,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-6036,ManageEngine OpManager/Social IT/IT360,file deletion,27/09/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-6038,ManageEngine EventLog Analyzer,database table info disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
+2014-6039,ManageEngine EventLog Analyzer,device superuser cred disc,05/11/2014,ManageEngine/me_eventlog_info_disc.txt
+2014-7862,ManageEngine DesktopCentral,admin account creation,31/12/2014,ManageEngine/me_dc9_admin.txt
+2014-7863,ManageEngine OpManager/AppManager/IT360,dir listing / file download,28/01/2015,ManageEngine/me_failservlet.txt
+2014-7864,ManageEngine OpManager/IT360,blind SQL injection,28/01/2015,ManageEngine/me_failservlet.txt
+2014-7866,ManageEngine OpManager/Social IT/IT360,file upload / RCE,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-7868,ManageEngine OpManager/Social IT/IT360,blind SQL injection,09/11/2014,ManageEngine/me_opmanager_socialit_it360.txt
+2014-8146,International Components for Unicode,heap overflow,04/05/2015,i-c-u-fail.txt
+2014-8147,International Components for Unicode,integer overflow,04/05/2015,i-c-u-fail.txt
 2014-8449/APSB14-28,Adobe Acrobat Reader X/XI,Integer overflow,09/12/2014,CVE-2014-8449.pdf
-2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,advisories/ManageEngine/me_pmp_privesc.txt
-2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,advisories/ManageEngine/me_pmp_privesc.txt
-2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,advisories/zenworks_zcm_rce.txt
-2015-2862,Kaseya Virtual System Administrator,file download,13/07/2015,advisories/kaseya-vsa-vuln.txt
-2015-2863,Kaseya Virtual System Administrator,open redirect,13/07/2015,advisories/kaseya-vsa-vuln.txt
-2015-2993,SysAid Help Desk,admin account creation / file overwrite,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2994,SysAid Help Desk,file upload / RCE,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2995,SysAid Help Desk,file upload / RCE,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2996,SysAid Help Desk,file download / denial of service,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2997,SysAid Help Desk,path disclosure,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2998,SysAid Help Desk,hard coded crypto key,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-2999,SysAid Help Desk,blind SQL injection,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-3000,SysAid Help Desk,XML entity expansion,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-2015-3001,SysAid Help Desk,hard coded SQL server password,03/06/2015,advisories/sysaid-14.4-multiple-vulns.txt
-ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,advisories/ManageEngine/me_sd_file_upload_2.txt
-2015-6589,Kaseya Virtual System Administrator,auth file upload / RCE,23/09/2015,advisories/kaseya-vsa-vuln-2.txt
-2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,23/09/2015,advisories/kaseya-vsa-vuln-2.txt
-2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,23/09/2015,advisories/kaseya-vsa-vuln-2.txt
+2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
+2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
+2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,zenworks_zcm_rce.txt
+2015-2862,Kaseya Virtual System Administrator,file download,13/07/2015,kaseya-vsa-vuln.txt
+2015-2863,Kaseya Virtual System Administrator,open redirect,13/07/2015,kaseya-vsa-vuln.txt
+2015-2993,SysAid Help Desk,admin account creation / file overwrite,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2994,SysAid Help Desk,file upload / RCE,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2995,SysAid Help Desk,file upload / RCE,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2996,SysAid Help Desk,file download / denial of service,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2997,SysAid Help Desk,path disclosure,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2998,SysAid Help Desk,hard coded crypto key,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-2999,SysAid Help Desk,blind SQL injection,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-3000,SysAid Help Desk,XML entity expansion,03/06/2015,sysaid-14.4-multiple-vulns.txt
+2015-3001,SysAid Help Desk,hard coded SQL server password,03/06/2015,sysaid-14.4-multiple-vulns.txt
+ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngine/me_sd_file_upload_2.txt
+2015-6589,Kaseya Virtual System Administrator,auth file upload / RCE,23/09/2015,kaseya-vsa-vuln-2.txt
+2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,23/09/2015,kaseya-vsa-vuln-2.txt
+2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,23/09/2015,kaseya-vsa-vuln-2.txt
 2015-7091,Apple QuickTime,buffer overflow,08/01/2016,N/A - pocs too large
-2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,03/02/2015,advisories/netgear_nms_rce.txt
-2016-1525,NETGEAR ProSafe NMS300,file download,03/02/2015,advisories/netgear_nms_rce.txt
-2016-1593,Novell ServiceDesk,file upload / RCE,30/03/2016,advisories/novell-service-desk-7.1.0.txt
-2016-1594,Novell ServiceDesk,info disclosure,30/03/2016,advisories/novell-service-desk-7.1.0.txt
-2016-1595,Novell ServiceDesk,HQL injection,30/03/2016,advisories/novell-service-desk-7.1.0.txt
-2016-1596,Novell ServiceDesk,stored / reflected XSS,30/03/2016,advisories/novell-service-desk-7.1.0.txt
-2016-6598,BMC Track-It!,unauth file upload / RCE,04/07/2016,advisories/bmc-track-it-11.4.txt
-2016-6599,BMC Track-It!,unauth SQL and Domain cred leakage,04/07/2016,advisories/bmc-track-it-11.4.txt
-2016-6600,WebNMS Framework Server,file upload / RCE,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-2016-6601,WebNMS Framework Server,file download,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,advisories/webnms-5.2-sp1-pwn.txt
-2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5677,NUUO NVRmini / NETGEAR Surveillance,information disclosure,04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,advisories/nuuo-nvr-vulns.txt
-2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,advisories/dlink-hnap-login.txt
-2016-9722,IBM QRadar SIEM,privilege escalation,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
-2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,advisories/netgear-wnr2000.txt
-2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,advisories/netgear-wnr2000.txt
-2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,advisories/netgear-wnr2000.txt
-2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,advisories/draytek-vigor-acs.txt
-2017-18368,ZyXEL P660HN-T1A v1,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18369,Billion 5200W-T,unauth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18370,ZyXEL P660HN-T1A v2,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18371,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18372,Billion 5200W-T,auth command injection,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18373,Billion 5200W-T,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-2017-18374,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,advisories/zyxel_trueonline.txt
-2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
-2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,advisories/ibm-qradar-siem-forensics.txt
-2018-5999,AsusWRT,httpd auth bypass,22/01/2018,advisories/asuswrt-lan-rce.txt
-2018-6000,AsusWRT,unauth config value setting,22/01/2018,advisories/asuswrt-lan-rce.txt
-2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,advisories/cisco-prime-infrastructure.txt
-2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,advisories/cisco-prime-infrastructure.txt
-2018-17888,NUUO Central Management System,insecure session tokens,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-17890,NUUO Central Management System,insecure outdated SQL Server 2005,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-17892,NUUO Central Management System,insecure default configuration,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-17894,NUUO Central Management System,insecure default password,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-17934,NUUO Central Management System,auth dir traversal / arb file download,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-17936,NUUO Central Management System,auth dir traversal / rce,11/10/2018,advisories/nuuo-cms-ownage.txt
-2018-18982,NUUO Central Management System,sql injection,11/10/2018,advisories/nuuo-cms-ownage.txt
-2019-1619,Cisco Data Center Network Manager,auth bypass,26/06/2019,advisories/cisco-dcnm-rce.txt
-2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,advisories/cisco-dcnm-rce.txt
-2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,advisories/cisco-dcnm-rce.txt
-2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,advisories/cisco-dcnm-rce.txt
-2019-1935,Cisco UCS Director,default ssh password,21/08/2019,advisories/cisco-ucs-rce.txt
-2019-1936,Cisco UCS Director,command injection,21/08/2019,advisories/cisco-ucs-rce.txt
-2019-1937,Cisco UCS Director,auth bypass,21/08/2019,advisories/cisco-ucs-rce.txt
-2019-4716,IBM Planning Analytics / TM1,configuration overwrite / rce,19/12/2019,advisories/IBM/ibm_tm1_rce.md
-2020-4427,IBM Data Risk Manager,authentication bypass,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
-2020-4428,IBM Data Risk Manager,command injection,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
-2020-4429,IBM Data Risk Manager,insecure default password,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
-2020-4430,IBM Data Risk Manager,arbitrary file download,21/04/2020,advisories/IBM/ibm_drm/ibm_drm_rce.md
-2020-10644/ZDI-20-686,Inductive Automation Ignition,java deserialization,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/rce_me_v2.md
+2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,03/02/2015,netgear_nms_rce.txt
+2016-1525,NETGEAR ProSafe NMS300,file download,03/02/2015,netgear_nms_rce.txt
+2016-1593,Novell ServiceDesk,file upload / RCE,30/03/2016,novell-service-desk-7.1.0.txt
+2016-1594,Novell ServiceDesk,info disclosure,30/03/2016,novell-service-desk-7.1.0.txt
+2016-1595,Novell ServiceDesk,HQL injection,30/03/2016,novell-service-desk-7.1.0.txt
+2016-1596,Novell ServiceDesk,stored / reflected XSS,30/03/2016,novell-service-desk-7.1.0.txt
+2016-6598,BMC Track-It!,unauth file upload / RCE,04/07/2016,bmc-track-it-11.4.txt
+2016-6599,BMC Track-It!,unauth SQL and Domain cred leakage,04/07/2016,bmc-track-it-11.4.txt
+2016-6600,WebNMS Framework Server,file upload / RCE,04/07/2016,webnms-5.2-sp1-pwn.txt
+2016-6601,WebNMS Framework Server,file download,04/07/2016,webnms-5.2-sp1-pwn.txt
+2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,webnms-5.2-sp1-pwn.txt
+2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,webnms-5.2-sp1-pwn.txt
+2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,nuuo-nvr-vulns.txt
+2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,nuuo-nvr-vulns.txt
+2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,nuuo-nvr-vulns.txt
+2016-5677,NUUO NVRmini / NETGEAR Surveillance,information disclosure,04/08/2016,nuuo-nvr-vulns.txt
+2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,nuuo-nvr-vulns.txt
+2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,nuuo-nvr-vulns.txt
+2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,nuuo-nvr-vulns.txt
+2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,dlink-hnap-login.txt
+2016-9722,IBM QRadar SIEM,privilege escalation,28/05/2018,ibm-qradar-siem-forensics.txt
+2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,netgear-wnr2000.txt
+2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,netgear-wnr2000.txt
+2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,netgear-wnr2000.txt
+2017-5641,DrayTek Vigor ACS 2,adobe flex amf java deserialisation unauth rce,18/04/2018,draytek-vigor-acs.txt
+2017-18368,ZyXEL P660HN-T1A v1,unauth command injection,18/01/2017,zyxel_trueonline.txt
+2017-18369,Billion 5200W-T,unauth command injection,18/01/2017,zyxel_trueonline.txt
+2017-18370,ZyXEL P660HN-T1A v2,auth command injection,18/01/2017,zyxel_trueonline.txt
+2017-18371,ZyXEL P660HN-T1A v2,default admin credentials,18/01/2017,zyxel_trueonline.txt
+2017-18372,Billion 5200W-T,auth command injection,18/01/2017,zyxel_trueonline.txt
+2017-18373,Billion 5200W-T,default admin credentials,18/01/2017,zyxel_trueonline.txt
+2017-18374,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,zyxel_trueonline.txt
+2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,ibm-qradar-siem-forensics.txt
+2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,ibm-qradar-siem-forensics.txt
+2018-5999,AsusWRT,httpd auth bypass,22/01/2018,asuswrt-lan-rce.txt
+2018-6000,AsusWRT,unauth config value setting,22/01/2018,asuswrt-lan-rce.txt
+2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,cisco-prime-infrastructure.txt
+2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,cisco-prime-infrastructure.txt
+2018-17888,NUUO Central Management System,insecure session tokens,11/10/2018,nuuo-cms-ownage.txt
+2018-17890,NUUO Central Management System,insecure outdated SQL Server 2005,11/10/2018,nuuo-cms-ownage.txt
+2018-17892,NUUO Central Management System,insecure default configuration,11/10/2018,nuuo-cms-ownage.txt
+2018-17894,NUUO Central Management System,insecure default password,11/10/2018,nuuo-cms-ownage.txt
+2018-17934,NUUO Central Management System,auth dir traversal / arb file download,11/10/2018,nuuo-cms-ownage.txt
+2018-17936,NUUO Central Management System,auth dir traversal / rce,11/10/2018,nuuo-cms-ownage.txt
+2018-18982,NUUO Central Management System,sql injection,11/10/2018,nuuo-cms-ownage.txt
+2019-1619,Cisco Data Center Network Manager,auth bypass,26/06/2019,cisco-dcnm-rce.txt
+2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,cisco-dcnm-rce.txt
+2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,cisco-dcnm-rce.txt
+2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,cisco-dcnm-rce.txt
+2019-1935,Cisco UCS Director,default ssh password,21/08/2019,cisco-ucs-rce.txt
+2019-1936,Cisco UCS Director,command injection,21/08/2019,cisco-ucs-rce.txt
+2019-1937,Cisco UCS Director,auth bypass,21/08/2019,cisco-ucs-rce.txt
+2019-4716,IBM Planning Analytics / TM1,configuration overwrite / rce,19/12/2019,IBM/ibm_tm1_rce.md
+2020-4427,IBM Data Risk Manager,authentication bypass,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
+2020-4428,IBM Data Risk Manager,command injection,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
+2020-4429,IBM Data Risk Manager,insecure default password,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
+2020-4430,IBM Data Risk Manager,arbitrary file download,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
+2020-10644/ZDI-20-686,Inductive Automation Ignition,java deserialization,Pwn2Own Miami 2020,Pwn2Own/Miami2020/rce_me_v2.md
 2020-10881/ZDI-20-333,TP-Link Archer A7/C7,DNS stack overflow,Pwn2Own Tokyo 2019,connor
-2020-10882/ZDI-20-334,TP-Link Archer A7/C7,command injection,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
-2020-10883/ZDI-20-335,TP-Link Archer A7/C7,insecure filesystem,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
-2020-10884/ZDI-20-336,TP-Link Archer A7/C7,hardcoded crypto key,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
+2020-10882/ZDI-20-334,TP-Link Archer A7/C7,command injection,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
+2020-10883/ZDI-20-335,TP-Link Archer A7/C7,insecure filesystem,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
+2020-10884/ZDI-20-336,TP-Link Archer A7/C7,hardcoded crypto key,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/lao_bomb/lao_bomb.md
 2020-10885/ZDI-20-337,TP-Link Archer A7/C7,DNS validation error,Pwn2Own Tokyo 2019,connor
-2020-12004/ZDI-20-685,Inductive Automation Ignition,missing authentication,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/rce_me_v2.md
-2020-10923/ZDI-20-703,Netgear R6700,auth bypass,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
-2020-10924/ZDI-20-704,Netgear R6700,stack buffer overflow,Pwn2Own Tokyo 2019,advisories/Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
+2020-12004/ZDI-20-685,Inductive Automation Ignition,missing authentication,Pwn2Own Miami 2020,Pwn2Own/Miami2020/rce_me_v2.md
+2020-10923/ZDI-20-703,Netgear R6700,auth bypass,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
+2020-10924/ZDI-20-704,Netgear R6700,stack buffer overflow,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
 ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
 ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
 ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
@@ -137,10 +137,10 @@ CVE-2020-11856/ZDI-20-1216,Micro Focus Operations Bridge Reporter,JMX missing au
 CVE-2020-11857/ZDI-20-1215,Micro Focus Operations Bridge Reporter,shrboadmin hardcoded pass (rce),23/09/2020,Micro_Focus/Micro_Focus_OBR.md
 CVE-2020-11858/ZDI-20-1326,Micro Focus Operations Bridge Manager,windows privesc,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
 CVE-2020-12009/ZDI-20-777,Iconics Genesis64,dir traversal / rce,Pwn2Own Miami 2020,apocalypse32
-CVE-2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure (project list),Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
-ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
-CVE-2020-12028/ZDI-20-729,Rockwell FactoryTalk SE,missing auth for critical function,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
-CVE-2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Miami 2020,advisories/Pwn2Own/Miami2020/replicant_public_v3.md
+CVE-2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure (project list),Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+CVE-2020-12028/ZDI-20-729,Rockwell FactoryTalk SE,missing auth for critical function,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+CVE-2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
 CVE-2020-15635/ZDI-20-936,NETGEAR R6700,pre auth b0f,04/08/2020,TODO
 CVE-2020-15636/ZDI-20-937,multiple NETGEAR routers,stack b0f,04/08/2020,TODO
 CVE-2021-22502/ZDI-21-153/4,Micro Focus Operations Bridge Reporter,unauth cmd injection,09/02/2021,Micro_Focus/Micro_Focus_OBR.md
