@@ -144,6 +144,7 @@ CVE-2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Mi
 CVE-2020-15635/ZDI-20-936,NETGEAR R6700,pre auth b0f,04/08/2020,TODO
 CVE-2020-15636/ZDI-20-937,multiple NETGEAR routers,stack b0f,04/08/2020,TODO
 CVE-2021-22502/ZDI-21-153/4,Micro Focus Operations Bridge Reporter,unauth cmd injection,09/02/2021,Micro_Focus/Micro_Focus_OBR.md
+CVE-2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
 ,,,,
 ,,,,
 Metasploit modules,,,,
