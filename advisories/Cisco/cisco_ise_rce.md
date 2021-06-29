@@ -123,6 +123,7 @@ This vulnerability can only be exploited by an authenticated attacker with acces
 
 
 ### #3: Privilege Escalation via Incorrect sudo and File Permissions
+* [CWE-268: Privilege Chaining](https://cwe.mitre.org/data/definitions/268.html)
 * No CVE assigned; track as SSD-3778
 * Risk Classification: High
 * Attack Vector: Local
@@ -212,7 +213,7 @@ xhr.send(b64toBlob(b64_payload, 'application/x-amf'));
 </script>
 ```
 
-AMF Java code:
+AMF Java code ([provided here](https://github.com/pedrib/PoC/tree/master/exploits/ISEpwn/ACSFlex) as a Maven project):
 ```java
 import flex.messaging.io.amf.MessageBody;
 import flex.messaging.io.amf.ActionMessage;
