@@ -22,7 +22,7 @@
 ## Summary
 ISE is distributed by Cisco as a virtual appliance. We have analysed version 2.4.0.357 and found three vulnerabilities: an unauthenticated stored cross site scripting, a authenticated Java deserialization vulnerability leading to remote code execution as an unprivileged user, and a privilege escalation from that unprivileged user to root.
 
-By putting them all together, we can achieve remote code execution as root, provided we can trap an administrator into visiting the ISE page vulnerable to the stored cross site scripting. A Ruby exploit that implements this full exploit chain (described in more detail at 'Exploitation summary', at the end of this file) is [publicly available](TODO EXPLOIT LINK) in the [same repository](https://github.com/pedrib/PoC) as this advisory.
+By putting them all together, we can achieve remote code execution as root, provided we can trap an administrator into visiting the ISE page vulnerable to the stored cross site scripting. A Ruby exploit that implements this full exploit chain (described in more detail at 'Exploitation summary', at the end of this file) is [publicly available](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) in the [same repository](https://github.com/pedrib/PoC) as this advisory.
 
 You can also see a [video of the exploit in action](TODO_VIDEO_LINK) on YouTube and in the [same repository](https://github.com/pedrib/PoC) where you find this advisory.
 
@@ -122,7 +122,7 @@ It is highly recommended to read [the advisory by Markus Wulftange](http://codew
 This vulnerability can only be exploited by an authenticated attacker with access to the administrative portal.
 
 
-### #3: Privilege Escalation via Incorrect sudo File Permissions
+### #3: Privilege Escalation via Incorrect sudo and File Permissions
 * No CVE assigned; track as SSD-3778
 * Risk Classification: High
 * Attack Vector: Local
@@ -183,7 +183,7 @@ python -c 'import os;f=open("/opt/CSCOcpm/bin/file-info.sh", "a+", 0);f.write("i
 
 This will add an "if" clause at the end of */opt/CSCOcpm/bin/file-info.sh* that looks for the "1337" parameter, and executes /bin/bash as root when it sees it. That way we won't mess with any important system functionality that might use that file, and we will get our full root shell.
 
-The full exploit, written in Ruby, [is available here](TODO_EXPLOIT_LINK).
+The full exploit, written in Ruby, [is available here](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb).
 
 Javascript payload:
 ```javascript
