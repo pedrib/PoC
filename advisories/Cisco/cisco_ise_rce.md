@@ -28,7 +28,7 @@ A Ruby exploit that implements this full exploit chain (described in more detail
 
 You can also see a [video of the exploit in action](https://www.youtube.com/watch?v=NZmZid-1_jU) on YouTube.
 
-[![ISEpwn video](https://img.youtube.com/vi/NZmZid-1_jU0.jpg)](https://www.youtube.com/watch?v=NZmZid-1_jU)
+[![ISEpwn video](https://img.youtube.com/vi/NZmZid-1_jU/0.jpg)](https://www.youtube.com/watch?v=NZmZid-1_jU)
 
 All the vulnerabilities in this advisory were found independently by Agile Information Security. However, vulnerability #2 (Unsafe Flex AMF Java Object Deserialization) was also [found and reported to Cisco](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvj62599) by Olivier Arteau of Groupe Technologie Desjardins and vulnerability #3 (Privilege Escalation via Incorrect sudo File Permissions) was also [found and reported to Cisco](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve49987) by Hector Cuesta.
 
