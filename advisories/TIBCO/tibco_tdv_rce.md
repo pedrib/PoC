@@ -24,7 +24,7 @@ TDV exposes an unauthenticated Action Message Format (AMF) API endpoint that is 
 
 This vulnerability chain affects all versions of TDV up to 8.3 and below, and it is exploitable on Linux and Windows hosts. A [Ruby exploit](https://github.com/pedrib/PoC/blob/master/exploits/tdvPwn.rb) which abuses this vulnerability chain was released with [this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.md).
 
-I attempted to disclose these vulnerabilities responsibly to TIBCO, but they refused to acknowledge the vulnerability report. More details are in the [Disclosure Process](#disclosure-process) section.
+I attempted to disclose these vulnerabilities responsibly to TIBCO, but they refused to acknowledge my vulnerability report. More details are in the [Disclosure Process](#disclosure-process) section.
 
 A video of the exploit in action [can be seen here](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.mkv).
 
@@ -103,7 +103,7 @@ A look at their [vulnerability disclosure policy](https://www.tibco.com/security
 
 If their policy starts with *"we take security very seriously"*, then it's going to be downhill from here and it is clear what they really mean (hint: they **DON'T** take security seriously). 
 
-Still, it doesn't say anywhere that they don't confirm security issues to whoever reported them? I responded with a polite email saying that I can wait for confirmation, but please come back to me on whether you will give me credit, issue an advisory, etc. Their response was:
+Still, it doesn't say anywhere that they don't confirm security issues to whoever reported them? I responded with a polite email saying that I can wait for confirmation, but please come back to me on whether you will issue an advisory, inform your customers and if they can mention my name as the vulnerability discoverer. Their response was:
 
 > Unfortunately, I am unable to answer any of your questions due to TIBCO’s security policy https://www.tibco.com/security/vulnerability-disclosure-policy
 > I will update you as soon as I can. 
