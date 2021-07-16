@@ -18,13 +18,13 @@
 
 
 ## Summary
-TIBCO Data Virtualization (TDV) is a product for data processing and analytics which can be installed onto Linux and Windows hosts. Interaction with the software is done over a Web interface on port 9400.
+[TIBCO](https://www.tibco.com) Data Virtualization (TDV) is a product for data processing and analytics which can be installed onto Linux and Windows hosts. Interaction with the software is done over a Web interface on port 9400.
 
 TDV exposes an unauthenticated Action Message Format (AMF) API endpoint that is vulnerable to insecure Java deserialization. By abusing this deserialization and combining it with an outdated Java library that contains a gadget chain, it is possible to achieve remote code execution as root on Linux or SYSTEM on Windows.
 
 This vulnerability chain affects all versions of TDV up to 8.3 and below, and it is exploitable on Linux and Windows hosts. A [Ruby exploit](https://github.com/pedrib/PoC/blob/master/exploits/tdvPwn.rb) which abuses this vulnerability chain was released with [this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.md).
 
-I attempted to disclose these vulnerabilities responsibly to TIBCO, but TIBCO refused to acknowledge the vulnerability report. More details are in the [Disclosure Process](#disclosure-process) section.
+I attempted to disclose these vulnerabilities responsibly to TIBCO, but they refused to acknowledge the vulnerability report. More details are in the [Disclosure Process](#disclosure-process) section.
 
 A video of the exploit in action [can be seen here](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.mkv).
 
@@ -97,11 +97,11 @@ The reply came one day later and it read:
   
 Mind boggling. They refuse to acknowledge vulnerabilities to the researcher who reported them? Does this make any sense? And they have the gall of calling it "Fair Disclosure"!
 
-A look at their [disclosure page](https://www.tibco.com/security/vulnerability-disclosure-policy) shows:
+A look at their [vulnerability disclosure policy](https://www.tibco.com/security/vulnerability-disclosure-policy) shows:
 
 > TIBCO takes security very seriously. TIBCO’s policies are designed to treat the users of our software equally with respect to vulnerability disclosure and remediation.
 
-If their security policy starts with *"we take security very seriously"*, then it's going to be downhill from here and it is clear what they really mean (hint: they DON'T take security seriously). 
+If their policy starts with *"we take security very seriously"*, then it's going to be downhill from here and it is clear what they really mean (hint: they **DON'T** take security seriously). 
 
 Still, it doesn't say anywhere that they don't confirm security issues to whoever reported them? I responded with a polite email saying that I can wait for confirmation, but please come back to me on whether you will give me credit, issue an advisory, etc. Their response was:
 
@@ -120,7 +120,7 @@ So they don't acknowledge my report, they don't confirm if their product is vuln
 
 My final email was a very angry rant telling them what I think of their disclosure policy and that I am going to release this advisory and exploit without their consent.
 
-I will refrain from commenting further, as it is clear to anyone who reads this that their disclosure process is not fit for purpose. I hope they change it after this debacle, although I am not holding my breath.
+I will refrain from commenting further, as it is clear to anyone who reads this that their vulnerability disclosure process is not fit for purpose. I hope they change it after this debacle, although I am not holding my breath.
 
 ## Fixes / Solutions:
 Upgrade TIBCO Data Virtualization to the latest 8.4 version, released on 2021-05-04, which removes the AMF endpoint, rendering this vulnerability chain unexploitable.
