@@ -22,7 +22,7 @@ TIBCO Data Virtualization (TDV) is a product for data processing and analytics w
 
 TDV exposes an unauthenticated Action Message Format (AMF) API endpoint that is vulnerable to insecure Java deserialization. By abusing this deserialization and combining it with an outdated Java library that contains a gadget chain, it is possible to achieve remote code execution as root on Linux or SYSTEM on Windows.
 
-This vulnerability chain affects all versions of TDV up to 8.3 and below, and it is exploitable on Linux and Windows hosts. A [Ruby exploit](https://github.com/pedrib/PoC/blob/master/exploits/tdvPwn.rb) which abuses this vulnerability chain was released with [this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv.md).
+This vulnerability chain affects all versions of TDV up to 8.3 and below, and it is exploitable on Linux and Windows hosts. A [Ruby exploit](https://github.com/pedrib/PoC/blob/master/exploits/tdvPwn.rb) which abuses this vulnerability chain was released with [this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.md).
 
 I attempted to disclose these vulnerabilities responsibly to TIBCO, but TIBCO refused to acknowledge the vulnerability report. More details are in the [Disclosure Process](#disclosure-process) section.
 
@@ -47,7 +47,7 @@ Which indicates that the server has a Apache / Adobe Flex AMF (BlazeDS) endpoint
 
 > "Previous versions of Apache Flex BlazeDS (4.7.2 and earlier) did not restrict which types were allowed for AMF(X) object deserialization by default. During the deserialization process code is executed that for several known types has undesired side-effects. Other, unknown types may also exhibit such behaviors. One vector in the Java standard library exists that allows an attacker to trigger possibly further exploitable Java deserialization of untrusted data. Other known vectors in third party libraries can be used to trigger remote code execution."
 
-This vulnerability was previously exploited by myself in [DrayTek VigorACS](https://raw.githubusercontent.com/pedrib/PoC/master/advisories/draytek-vigor-acs.txt) and [Cisco ISE](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb).
+I previously exploited this vulnerability in [DrayTek VigorACS](https://raw.githubusercontent.com/pedrib/PoC/master/advisories/draytek-vigor-acs.txt) and [Cisco ISE](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb).
 
 Given the complexity of AMF and the Java deserialization chain involved, it is out of scope of this advisory to go into details. The only takeaway necessary is that under the right conditions, as it will be explained in [Exploit Chain](#exploit-chain), it is possible to achieve remote code execution. 
 
@@ -68,7 +68,7 @@ There is a payload for this library in the famous [*ysoserial*](https://github.c
 
 
 ## Exploit Chain
-The exploit chain seems simple at first glance. As it was previously exploited in [DrayTek VigorACS](https://raw.githubusercontent.com/pedrib/PoC/master/advisories/draytek-vigor-acs.txt) and [Cisco ISE](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) by myself, the "normal" exploitation process abuses the *ysoserial* [JRMP payload](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/exploit/JRMPListener.java) to return a malicious object to the caller. 
+The exploit chain seems simple at first glance. As I have previously shown in my [DrayTek VigorACS](https://raw.githubusercontent.com/pedrib/PoC/master/advisories/draytek-vigor-acs.txt) and [Cisco ISE](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) exploits, the "normal" exploitation process abuses the *ysoserial* [JRMP payload](https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/exploit/JRMPListener.java) to return a malicious object to the caller. 
 This technique works on TDV versions 8.2 and below, but not on 8.3. This is due to 8.3 using a newer Java version that has [JEP-290](https://openjdk.java.net/jeps/290) to filter certain known bad classes and protect against malicious [remote method invocations](https://dzone.com/articles/a-first-look-into-javas-new-serialization-filterin) (RMI).
 
 While there are multiple [write-ups](
@@ -86,7 +86,7 @@ The [exploit released with this advisory](https://github.com/pedrib/PoC/blob/mas
 4. Then wraps everything again in an AMF Message object and sends it off to the remote server
 
 ... which results in remote code execution as root on Linux and SYSTEM on Windows!
-Please refer to the [video released with this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv.mkv) to see it in action.
+Please refer to the [video released with this advisory](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.mkv) to see it in action.
 
 
 ## Disclosure Process:
