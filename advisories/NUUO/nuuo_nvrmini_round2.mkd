@@ -6,8 +6,8 @@
     * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-handle_import_user.php)
     * [#2: BusyBox `tar` Directory Traversal](#2-busybox-tar-directory-traversal)
 * [Exploit Chain](#exploit-chain)
-    * [Escalating Privileges to root](#escalating-privileges-to-root)
-    * [Packaged Exploit](#packaged-exploit)
+    * [Metasploit Module](#metasploit-module)
+    * [Notes on Older Versions](#notes-on-older-versions)
 
 
 ## Summary
