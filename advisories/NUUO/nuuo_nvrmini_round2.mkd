@@ -11,15 +11,20 @@
 
 
 ## Summary
-NUUO's [NVRmini2](https://nuuo.com/ProductNode.php?node=2#) is a Network Video Recorder (NVR) produced by [NUUO Inc.](https://nuuo.com). 
+NUUO's [NVRmini2](https://nuuo.com/ProductNode.php?node=2#) is a Network Video Recorder (NVR) produced by [NUUO Inc.](https://nuuo.com)
 As with most NVR, it has terrible security and has been hacked multiple times, the [very first one by me](https://seclists.org/fulldisclosure/2016/Aug/36) back in 2016 with [command injections and a stack overflow](https://github.com/pedrib/PoC/blob/master/advisories/NUUO/nuuo-nvr-vulns.txt).
+
 Six years later, it's time to pwn it again, by abusing an insecure user update mechanism and a very old path traversal vulnerability to execute code as root!
+
 This vulnerability has been reported to NUUO *multiple times* and despite their attempted fixes, it's still an `0day` at the time of writing, so have fun!
+
 A Metasploit module that abuses this chain of vulnerabilities has been released, and it is [available here](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) and [here](TODO_LINK_MSF).
 
 ### Disclosure Process
 This chain of vulnerabilities was first discovered during my [original 2016 audit](https://github.com/pedrib/PoC/blob/master/advisories/NUUO/nuuo-nvr-vulns.txt), but I actually forgot about them (honestly, I did forget... rare but happens). I re-discovered them by reading my notes in mid 2019 and they were disclosed to NUUO. 
+
 A new firmware version was released in March 2020 (version 03.11.0000.0005) and the bugs were not fixed, so they were reported AGAIN in April 2020. Since then, firmware [version 03.11.0000.0016](https://nuuo.com/DownloadDetail.php?id=0118) was released and the bugs are STILL not fixed. 
+
 I guess it's time to disclose them, even if there's no patch?
 
 ## Vulnerability Details
@@ -185,9 +190,12 @@ NVRReleaseDate=20211110
 ### Notes on Older Versions
 The technique used to drop a web shell does not work on firmware versions older than 2.0.0. 
 For these very old versions, an alternative technique can be used, which is also provided in the [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](TODO_MSF_MODULE_LINK) released with this advisory. 
+
 This technique consists of replacing the `shadow` file with one that contains a user that can login via SSH to the target.
 
-Why doesn't the web shell technique work on versions older than 2.0.0? That's a good question. I had this in my notes from 2019, but I didn't provide any details to myself and I don't want to spend any more time researching this old bug.
+Why doesn't the web shell technique work on versions older than 2.0.0? That's a good question. 
+
+I had this in my notes from 2019, but I didn't provide any details to myself and I don't want to spend any more time researching this old bug.
 If you're interested, try to understand why and drop me a note, I'd be very curious to know!
 
 In any case, for older firmware versions I recommend you use my [Metasploit module from 2016](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/http/nuuo_nvrmini_unauth_rce.rb), which works flawlessly on VERY OLD firmware versions all the way up to 3.0.0.
