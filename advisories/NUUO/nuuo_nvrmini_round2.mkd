@@ -8,7 +8,7 @@
 * [Exploit Chain](#exploit-chain)
     * [Metasploit Module](#metasploit-module)
     * [Notes on Older Versions](#notes-on-older-versions)
-* [Fixes / Mitigations](#fixes-mitigations)
+* [Fixes / Mitigations](#fixes--mitigations)
 
 ## Summary
 NUUO's [NVRmini2](https://nuuo.com/ProductNode.php?node=2#) is a Network Video Recorder (NVR) produced by [NUUO Inc.](https://nuuo.com)
@@ -67,7 +67,7 @@ This function does the following:
 * Reads the untarred files (`shadow` and `passwd`)
 * Attempts to add any users in the previously mentioned files to `/etc/passwd` and `/etc/shadow`.
 
-Only users with UID 1000 or above are processed, any other users are ignored. 
+Only users with `UID` 1000 or above are processed, any other users are ignored. 
 
 The encryption appears to be custom, and avoid reversing custom encryption mechanisms unless it's absolutely necessary (it's fun, but requires lots of time). 
 Like all true hackers, we want to achieve success through the easiest route - the path of least resistance (however, if you want to reverse the encryption, I'd be very curious to know their algorithm).
