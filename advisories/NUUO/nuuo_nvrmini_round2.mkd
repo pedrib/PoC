@@ -143,7 +143,7 @@ At this point, we copy `/tmp/stuff.cfg` to `/tmp/whatever` and we can then conti
 
 The `/tmp/whatever` file will now be encrypted with a malicious `tar` inside that can be used to pwn any firmware version, and we exfiltrate it back to our computer.
 
-We upload this file to `http://TARGET/handle_import_user.php` in an HTTP POST form, the file is decrypted, and then when it is untar'ed we abuse [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325) to drop a web shell on `/NUUO/web/shelly.php`, which will execute as root!
+We upload this file to `http://TARGET/handle_import_user.php` in an HTTP POST form, the file is decrypted, and then when it is untar'ed we abuse [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325) to perform path traversal and drop a web shell on `/NUUO/web/shelly.php`, which will execute as root!
 
 ### Metasploit Module
 I am releasing a [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](https://github.com/rapid7/metasploit-framework/pull/16044) that packages the whole exploit chain described in this advisory.
