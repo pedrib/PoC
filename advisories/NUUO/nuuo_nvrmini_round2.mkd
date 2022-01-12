@@ -18,7 +18,7 @@ As with most NVR, it has terrible security and has been hacked multiple times, t
 
 Six years later, it's time to pwn it again, by abusing an insecure user update mechanism and a very old path traversal vulnerability to execute code as root! This vulnerability has been reported to NUUO *multiple times* and despite their attempted fixes, it's still an `0day` at the time of writing, so have fun!
 
-A Metasploit module that abuses this chain of vulnerabilities has been released, and it is [available here](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) and [here](TODO_LINK_MSF).
+A Metasploit module that abuses this chain of vulnerabilities has been released, and it is [available here](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) and [here](https://github.com/rapid7/metasploit-framework/pull/16044).
 
 ### Disclosure Process
 This chain of vulnerabilities was first discovered during my [original 2016 audit](https://github.com/pedrib/PoC/blob/master/advisories/NUUO/nuuo-nvr-vulns.txt), but I actually forgot about them (honestly, I did forget... rare but happens). I re-discovered them by reading my notes in mid 2019 and they were disclosed to NUUO. 
@@ -145,7 +145,7 @@ The `/tmp/whatever` file will now be encrypted with a malicious `tar` inside tha
 We upload it to `http://TARGET/handle_import_user.php` in an HTTP POST form, the file is decrypted, and then when it is untar'ed we abuse [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325) to drop a web shell on `/NUUO/web/shelly.php`, which will execute as root!
 
 ### Metasploit Module
-I am releasing a [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](TODO_MSF_MODULE_LINK) that packages the whole exploit chain described in this advisory.
+I am releasing a [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](https://github.com/rapid7/metasploit-framework/pull/16044) that packages the whole exploit chain described in this advisory.
 The exploit works in virtually all firmware versions ever released (see sub section below for caveat)!
 
 A typical run of the exploit looks like this:
@@ -188,7 +188,7 @@ NVRReleaseDate=20211110
 
 ### Notes on Older Versions
 The technique used to drop a web shell does not work on firmware versions older than 2.0.0. 
-For these very old versions, an alternative technique can be used, which is also provided in the [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](TODO_MSF_MODULE_LINK) released with this advisory. 
+For these very old versions, an alternative technique can be used, which is also provided in the [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](https://github.com/rapid7/metasploit-framework/pull/16044) released with this advisory. 
 
 This technique consists of replacing the `shadow` file with one that contains a user that can login via SSH to the target. Why doesn't the web shell technique work on versions older than 2.0.0? That's a good question. 
 
