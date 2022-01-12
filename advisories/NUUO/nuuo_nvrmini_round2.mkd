@@ -3,8 +3,8 @@
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
-    * [#1: Unsafe Flex AMF Java Object Deserialization](#1-unsafe-flex-amf-java-object-deserialization)
-    * [#2: Insecure sudo Permissions](#2-insecure-sudo-permissions)
+    * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-handle_import_user.php)
+    * [#2: BusyBox `tar` Directory Traversal](#2-busybox-tar-directory-traversal)
 * [Exploit Chain](#exploit-chain)
     * [Escalating Privileges to root](#escalating-privileges-to-root)
     * [Packaged Exploit](#packaged-exploit)
@@ -54,7 +54,7 @@ unlink($file_path.$file_name);
 
 As it can be seen in the snippet above, it simply copies a file uploaded via an HTTP form POST to `/tmp/userRAND.cfg`, where `RAND` is a random number, and then calls `/bin/cgi_system importuser bfolder=/tmp/ bfile=userRAND.cfg`.
 
-`cgi_system` is a complex binary, so only the relevant parts will be discussed. In the latest firmware version 03.11.0000.0016, the function that performs the user import is located at offset 0x2B990 (in version 03.11.0000.0016, md5sum 56e2df9ad0ea0d5b74772bc45b1c81d7).
+`cgi_system` is a complex binary, so only the relevant parts will be discussed. In the latest firmware version 03.11.0000.0016, the function that performs the user import is located at offset `0x2B990` (in version 03.11.0000.0016, md5sum `56e2df9ad0ea0d5b74772bc45b1c81d7`).
 
 This function does the following:
 
@@ -99,7 +99,7 @@ For more details please check this [commit message](https://git.busybox.net/busy
 How can we combine these two vulnerabilities?
 
 ## Exploit Chain
-By now an astute reader will remember that the user import function located at offset 0x2B990 in the `cgi_system` binary has to perform a series of steps, including untar'ing the file provided in the HTTP POST, after it is decrypted.
+By now an astute reader will remember that the user import function located at offset `0x2B990` in the `cgi_system` binary has to perform a series of steps, including untar'ing the file provided in the HTTP POST, after it is decrypted.
 
 Let's abuse this mechanism. First we create our malicious `tar` file:
 
@@ -121,7 +121,7 @@ This is easily solvable by following the previously described steps to obtain a 
 
 `gdbserver :3333 /NUUO/bin/cgi_system exportuser 'bfile=stuff'`
 
-We then set a breakpoint at offset 0x2AF5C:
+We then set a breakpoint at offset `0x2AF5C`:
 ```c
 fd_w = fopen(cfg_file, "r");
 ```
@@ -129,7 +129,7 @@ fd_w = fopen(cfg_file, "r");
 This is the point in the `exportuser` handler that opens a file for encryption. We run the program and then when it breaks we go to the `/tmp` directory, where there will be a `/tmp/tmpXXXX` directory (XXXX is the program's PID). 
 In this directory, there will be a `_stuff.tgz` file. Replace this file with `sploit.tar.gz` created above (renaming it to `_stuff.tgz`).
 
-We then set a breakpoint at offset 0x2ADBC:
+We then set a breakpoint at offset `0x2ADBC`:
 ```c
 remove(encrypted_file);
 ```
