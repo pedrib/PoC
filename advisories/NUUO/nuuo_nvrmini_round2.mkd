@@ -1,6 +1,8 @@
 # Unauthenticated Remote Code Execution as `root` in NUUO NVRmini2 (2022 Edition)
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
+#### Disclosure: 2022-01-12 / Last updated: 2022-01-12
+
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-`handle_import_user.php`)
