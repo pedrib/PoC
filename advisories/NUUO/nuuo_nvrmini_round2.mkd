@@ -8,7 +8,7 @@
 * [Exploit Chain](#exploit-chain)
     * [Metasploit Module](#metasploit-module)
     * [Notes on Older Versions](#notes-on-older-versions)
-
+* [Fixes / Mitigations](#fixes-mitigations)
 
 ## Summary
 NUUO's [NVRmini2](https://nuuo.com/ProductNode.php?node=2#) is a Network Video Recorder (NVR) produced by [NUUO Inc.](https://nuuo.com)
@@ -196,7 +196,7 @@ If you're interested, try to understand why and drop me a note, I'd be very curi
 In any case, for older firmware versions I recommend you use my [Metasploit module from 2016](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/http/nuuo_nvrmini_unauth_rce.rb), which works flawlessly on VERY OLD firmware versions all the way up to 3.0.0.
 
 
-## Fixes / Solutions
+## Fixes / Mitigations
 Unfortunately the vendor did not respond to any of the disclosure attempts, and failed to resolve this vulnerability multiple times, so there is no fix. DO NOT expose any NVRmini2 devices to untrusted networks.
 
 ## Disclaimer
