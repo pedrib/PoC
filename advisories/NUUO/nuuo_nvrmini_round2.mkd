@@ -96,9 +96,7 @@ OK this is nice... but we still need to get root. Time to look for a privilege e
 The NVRmini2 uses a very old `busybox` version, something that is common amongst IoT devices.
 The latest firmware version 03.11.0000.0016 uses `BusyBox v1.16.1 (2013-11-12 15:35:46 CST) multi-call binary`.
 
-This version is affected by many vulnerabilities, one of them being [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325), a directory traversal when unpacking `tar` archives.
-
-For more details please check this [commit message](https://git.busybox.net/busybox/commit/?id=a116552869db5e7793ae10968eb3c962c69b3d8c), but the following section also explains how to create a malicious tar.
+This version is affected by many vulnerabilities, one of them being [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325), a directory traversal when unpacking `tar` archives. For more details please check this [commit message](https://git.busybox.net/busybox/commit/?id=a116552869db5e7793ae10968eb3c962c69b3d8c), but the following section also explains how to create a malicious tar.
 
 How can we combine these two vulnerabilities?
 
@@ -130,7 +128,7 @@ We then set a breakpoint at offset `0x2AF5C`:
 fd_w = fopen(cfg_file, "r");
 ```
 
-This is the point in the `exportuser` handler that opens a file for encryption. We run the program and then when it breaks we go to the `/tmp` directory, where there will be a `/tmp/tmpXXXX` directory (XXXX is the program's PID). 
+This is the point in the `exportuser` handler that opens a file for encryption. We run the program and then when it breaks we go to the `/tmp` directory, where there will be a `/tmp/tmpXXXX` directory (XXXX is the program's `PID`). 
 In this directory, there will be a `_stuff.tgz` file. Replace this file with `sploit.tar.gz` created above (renaming it to `_stuff.tgz`).
 
 We then set a breakpoint at offset `0x2ADBC`:
@@ -190,9 +188,7 @@ NVRReleaseDate=20211110
 The technique used to drop a web shell does not work on firmware versions older than 2.0.0. 
 For these very old versions, an alternative technique can be used, which is also provided in the [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](TODO_MSF_MODULE_LINK) released with this advisory. 
 
-This technique consists of replacing the `shadow` file with one that contains a user that can login via SSH to the target.
-
-Why doesn't the web shell technique work on versions older than 2.0.0? That's a good question. 
+This technique consists of replacing the `shadow` file with one that contains a user that can login via SSH to the target. Why doesn't the web shell technique work on versions older than 2.0.0? That's a good question. 
 
 I had this in my notes from 2019, but I didn't provide any details to myself and I don't want to spend any more time researching this old bug.
 If you're interested, try to understand why and drop me a note, I'd be very curious to know!
