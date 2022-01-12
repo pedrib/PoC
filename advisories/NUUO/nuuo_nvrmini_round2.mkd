@@ -59,7 +59,7 @@ unlink($file_path.$file_name);
 
 As it can be seen in the snippet above, it simply copies a file uploaded via an HTTP form POST to `/tmp/userRAND.cfg`, where `RAND` is a random number, and then calls `/bin/cgi_system importuser bfolder=/tmp/ bfile=userRAND.cfg`.
 
-`cgi_system` is a complex binary, so only the relevant parts will be discussed. In the latest firmware version 03.11.0000.0016, the function that performs the user import is located at offset `0x2B990` (in version 03.11.0000.0016, md5sum `56e2df9ad0ea0d5b74772bc45b1c81d7`).
+`cgi_system` is a complex binary, so only the relevant parts will be discussed. In the latest firmware version 03.11.0000.0016, the function that performs the user import is located at offset `0x2B990` (md5sum `56e2df9ad0ea0d5b74772bc45b1c81d7`).
 
 This function does the following:
 
@@ -71,7 +71,7 @@ This function does the following:
 
 Only users with `UID` 1000 or above are processed, any other users are ignored. 
 
-The encryption appears to be custom, and avoid reversing custom encryption mechanisms unless it's absolutely necessary (it's fun, but requires lots of time). 
+The encryption appears to be custom, and I avoid reversing custom encryption mechanisms unless it's absolutely necessary (it's fun, but requires lots of time). 
 Like all true hackers, we want to achieve success through the easiest route - the path of least resistance (however, if you want to reverse the encryption, I'd be very curious to know their algorithm).
 
 So let's use some trickery instead to get what we want!
@@ -118,6 +118,7 @@ cp shelly.php nuuo/
 tar --append -f sploit.tar nuuo/shelly.php
 gzip sploit.tar
 ```
+> Snippet #1: Creating a malicious tar file
 
 However, if you recall from previous sections, we have to encrypt this file (it is first decrypted before it is untar'ed), and I was too lazy to reverse the encryption. The last step (`gzip`) is necessary because the handler expects a zipped file.
 
@@ -130,8 +131,8 @@ We connect our remote debugger and set a breakpoint at offset `0x2AF5C`:
 fd_w = fopen(cfg_file, "r");
 ```
 
-This is the point in the `exportuser` handler that opens a file for encryption. We run the program and then when it breaks we go to the `/tmp` directory, where there will be a `/tmp/tmpXXXX` directory (XXXX is the program's `PID`). 
-In this directory, there will be a `_stuff.tgz` file. Replace this file with `sploit.tar.gz` created above (renaming it to `_stuff.tgz`).
+This is the point in the `exportuser` handler that opens a file for encryption. We run the program and then when it breaks we go to the `/tmp/tmpXXXX` directory (XXXX is the program's `PID`). 
+In this directory there will be a `_stuff.tgz` file and we will overwrite it with the contents of the file created in Snippet #1 above.
 
 We then set a breakpoint at offset `0x2ADBC`:
 ```c
@@ -140,9 +141,9 @@ remove(encrypted_file);
 
 At this point, we copy `/tmp/stuff.cfg` to `/tmp/whatever` and we can then continue the program and exit the debugger.
 
-The `/tmp/whatever` file will now be encrypted with a malicious `tar` inside that can be used to pwn any firmware version.
+The `/tmp/whatever` file will now be encrypted with a malicious `tar` inside that can be used to pwn any firmware version, and we exfiltrate it back to our computer.
 
-We upload it to `http://TARGET/handle_import_user.php` in an HTTP POST form, the file is decrypted, and then when it is untar'ed we abuse [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325) to drop a web shell on `/NUUO/web/shelly.php`, which will execute as root!
+We upload this file to `http://TARGET/handle_import_user.php` in an HTTP POST form, the file is decrypted, and then when it is untar'ed we abuse [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325) to drop a web shell on `/NUUO/web/shelly.php`, which will execute as root!
 
 ### Metasploit Module
 I am releasing a [new Metasploit](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) [module](https://github.com/rapid7/metasploit-framework/pull/16044) that packages the whole exploit chain described in this advisory.
