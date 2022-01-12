@@ -14,9 +14,7 @@
 NUUO's [NVRmini2](https://nuuo.com/ProductNode.php?node=2#) is a Network Video Recorder (NVR) produced by [NUUO Inc.](https://nuuo.com)
 As with most NVR, it has terrible security and has been hacked multiple times, the [very first one by me](https://seclists.org/fulldisclosure/2016/Aug/36) back in 2016 with [command injections and a stack overflow](https://github.com/pedrib/PoC/blob/master/advisories/NUUO/nuuo-nvr-vulns.txt).
 
-Six years later, it's time to pwn it again, by abusing an insecure user update mechanism and a very old path traversal vulnerability to execute code as root!
-
-This vulnerability has been reported to NUUO *multiple times* and despite their attempted fixes, it's still an `0day` at the time of writing, so have fun!
+Six years later, it's time to pwn it again, by abusing an insecure user update mechanism and a very old path traversal vulnerability to execute code as root! This vulnerability has been reported to NUUO *multiple times* and despite their attempted fixes, it's still an `0day` at the time of writing, so have fun!
 
 A Metasploit module that abuses this chain of vulnerabilities has been released, and it is [available here](https://github.com/pedrib/PoC/blob/master/exploits/metasploit/nuuo_nvrmini_unauth_rce_r2.rb) and [here](TODO_LINK_MSF).
 
@@ -71,7 +69,8 @@ This function does the following:
 
 Only users with UID 1000 or above are processed, any other users are ignored. 
 
-The encryption appears to be custom, and avoid reversing custom encryption mechanisms unless it's absolutely necessary (it's fun, but requires lots of time). Like all true hackers, we want to achieve success through the easiest route - the path of least resistance (however, if you want to reverse the encryption, I'd be very curious to know their algorithm).
+The encryption appears to be custom, and avoid reversing custom encryption mechanisms unless it's absolutely necessary (it's fun, but requires lots of time). 
+Like all true hackers, we want to achieve success through the easiest route - the path of least resistance (however, if you want to reverse the encryption, I'd be very curious to know their algorithm).
 
 So let's use some trickery instead to get what we want!
 
