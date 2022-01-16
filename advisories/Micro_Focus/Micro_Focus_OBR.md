@@ -2,7 +2,7 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2021-03-02 | Last Updated: 2021-04-23
+#### Disclosure Date: 2021-03-02 | Last Updated: 2022-01-16
 
 * [Introduction](#introduction)
 * [Summary](#summary)
@@ -66,6 +66,13 @@ In essence, OBR is a catastrophe in terms of security. A product with a huge att
 The vulnerabilities described in this advisory are hilarious, and belong in textbooks, not in enterprise security software.
 
 Please also check my [companion advisory](https://github.com/pedrib/PoC/blob/master/advisories/Micro_Focus/Micro_Focus_OBM.md) for another related Micro Focus product, Micro Focus Operations Bridge Manager.
+
+This advisory was released with multiple Metasploit exploit modules, which have been accepted and integrated into the framework:
+
+* [microfocus_obr_cmd_injection](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/http/microfocus_obr_cmd_injection.rb)
+* [microfocus_obr_shrboadmin](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/ssh/microfocus_obr_shrboadmin.rb)
+* [microfocus_operations_privesc](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/local/microfocus_operations_privesc.rb)
+
 
 ## Vulnerability Details
 

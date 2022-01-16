@@ -1,7 +1,7 @@
 # Multiple (RCE) Vulnerabilities in Micro Focus Operations Bridge Manager
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 2020-10-28 | Last Updated: 2021-04-23
+#### Disclosure Date: 2020-10-28 | Last Updated: 2022-01-16
 
 * [Introduction](#introduction)
 * [Summary](#summary)
@@ -24,8 +24,6 @@ All event and performance management data originating from servers, networks, ap
 *You can quickly identify, monitor, troubleshoot, report on, and resolve problems in your distributed IT environment. These abilities make it possible for you to improve the performance and availability of the infrastructure and services in your monitored environment, adding to the efficiency and productivity of your business. OBM helps you locate and solve event-related issues before business service quality degrades. It offers the tools that help operators solve problems without involving a subject matter expert. This frees subject matter experts to focus on strategic activities.*
 
 A special thank you to the [Zero Day Initiative](https://www.zerodayinitiative.com/) for handling the disclosure of these vulnerabilities to Micro Focus.
-
-Metasploit modules are in the pipeline and will be sent to the Metasploit framework for integration soon. This advisory will be updated then.
     
 ## Summary
 
@@ -70,6 +68,14 @@ It is out of scope of this advisory to explain Java deserialization, how it can 
 
 [Foxglove Security Blog Post](https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/)
 
+This advisory was released with multiple Metasploit exploit modules, which have been accepted and integrated into the framework:
+
+* [microfocus_ucmdb_unauth_deser](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/http/microfocus_ucmdb_unauth_deser.rb)
+* [microfocus_obm_auth_rce](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/http/microfocus_obm_auth_rce.rb)
+* [microfocus_operations_privesc](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/local/microfocus_operations_privesc.rb)
+
+Please also check my [companion advisory](
+https://github.com/pedrib/PoC/blob/master/advisories/Micro_Focus/Micro_Focus_OBR.md) for another related Micro Focus product, Micro Focus Operations Bridge Reporter.
 
 ## Vulnerability Details
 
