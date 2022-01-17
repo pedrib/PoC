@@ -5,7 +5,7 @@
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
-    * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-`handle_import_user.php`)
+    * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-handle_import_user.php)
     * [#2: BusyBox `tar` Directory Traversal](#2-busybox-`tar`-directory-traversal)
 * [Exploit Chain](#exploit-chain)
     * [Metasploit Module](#metasploit-module)
