@@ -1,7 +1,7 @@
 # Unauthenticated Remote Code Execution as `root` in NUUO NVRmini2 (2022 Edition)
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure: 2022-01-12 / Last updated: 2022-01-14
+#### Disclosure: 2022-01-12 / Last Updated: 2022-01-17
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
@@ -59,7 +59,8 @@ unlink($file_path.$file_name);
 
 As it can be seen in the snippet above, it simply copies a file uploaded via an HTTP form POST to `/tmp/userRAND.cfg`, where `RAND` is a random number, and then calls `/bin/cgi_system importuser bfolder=/tmp/ bfile=userRAND.cfg`.
 
-`cgi_system` is a complex binary, so only the relevant parts will be discussed. In the latest firmware version 03.11.0000.0016, the function that performs the user import is located at offset `0x2B990` (md5sum `56e2df9ad0ea0d5b74772bc45b1c81d7`).
+`cgi_system` is a complex binary, and to keep this advisory short and sweet I decided not to show any of the disassembled or decompiled code. 
+If you would like to have a look at it, in the latest firmware version 03.11.0000.0016 the function that performs the user import is located at offset `0x2B990` (md5sum `56e2df9ad0ea0d5b74772bc45b1c81d7`).
 
 This function does the following:
 
