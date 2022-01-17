@@ -5,8 +5,8 @@
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
-    * [#1: Missing Authentication on `handle_import_user.php`](#1-missing-authentication-on-handle_import_user.php)
-    * [#2: BusyBox `tar` Directory Traversal](#2-busybox-`tar`-directory-traversal)
+    * [#1: Missing Authentication on `handle_import_user.php`](#vuln1)
+    * [#2: BusyBox `tar` Directory Traversal](#vuln2)
 * [Exploit Chain](#exploit-chain)
     * [Metasploit Module](#metasploit-module)
     * [Notes on Older Versions](#notes-on-older-versions)
@@ -28,7 +28,7 @@ A new firmware version was released in March 2020 (version 03.11.0000.0005) and 
 I guess it's time to disclose them, even if there's no patch?
 
 ## Vulnerability Details
-### #1: Missing Authentication on `handle_import_user.php`
+### #1: Missing Authentication on `handle_import_user.php` <a name="vuln1"></a>
 * [CWE-306: Missing Authentication for Critical Function](https://cwe.mitre.org/data/definitions/306.html)
 * [CVE-2022-23227](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23227)
 * Risk Classification: Critical
@@ -88,7 +88,7 @@ So let's use some trickery instead to get what we want!
 
 OK this is nice... but we still need to get root. Time to look for a privilege escalation?
 
-### #2: BusyBox `tar` Directory Traversal
+### #2: BusyBox `tar` Directory Traversal <a name="vuln2"></a>
 * [CWE-35: Path Traversal](https://cwe.mitre.org/data/definitions/35.html)
 * [CVE-2011-5325](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-5325)
 * Risk Classification: High
