@@ -45,8 +45,8 @@ CVE / ID,Application,Description,Disclosure,Advisory / PoC / exploit file
 2014-8498,ManageEngine Password Manager Pro,blind SQLi in BulkEditSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2014-8499,ManageEngine Password Manager Pro,blind SQLi in SQLAdvancedALSearchResult.cc,08/11/2014,ManageEngine/me_pmp_privesc.txt
 2015-0779,Novell ZENworks Configuration Management,file upload / RCE,07/04/2015,zenworks_zcm_rce.txt
-2015-2862,Kaseya Virtual System Administrator,file download,13/07/2015,kaseya-vsa-vuln.txt
-2015-2863,Kaseya Virtual System Administrator,open redirect,13/07/2015,kaseya-vsa-vuln.txt
+2015-2862,Kaseya Virtual System Administrator,file download,13/07/2015,Kaseya/kaseya-vsa-vuln.txt
+2015-2863,Kaseya Virtual System Administrator,open redirect,13/07/2015,Kaseya/kaseya-vsa-vuln.txt
 2015-2993,SysAid Help Desk,admin account creation / file overwrite,03/06/2015,sysaid-14.4-multiple-vulns.txt
 2015-2994,SysAid Help Desk,file upload / RCE,03/06/2015,sysaid-14.4-multiple-vulns.txt
 2015-2995,SysAid Help Desk,file upload / RCE,03/06/2015,sysaid-14.4-multiple-vulns.txt
@@ -57,9 +57,9 @@ CVE / ID,Application,Description,Disclosure,Advisory / PoC / exploit file
 2015-3000,SysAid Help Desk,XML entity expansion,03/06/2015,sysaid-14.4-multiple-vulns.txt
 2015-3001,SysAid Help Desk,hard coded SQL server password,03/06/2015,sysaid-14.4-multiple-vulns.txt
 ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngine/me_sd_file_upload_2.txt
-2015-6589,Kaseya Virtual System Administrator,auth file upload / RCE,23/09/2015,kaseya-vsa-vuln-2.txt
-2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,23/09/2015,kaseya-vsa-vuln-2.txt
-2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,23/09/2015,kaseya-vsa-vuln-2.txt
+2015-6589,Kaseya Virtual System Administrator,auth file upload / RCE,23/09/2015,Kaseya/kaseya-vsa-vuln-2.txt
+2015-6922/ZDI-15-448,Kaseya Virtual System Administrator,privilege escalation,23/09/2015,Kaseya/kaseya-vsa-vuln-2.txt
+2015-6922/ZDI-15-449,Kaseya Virtual System Administrator,unauth file upload / RCE,23/09/2015,Kaseya/kaseya-vsa-vuln-2.txt
 2015-7091,Apple QuickTime,buffer overflow,08/01/2016,N/A - pocs too large
 2016-1524,NETGEAR ProSafe NMS300,file upload / RCE,03/02/2015,netgear_nms_rce.txt
 2016-1525,NETGEAR ProSafe NMS300,file download,03/02/2015,netgear_nms_rce.txt
@@ -73,15 +73,15 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngi
 2016-6601,WebNMS Framework Server,file download,04/07/2016,webnms-5.2-sp1-pwn.txt
 2016-6602,WebNMS Framework Server,weak encryption,04/07/2016,webnms-5.2-sp1-pwn.txt
 2016-6603,WebNMS Framework Server,admin session hijacking,04/07/2016,webnms-5.2-sp1-pwn.txt
-2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,nuuo-nvr-vulns.txt
-2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,nuuo-nvr-vulns.txt
-2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,nuuo-nvr-vulns.txt
-2016-5677,NUUO NVRmini / NETGEAR Surveillance,information disclosure,04/08/2016,nuuo-nvr-vulns.txt
-2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,nuuo-nvr-vulns.txt
-2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,nuuo-nvr-vulns.txt
-2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,nuuo-nvr-vulns.txt
+2016-5674,NUUO NVRmini / NETGEAR Surveillance,command injection (unauth),04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5675,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5676,NUUO NVRmini / NETGEAR Surveillance,admin pass reset,04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5677,NUUO NVRmini / NETGEAR Surveillance,information disclosure,04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5678,NUUO NVRmini / NETGEAR Surveillance,harcoded credentials,04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5679,NUUO NVRmini / NETGEAR Surveillance,command injection (auth),04/08/2016,NUUO/nuuo-nvr-vulns.txt
+2016-5680,NUUO NVRmini / NETGEAR Surveillance,stack bof (auth),04/08/2016,NUUO/nuuo-nvr-vulns.txt
 2016-6563,Dlink DIR routers,stack bof / RCE,07/11/2016,dlink-hnap-login.txt
-2016-9722,IBM QRadar SIEM,privilege escalation,28/05/2018,ibm-qradar-siem-forensics.txt
+2016-9722,IBM QRadar SIEM,privilege escalation,28/05/2018,IBM/ibm-qradar-siem-forensics.txt
 2016-10174,NETGEAR WNR2000,stack bof,20/12/2016,netgear-wnr2000.txt
 2016-10175,NETGEAR WNR2000,info disclosure,20/12/2016,netgear-wnr2000.txt
 2016-10176,NETGEAR WNR2000,improper access control,20/12/2016,netgear-wnr2000.txt
@@ -93,26 +93,26 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngi
 2017-18372,Billion 5200W-T,auth command injection,18/01/2017,zyxel_trueonline.txt
 2017-18373,Billion 5200W-T,default admin credentials,18/01/2017,zyxel_trueonline.txt
 2017-18374,ZyXEL P660HN-T1A v1,default admin credentials,18/01/2017,zyxel_trueonline.txt
-2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,ibm-qradar-siem-forensics.txt
-2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,ibm-qradar-siem-forensics.txt
+2018-1418,IBM QRadar SIEM,auth command injection,28/05/2018,IBM/ibm-qradar-siem-forensics.txt
+2018-1612,IBM QRadar SIEM,auth bypass,28/05/2018,IBM/ibm-qradar-siem-forensics.txt
 2018-5999,AsusWRT,httpd auth bypass,22/01/2018,asuswrt-lan-rce.txt
 2018-6000,AsusWRT,unauth config value setting,22/01/2018,asuswrt-lan-rce.txt
-2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,cisco-prime-infrastructure.txt
-2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,cisco-prime-infrastructure.txt
-2018-17888,NUUO Central Management System,insecure session tokens,11/10/2018,nuuo-cms-ownage.txt
-2018-17890,NUUO Central Management System,insecure outdated SQL Server 2005,11/10/2018,nuuo-cms-ownage.txt
-2018-17892,NUUO Central Management System,insecure default configuration,11/10/2018,nuuo-cms-ownage.txt
-2018-17894,NUUO Central Management System,insecure default password,11/10/2018,nuuo-cms-ownage.txt
-2018-17934,NUUO Central Management System,auth dir traversal / arb file download,11/10/2018,nuuo-cms-ownage.txt
-2018-17936,NUUO Central Management System,auth dir traversal / rce,11/10/2018,nuuo-cms-ownage.txt
-2018-18982,NUUO Central Management System,sql injection,11/10/2018,nuuo-cms-ownage.txt
-2019-1619,Cisco Data Center Network Manager,auth bypass,26/06/2019,cisco-dcnm-rce.txt
-2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,cisco-dcnm-rce.txt
-2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,cisco-dcnm-rce.txt
-2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,cisco-dcnm-rce.txt
-2019-1935,Cisco UCS Director,default ssh password,21/08/2019,cisco-ucs-rce.txt
-2019-1936,Cisco UCS Director,command injection,21/08/2019,cisco-ucs-rce.txt
-2019-1937,Cisco UCS Director,auth bypass,21/08/2019,cisco-ucs-rce.txt
+2018-15379,Cisco Prime Infrastructure,unauth file upload / rce as user,04/10/2018,Cisco/cisco-prime-infrastructure.txt
+2018-15379,Cisco Prime Infrastructure,shell privilege escalation to root,04/10/2018,Cisco/cisco-prime-infrastructure.txt
+2018-17888,NUUO Central Management System,insecure session tokens,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-17890,NUUO Central Management System,insecure outdated SQL Server 2005,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-17892,NUUO Central Management System,insecure default configuration,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-17894,NUUO Central Management System,insecure default password,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-17934,NUUO Central Management System,auth dir traversal / arb file download,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-17936,NUUO Central Management System,auth dir traversal / rce,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2018-18982,NUUO Central Management System,sql injection,11/10/2018,NUUO/nuuo-cms-ownage.txt
+2019-1619,Cisco Data Center Network Manager,auth bypass,26/06/2019,Cisco/cisco-dcnm-rce.txt
+2019-1620,Cisco Data Center Network Manager,file upload,26/06/2019,Cisco/cisco-dcnm-rce.txt
+2019-1621,Cisco Data Center Network Manager,file download,26/06/2019,Cisco/cisco-dcnm-rce.txt
+2019-1622,Cisco Data Center Network Manager,info disclosure,26/06/2019,Cisco/cisco-dcnm-rce.txt
+2019-1935,Cisco UCS Director,default ssh password,21/08/2019,Cisco/cisco-ucs-rce.txt
+2019-1936,Cisco UCS Director,command injection,21/08/2019,Cisco/cisco-ucs-rce.txt
+2019-1937,Cisco UCS Director,auth bypass,21/08/2019,Cisco/cisco-ucs-rce.txt
 2019-4716,IBM Planning Analytics / TM1,configuration overwrite / rce,19/12/2019,IBM/ibm_tm1_rce.md
 2020-4427,IBM Data Risk Manager,authentication bypass,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
 2020-4428,IBM Data Risk Manager,command injection,21/04/2020,IBM/ibm_drm/ibm_drm_rce.md
@@ -148,6 +148,9 @@ CVE-2021-27245/ZDI-21-214,TP-Link Archer A7,Firewall bypass + stack overflow,24/
 CVE-2021-27251/ZDI-21-247,NETGEAR R7800,insecure download,24/02/2021,genie_in_da_router
 CVE-2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,24/02/2021,genie_in_da_router
 CVE-2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
+CVE-2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
+CVE-2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
+CVE-2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 ,,,,
 ,,,,
 Metasploit modules,,,,
