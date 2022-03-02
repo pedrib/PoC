@@ -150,8 +150,8 @@ CVE-2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,24/02/202
 CVE-2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
 CVE-2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
 CVE-2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
-CVE-2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 CVE-2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
+CVE-2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 ,,,,
 ,,,,
 Metasploit modules,,,,
