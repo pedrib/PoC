@@ -24,7 +24,7 @@ The default AnyConnect VPN configuration is exploitable by an unauthenticated at
 
 The exploit chains two vulnerabilities to achieve code execution:
 
-- Stack based buffer overflow ([CVE-2022-20699](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-20699))
+- Stack based buffer overflow ([CVE-2022-20699](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-20699) / [ZDI-22-414](https://www.zerodayinitiative.com/advisories/ZDI-22-414/))
 - Improper memory configuration (read-write-execute stack)
 
 All code snippets in this advisory were obtained from files in firmware version v1.0.03.22. 
