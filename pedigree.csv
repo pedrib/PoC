@@ -151,6 +151,7 @@ CVE-2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
 CVE-2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
 CVE-2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
 CVE-2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
+CVE-2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
 ,,,,
 ,,,,
 Metasploit modules,,,,
@@ -216,6 +217,8 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-11857,Micro Focus Operations Bridge Reporter,hardcoded ssh user,microfocus_obr_shrboadmin.rb,29/04/2021
 2020-11858,Micro Focus Operations Bridge Manager / Reporter,windows privesc,microfocus_operations_privesc.rb,16/02/2021
 2020-22502,Micro Focus Operations Bridge Reporter,unauth cmd injection,microfocus_obr_cmd_injection.rb,29/04/2021
+2022-23227,NUUO NVRmini2,missing auth,TODO,TODO
+2022-20699,Cisco RV340,stack b0f,TODO,TODO
 ,,,,
 ,,,,
 ,Note:,,,
