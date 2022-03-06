@@ -14,7 +14,7 @@ flashback\_connects (Cisco RV340 SSL VPN Unauthenticated Remote Code Execution a
 
 # Summary
 
-This document describes a chain of vulnerabilities that were found by **Flashback Team: Pedro Ribeiro (@pedrib1337) && Radek Domanski (@RabbitPro)** and presented at [Zero Day Initiative](https://www.zerodayinitiative.com/) **Pwn2Own Austin 2021** competition in November 2021.
+This document describes a chain of vulnerabilities that were found by **Flashback Team: Pedro Ribeiro (@pedrib1337) && Radek Domanski (@RabbitPro)** and presented at the [Zero Day Initiative](https://www.zerodayinitiative.com/) **Pwn2Own Austin 2021** competition in November 2021.
 
 The vulnerabilities described in this document are present in the **Cisco RV340** ([RV340](https://www.cisco.com/c/en/us/products/routers/rv340-dual-gigabit-wan-vpn-router/index.html)), on firmware versions up to and including v1.0.03.24.
 
