@@ -10,7 +10,7 @@ flashback\_connects (Cisco RV340 SSL VPN Unauthenticated Remote Code Execution a
     * [Improper memory configuration](#improper-memory-configuration)
 * [Exploitation](#exploitation)
     * [Shellcode](#shellcode)
-    * [Exploit log](#exploit-log)
+    * [Exploit Log](#exploit-log)
 
 # Summary
 
@@ -289,7 +289,7 @@ binsh:
 
 When the shellcode executes it will create a TCP socket listening at `5.5.5.1:4445` and duplicate `stdin, stout, stderr` to that socket file descriptor. After receiving a connection, the `execve()` syscall is called, which spawns `/bin/sh` (`busybox sh`) and we can enjoy our beautiful `root` shell!
 
-## Exploit log
+## Exploit Log
 
 ```
 msf6 exploit(linux/misc/cisco_rv340_sslvpn) > check
