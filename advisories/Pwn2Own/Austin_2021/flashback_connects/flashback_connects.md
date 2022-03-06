@@ -287,7 +287,7 @@ binsh:
 .ascii "/bin/shX"
 ```
 
-When the shellcode executes it will create a TCP socket listening at `5.5.5.1:4445` and duplicate `stdin, stout, stderr` to that socket file descriptor. After receiving a connection, an `execve()` syscall is called that spawns a `/bin/sh` (`busybox sh`) and we can enjoy our beautiful `root` shell!
+When the shellcode executes it will create a TCP socket listening at `5.5.5.1:4445` and duplicate `stdin, stout, stderr` to that socket file descriptor. After receiving a connection, the `execve()` syscall is called, which spawns `/bin/sh` (`busybox sh`) and we can enjoy our beautiful `root` shell!
 
 ## Exploit log
 
