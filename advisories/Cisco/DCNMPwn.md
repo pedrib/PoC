@@ -45,7 +45,7 @@ By sending an HTTP POST request with random data to */fm/messagebroker/amfsecure
  ...Unsupported AMF version XXXXX...
 ```
 
-Which indicates that the server has a Apache / Adobe Flex AMF (BlazeDS) endpoint at that location. The BlazeDS library version running on the server is 4.0.0.14931, which means it is [vulnerable to CVE-2017-5641](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641), the description of which is copied below:
+Which indicates that the server has a Apache / Adobe Flex AMF (BlazeDS) endpoint at that location. The BlazeDS library version running on the server is 4.0.0.14931 (**12 years old** at the time of writing), which means it is [vulnerable to CVE-2017-5641](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641), the description of which is copied below:
 
 > "Previous versions of Apache Flex BlazeDS (4.7.2 and earlier) did not restrict which types were allowed for AMF(X) object deserialization by default. During the deserialization process code is executed that for several known types has undesired side-effects. Other, unknown types may also exhibit such behaviors. One vector in the Java standard library exists that allows an attacker to trigger possibly further exploitable Java deserialization of untrusted data. Other known vectors in third party libraries can be used to trigger remote code execution."
 
