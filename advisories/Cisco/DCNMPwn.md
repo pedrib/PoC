@@ -27,7 +27,7 @@ By combining both vulnerabilities we can achieve unauthenticated remote code exe
 
 After taking [over six months](https://www.zerodayinitiative.com/advisories/ZDI-22-506/) to fix these vulnerabilities, Cisco was too lazy to issue CVE identifiers for them (they used BlazeDS's [CVE-2017-5641](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641) for both), so only ZDI identifiers are available.
 
-An [exploit package](TODO_EXPLOIT_LINK) has been released to the public at the same time as this advisory (pwnage shown in the [GIF below](TODO_GIF_LINK). As always, a massive thank you to the [Zero Day Initiative](https://www.zerodayinitiative.com/) for helping me disclose these vulnerabilities to Cisco.
+An [exploit package](https://github.com/pedrib/PoC/tree/master/exploits/DCNMPwn) has been released to the public at the same time as [this advisory](https://github.com/pedrib/PoC/tree/master/advisories/Cisco/DCNMPwn.md) (pwnage shown in the [GIF below](https://github.com/pedrib/PoC/blob/master/advisories/Cisco/DCNMPwn.gif). As always, a massive thank you to the [Zero Day Initiative](https://www.zerodayinitiative.com/) for helping me disclose these vulnerabilities to Cisco.
 
 ![](DCNMPwn.gif)
 
@@ -248,7 +248,7 @@ nc -lvknp 4446
 ```
 > Snippet #4: `DCNMpwn.sh` exploit script
 
-The [exploit package made available with this advisory](TODO_EXPLOIT_LINK) contains the following files:
+The [exploit package made available with this advisory](https://github.com/pedrib/PoC/tree/master/exploits/DCNMPwn) contains the following files:
 
 * *DCNMPwn.sh*
     * Shell script which runs the exploit (shown in **Snippet #4**)
