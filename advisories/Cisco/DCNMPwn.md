@@ -51,7 +51,7 @@ Which indicates that the server has a Apache / Adobe Flex AMF (BlazeDS) endpoint
 
 I have previously exploited this vulnerability in [DrayTek VigorACS](https://raw.githubusercontent.com/pedrib/PoC/master/advisories/draytek-vigor-acs.txt), [Cisco ISE](https://github.com/pedrib/PoC/blob/master/exploits/ISEpwn/ISEpwn.rb) and [TIBCO Data Virtualization Manager](https://github.com/pedrib/PoC/blob/master/advisories/TIBCO/tibco_tdv_rce.md).
 
-Given the complexity of AMF and the Java deserialization chain involved, it is out of scope of this advisory to go into details. The only takeaway necessary is that under the right conditions, as it will be explained in [Exploit Chain](#exploit-chain), it is possible to achieve remote code execution through Java object deserialization.
+Given the complexity of AMF and the Java deserialization chain involved, it is out of scope of this advisory to go into details. The only takeaway necessary is that under the right conditions, it is possible to achieve remote code execution through Java object deserialization.
 
 Readers interested in digging deeper should check out the write-up [AMF - Another Malicious Format](http://codewhitesec.blogspot.ru/2017/04/amf.html) by Markus Wulftange as well as [Java Unmarshaller Security - Turning your data into code execution](https://github.com/mbechler/marshalsec) by Moritz Bechler for further details on the inner workings of this vulnerability.
 
@@ -295,7 +295,7 @@ This exploit was only tested in the virtual appliance provided by Cisco. It is l
 The exploit only works if compiled with Java 8. I have not investigated in detail why this is the case, but it probably has to do with limitations regarding the exploit chain and the *very old* BlazeDS libraries.
 
 ## Fixes / Mitigations
-Upgrade to the latest Cisco Nexus Dashboard Fabric Controller version ([11.5(4) at the time of writing](https://www.zerodayinitiative.com/advisories/ZDI-22-506/).
+Upgrade to the latest Cisco Nexus Dashboard Fabric Controller version ([11.5(4) at the time of writing](https://www.zerodayinitiative.com/advisories/ZDI-22-506/)).
 
 ## Disclaimer
 Please note that Agile Information Security (Agile InfoSec) relies on information provided by the vendor when listing fixed versions or products. Agile InfoSec does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so.   
