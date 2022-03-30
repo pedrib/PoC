@@ -18,12 +18,12 @@
 
 The product was previously known as Cisco Data Center Network Manager (DCNM), and infamous due to having multiple remote code execution vulnerabilities in it, found by [myself in 2019](https://github.com/pedrib/PoC/blob/master/advisories/Cisco/cisco-dcnm-rce.txt) and by [Steven Seeley in 2020](https://srcincite.io/blog/2020/01/14/busting-ciscos-beans-hardcoding-your-way-to-hell.html).
 
-We're back at it again, and this time presenting a full unauthenticated-to-`root` exploit chain, which combines:
+We're back at it again, and this time presenting a full unauthenticated web-to-`root` exploit chain, which combines:
 
 * Unsafe Flex AMF (Action Message Format) Java Object Deserialization ([CVE-2017-5641](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641) / [ZDI-22-506](https://www.zerodayinitiative.com/advisories/ZDI-22-506/))
 * Incorrect `sudo` Permissions ([ZDI-22-507](https://www.zerodayinitiative.com/advisories/ZDI-22-507/))
 
-By combining both vulnerabilities we can achieve unauthenticated remote code execution as root. The vulnerabilities and exploit provided in this advisory have been tested with DCNM versions 11.5(1) and 11.5(2), and fixed by Cisco in [version 11.5(4)](https://www.zerodayinitiative.com/advisories/ZDI-22-506/).
+The vulnerabilities and exploit provided in this advisory have been tested with DCNM versions 11.5(1) and 11.5(2), and fixed by Cisco in [version 11.5(4)](https://www.zerodayinitiative.com/advisories/ZDI-22-506/).
 
 After taking [over six months](https://www.zerodayinitiative.com/advisories/ZDI-22-506/) to fix these vulnerabilities, Cisco was too lazy to issue CVE identifiers for them (they used BlazeDS's [CVE-2017-5641](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5641) for both), so only ZDI identifiers are available.
 
