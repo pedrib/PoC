@@ -219,7 +219,7 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,servicedesk_file_uplo
 2020-11858,Micro Focus Operations Bridge Manager / Reporter,windows privesc,microfocus_operations_privesc.rb,16/02/2021
 2021-22502,Micro Focus Operations Bridge Reporter,unauth cmd injection,microfocus_obr_cmd_injection.rb,29/04/2021
 2022-23227,NUUO NVRmini2,missing auth,TODO,TODO
-2022-20699,Cisco RV340,stack b0f,TODO,TODO
+2022-20699,Cisco RV340,stack b0f,cisco_rv340_sslvpn.rb,11/05/2022
 ,,,,
 ,,,,
 ,Note:,,,
