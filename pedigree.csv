@@ -127,9 +127,9 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngi
 2020-12004/ZDI-20-685,Inductive Automation Ignition,missing authentication,Pwn2Own Miami 2020,Pwn2Own/Miami2020/rce_me_v2.md
 2020-10923/ZDI-20-703,Netgear R6700,auth bypass,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
 2020-10924/ZDI-20-704,Netgear R6700,stack buffer overflow,Pwn2Own Tokyo 2019,Pwn2Own/Tokyo_2019/tokyo_drift/tokyo_drift.md
-ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
-ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
-ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
+2020-10925/ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
+2020-10926/ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
+2020-10927/ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
 2020-11853/ZDI-20-1288-1325/7/8,Micro Focus Operations Bridge Manager,multiple java deserialization rce,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
 2020-11854/ZDI-20-1287,Micro Focus Operations Bridge Manager,hardcoded diagnostics user,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
 2020-11855/ZDI-20-1217,Micro Focus Operations Bridge Reporter,windows privesc,23/09/2020,Micro_Focus/Micro_Focus_OBR.md
