@@ -23,9 +23,11 @@ A Metasploit module that abuses this chain of vulnerabilities has been released,
 ### Disclosure Process
 This chain of vulnerabilities was first discovered during my [original 2016 audit](https://github.com/pedrib/PoC/blob/master/advisories/NUUO/nuuo-nvr-vulns.txt), but I actually forgot about them (honestly, I did forget... rare but happens). I re-discovered them by reading my notes in mid 2019 and they were disclosed to NUUO. 
 
-A new firmware version was released in March 2020 (version 03.11.0000.0005) and the bugs were not fixed, so they were reported AGAIN in April 2020. Since then, firmware [version 03.11.0000.0016](https://nuuo.com/DownloadDetail.php?id=0118) was released and the bugs are STILL not fixed. 
+A new firmware version was released in March 2020 (version `03.11.0000.0005`) and the bugs were not fixed, so they were reported AGAIN in April 2020. Since then, firmware [version 03.11.0000.0016](https://nuuo.com/DownloadDetail.php?id=0118) was released and the bugs are STILL not fixed. 
 
 I guess it's time to disclose them, even if there's no patch?
+
+All binaries and binary offsets mentioned in this advisory are from version `03.11.0000.0005`.
 
 ## Vulnerability Details
 ### #1: Missing Authentication on `handle_import_user.php` <a name="vuln1"></a>
@@ -78,7 +80,7 @@ Like all true hackers, we want to achieve success through the easiest route - th
 So let's use some trickery instead to get what we want!
 
 1. Downgrade the firmware to version 3.0.0
-2. Create a new "power user" named `pwner` with the password `pwned`
+2. Create a new "power user" named `pwner` with the password `pwned` in the web interface
 3. Use my [Metasploit module from 2016](https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/linux/http/nuuo_nvrmini_unauth_rce.rb) to get a root shell
 4. Change `pwner`'s `passwd` shell to `/bin/bash`
 5. Run `/NUUO/bin/cgi_system exportuser 'bfile=stuff' > /tmp/ble.cfg` in the root shell
