@@ -130,28 +130,28 @@ ZDI-15-396,ManageEngine ServiceDesk Plus,file upload / RCE,20/08/2015,ManageEngi
 ZDI-20-705,Netgear R6700,improper cert validation,Pwn2Own Tokyo 2019,last_second
 ZDI-20-706,Netgear R6700,download and execution of unverified code,Pwn2Own Tokyo 2019,last_second
 ZDI-20-707,Netgear R6700,hardcoded crypto keys / weak crypto,Pwn2Own Tokyo 2019,last_second
-CVE-2020-11853/ZDI-20-1288-1325/7/8,Micro Focus Operations Bridge Manager,multiple java deserialization rce,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
-CVE-2020-11854/ZDI-20-1287,Micro Focus Operations Bridge Manager,hardcoded diagnostics user,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
-CVE-2020-11855/ZDI-20-1217,Micro Focus Operations Bridge Reporter,windows privesc,23/09/2020,Micro_Focus/Micro_Focus_OBR.md
-CVE-2020-11856/ZDI-20-1216,Micro Focus Operations Bridge Reporter,JMX missing auth (rce),23/09/2020,Micro_Focus/Micro_Focus_OBR.md
-CVE-2020-11857/ZDI-20-1215,Micro Focus Operations Bridge Reporter,shrboadmin hardcoded pass (rce),23/09/2020,Micro_Focus/Micro_Focus_OBR.md
-CVE-2020-11858/ZDI-20-1326,Micro Focus Operations Bridge Manager,windows privesc,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
-CVE-2020-12009/ZDI-20-777,Iconics Genesis64,dir traversal / rce,Pwn2Own Miami 2020,apocalypse32
-CVE-2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure (project list),Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+2020-11853/ZDI-20-1288-1325/7/8,Micro Focus Operations Bridge Manager,multiple java deserialization rce,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
+2020-11854/ZDI-20-1287,Micro Focus Operations Bridge Manager,hardcoded diagnostics user,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
+2020-11855/ZDI-20-1217,Micro Focus Operations Bridge Reporter,windows privesc,23/09/2020,Micro_Focus/Micro_Focus_OBR.md
+2020-11856/ZDI-20-1216,Micro Focus Operations Bridge Reporter,JMX missing auth (rce),23/09/2020,Micro_Focus/Micro_Focus_OBR.md
+2020-11857/ZDI-20-1215,Micro Focus Operations Bridge Reporter,shrboadmin hardcoded pass (rce),23/09/2020,Micro_Focus/Micro_Focus_OBR.md
+2020-11858/ZDI-20-1326,Micro Focus Operations Bridge Manager,windows privesc,28/10/2020,Micro_Focus/Micro_Focus_OBM.md
+2020-12009/ZDI-20-777,Iconics Genesis64,dir traversal / rce,Pwn2Own Miami 2020,apocalypse32
+2020-12027/ZDI-20-727,Rockwell FactoryTalk SE,info disclosure (project list),Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
 ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
-CVE-2020-12028/ZDI-20-729,Rockwell FactoryTalk SE,missing auth for critical function,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
-CVE-2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
-CVE-2020-15635/ZDI-20-936,NETGEAR R6700,pre auth b0f,04/08/2020,TODO
-CVE-2020-15636/ZDI-20-937,multiple NETGEAR routers,stack b0f,04/08/2020,TODO
-CVE-2021-22502/ZDI-21-153/4,Micro Focus Operations Bridge Reporter,unauth cmd injection,09/02/2021,Micro_Focus/Micro_Focus_OBR.md
-CVE-2021-27245/ZDI-21-214,TP-Link Archer A7,Firewall bypass + stack overflow,24/02/2021,dont_mesh_with_me
-CVE-2021-27251/ZDI-21-247,NETGEAR R7800,insecure download,24/02/2021,genie_in_da_router
-CVE-2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,24/02/2021,genie_in_da_router
-CVE-2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
-CVE-2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
-CVE-2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
-CVE-2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
-CVE-2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
+2020-12028/ZDI-20-729,Rockwell FactoryTalk SE,missing auth for critical function,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+2020-12029/ZDI-20-730,Rockwell FactoryTalk SE,directory traversal,Pwn2Own Miami 2020,Pwn2Own/Miami2020/replicant_public_v3.md
+2020-15635/ZDI-20-936,NETGEAR R6700,pre auth b0f,04/08/2020,TODO
+2020-15636/ZDI-20-937,multiple NETGEAR routers,stack b0f,04/08/2020,TODO
+2021-22502/ZDI-21-153/4,Micro Focus Operations Bridge Reporter,unauth cmd injection,09/02/2021,Micro_Focus/Micro_Focus_OBR.md
+2021-27245/ZDI-21-214,TP-Link Archer A7,Firewall bypass + stack overflow,24/02/2021,dont_mesh_with_me
+2021-27251/ZDI-21-247,NETGEAR R7800,insecure download,24/02/2021,genie_in_da_router
+2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,24/02/2021,genie_in_da_router
+2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
+2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
+2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
+2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
+2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 ZDI-22-521,NETGEAR R6700,unauth file upload,23/03/2022,apidamus
 ,,,,
 ,,,,
