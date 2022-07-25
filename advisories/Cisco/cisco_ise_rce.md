@@ -1,7 +1,7 @@
 # Multiple vulnerabilities in Cisco Identity Services Engine (XSS to RCE as root)
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk) and Dominik Czarnota (dominik.b.czarnota@gmail.com)
 
-#### Disclosure: 20/01/2019 / Last updated: 30/06/2021
+#### Disclosure: 2019-01-20 / Last updated: 2021-06-30
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)

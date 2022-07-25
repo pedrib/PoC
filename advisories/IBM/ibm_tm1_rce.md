@@ -2,7 +2,7 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 17/12/2019 | Last updated: 09/05/2020 
+#### Disclosure Date: 2019-12-17 | Last updated: 2020-05-09 
 
 * [Summary](#summary)
 * [Technical Introduction](#technical-introduction)

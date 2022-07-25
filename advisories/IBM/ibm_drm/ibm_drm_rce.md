@@ -5,8 +5,8 @@
 #### Disclosure Date: 2020-04-21 | Last Updated: 2020-06-12
 
 * [Summary](#summary)
-    * [Update 2020-06-12](#update-2020--06--12)
-    * [Here's a bunch of 0 days!](#here--s-a-bunch-of-0-days)
+    * [Update (2020-06-12)](#update)
+    * [Here's a bunch of 0 days!](#0-days)
     * [So many questions...](#so-many-questions)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Authentication Bypass](#1-authentication-bypass)
@@ -60,7 +60,7 @@ Finally, the Metasploit modules were accepted into the framework, and now there 
 
 The rest of the original advisory follows.
   
-### Here's a bunch of 0 days!
+### <a id="0days"></a>Here's a bunch of 0 days!
 
 At the time of disclosure these vulnerabilities are **"0 days"**. An attempt was made to contact [CERT/CC](https://www.kb.cert.org/vuls/) to coordinate disclosure with IBM, but IBM **REFUSED** to accept the vulnerability report, and responded to CERT/CC with:  
 
