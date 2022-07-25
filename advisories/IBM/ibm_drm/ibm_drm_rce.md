@@ -2,9 +2,21 @@
 
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
-#### Disclosure Date: 21/04/2020 | Last Updated: 12/06/2020  
-  
-## Introduction
+#### Disclosure Date: 2020-04-21 | Last Updated: 2020-06-12
+
+* [Summary](#summary)
+    * [Update 2020-06-12](#update-2020--06--12)
+    * [Here's a bunch of 0 days!](#here--s-a-bunch-of-0-days)
+    * [So many questions...](#so-many-questions)
+* [Vulnerability Details](#vulnerability-details)
+    * [#1: Authentication Bypass](#1-authentication-bypass)
+    * [#2: Command Injection](#2-command-injection)
+    * [#3: Insecure Default Password](#insecure-default-password)
+    * [#4: Arbitrary File Download](#4-arbitrary-file-download)
+* [Fixes / Mitigations](#fixes--mitigations)
+
+
+## Product Information
 [From the vendor's website](https://www.ibm.com/products/data-risk-manager):  
 *What you don’t know can hurt you. Identify and help prevent risks to sensitive business data that may impact business processes, operations, and competitive position. IBM Data Risk Manager provides executives and their teams a business-consumable data risk control center that helps to uncover, analyze, and visualize data-related business risks so they can take action to protect their business.*
 
@@ -25,7 +37,7 @@ This advisory describes the four vulnerabilities and the steps necessary to chai
 
 At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable. The status of version 2.0.0 is unknown, but that version is out-of-support anyway. 
 
-### Update (12/06/2020)
+### Update (2020-06-12)
 Looks like IBM finally confirmed that [the vulnerabilities exist](https://www.ibm.com/blogs/psirt/security-bulletin-vulnerabilities-exist-in-ibm-data-risk-manager-cve-2020-4427-cve-2020-4428-cve-2020-4429-and-cve-2020-4430/), and according to [their security bulletin](https://www.ibm.com/support/pages/node/6206875), IDRM is vulnerable to:
 
 * Authentication Bypass on versions 2.0.6.1 and earlier
@@ -436,18 +448,15 @@ If vulnerabilities #1 and #4 are combined, it's possible for an unauthenticated 
 [![asciicast](https://asciinema.org/a/328317.svg)](https://asciinema.org/a/328317)
 
 
-## Fix / Solutions:
+## Fixes / Mitigations:
 IBM refused to acknowledge this vulnerability report, so most likely won't fix these vulnerabilities. Make sure you uninstall the product so it does not endanger your network / company.
 
 ## Disclaimer
-Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.   
-
+Please note that Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.
 Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and it is the vendor's responsibility to ensure all the vulnerabilities found by Agile InfoSec are resolved properly. Agile InfoSec usually provides the information in its advisories free of charge to the vendor, as well as a minimum of six months for the vendor to resolve the vulnerabilities identified in its advisories before they are made public.
-
 Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 
 ## License
-All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html).  
-For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
+All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html). For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
 
 

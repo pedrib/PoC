@@ -3,16 +3,15 @@
 
 #### Disclosure: 20/01/2019 / Last updated: 30/06/2021
 
-* [Product information](#product-information)
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Stored Cross Site Scripting](#1-stored-cross-site-scripting)
     * [#2: Unsafe Flex AMF Java Object Deserialization](#2-unsafe-flex-amf-java-object-deserialization)
     * [#3: Privilege Escalation via Incorrect sudo and File Permissions](#3-privilege-escalation-via-incorrect-sudo-and-file-permissions)
 * [End to End Exploit](#end-to-end-exploit)
-* [Fixes / Solutions](#fixes--solutions)
+* [Fixes / Mitigations](#fixes--mitigations)
 
-## Product information
+## Product Information
 [From the vendor's website](https://www.cisco.com/c/en/us/products/collateral/security/identity-services-engine/data_sheet_c78-656174.html):
 > The Cisco Identity Services Engine (ISE) is your one-stop solution to streamline security policy management and reduce operating costs. With ISE, you can see users and devices controlling access across wired, wireless, and VPN connections to the corporate network.
 
@@ -269,17 +268,16 @@ public class ACSFlex {
 }
 ```
 
-## Fixes / Solutions:
+## Fixes / Mitigations:
 [Cisco claims](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvm79609) vulnerability #1 is fixed in version 2.2.0.913. [It is unknown](https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20190109-ise-multi-xss) if it is fixed in versions 2.4.x.
 [Cisco claims](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCvj62599) vulnerability #2 is fixed in version 2.4.0.905.
 By [Cisco's own admission](https://bst.cloudapps.cisco.com/bugsearch/bug/CSCve49987), vulnerability #3 is not fixed as of 05/02/2019.
 
 
 ## Disclaimer
-Please note that Agile Information Security (Agile InfoSec) relies on information provided by the vendor when listing fixed versions or products. Agile InfoSec does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so.   
-Unconfirmed vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerabilities found by Agile Information Security are resolved properly.  
-Agile Information Security Limited does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in this advisory. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
+Please note that Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.
+Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and it is the vendor's responsibility to ensure all the vulnerabilities found by Agile InfoSec are resolved properly. Agile InfoSec usually provides the information in its advisories free of charge to the vendor, as well as a minimum of six months for the vendor to resolve the vulnerabilities identified in its advisories before they are made public.
+Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 
 ## License
-All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html).  
-For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
+All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html). For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.

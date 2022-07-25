@@ -3,16 +3,15 @@
 
 #### Disclosure: 2021-07-16 / Last updated: 2021-07-16
 
-* [Product information](#product-information)
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Unsafe Flex AMF Java Object Deserialization](#1-unsafe-flex-amf-java-object-deserialization)
     * [#2: Use of Insecure Java Library](#2-use-of-insecure-java-library)
 * [Exploit Chain](#exploit-chain)
 * [Disclosure Process](#disclosure-process)
-* [Fixes / Solutions](#fixes--solutions)
+* [Fixes / Mitigations](#fixes--mitigations)
 
-## Product information
+## Product Information
 [From the vendor's website](https://docs.tibco.com/products/tibco-data-virtualization-8-4-0):
 > TIBCO® Data Virtualization integrates disparate data sources in real-time instead of copying their data into a data warehouse. TIBCO® Data Virtualization (TDV) allows you to easily create logical views to integrate and secure data across disparate data sources and tailor it to your analytical needs. TDV connects to virtually any data source and provides business users access to data through JDBC, ODBC, ADO.NET, REST and SOAP.
 
@@ -122,15 +121,14 @@ My final email was a very angry rant telling them what I think of their disclosu
 
 I will refrain from commenting further, as it is clear to anyone who reads this that their vulnerability disclosure process is not fit for purpose. I hope they change it after this debacle, although I am not holding my breath.
 
-## Fixes / Solutions:
+## Fixes / Mitigations:
 Upgrade TIBCO Data Virtualization to the latest 8.4 version, released on 2021-05-04, which removes the AMF endpoint, rendering this vulnerability chain unexploitable.
 
 
 ## Disclaimer
-Please note that Agile Information Security (Agile InfoSec) relies on information provided by the vendor when listing fixed versions or products. Agile InfoSec does not verify this information, except when specifically mentioned in this advisory or when requested or contracted by the vendor to do so.   
-Unconfirmed vendor fixes might be ineffective or incomplete, and it is the vendor's responsibility to ensure the vulnerabilities found by Agile Information Security are resolved properly.  
-Agile Information Security Limited does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in this advisory. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
+Please note that Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.
+Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and it is the vendor's responsibility to ensure all the vulnerabilities found by Agile InfoSec are resolved properly. Agile InfoSec usually provides the information in its advisories free of charge to the vendor, as well as a minimum of six months for the vendor to resolve the vulnerabilities identified in its advisories before they are made public.
+Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 
 ## License
-All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html).  
-For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
+All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html). For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.

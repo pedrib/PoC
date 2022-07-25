@@ -3,7 +3,18 @@
 ### By Pedro Ribeiro (pedrib@gmail.com | [@pedrib1337](https://twitter.com/pedrib1337)) from [Agile Information Security](https://agileinfosec.co.uk)
 
 #### Disclosure Date: 17/12/2019 | Last updated: 09/05/2020 
-  
+
+* [Summary](#summary)
+* [Technical Introduction](#technical-introduction)
+* [Vulnerability Details](#vulnerability-details)
+    * [Configuration Overwrite](#configuration-overwrite)
+    * [Bypassing Authentication](#bypassing-authentication)
+    * [Achieving Code Execution](#achieving-code-execution)
+* [Fixes / Mitigations](#fixes--mitigations)
+
+## Product Information
+[IBM Planning Analytics](https://www.ibm.com/products/planning-analytics), powered by IBM TM1, is an integrated planning solution designed to promote collaboration across the organization and help keep pace with the speed of modern business. With a powerful calculation engine, this enterprise performance management solution helps you move beyond the limits of spreadsheets, automating the planning process to drive faster, more accurate results. Simplify oceans of data by unifying data sources into one single repository and empowering users to build sophisticated, multidimensional models that drive more reliable forecasts. 
+
 ## Summary
 
 **tl;dr scroll down to the bottom for an asciinema of the exploit in action**
@@ -20,9 +31,6 @@ A Metasploit exploit module that abuses this vulnerability [was released and int
 Readers are encouraged to contact the author to share exploitation tales and success stories.
 
 A special thanks to [CERT/CC](https://www.kb.cert.org/vuls/) for assisting with the disclosure of this vulnerability, and to Gareth Batchelor of Cloudtrace for doing real world testing of the exploit.
-
-## Vendor Description:
-[IBM Planning Analytics](https://www.ibm.com/products/planning-analytics), powered by IBM TM1, is an integrated planning solution designed to promote collaboration across the organization and help keep pace with the speed of modern business. With a powerful calculation engine, this enterprise performance management solution helps you move beyond the limits of spreadsheets, automating the planning process to drive faster, more accurate results. Simplify oceans of data by unifying data sources into one single repository and empowering users to build sophisticated, multidimensional models that drive more reliable forecasts. 
 
 
 ## Technical Introduction
@@ -331,18 +339,15 @@ And with that said, here is an asciinema of the exploit in action:
 
 
 
-## Solutions / Vulnerability Fixes / Mitigation:
+## Fixes / Mitigations:
 - Follow [IBM's recommendations](https://www.ibm.com/support/pages/node/1127781) and upgrade to IBM Planning Analytics 2.0.9.
 - Do not expose TM1 / Planning Analytics to the Internet or untrusted networks.
 
 ## Disclaimer
-Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.   
-
+Please note that Agile Information Security Limited (Agile InfoSec) relies on information provided by the vendor / product manufacturer when listing fixed versions, products or releases. Agile InfoSec does not verify this information, except when specifically mentioned in the advisory text and requested or contracted by the vendor to do so.
 Unconfirmed vendor fixes might be ineffective, incomplete or easy to bypass and it is the vendor's responsibility to ensure all the vulnerabilities found by Agile InfoSec are resolved properly. Agile InfoSec usually provides the information in its advisories free of charge to the vendor, as well as a minimum of six months for the vendor to resolve the vulnerabilities identified in its advisories before they are made public.
-
 Agile InfoSec does not accept any responsibility, financial or otherwise, from any material losses, loss of life or reputational loss as a result of misuse of the information or code contained or mentioned in its advisories. It is the vendor's responsibility to ensure their products' security before, during and after release to market.
 
 ## License
-All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html).  
-For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
+All information, code and binary data in this advisory is released to the public under the [GNU General Public License, version 3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html). For information, code or binary data obtained from other sources that has a license which is incompatible with GPLv3, the original license prevails.
 
