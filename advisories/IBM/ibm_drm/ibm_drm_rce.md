@@ -7,7 +7,7 @@
 * [Summary](#summary)
     * [Update (2020-06-12)](#update)
     * [Here's a bunch of 0 days!](#0-days)
-    * [So many questions...](#so-many-questions)
+    * [So many questions...](#questions)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Authentication Bypass](#1-authentication-bypass)
     * [#2: Command Injection](#2-command-injection)
@@ -37,7 +37,7 @@ This advisory describes the four vulnerabilities and the steps necessary to chai
 
 At the time of disclosure, it is unclear if the latest version 2.0.6 is affected by these, but most likely it is, as there is no mention of fixed vulnerabilities in any changelog, and it was released before the *attempt* to report these vulnerabilities to IBM. The latest version Agile InfoSec has access to is 2.0.3, and that one is certainly vulnerable. The status of version 2.0.0 is unknown, but that version is out-of-support anyway. 
 
-### Update (2020-06-12)
+### <a id="update"></a>Update (2020-06-12)
 Looks like IBM finally confirmed that [the vulnerabilities exist](https://www.ibm.com/blogs/psirt/security-bulletin-vulnerabilities-exist-in-ibm-data-risk-manager-cve-2020-4427-cve-2020-4428-cve-2020-4429-and-cve-2020-4430/), and according to [their security bulletin](https://www.ibm.com/support/pages/node/6206875), IDRM is vulnerable to:
 
 * Authentication Bypass on versions 2.0.6.1 and earlier
@@ -79,7 +79,7 @@ It should be noted that IBM offers no bounties on their "bug bounty program", ju
 In any case, I did not ask or expect a bounty since I do not have a HackerOne account and I don't agree with HackerOne's or IBM's disclosure terms there. 
 I simply wanted to disclose these to IBM responsibly and let them fix it.
 
-### So many questions...
+### <a id="questions"></a>So many questions...
 IDRM is an enterprise security product that handles very sensitive information. The hacking of an IDRM appliance might lead to a full scale company compromise, as it stores credentials to access other security tools, not to mention it contains information about critical vulnerabilities that affect the company.
 
 * Why did IBM refuse to accept a **FREE** detailed vulnerability report?
