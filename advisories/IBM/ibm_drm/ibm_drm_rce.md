@@ -6,7 +6,7 @@
 
 * [Summary](#summary)
     * [Update (2020-06-12)](#update)
-    * [Here's a bunch of 0 days!](#0-days)
+    * [Here's a bunch of 0 days!](#0days)
     * [So many questions...](#questions)
 * [Vulnerability Details](#vulnerability-details)
     * [#1: Authentication Bypass](#1-authentication-bypass)
