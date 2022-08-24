@@ -152,11 +152,11 @@ ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 
 2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
 2021-46829,gdk-pixbuf,heap b0f,09/11/2021,fuzzing/CVE-2021-46829
 ZDI-22-521,NETGEAR R6700,unauth file upload,23/03/2022,apidamus
-2022-1069/ZDI-22-1159,Softing IS,out of bounds read dos,23/08/2022,TODO
-2022-2335/ZDI-22-1160,Softing IS,int underflow dos,23/08/2022,TODO
-2022-2336/ZDI-22-1161,Softing IS,auth bypass,23/08/2022,tudo_wbem
-2022-2337/ZDI-22-1157,Softing IS,null deref,23/08/2022,TODO
-2022-2547/ZDI-22-1158,Softing IS,null deref,23/08/2022,TODO
+2022-1069/ZDI-22-1159,Softing SIS,out of bounds read dos,23/08/2022,TODO
+2022-2335/ZDI-22-1160,Softing SIS,int underflow dos,23/08/2022,TODO
+2022-2336/ZDI-22-1161,Softing SIS,auth bypass,23/08/2022,tudo_wbem
+2022-2337/ZDI-22-1157,Softing SIS,uri null deref,23/08/2022,TODO
+2022-2547/ZDI-22-1158,Softing SIS,content-type null deref,23/08/2022,TODO
 2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
 2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 2022-28687/ZDI-22-1126,AVEVA Edge,uncontrolled search path rce,23/08/2022,i_am_host
