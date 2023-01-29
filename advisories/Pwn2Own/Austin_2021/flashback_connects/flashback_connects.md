@@ -33,7 +33,7 @@ This vulnerability was first publicly presented at [OffensiveCon 2022](https://w
 
 These vulnerabilities are exploitable over the Internet as demonstrated in our YouTube video, [Rice for Pretzels: Attacking a Cisco VPN Gateway 9000 km Away](https://www.youtube.com/watch?v=O1uK_b1Tmts):
 
-[![Exploiting (and Patching) a Zero Day RCE Vulnerability in a Western Digital NAS](https://img.youtube.com/vi/vsg9YgvGBec/0.jpg)](https://www.youtube.com/watch?v=vsg9YgvGBec)
+[![Rice for Pretzels: Attacking a Cisco VPN Gateway 9000 km Away](https://img.youtube.com/vi/O1uK_b1Tmts/0.jpg)](https://www.youtube.com/watch?v=O1uK_b1Tmts)
 
 A copy of this advisory is kept at [Radek's GitHub repo](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Austin2021/flashback_connects/flashback_connects.md) and also at [Pedro's GitHub repo](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md).
 
