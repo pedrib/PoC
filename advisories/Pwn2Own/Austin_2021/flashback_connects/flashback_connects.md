@@ -31,7 +31,9 @@ All code snippets in this advisory were obtained from files in firmware version 
 
 This vulnerability was first publicly presented at [OffensiveCon 2022](https://www.offensivecon.org/speakers/2022/radek-domanski-and-pedro-ribeiro.html). A companion [Metasploit module](https://github.com/rapid7/metasploit-framework/pull/16169) was also released with this advisory that implements a full remote exploit.
 
-These vulnerabilities are exploitable over the Internet as demonstrated in our YouTube video, [Rice for Pretzels: Attacking a Cisco VPN Gateway 9000 km Away](https://www.youtube.com/watch?v=O1uK_b1Tmts).
+These vulnerabilities are exploitable over the Internet as demonstrated in our YouTube video, [Rice for Pretzels: Attacking a Cisco VPN Gateway 9000 km Away](https://www.youtube.com/watch?v=O1uK_b1Tmts):
+
+[![Exploiting (and Patching) a Zero Day RCE Vulnerability in a Western Digital NAS](https://img.youtube.com/vi/vsg9YgvGBec/0.jpg)](https://www.youtube.com/watch?v=vsg9YgvGBec)
 
 A copy of this advisory is kept at [Radek's GitHub repo](https://github.com/rdomanski/Exploits_and_Advisories/blob/master/advisories/Pwn2Own/Austin2021/flashback_connects/flashback_connects.md) and also at [Pedro's GitHub repo](https://github.com/pedrib/PoC/blob/master/advisories/Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md).
 
