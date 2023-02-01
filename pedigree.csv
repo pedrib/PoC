@@ -145,9 +145,9 @@ ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 
 2020-15636/ZDI-20-937,multiple NETGEAR routers,stack b0f,04/08/2020,TODO
 2020-28347,TP-Link Archer A7/C7,command injection,08/11/2020,Pwn2Own/Tokyo_2020/minesweeper.md
 2021-22502/ZDI-21-153/4,Micro Focus Operations Bridge Reporter,unauth cmd injection,09/02/2021,Micro_Focus/Micro_Focus_OBR.md
-2021-27245/ZDI-21-214,TP-Link Archer A7,Firewall bypass + stack overflow,24/02/2021,dont_mesh_with_me
-2021-27251/ZDI-21-247,NETGEAR R7800,insecure download,24/02/2021,genie_in_da_router
-2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,24/02/2021,genie_in_da_router
+2021-27245/ZDI-21-214,TP-Link Archer A7,Firewall bypass + stack overflow,Pwn2Own Tokyo 2020,dont_mesh_with_me
+2021-27251/ZDI-21-247,NETGEAR R7800,insecure download,Pwn2Own Tokyo 2020,genie_in_da_router
+2021-27257/ZDI-21-264,NETGEAR R7800,no cert validation + code exec,Pwn2Own Tokyo 2020,genie_in_da_router
 2021-31505/ZDI-21-683,Arlo Q,hardcoded SSH creds,14/06/2021,TODO
 2021-35003/ZDI-22-080,TP-Link Archer C90,DNS stack b0f,17/01/2022,connor_c90
 2021-35004/ZDI-22-081,TP-Link TL-WA1201,DNS stack b0f,17/01/2022,connor_wa
@@ -155,15 +155,15 @@ ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 
 2021-36225,Western Digital PR4100,unpriv fw upgrade,25/02/2021,Pwn2Own/Tokyo_2020/weekend_destroyer/weekend_destroyer.md
 2021-36226,Western Digital PR4100,insecure fw upgrade,25/02/2021,Pwn2Own/Tokyo_2020/weekend_destroyer/weekend_destroyer.md
 2021-46829,gdk-pixbuf,heap b0f,09/11/2021,fuzzing/CVE-2021-46829
-ZDI-22-521,NETGEAR R6700,unauth file upload,23/03/2022,apidamus
+ZDI-22-521,NETGEAR R6700,unauth file upload,Pwn2Own Austin 2021,apidamus
 2022-1069/ZDI-22-1159,Softing SIS,out of bounds read dos,23/08/2022,TODO
 2022-2335/ZDI-22-1160,Softing SIS,int underflow dos,23/08/2022,TODO
 2022-2336/ZDI-22-1161,Softing SIS,auth bypass,23/08/2022,tudo_wbem
 2022-2337/ZDI-22-1157,Softing SIS,uri null deref,23/08/2022,TODO
 2022-2547/ZDI-22-1158,Softing SIS,content-type null deref,23/08/2022,TODO
-2022-20699/ZDI-22-414,Cisco RV340,stack b0f,22/02/2022,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
+2022-20699/ZDI-22-414,Cisco RV340,stack b0f,Pwn2Own Austin 2021,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
 2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
-2022-28687/ZDI-22-1126,AVEVA Edge,uncontrolled search path rce,23/08/2022,i_am_host
+2022-28687/ZDI-22-1126,AVEVA Edge,uncontrolled search path rce,Pwn2Own Miami 2022,i_am_host
 ,,,,
 ,,,,
 Metasploit modules,,,,
