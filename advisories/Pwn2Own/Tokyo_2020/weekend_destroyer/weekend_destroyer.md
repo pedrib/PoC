@@ -29,7 +29,7 @@ While we did not have time to find new vulnerabilities in OS 5, other competitor
 
 However, it seems that OS 5 was released in such a rush that it didn't even implement some basic features expected by users of OS 3, and some device models running OS 3 were not supported at all. 
 
-We highly recommend that you watch our video that explains all of these vulnerabilities in detail, as well as the drama surrounding it, which are also explained in a [Krebs On Security article](https://krebsonsecurity.com/2021/07/another-0-day-looms-for-many-western-digital-users/).
+We highly recommend that you watch [our video that explains all of these vulnerabilities](https://www.youtube.com/watch?v=vsg9YgvGBec) in detail, as well as the drama surrounding it, which is also detailed in a [Krebs On Security article](https://krebsonsecurity.com/2021/07/another-0-day-looms-for-many-western-digital-users/).
 
 [![Exploiting (and Patching) a Zero Day RCE Vulnerability in a Western Digital NAS](https://img.youtube.com/vi/vsg9YgvGBec/0.jpg)](https://www.youtube.com/watch?v=vsg9YgvGBec)
 
