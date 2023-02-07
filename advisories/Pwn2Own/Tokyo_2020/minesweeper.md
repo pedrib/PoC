@@ -21,6 +21,10 @@ During Pwn2Own 2019 we pwned the same service. Technical details of that exploit
 
 Therefore, we refer to those publications to understand inner working of the service and in this advisory we will only focus on differences to an exploit from 2019.
 
+We have also made a [video version of this advisory](https://www.youtube.com/watch?v=zjafMP7EgEA), we highly recommend you check it out!
+
+[![Exploiting (and Patching) a Zero Day RCE Vulnerability in a Western Digital NAS](https://img.youtube.com/vi/zjafMP7EgEA/0.jpg)](https://www.youtube.com/watch?v=zjafMP7EgEA)
+
 ## We never got to use it...
 
 This vulnerability was patched by TP-Link on [firmware 201029 for the A7 version](https://static.tp-link.com/2020/202011/20201104/Archer%20A7(US)_V5_201029.zip) and [201030 for the C7 version](https://static.tp-link.com/2020/202011/20201104/Archer%20C7(EU)_V5_201030.zip). The patch was dropped one day before the competition, wiping out a lot of Pwn2Own contestants, including us, so the exploit described below was never used in the competition.
