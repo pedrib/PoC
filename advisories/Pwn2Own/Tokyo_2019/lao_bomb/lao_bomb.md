@@ -13,7 +13,7 @@ This vulnerability can only be exploited by an attacker on the LAN side of the r
 
 All function offsets and code snippets in this advisory were taken from */usr/bin/tdpServer*, firmware version 190726.
 
-We have also made a video version of this advisory, we highly recommend you check it out!
+We have also made a [video version of this advisory](https://www.youtube.com/watch?v=zjafMP7EgEA), we highly recommend you check it out!
 
 [![Exploiting (and Patching) a Zero Day RCE Vulnerability in a Western Digital NAS](https://img.youtube.com/vi/zjafMP7EgEA/0.jpg)](https://www.youtube.com/watch?v=zjafMP7EgEA)
 
