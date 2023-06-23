@@ -19,9 +19,9 @@
 
 ADSelfService Plus installs a [local agent](https://www.manageengine.com/products/self-service-password/help/admin-guide/Configuration/Admin-Tools/GINA/GINA-Installation.html) (a customisation for [Windows GINA](https://docs.microsoft.com/en-us/windows/win32/secauthn/gina), henceforth referred to only as *GINA*) on managed Windows domain computers, which can be used to reset Active Directory user passwords directly from the login screen.
 
-It is possible to use some *old skool* trickery to get a pre-authentication file dialog which can then be used to get a `SYSTEM` command shell. A video demonstrating the exploit can be seen on [YouTube](https://www.youtube.com/watch?v=M8Z6NXq3a_0):
+It is possible to use some *old skool* trickery to get a pre-authentication file dialog which can then be used to get a `SYSTEM` command shell. A video demonstrating the exploit can be seen on [YouTube](https://www.youtube.com/watch?v=u1H8PiOPIKU):
 
-[![Pulling SYSTEM out of Windows GINA (Pre Authentication Exploit) 🪟](https://img.youtube.com/vi/M8Z6NXq3a_0/0.jpg)](https://www.youtube.com/watch?v=M8Z6NXq3a_0)
+[![Pulling SYSTEM out of Windows GINA (Pre Authentication Exploit) 🪟](https://img.youtube.com/vi/u1H8PiOPIKU/0.jpg)](https://www.youtube.com/watch?v=u1H8PiOPIKU)
 
 A very [similar vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11552) was discovered by [Bhadresh Patel](https://seclists.org/fulldisclosure/2020/Aug/4) back in 2020 and fixed in version `6.0 build 6003`.
 
