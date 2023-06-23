@@ -30,6 +30,8 @@ Our vulnerability is confirmed to work all the way down to ADSelfService Plus ve
 It was found in 2022 during a penetration test of a major financial institution, and responsibly disclosed to the good folks at the [Zero Day Initiative](https://www.zerodayinitiative.com/) (ZDI), which in turn disclosed it to the vendor ([ManageEngine](https://www.manageengine.com/)).
 After waiting 418 days for a fix that never came, ZDI decided to [release it to the public](https://www.zerodayinitiative.com/advisories/ZDI-23-891/) as a zero day on 2023-06-21.
 
+This advisory [was published](https://github.com/pedrib/PoC/blob/master/advisories/ManageEngine/adselfpwnplus/adselfpwnplus.md) in Pedro's [GitHub repository](https://github.com/pedrib/PoC) on 2023-06-23 and the vulnerability is tracked as [CVE-2023-35719](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-35719) / [ZDI-23-891](https://www.zerodayinitiative.com/advisories/ZDI-23-891/).
+
 
 ## Vulnerability Details
 * [CWE-288: Authentication Bypass Using an Alternate Path or Channel](https://cwe.mitre.org/data/definitions/288.html)
