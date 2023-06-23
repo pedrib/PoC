@@ -164,6 +164,7 @@ ZDI-22-521,NETGEAR R6700,unauth file upload,Pwn2Own Austin 2021,apidamus
 2022-20699/ZDI-22-414,Cisco RV340,stack b0f,Pwn2Own Austin 2021,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
 2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 2022-28687/ZDI-22-1126,AVEVA Edge,uncontrolled search path rce,Pwn2Own Miami 2022,i_am_host
+2023-35719/ZDI-23-891,ManageEngine ADSelfService Plus,auth bypass / privesc,23/06/2023,ManageEngine/adselfpwnplus/adselfpwnplus.md
 ,,,,
 ,,,,
 Metasploit modules,,,,
