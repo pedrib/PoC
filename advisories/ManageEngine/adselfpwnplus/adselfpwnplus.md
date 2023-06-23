@@ -6,7 +6,7 @@
 
 * [Summary](#summary)
 * [Vulnerability Details](#vulnerability-details)
-    * [Takeaways](#limitations)
+    * [Takeaways](#takeaways)
     * [Limitations](#limitations)
 * [Fixes / Mitigations](#fixes--mitigations)
 
