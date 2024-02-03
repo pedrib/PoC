@@ -14,26 +14,33 @@ import time
 # - What it does:
 #   1) Uses virsh to save a running MikroTik Cloud Hosted Router (CHR) virtual machine to disk
 #   2) Finds a specific reference to /nova/bin/login (MikroTik's restricted shell, which is what you 
-#   get when you login via telnet or SSH) and replaces it with our own binary that invokes /bin/sh
+#   get when you login via telnet or SSH) and replaces it with our own binary which invokes /bin/sh
 #
-# - Tested on:
+# - Tested on (should work on all 6.x and 7.x versions):
 #   Cloud Hosted Router 6.47.10
 #   Cloud Hosted Router 7.3.1
+#   Cloud Hosted Router 7.14beta9
 #
 # - Prerequisites:
-#   1) MikroTik CHR running on KVM (with virsh command line)
+#   1) MikroTik CHR running on KVM/qemu (with virsh command line access)
 #       1.1) VM has to be booted, and you have had to go through initial setup
 #   2) The following statically built binaries for x86:
 #       2.1) "exec" (see below for source code) in /rw/disk/exec
 #       2.2) "busybox" in /rw/disk/busybox, with your favourite symlinks (ls, id, etc)
 #
-# - Uploading /rw/disk/exec:
+# - Before running this script, go through setup in the VM. Then shut it down and upload the static binaries:
 #   1) gcc -m32 -o exec -static exec.c
 #   2) sudo guestmount -a chr-6.47.10.img -m /dev/sda1 /mnt/misc/
 #       2.1) NOTE: on 7.x versions, use /dev/sda2 instead
 #   3) cp exec /mnt/misc/rw/disk/exec
 #   4) chmod +x /mnt/misc/rw/disk/exec && sudo umount /mnt/misc
-#   5) Repeat the steps above for busybox (and don't forget those symlinks!)
+#   5) Repeat the steps above for busybox
+#   6) Create symlinks for busybox:
+#       6.1) cd /mnt/misc/rw/disk
+#       6.2) ln -s busybox id
+#       6.3) ln -s busybox uname
+#        (... more symlinks as desired ...)
+#   7) sudo umount /mnt/misc
 #
 # - A few notes:
 #   Step 4) in the instructions above (making it executable) is the reason the upload cannot be done with the Web UI. 
@@ -41,21 +48,22 @@ import time
 #   Since we are patching /nova/bin/login in memory, the new executable name cannot have more than 14 characters. 
 #   It can have less, but has to be padded to 14 chars to work.
 #
-#   THIS IS NOT A PERMANENT ROOT! You have to run it every time you reboot your VM. 
+#   THIS IS NOT A PERMANENT ROOT JAILBREAK! You have to run it every time you reboot your VM. 
 # 
 # - "exec" file:
-#include <unistd.h>
-#int main() {
-#  char* argv[] = { "sh", 0 };
-#  execve("/rw/disk/busybox", argv, 0);
-#}
+# #include <unistd.h>
+# int main() {
+#   char* argv[] = { "sh", 0 };
+#   execve("/rw/disk/busybox", argv, 0);
+# }
 # 
 # - Typical run:
-# mikrotik > ./mikrotik_jailbreak.py MikroTik_CHR_7.3.1 10.9.8.12 PASSWORD
+# (... Boot the VM first ...)
+# mikrotik > ./mikrotik_jailbreak.py MikroTik_CHR 10.9.8.12 PASSWORD
 # [*] Logging in 10.9.8.12 via telnet to prep patch
 # [*] Saving VM
 #
-# Domain 'MikroTik_CHR_7.3.1' saved to mikrotik.save
+# Domain 'MikroTik_CHR' saved to mikrotik.save
 #
 # [*] Running sudo to chmod 777 memory file so we can patch it
 # [+] Found patch target at location 0x3063847
@@ -64,6 +72,8 @@ import time
 # Domain restored from mikrotik.save
 #
 # [+] Finished, enjoy Shelly!
+# [!] Don't forget to set the PATH variable in the shell: `export PATH=$PATH:/rw/disk`
+#
 # Trying 10.9.8.12...
 # Connected to 10.9.8.12.
 # Escape character is '^]'.
@@ -71,7 +81,7 @@ import time
 # / # id
 # uid=0 gid=0
 # / # uname -a
-# Linux MikroTik 5.6.3-64 #1 SMP Thu Jun 9 09:18:50 UTC 2022 x86_64 GNU/Linux
+# Linux MikroTik 5.6.3-64 #1 SMP Thu Feb 1 09:18:34 UTC 2024 x86_64 GNU/Linux
 # / #  
 #
 #
@@ -134,4 +144,5 @@ os.unlink(SAVEFILE)
 
 time.sleep(5)
 print("[+] Finished, enjoy Shelly!")
+print("[!] Don't forget to set the PATH variable in the shell: `export PATH=$PATH:/rw/disk`\n")
 os.system("telnet %s" % (host))
