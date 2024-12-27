@@ -18,10 +18,10 @@ Report follows below, please let me know if you need more info.
 Regards,
 Pedro Ribeiro (pedrib@gmail.com) from Agile Information Security
 
-[1] https://www.openwall.com/lists/oss-security/2020/11/13/1
-[2] https://tracker.debian.org/pkg/raptor2
-[3] https://github.com/dajobe/raptor
-[4] https://github.com/dajobe/raptor/commit/72a8a2dcdd56527dfe9f23b273d9521a11811ef3
+[1] https://www.openwall.com/lists/oss-security/2020/11/13/1  
+[2] https://tracker.debian.org/pkg/raptor2  
+[3] https://github.com/dajobe/raptor  
+[4] https://github.com/dajobe/raptor/commit/72a8a2dcdd56527dfe9f23b273d9521a11811ef3  
 
 
 ## 1. Integer Underflow in `raptor_uri_normalize_path()`
