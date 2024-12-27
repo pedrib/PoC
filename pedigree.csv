@@ -154,7 +154,7 @@ ZDI-20-728,Rockwell FactoryTalk SE,info disclosure (project path),Pwn2Own Miami 
 2021-36224,Western Digital PR4100,hard coded creds,25/02/2021,Pwn2Own/Tokyo_2020/weekend_destroyer/weekend_destroyer.md
 2021-36225,Western Digital PR4100,unpriv fw upgrade,25/02/2021,Pwn2Own/Tokyo_2020/weekend_destroyer/weekend_destroyer.md
 2021-36226,Western Digital PR4100,insecure fw upgrade,25/02/2021,Pwn2Own/Tokyo_2020/weekend_destroyer/weekend_destroyer.md
-2021-46829,gdk-pixbuf,heap b0f,09/11/2021,fuzzing/CVE-2021-46829
+2021-46829,gdk-pixbuf,heap b0f,09/11/2021,fuzzing/CVE-2021-46829.md
 ZDI-22-521,NETGEAR R6700,unauth file upload,Pwn2Own Austin 2021,apidamus
 2022-1069/ZDI-22-1159,Softing SIS,out of bounds read dos,23/08/2022,TODO
 2022-2335/ZDI-22-1160,Softing SIS,int underflow dos,23/08/2022,TODO
@@ -164,7 +164,11 @@ ZDI-22-521,NETGEAR R6700,unauth file upload,Pwn2Own Austin 2021,apidamus
 2022-20699/ZDI-22-414,Cisco RV340,stack b0f,Pwn2Own Austin 2021,Pwn2Own/Austin_2021/flashback_connects/flashback_connects.md
 2022-23227,NUUO NVRmini2,missing auth,12/01/2022,NUUO/nuuo_nvrmini_round2.mkd
 2022-28687/ZDI-22-1126,AVEVA Edge,uncontrolled search path rce,Pwn2Own Miami 2022,i_am_host
+2022-48622,gdk-pixbuf,heap overflow,20/01/2022,fuzzing/CVE-2022-48622.md
 2023-35719/ZDI-23-891,ManageEngine ADSelfService Plus,auth bypass / privesc,23/06/2023,ManageEngine/adselfpwnplus/adselfpwnplus.md
+2023-42852,WebKit,WTF overflow,08/08/2023,fuzzing/CVE-2023-42852.md
+2024-TODO,Raptor,integer underflow,28/03/2024,fuzzing/raptor-fuzz.md
+2024-TODO,Raptor,heap read overflow,28/03/2024,fuzzing/raptor-fuzz.md
 ,,,,
 ,,,,
 Metasploit modules,,,,
