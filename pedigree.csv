@@ -167,8 +167,8 @@ ZDI-22-521,NETGEAR R6700,unauth file upload,Pwn2Own Austin 2021,apidamus
 2022-48622,gdk-pixbuf,heap overflow,20/01/2022,fuzzing/CVE-2022-48622.md
 2023-35719/ZDI-23-891,ManageEngine ADSelfService Plus,auth bypass / privesc,23/06/2023,ManageEngine/adselfpwnplus/adselfpwnplus.md
 2023-42852,WebKit,WTF overflow,08/08/2023,fuzzing/CVE-2023-42852.md
-2024-TODO,Raptor,integer underflow,28/03/2024,fuzzing/raptor-fuzz.md
-2024-TODO,Raptor,heap read overflow,28/03/2024,fuzzing/raptor-fuzz.md
+2024-57822,Raptor,heap read overflow,28/03/2024,fuzzing/raptor-fuzz.md
+2024-57823,Raptor,integer underflow,28/03/2024,fuzzing/raptor-fuzz.md
 ,,,,
 ,,,,
 Metasploit modules,,,,

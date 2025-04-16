@@ -1,5 +1,8 @@
 The bug report below was sent to the Debian bug tracker on 2024-03-28 and logged as [bug #1067896](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1067896).
-No CVE has been attributed as of 2024-07-27.
+A GitHub issue for these bugs was created on 2024-03-27: https://github.com/dajobe/raptor/issues/70
+CVE numbers were assigned in January 2025: [CVE-2024-57822](https://nvd.nist.gov/vuln/detail/CVE-2024-57822) and [CVE-2024-57823](https://nvd.nist.gov/vuln/detail/CVE-2024-57823).
+
+The Debian bug was closed and marked as fixed on 2025-03-29.
 
 ===
 
@@ -24,7 +27,7 @@ Pedro Ribeiro (pedrib@gmail.com) from Agile Information Security
 [4] https://github.com/dajobe/raptor/commit/72a8a2dcdd56527dfe9f23b273d9521a11811ef3  
 
 
-## 1. Integer Underflow in `raptor_uri_normalize_path()`
+## 1. Integer Underflow in `raptor_uri_normalize_path()` ([CVE-2024-57823](https://nvd.nist.gov/vuln/detail/CVE-2024-57823))
 
 There's an integer underflow in a path length calculation in `raptor_uri_normalize_path()`.
 
@@ -130,7 +133,7 @@ index 89183d96..f58710c5 100644
     * Remove leading /../ and /./
 ```
 
-## 2. Heap read buffer overflow in `raptor_ntriples_parse_term_internal()`
+## 2. Heap read buffer overflow in `raptor_ntriples_parse_term_internal()` ([CVE-2024-57822](https://nvd.nist.gov/vuln/detail/CVE-2024-57822))
 
 Didn't have any time to analyse this :-(, here's the full ASAN output:
 
